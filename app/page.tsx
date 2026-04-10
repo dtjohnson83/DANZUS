@@ -68,7 +68,7 @@ export default function Home() {
             {
               name: "DimeVision",
               description:
-                "AI-powered welding coach. Takes a photo of your weld, gives you instant, specific feedback. Built for焊工 who want to get better without a master looking over their shoulder.",
+                "AI-powered welding coach. Takes a photo of your weld, gives you instant, specific feedback. Built for welders who want to get better without a master looking over their shoulder.",
               status: "Live",
               link: "https://dimevision.app",
             },
