@@ -269,13 +269,13 @@ export default function Home() {
             <a className="ch" href="https://www.linkedin.com/in/danjohnsondata" target="_blank" rel="noopener">
               <div className="ch-label">LinkedIn &middot; Professional</div>
               <div className="ch-value">
-                /in/danjohnsondata <span className="arr">&nearr;</span>
+                /in/danjohnsondata <span className="arr">↗</span>
               </div>
             </a>
             <a className="ch" href="https://dimevision.app" target="_blank" rel="noopener">
               <div className="ch-label">Flagship &middot; Live</div>
               <div className="ch-value">
-                dimevision.app <span className="arr">&nearr;</span>
+                dimevision.app <span className="arr">↗</span>
               </div>
             </a>
           </div>
