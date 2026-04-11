@@ -334,7 +334,7 @@ function Intake({onSelect}) {
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(160px,1fr))",gap:".8rem",maxWidth:600}}>
         {Object.entries(PERSONAS).map(([k,v]) => (
           <button key={k} onClick={() => onSelect(k)} style={{
-            background:T.sf,border:`2px solid ${T.rule}`,borderRadius:8,padding:"1.1rem",
+            background:T.sf,border:`2px solid ${T.rule}`,borderRadius:8,padding:"1.1rem",minHeight:"56px",
             cursor:"pointer",textAlign:"left",color:T.tx,transition:"all .2s"
           }}
           onMouseEnter={e => {e.currentTarget.style.borderColor=T.goldD;e.currentTarget.style.transform="translateY(-2px)"}}
@@ -343,6 +343,10 @@ function Intake({onSelect}) {
             <div style={{fontSize:".72rem",color:T.txD,lineHeight:1.4}}>{v.desc}</div>
           </button>
         ))}
+      </div>
+      <div style={{marginTop:"1.8rem",maxWidth:600,display:"flex",alignItems:"center",gap:".5rem",fontSize:".66rem",fontFamily:"var(--fm)",color:T.txM,letterSpacing:".06em"}}>
+        <span style={{width:6,height:6,borderRadius:"50%",background:T.grn,display:"inline-block",flexShrink:0,boxShadow:`0 0 8px ${T.grnD}`}} />
+        100% client-side. No tracking. No data leaves your browser.
       </div>
     </div>
   );
@@ -414,9 +418,9 @@ function SimulateTab({persona}) {
         <div style={{fontFamily:"var(--fm)",fontSize:".55rem",color:T.goldD,letterSpacing:".1em",marginBottom:".15rem"}}>TAP A QUESTION</div>
         {persona.sims.map((s,i) => (
           <button key={i} onClick={() => run(i)} style={{
-            textAlign:"left",padding:".55rem .75rem",background:selQ===i?T.sf2:T.sf,
+            textAlign:"left",padding:".75rem .85rem",minHeight:"44px",background:selQ===i?T.sf2:T.sf,
             border:`1px solid ${selQ===i?T.gold:T.rule}`,borderRadius:6,cursor:"pointer",
-            color:selQ===i?T.gold:T.txD,fontFamily:"var(--fb)",fontSize:".8rem",lineHeight:1.4,transition:"all .2s",
+            color:selQ===i?T.gold:T.txD,fontFamily:"var(--fb)",fontSize:".82rem",lineHeight:1.4,transition:"all .2s",
           }}>"{s.q}"</button>
         ))}
       </div>
@@ -511,7 +515,7 @@ function ExplorerTab({persona}) {
 
 function TI({f,sel,gold,onClick}) {
   return (
-    <div onClick={onClick} style={{display:"flex",alignItems:"center",gap:".4rem",padding:".32rem .8rem .32rem 1rem",cursor:"pointer",fontFamily:"var(--fm)",fontSize:".68rem",color:sel?T.gold:T.txD,background:sel?T.sf2:"transparent",borderLeft:`3px solid ${sel?T.gold:"transparent"}`,transition:"all .12s"}}>
+    <div onClick={onClick} role="button" tabIndex={0} style={{display:"flex",alignItems:"center",gap:".4rem",padding:".5rem .8rem .5rem 1rem",minHeight:"36px",cursor:"pointer",fontFamily:"var(--fm)",fontSize:".7rem",color:sel?T.gold:T.txD,background:sel?T.sf2:"transparent",borderLeft:`3px solid ${sel?T.gold:"transparent"}`,transition:"all .12s"}}>
       <div style={{width:6,height:6,borderRadius:"50%",flexShrink:0,background:gold?T.goldD:(sel?T.grnD:T.sf3),border:gold?"none":`1px solid ${sel?T.grn:T.rule}`}} />
       {f.name}
     </div>
@@ -776,6 +780,32 @@ function LearnTab({persona}) {
     {n:"05",t:"Earn complexity",p:"One workflow first. Make it reliable. Then add the next."},
     {n:"06",t:"Your process is the moat",p:"The AI knows everything. What it lacks is your way of doing things."},
   ];
+  const faqs = [
+    {
+      q:"Does ContextKit send my data anywhere?",
+      a:"No. ContextKit is a static page that runs entirely in your browser. There's no backend, no tracking, no analytics. The starter kit download is generated locally from a Blob. You can verify this by opening DevTools → Network and watching nothing go out.",
+    },
+    {
+      q:"Why not just use Claude Projects, Gems, or Custom GPTs?",
+      a:"Those are the places you put the files. ContextKit teaches you what to put in them. Projects/Gems/GPTs don't tell you the core-vs-skill split, the 'under 100 words' rule, or how to separate sensitive data. They're the container; this is the content strategy.",
+    },
+    {
+      q:"Do I need to pay for anything?",
+      a:"ContextKit is free. You still need an AI account — most of the tools on Step 2 have a free tier (Claude.ai, ChatGPT, Gemini). Claude Code and Cursor are paid per seat but have free trials. OpenClaw is open-source.",
+    },
+    {
+      q:"Will this work with [my AI tool]?",
+      a:"If the tool accepts persistent instructions — Custom Instructions, Projects, Gems, CLAUDE.md, .cursorrules, system prompts — yes. The skill file format is plain markdown with YAML frontmatter, which any model can parse. If your tool doesn't support persistent instructions, the Manual setup guide on Step 2 works as a fallback.",
+    },
+    {
+      q:"What if my setup stops working or the AI gets worse?",
+      a:"That's rule 4 — fix it when it breaks. When the AI does something wrong, look at which skill was active during that task and add a line that prevents the same mistake. The skill files are versioned text, so you can put them in git if you're technical and roll back when needed.",
+    },
+    {
+      q:"Can I share my skill files with teammates or family?",
+      a:"Yes — skill files are just markdown. Send them over Slack, Dropbox, Google Drive, or commit them to a shared repo. Core files (identity, tone) should stay personal since they name you specifically.",
+    },
+  ];
   return (
     <div>
       <div style={{background:T.sf,border:`1px solid ${T.rule}`,borderRadius:8,padding:"1.2rem",marginBottom:"1.5rem"}}>
@@ -784,7 +814,7 @@ function LearnTab({persona}) {
         <p style={{fontSize:".84rem",color:T.txD,lineHeight:1.7}}>{persona.learnExamples.skill}</p>
       </div>
       <div style={{fontFamily:"var(--fh)",fontSize:"1.05rem",fontWeight:700,marginBottom:"1rem"}}>Six rules</div>
-      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(240px,1fr))",gap:".8rem"}}>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(240px,1fr))",gap:".8rem",marginBottom:"2.5rem"}}>
         {rules.map((r,i) => (
           <div key={i} style={{background:T.sf,border:`1px solid ${T.rule}`,borderRadius:8,padding:"1.1rem",position:"relative",overflow:"hidden"}}>
             <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:i%2===0?T.gold:T.grn}} />
@@ -792,6 +822,20 @@ function LearnTab({persona}) {
             <div style={{fontFamily:"var(--fh)",fontSize:".88rem",fontWeight:600,marginBottom:".2rem"}}>{r.t}</div>
             <p style={{fontSize:".75rem",color:T.txD,lineHeight:1.5}}>{r.p}</p>
           </div>
+        ))}
+      </div>
+
+      <div style={{fontFamily:"var(--fh)",fontSize:"1.05rem",fontWeight:700,marginBottom:".3rem"}}>Common questions</div>
+      <p style={{fontSize:".76rem",color:T.txM,marginBottom:"1rem",fontStyle:"italic"}}>Answers to the questions we get asked most.</p>
+      <div style={{display:"flex",flexDirection:"column",gap:".7rem"}}>
+        {faqs.map((item,i) => (
+          <details key={i} style={{background:T.sf,border:`1px solid ${T.rule}`,borderRadius:8,padding:".9rem 1rem"}}>
+            <summary style={{cursor:"pointer",fontFamily:"var(--fh)",fontSize:".95rem",fontWeight:600,color:T.tx,listStyle:"none",display:"flex",justifyContent:"space-between",alignItems:"center",gap:".6rem",minHeight:"36px"}}>
+              <span style={{flex:1}}>{item.q}</span>
+              <span style={{fontFamily:"var(--fm)",fontSize:".7rem",color:T.goldD,flexShrink:0}}>+</span>
+            </summary>
+            <p style={{marginTop:".7rem",paddingTop:".7rem",borderTop:`1px solid ${T.rule}`,fontSize:".78rem",color:T.txD,lineHeight:1.7}}>{item.a}</p>
+          </details>
         ))}
       </div>
     </div>
@@ -811,13 +855,13 @@ function MainApp({pk, onReset}) {
           <div style={{fontFamily:"var(--fm)",fontSize:".55rem",color:T.txM}}>SHOWING FOR</div>
           <div style={{fontFamily:"var(--fh)",fontSize:"1rem",fontWeight:700,display:"flex",alignItems:"center",gap:".5rem",flexWrap:"wrap"}}>
             {p.label}
-            <button onClick={onReset} style={{fontSize:".58rem",color:T.goldD,background:"none",border:`1px solid ${T.rule}`,borderRadius:4,padding:".1rem .35rem",cursor:"pointer",fontFamily:"var(--fm)"}}>change</button>
+            <button onClick={onReset} style={{fontSize:".6rem",color:T.goldD,background:"none",border:`1px solid ${T.rule}`,borderRadius:4,padding:".3rem .6rem",cursor:"pointer",fontFamily:"var(--fm)",minHeight:"28px"}}>change</button>
           </div>
         </div>
         <div style={{display:"flex",gap:0,border:`1px solid ${T.rule}`,borderRadius:6,overflow:"hidden",flexWrap:"wrap"}}>
           {tabs.map(t => (
             <button key={t.id} onClick={() => setTab(t.id)} style={{
-              padding:".42rem .7rem",fontFamily:"var(--fh)",fontSize:".7rem",fontWeight:600,
+              padding:".65rem .95rem",fontFamily:"var(--fh)",fontSize:".72rem",fontWeight:600,minHeight:"40px",
               background:tab===t.id?T.gold:"transparent",color:tab===t.id?T.bg:T.txD,border:"none",cursor:"pointer"
             }}>{t.l}</button>
           ))}
@@ -838,7 +882,7 @@ export default function App() {
   const [pk, setPk] = useState(null);
   return (
     <div style={{background:T.bg,color:T.tx,minHeight:"100vh",fontFamily:"'DM Sans',sans-serif"}}>
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');:root{--fh:'Barlow Condensed',sans-serif;--fb:'DM Sans',sans-serif;--fm:'JetBrains Mono',monospace}*{box-sizing:border-box;margin:0;padding:0}input::placeholder{color:${T.txM}}::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:${T.bg}}::-webkit-scrollbar-thumb{background:${T.rule};border-radius:3px}@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}`}</style>
+      <style>{`:root{--fh:'Barlow Condensed',sans-serif;--fb:'DM Sans',sans-serif;--fm:'JetBrains Mono',monospace}*{box-sizing:border-box;margin:0;padding:0}input::placeholder{color:${T.txM}}::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:${T.bg}}::-webkit-scrollbar-thumb{background:${T.rule};border-radius:3px}@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@media(max-width:640px){button{-webkit-tap-highlight-color:transparent}}`}</style>
       <Nav />
       {!pk ? <Intake onSelect={setPk} /> : <MainApp pk={pk} onReset={() => setPk(null)} />}
     </div>
