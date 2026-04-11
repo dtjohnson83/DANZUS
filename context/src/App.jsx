@@ -9,6 +9,31 @@ grn:"#5cb85c",grnD:"#2d5c2d",
 rule:"#222",
 };
 
+// Safe localStorage wrapper — falls back to no-op in private mode /
+// sandboxed iframes / SSR (where `window` is undefined).
+const LS_KEY = "contextkit.v1";
+const storage = {
+  read: () => {
+    try {
+      if (typeof window === "undefined") return null;
+      const raw = window.localStorage.getItem(LS_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch { return null; }
+  },
+  write: (data) => {
+    try {
+      if (typeof window === "undefined") return;
+      window.localStorage.setItem(LS_KEY, JSON.stringify(data));
+    } catch { /* quota exceeded / denied — silently ignore */ }
+  },
+  clear: () => {
+    try {
+      if (typeof window === "undefined") return;
+      window.localStorage.removeItem(LS_KEY);
+    } catch {}
+  },
+};
+
 // ============ PERSONAS ============
 const PERSONAS = {
 parent: {
@@ -562,6 +587,20 @@ function BuildTab({personaKey}) {
     setTimeout(() => setDownloaded(false), 2500);
   };
 
+  // Copy the prompt to the clipboard AND open the target tool in a new
+  // tab. Paste fallback: if the tool doesn't support URL-param prefill
+  // (or the prompt is longer than the URL length limit), the user
+  // already has the prompt in their clipboard and can Cmd+V.
+  const openIn = (tool) => {
+    try { navigator.clipboard.writeText(prompt); } catch {}
+    const urls = {
+      claude:  "https://claude.ai/new",
+      chatgpt: "https://chat.openai.com/",
+      gemini:  "https://gemini.google.com/app",
+    };
+    window.open(urls[tool], "_blank", "noopener,noreferrer");
+  };
+
   const guides = [
     {
       id: "claude",
@@ -686,19 +725,34 @@ function BuildTab({personaKey}) {
         </div>
       </div>
 
-      {/* Custom path: copy builder prompt */}
+      {/* Custom path: copy builder prompt + open in target tool */}
       <div style={{background:T.sf,border:`1px solid ${T.rule}`,borderRadius:8,overflow:"hidden",marginBottom:"2.5rem"}}>
         <div style={{padding:".55rem .8rem .3rem",fontFamily:"var(--fm)",fontSize:".52rem",color:T.goldD,letterSpacing:".12em"}}>CUSTOM PATH &middot; 5 MINUTES</div>
-        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"0 .8rem .5rem",borderBottom:`1px solid ${T.rule}`}}>
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"0 .8rem .5rem",borderBottom:`1px solid ${T.rule}`,gap:".5rem",flexWrap:"wrap"}}>
           <span style={{fontFamily:"var(--fm)",fontSize:".62rem",color:T.gold}}>contextkit-builder-prompt.md</span>
           <button onClick={copy} style={{
-            padding:".22rem .65rem",fontFamily:"var(--fh)",fontSize:".7rem",fontWeight:600,
+            padding:".3rem .7rem",fontFamily:"var(--fh)",fontSize:".7rem",fontWeight:600,minHeight:"30px",
             background:copied?T.grnD:T.gold,color:copied?T.tx:T.bg,
             border:"none",borderRadius:4,cursor:"pointer",transition:"all .2s",
           }}>{copied?"Copied":"Copy prompt"}</button>
         </div>
         <div style={{padding:".8rem",fontFamily:"var(--fm)",fontSize:".55rem",lineHeight:1.65,color:T.txD,maxHeight:220,overflowY:"auto",whiteSpace:"pre-wrap"}}>
           {prompt}
+        </div>
+        <div style={{display:"flex",gap:".4rem",padding:".55rem .8rem",borderTop:`1px solid ${T.rule}`,background:T.sf2,flexWrap:"wrap",alignItems:"center"}}>
+          <span style={{fontFamily:"var(--fm)",fontSize:".52rem",color:T.goldD,letterSpacing:".1em",marginRight:".2rem"}}>OR OPEN IN &rarr;</span>
+          <button onClick={() => openIn("claude")} style={{
+            padding:".35rem .7rem",fontFamily:"var(--fh)",fontSize:".7rem",fontWeight:600,minHeight:"32px",
+            background:"transparent",color:T.tx,border:`1px solid ${T.goldD}`,borderRadius:4,cursor:"pointer",transition:"all .2s",
+          }} title="Copies prompt and opens Claude.ai in a new tab. Paste (Cmd+V) to start.">Claude</button>
+          <button onClick={() => openIn("chatgpt")} style={{
+            padding:".35rem .7rem",fontFamily:"var(--fh)",fontSize:".7rem",fontWeight:600,minHeight:"32px",
+            background:"transparent",color:T.tx,border:`1px solid ${T.goldD}`,borderRadius:4,cursor:"pointer",transition:"all .2s",
+          }} title="Copies prompt and opens ChatGPT in a new tab. Paste (Cmd+V) to start.">ChatGPT</button>
+          <button onClick={() => openIn("gemini")} style={{
+            padding:".35rem .7rem",fontFamily:"var(--fh)",fontSize:".7rem",fontWeight:600,minHeight:"32px",
+            background:"transparent",color:T.tx,border:`1px solid ${T.goldD}`,borderRadius:4,cursor:"pointer",transition:"all .2s",
+          }} title="Copies prompt and opens Gemini in a new tab. Paste (Cmd+V) to start.">Gemini</button>
         </div>
       </div>
 
@@ -844,9 +898,15 @@ function LearnTab({persona}) {
 
 // ============ MAIN ============
 function MainApp({pk, onReset}) {
-  const [tab, setTab] = useState("simulate");
+  const [tab, setTab] = useState(() => {
+    const saved = storage.read();
+    return saved?.tab || "simulate";
+  });
   const p = PERSONAS[pk];
   const tabs = [{id:"simulate",l:"Simulate"},{id:"explore",l:"Explore"},{id:"build",l:"Build Mine"},{id:"learn",l:"Learn"}];
+
+  // Persist tab changes along with the current persona key.
+  useEffect(() => { storage.write({pk, tab}); }, [pk, tab]);
 
   return (
     <div style={{maxWidth:900,margin:"0 auto",padding:"5rem 1.2rem 2rem"}}>
@@ -879,12 +939,24 @@ function MainApp({pk, onReset}) {
 }
 
 export default function App() {
-  const [pk, setPk] = useState(null);
+  // Hydrate persona from localStorage so returning visitors skip the
+  // intake screen. Validate that the saved key still exists in PERSONAS
+  // (defensive against schema changes between releases).
+  const [pk, setPk] = useState(() => {
+    const saved = storage.read();
+    return saved?.pk && PERSONAS[saved.pk] ? saved.pk : null;
+  });
+
+  const handleReset = () => {
+    setPk(null);
+    storage.clear();
+  };
+
   return (
     <div style={{background:T.bg,color:T.tx,minHeight:"100vh",fontFamily:"'DM Sans',sans-serif"}}>
       <style>{`:root{--fh:'Barlow Condensed',sans-serif;--fb:'DM Sans',sans-serif;--fm:'JetBrains Mono',monospace}*{box-sizing:border-box;margin:0;padding:0}input::placeholder{color:${T.txM}}::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:${T.bg}}::-webkit-scrollbar-thumb{background:${T.rule};border-radius:3px}@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@media(max-width:640px){button{-webkit-tap-highlight-color:transparent}}`}</style>
       <Nav />
-      {!pk ? <Intake onSelect={setPk} /> : <MainApp pk={pk} onReset={() => setPk(null)} />}
+      {!pk ? <Intake onSelect={setPk} /> : <MainApp pk={pk} onReset={handleReset} />}
     </div>
   );
 }
