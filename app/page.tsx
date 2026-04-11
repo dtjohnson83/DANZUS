@@ -14,6 +14,9 @@ export default function Home() {
             <a href="#operator">Operator</a>
             <a href="#contact">Signal</a>
           </div>
+          <a className="nav-pill" href="/context">
+            ContextKit <span className="pill-arr">↗</span>
+          </a>
         </div>
       </nav>
 
@@ -109,7 +112,7 @@ export default function Home() {
             </div>
             <div className="portfolio-meta">
               Active Ventures<br />
-              <strong>Five / 05</strong>
+              <strong>Six / 06</strong>
             </div>
           </div>
 
@@ -182,6 +185,20 @@ export default function Home() {
                 <span className="live">Internal</span>
                 <span>Agent</span>
                 <span>Local AI</span>
+              </div>
+              <div className="w-arrow">&rarr;</div>
+            </a>
+
+            <a className="work" href="/context">
+              <div className="w-num">/06</div>
+              <div className="w-name">ContextKit</div>
+              <div className="w-desc">
+                A free interactive tool that teaches anyone how to organize their AI assistant&apos;s memory. Explore a working setup, simulate how skills fire, or build your own config.
+              </div>
+              <div className="w-tags">
+                <span className="live">Live</span>
+                <span>Free</span>
+                <span>Education</span>
               </div>
               <div className="w-arrow">&rarr;</div>
             </a>
@@ -269,13 +286,13 @@ export default function Home() {
             <a className="ch" href="https://www.linkedin.com/in/danjohnsondata" target="_blank" rel="noopener">
               <div className="ch-label">LinkedIn &middot; Professional</div>
               <div className="ch-value">
-                /in/danjohnsondata <span className="arr">&nearr;</span>
+                /in/danjohnsondata <span className="arr">↗</span>
               </div>
             </a>
             <a className="ch" href="https://dimevision.app" target="_blank" rel="noopener">
               <div className="ch-label">Flagship &middot; Live</div>
               <div className="ch-value">
-                dimevision.app <span className="arr">&nearr;</span>
+                dimevision.app <span className="arr">↗</span>
               </div>
             </a>
           </div>

@@ -126,8 +126,55 @@ nav {
 
 .nav-links a:hover::after { right: 0; }
 
+.nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  margin-left: 28px;
+  border: 1px solid var(--gold);
+  border-radius: 100px;
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.nav-pill:hover {
+  background: var(--gold);
+  color: var(--bg);
+  box-shadow: 0 0 14px rgba(212, 168, 83, 0.35);
+}
+
+.nav-pill .pill-arr { font-size: 11px; line-height: 1; }
+
 @media (max-width: 720px) {
-  .nav-links { display: none; }
+  .nav-inner {
+    flex-wrap: wrap;
+    row-gap: 10px;
+    column-gap: 12px;
+  }
+  .nav-mark { order: 1; }
+  .nav-pill {
+    order: 2;
+    margin-left: auto;
+    padding: 4px 10px;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+  }
+  .nav-links {
+    order: 3;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
 }
 
 /* ── Hero ── */
