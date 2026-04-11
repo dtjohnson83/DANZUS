@@ -354,50 +354,6 @@ nav {
   50% { transform: scaleY(1); opacity: 1; }
 }
 
-/* ── Marquee ── */
-
-.marquee {
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: var(--bg-2);
-  overflow: hidden;
-  padding: 22px 0;
-  position: relative;
-  z-index: 5;
-}
-
-.marquee-track {
-  display: flex;
-  gap: 48px;
-  animation: scroll 38s linear infinite;
-  white-space: nowrap;
-  font-family: var(--display);
-  font-style: italic;
-  font-weight: 500;
-  font-size: clamp(18px, 2.6vw, 34px);
-  text-transform: uppercase;
-  color: var(--ink-2);
-  letter-spacing: 0.01em;
-}
-
-.marquee-track span { display: inline-flex; align-items: center; gap: 48px; }
-.marquee-track .sep {
-  display: inline-block;
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--gold);
-  flex-shrink: 0;
-}
-
-@media (max-width: 720px) {
-  .marquee { padding: 16px 0; }
-  .marquee-track { animation-duration: 28s; }
-}
-
-@keyframes scroll {
-  to { transform: translateX(-50%); }
-}
-
 /* ── Section blocks ── */
 
 section.block { padding: 160px 0; position: relative; }
