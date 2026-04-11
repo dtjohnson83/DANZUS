@@ -14,6 +14,9 @@ export default function Home() {
             <a href="#operator">Operator</a>
             <a href="#contact">Signal</a>
           </div>
+          <a className="nav-pill" href="/context">
+            ContextKit <span className="pill-arr">↗</span>
+          </a>
         </div>
       </nav>
 
