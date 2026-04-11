@@ -9,6 +9,11 @@ out/
 build/
 dist/
 
+# ContextKit sub-app: ignore deps/intermediate dist, but keep public/context (built output committed)
+context/node_modules/
+context/dist/
+!public/context/
+
 # Testing
 coverage/
 

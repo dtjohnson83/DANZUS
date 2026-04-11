@@ -109,7 +109,7 @@ export default function Home() {
             </div>
             <div className="portfolio-meta">
               Active Ventures<br />
-              <strong>Five / 05</strong>
+              <strong>Six / 06</strong>
             </div>
           </div>
 
@@ -182,6 +182,20 @@ export default function Home() {
                 <span className="live">Internal</span>
                 <span>Agent</span>
                 <span>Local AI</span>
+              </div>
+              <div className="w-arrow">&rarr;</div>
+            </a>
+
+            <a className="work" href="/context">
+              <div className="w-num">/06</div>
+              <div className="w-name">ContextKit</div>
+              <div className="w-desc">
+                A free interactive tool that teaches anyone how to organize their AI assistant&apos;s memory. Explore a working setup, simulate how skills fire, or build your own config.
+              </div>
+              <div className="w-tags">
+                <span className="live">Live</span>
+                <span>Free</span>
+                <span>Education</span>
               </div>
               <div className="w-arrow">&rarr;</div>
             </a>
