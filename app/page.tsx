@@ -48,8 +48,7 @@ export default function Home() {
         <div className="wrap">
           <div className="hero-foot">
             <p className="hero-statement">
-              A privately held software studio shipping AI-native products for the trades, the compliance layer, and the operators who keep the physical world running.{' '}
-              <em>No decks. No promises. Just things that ship.</em>
+              A privately held software studio shipping AI-native products for the trades, the compliance layer, and the operators who keep the physical world running.
             </p>
             <div className="hero-scroll">
               Scroll to enter
@@ -68,8 +67,7 @@ export default function Home() {
               <div className="idx">&sect; 002 / Thesis</div>
             </div>
             <h2 className="h-display">
-              Two beliefs.<br />
-              One <em>decade</em> of execution.
+              Two beliefs.
             </h2>
           </div>
 
@@ -85,12 +83,12 @@ export default function Home() {
               <span className="pillar-num">ii.</span>
               <h3 className="pillar-title">Intelligence moves to the device.</h3>
               <p className="pillar-body">
-                Inference belongs where the work happens. The applications that win the next decade are designed for real environments — workshops, job sites, classrooms, the cabs of trucks.
+                Inference belongs where the work happens. The applications that matter in the next decade are designed for real environments — workshops, job sites, classrooms, the cabs of trucks.
               </p>
             </div>
             <div className="thesis-pillar">
               <span className="pillar-num">iii.</span>
-              <h3 className="pillar-title">Operators inherit the future.</h3>
+              <h3 className="pillar-title">Operators need better software.</h3>
               <p className="pillar-body">
                 Robots are the future of the factory. Humans are the future of the infrastructure. The next generation of welders, drivers, electricians and inspectors deserves software built for the way the work actually happens.
               </p>
@@ -106,8 +104,7 @@ export default function Home() {
             <div>
               <div className="idx">&sect; 003 / Work</div>
               <h2 className="h-display">
-                Built. Shipped.<br />
-                <em>Still moving.</em>
+                What we&apos;ve shipped.
               </h2>
             </div>
             <div className="portfolio-meta">
@@ -151,7 +148,7 @@ export default function Home() {
               <div className="w-num">/03</div>
               <div className="w-name">OSHA Compliance MCP</div>
               <div className="w-desc">
-                A Model Context Protocol server giving AI agents structured access to OSHA standards. First-mover infrastructure for compliance-aware automation in the trades.
+                A Model Context Protocol server giving AI agents structured access to OSHA standards. Open infrastructure for compliance-aware automation in the trades.
               </div>
               <div className="w-tags">
                 <span className="live">Live</span>
@@ -179,7 +176,7 @@ export default function Home() {
               <div className="w-num">/05</div>
               <div className="w-name">Ed <em>(clawdbot)</em></div>
               <div className="w-desc">
-                An in-house operator agent running on a Mac Mini M4. Handles routine engineering work across the portfolio under a tiered architecture that reserves higher-judgment tasks for Claude. The studio&apos;s force multiplier.
+                An in-house operator agent running on a Mac Mini M4. Handles routine engineering work across the portfolio under a tiered architecture that reserves higher-judgment tasks for Claude.
               </div>
               <div className="w-tags">
                 <span className="live">Internal</span>
@@ -211,8 +208,7 @@ export default function Home() {
         <div className="wrap">
           <div className="idx">&sect; 004 / Operator</div>
           <h2 className="h-display">
-            Built by someone<br />
-            who&apos;s done <em>the work.</em>
+            Who&apos;s behind this.
           </h2>
 
           <div className="op-grid">
@@ -221,7 +217,7 @@ export default function Home() {
                 An <strong>AI-native builder</strong> with two decades on the line — aircraft maintenance in the Royal Australian Air Force, subsea quality assurance on Chevron&apos;s Wheatstone project, and eight years building analytics for Fortune 500 workforce strategy.
               </p>
               <p>
-                The throughline is <em>standards, repeatability, and ruthless attention to what actually flies</em> — a discipline carried from the hangar floor into every line of software the studio puts into the world.
+                The throughline is <em>standards, repeatability, and close attention to what actually works</em> — a discipline carried from the hangar floor into the software.
               </p>
               <p>DANZUS is the holding structure. The work is the proof.</p>
             </div>
@@ -277,9 +273,7 @@ export default function Home() {
         <div className="wrap">
           <div className="idx">&sect; 005 / Signal</div>
           <h2 className="contact-mega">
-            <span className="l1">Real problems.</span>
-            <span className="l2">Short notes.</span>
-            <span className="l3">No decks.</span>
+            <span className="l1">Say hello.</span>
           </h2>
 
           <div className="contact-channels">
