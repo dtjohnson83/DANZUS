@@ -385,17 +385,74 @@ function Nav() {
   );
 }
 
+function NodeMap() {
+  const nodes = [
+    {label:"identity",angle:0,active:true},
+    {label:"rules",angle:60,active:true},
+    {label:"tone",angle:120,active:true},
+    {label:"skill-1",angle:180,active:false},
+    {label:"skill-2",angle:240,active:false},
+    {label:"skill-3",angle:300,active:true},
+  ];
+  const r = 62;
+  return (
+    <svg viewBox="0 0 200 200" style={{width:"100%",maxWidth:220,height:"auto",display:"block",margin:"0 auto .5rem"}}>
+      {/* Orbit ring */}
+      <circle cx="100" cy="100" r={r} fill="none" stroke={T.rule} strokeWidth=".8" strokeDasharray="3 3" opacity=".5" />
+      {/* Connector lines */}
+      {nodes.map((n,i) => {
+        const rad = (n.angle - 90) * Math.PI / 180;
+        const x = 100 + r * Math.cos(rad);
+        const y = 100 + r * Math.sin(rad);
+        return <line key={i} x1="100" y1="100" x2={x} y2={y} stroke={n.active?T.gold:T.rule} strokeWidth={n.active?".8":".5"} opacity={n.active?.6:.25} />;
+      })}
+      {/* Center node */}
+      <circle cx="100" cy="100" r="16" fill={T.sf2} stroke={T.gold} strokeWidth="1.2" />
+      <text x="100" y="101" textAnchor="middle" dominantBaseline="middle" fill={T.gold} style={{fontSize:"6px",fontFamily:"var(--fm)",letterSpacing:".08em"}}>CORE</text>
+      {/* Orbiting nodes */}
+      {nodes.map((n,i) => {
+        const rad = (n.angle - 90) * Math.PI / 180;
+        const x = 100 + r * Math.cos(rad);
+        const y = 100 + r * Math.sin(rad);
+        const isSkill = n.label.startsWith("skill");
+        return (
+          <g key={i}>
+            {n.active && <circle cx={x} cy={y} r="14" fill="none" stroke={isSkill?T.grn:T.gold} strokeWidth=".5" opacity=".25">
+              <animate attributeName="r" values="14;18;14" dur="2.4s" repeatCount="indefinite" />
+              <animate attributeName="opacity" values=".25;.08;.25" dur="2.4s" repeatCount="indefinite" />
+            </circle>}
+            <circle cx={x} cy={y} r="10" fill={n.active?(isSkill?T.grnD:T.goldD+"44"):T.sf3} stroke={n.active?(isSkill?T.grn:T.gold):T.rule} strokeWidth={n.active?"1":".6"} />
+            <text x={x} y={y+.5} textAnchor="middle" dominantBaseline="middle" fill={n.active?T.tx:T.txM} style={{fontSize:"4.2px",fontFamily:"var(--fm)"}}>{n.label}</text>
+          </g>
+        );
+      })}
+      {/* Legend */}
+      <circle cx="24" cy="186" r="3" fill={T.goldD+"44"} stroke={T.gold} strokeWidth=".6" />
+      <text x="30" y="187" fill={T.txM} style={{fontSize:"4.5px",fontFamily:"var(--fm)"}}>always loaded</text>
+      <circle cx="100" cy="186" r="3" fill={T.grnD} stroke={T.grn} strokeWidth=".6" />
+      <text x="106" y="187" fill={T.txM} style={{fontSize:"4.5px",fontFamily:"var(--fm)"}}>loaded when needed</text>
+    </svg>
+  );
+}
+
 function Intake({onSelect}) {
   return (
     <div style={{minHeight:"100vh",display:"flex",flexDirection:"column",justifyContent:"center",padding:"6rem 1.5rem 3rem",maxWidth:800,margin:"0 auto"}}>
       <div style={{fontFamily:"var(--fh)",fontSize:".7rem",color:T.gold,letterSpacing:".2em",marginBottom:"1.2rem"}}>CONTEXTKIT</div>
-      <h1 style={{fontFamily:"var(--fh)",fontWeight:800,fontSize:"clamp(2.2rem,6vw,4rem)",lineHeight:.92,marginBottom:"1.2rem"}}>
-        Build your AI's <span style={{color:T.gold}}>memory.</span>
-      </h1>
-      <p style={{fontSize:".95rem",color:T.txD,maxWidth:460,lineHeight:1.7,marginBottom:"2.5rem"}}>
-        Your AI reads instructions before every response. How you organize them determines how good the AI is. Start by telling us who you are.
-      </p>
-      <div style={{fontFamily:"var(--fh)",fontSize:".75rem",color:T.goldD,letterSpacing:".12em",marginBottom:".8rem"}}>I AM A…</div>
+      <div style={{display:"flex",alignItems:"center",gap:"2rem",marginBottom:"1.2rem",flexWrap:"wrap"}}>
+        <div style={{flex:"1 1 320px"}}>
+          <h1 style={{fontFamily:"var(--fh)",fontWeight:800,fontSize:"clamp(2.2rem,6vw,4rem)",lineHeight:.92,marginBottom:"1.2rem"}}>
+            How your AI's <span style={{color:T.gold}}>memory works.</span>
+          </h1>
+          <p style={{fontSize:".95rem",color:T.txD,maxWidth:460,lineHeight:1.7}}>
+            Your AI reads a set of instructions before every response. How you organize those instructions changes what the AI can do. This guide shows you how it works.
+          </p>
+        </div>
+        <div style={{flex:"0 0 auto",maxWidth:220}}>
+          <NodeMap />
+        </div>
+      </div>
+      <div style={{fontFamily:"var(--fh)",fontSize:".75rem",color:T.goldD,letterSpacing:".12em",marginBottom:".8rem"}}>PICK A SCENARIO</div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(160px,1fr))",gap:".8rem",maxWidth:600}}>
         {Object.entries(PERSONAS).map(([k,v]) => (
           <button key={k} onClick={() => onSelect(k)} style={{
@@ -742,16 +799,16 @@ function BuildTab({personaKey}) {
     <div>
       {/* STEP 1: GET YOUR FILES */}
       <div style={{fontFamily:"var(--fh)",fontSize:".7rem",color:T.goldD,letterSpacing:".12em",marginBottom:".4rem"}}>STEP 1</div>
-      <div style={{fontFamily:"var(--fh)",fontSize:"1.15rem",fontWeight:700,marginBottom:".5rem"}}>Generate your files</div>
+      <div style={{fontFamily:"var(--fh)",fontSize:"1.15rem",fontWeight:700,marginBottom:".5rem"}}>Get your files</div>
       <p style={{color:T.txD,maxWidth:480,marginBottom:"1.2rem",fontSize:".86rem",lineHeight:1.7}}>
-        Two paths. The fast path gives you a ready-made starter kit for a {persona.label.toLowerCase()}. The custom path interviews you for a bespoke setup.
+        Two ways to start. Download a template pre-filled for a {persona.label.toLowerCase()}, or have an AI interview you to create files tailored to your exact situation.
       </p>
 
       {/* Fast path: download starter kit */}
       <div style={{background:T.sf,border:`1px solid ${T.gold}`,borderRadius:8,padding:"1rem 1.1rem",marginBottom:"1rem",boxShadow:`0 0 0 1px ${T.goldD}33`}}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:"1rem",flexWrap:"wrap"}}>
           <div style={{flex:"1 1 280px",minWidth:0}}>
-            <div style={{fontFamily:"var(--fm)",fontSize:".52rem",color:T.gold,letterSpacing:".12em",marginBottom:".25rem"}}>FAST PATH &middot; 10 SECONDS</div>
+            <div style={{fontFamily:"var(--fm)",fontSize:".52rem",color:T.gold,letterSpacing:".12em",marginBottom:".25rem"}}>READY-MADE TEMPLATE</div>
             <div style={{fontFamily:"var(--fh)",fontSize:"1rem",fontWeight:700,marginBottom:".35rem"}}>Download a starter kit</div>
             <div style={{fontSize:".75rem",color:T.txD,lineHeight:1.55}}>
               A single markdown file with all {persona.core.length} core files and {persona.skills.length} skills pre-filled for a {persona.label.toLowerCase()}. Fill in your name, timezone, and any placeholders, then paste into your AI tool.
@@ -767,7 +824,7 @@ function BuildTab({personaKey}) {
 
       {/* Custom path: copy builder prompt + open in target tool */}
       <div style={{background:T.sf,border:`1px solid ${T.rule}`,borderRadius:8,overflow:"hidden",marginBottom:"2.5rem"}}>
-        <div style={{padding:".55rem .8rem .3rem",fontFamily:"var(--fm)",fontSize:".52rem",color:T.goldD,letterSpacing:".12em"}}>CUSTOM PATH &middot; 5 MINUTES</div>
+        <div style={{padding:".55rem .8rem .3rem",fontFamily:"var(--fm)",fontSize:".52rem",color:T.goldD,letterSpacing:".12em"}}>GUIDED INTERVIEW</div>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"0 .8rem .5rem",borderBottom:`1px solid ${T.rule}`,gap:".5rem",flexWrap:"wrap"}}>
           <span style={{fontFamily:"var(--fm)",fontSize:".62rem",color:T.gold}}>contextkit-builder-prompt.md</span>
           <button onClick={copy} style={{
@@ -798,9 +855,9 @@ function BuildTab({personaKey}) {
 
       {/* STEP 2: WHERE TO PUT THEM */}
       <div style={{fontFamily:"var(--fh)",fontSize:".7rem",color:T.goldD,letterSpacing:".12em",marginBottom:".4rem"}}>STEP 2</div>
-      <div style={{fontFamily:"var(--fh)",fontSize:"1.15rem",fontWeight:700,marginBottom:".5rem"}}>Put the files where your AI can read them</div>
+      <div style={{fontFamily:"var(--fh)",fontSize:"1.15rem",fontWeight:700,marginBottom:".5rem"}}>Where do the files go?</div>
       <p style={{color:T.txD,maxWidth:480,marginBottom:"1.2rem",fontSize:".86rem",lineHeight:1.7}}>
-        Pick the tool you use. Each one handles files differently.
+        It depends on which tool you use. Here's how each one handles context files.
       </p>
 
       <div style={{display:"flex",flexDirection:"column",gap:".6rem",marginBottom:"2.5rem"}}>
@@ -841,9 +898,9 @@ function BuildTab({personaKey}) {
 
       {/* STEP 3: TEST IT */}
       <div style={{fontFamily:"var(--fh)",fontSize:".7rem",color:T.goldD,letterSpacing:".12em",marginBottom:".4rem"}}>STEP 3</div>
-      <div style={{fontFamily:"var(--fh)",fontSize:"1.15rem",fontWeight:700,marginBottom:".5rem"}}>Test that it works</div>
+      <div style={{fontFamily:"var(--fh)",fontSize:"1.15rem",fontWeight:700,marginBottom:".5rem"}}>How to know it's working</div>
       <p style={{color:T.txD,maxWidth:480,marginBottom:"1rem",fontSize:".86rem",lineHeight:1.7}}>
-        Try these three tests after setup. If the AI behaves correctly on all three, your config is working.
+        Try these three checks after setting up. If the AI behaves correctly on all three, your files are configured properly.
       </p>
 
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(220px,1fr))",gap:".7rem"}}>
@@ -868,11 +925,11 @@ function BuildTab({personaKey}) {
 function LearnTab({persona}) {
   const rules = [
     {n:"01",t:"Keep the always-on file small",p:"Only your name, rules, and tone. Everything else waits."},
-    {n:"02",t:"Skills are the unlock",p:"A skill sits idle using almost no memory until the AI needs it."},
+    {n:"02",t:"Skills do the heavy lifting",p:"A skill sits idle using almost no memory until the AI needs it."},
     {n:"03",t:"Let the AI write the skill",p:"Succeed at a workflow once. Then have the AI write the skill from what worked."},
     {n:"04",t:"Fix it when it breaks",p:"Update the skill so the same mistake never recurs. Your setup improves over time."},
     {n:"05",t:"Earn complexity",p:"One workflow first. Make it reliable. Then add the next."},
-    {n:"06",t:"Your process is the moat",p:"The AI knows everything. What it lacks is your way of doing things."},
+    {n:"06",t:"Your process is what matters",p:"The AI knows everything. What it lacks is your way of doing things."},
   ];
   const faqs = [
     {
@@ -900,14 +957,41 @@ function LearnTab({persona}) {
       a:"Yes — skill files are just markdown. Send them over Slack, Dropbox, Google Drive, or commit them to a shared repo. Core files (identity, tone) should stay personal since they name you specifically.",
     },
   ];
+  const flowSteps = [
+    {label:"Your question",sub:null,color:T.tx},
+    {label:"Core files load",sub:"identity, rules, tone (~80 words)",color:T.gold},
+    {label:"AI scans skill descriptions",sub:"reads one-line summaries, not full files",color:T.goldD},
+    {label:"Matching skills open",sub:"only relevant skills load into memory",color:T.grn},
+    {label:"Response",sub:"informed by core + matched skills only",color:T.tx},
+  ];
   return (
     <div>
+      {/* How it works — architecture diagram */}
+      <div style={{background:T.sf,border:`1px solid ${T.rule}`,borderRadius:8,padding:"1.2rem",marginBottom:"1.5rem"}}>
+        <div style={{fontFamily:"var(--fh)",fontSize:"1.05rem",fontWeight:700,marginBottom:".9rem"}}>How the context system works</div>
+        <div style={{display:"flex",flexDirection:"column",gap:0,maxWidth:400}}>
+          {flowSteps.map((step,i) => (
+            <div key={i}>
+              <div style={{display:"flex",alignItems:"center",gap:".6rem"}}>
+                <div style={{width:22,height:22,borderRadius:"50%",border:`1.5px solid ${step.color}`,display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"var(--fm)",fontSize:".5rem",color:step.color,flexShrink:0,background:T.sf2}}>{i+1}</div>
+                <div>
+                  <div style={{fontFamily:"var(--fh)",fontSize:".85rem",fontWeight:600,color:step.color}}>{step.label}</div>
+                  {step.sub && <div style={{fontFamily:"var(--fm)",fontSize:".55rem",color:T.txM,marginTop:".1rem"}}>{step.sub}</div>}
+                </div>
+              </div>
+              {i < flowSteps.length - 1 && <div style={{width:1.5,height:16,background:T.rule,marginLeft:10,borderRadius:1}} />}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Why it matters — persona-specific examples */}
       <div style={{background:T.sf,border:`1px solid ${T.rule}`,borderRadius:8,padding:"1.2rem",marginBottom:"1.5rem"}}>
         <div style={{fontFamily:"var(--fh)",fontSize:"1.05rem",fontWeight:700,marginBottom:".4rem"}}>Why does this matter?</div>
         <p style={{fontSize:".84rem",color:T.txD,lineHeight:1.7,marginBottom:".5rem"}}>{persona.learnExamples.desk}</p>
         <p style={{fontSize:".84rem",color:T.txD,lineHeight:1.7}}>{persona.learnExamples.skill}</p>
       </div>
-      <div style={{fontFamily:"var(--fh)",fontSize:"1.05rem",fontWeight:700,marginBottom:"1rem"}}>Six rules</div>
+      <div style={{fontFamily:"var(--fh)",fontSize:"1.05rem",fontWeight:700,marginBottom:"1rem"}}>Six principles</div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(240px,1fr))",gap:".8rem",marginBottom:"2.5rem"}}>
         {rules.map((r,i) => (
           <div key={i} style={{background:T.sf,border:`1px solid ${T.rule}`,borderRadius:8,padding:"1.1rem",position:"relative",overflow:"hidden"}}>
@@ -943,7 +1027,7 @@ function MainApp({pk, onReset}) {
     return saved?.tab || "simulate";
   });
   const p = PERSONAS[pk];
-  const tabs = [{id:"simulate",l:"Simulate"},{id:"explore",l:"Explore"},{id:"build",l:"Build Mine"},{id:"learn",l:"Learn"}];
+  const tabs = [{id:"simulate",l:"Simulate"},{id:"explore",l:"Explore"},{id:"build",l:"Set Up"},{id:"learn",l:"Learn"}];
 
   // Persist tab changes along with the current persona key.
   useEffect(() => { storage.write({pk, tab}); }, [pk, tab]);
