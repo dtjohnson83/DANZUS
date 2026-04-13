@@ -39,19 +39,22 @@ export default function Home() {
           </div>
 
           <div className="wordmark">
-            <div className="row"><span>Danzus</span></div>
-            <div className="row"><span>builds</span></div>
-            <div className="row"><span>quietly.</span></div>
+            <div className="row"><span>DANZUS</span></div>
           </div>
+          <div className="wordmark-tagline">builds quietly</div>
+
+          <h1 className="hero-display">
+            AI-native software for the trades, compliance, and the operators who run the physical world.
+          </h1>
         </div>
 
         <div className="wrap">
           <div className="hero-foot">
             <p className="hero-statement">
-              A privately held software studio shipping AI-native products for the trades, the compliance layer, and the operators who keep the physical world running.
+              A privately held software studio. Six live projects. Everything open-source or free.
             </p>
             <div className="hero-scroll">
-              Scroll to enter
+              Scroll to explore
               <br />
               <span className="line"></span>
             </div>
