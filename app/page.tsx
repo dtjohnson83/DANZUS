@@ -51,7 +51,7 @@ export default function Home() {
         <div className="wrap">
           <div className="hero-foot">
             <p className="hero-statement">
-              A privately held software studio. Six live projects. Everything open-source or free.
+              A privately held software studio. Six active projects across AI, compliance, and the trades.
             </p>
             <div className="hero-scroll">
               Scroll to explore
