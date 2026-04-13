@@ -70,7 +70,7 @@ export default function Home() {
               <div className="idx">&sect; 002 / Thesis</div>
             </div>
             <h2 className="h-display">
-              Two beliefs.
+              Three beliefs.
             </h2>
           </div>
 
