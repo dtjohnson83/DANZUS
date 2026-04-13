@@ -30,7 +30,7 @@ export default function Home() {
           <div className="hero-top">
             <div>
               Index / 001<br />
-              <strong>A studio for the agent era</strong>
+              <strong>Applying two decades of experience to frontier AI</strong>
             </div>
             <div className="right">
               Folsom &middot; California &middot; MMXXIV<br />
@@ -42,6 +42,12 @@ export default function Home() {
             <div className="row"><span>DANZUS</span></div>
           </div>
           <div className="wordmark-tagline">builds quietly</div>
+          <div className="wordmark-etymology">
+            <span className="ety-d">D</span> &middot;{' '}
+            <span className="ety-a">AU</span> &middot;{' '}
+            <span className="ety-nz">NZ</span> &middot;{' '}
+            <span className="ety-us">US</span>
+          </div>
 
           <h1 className="hero-display">
             AI-native software for the trades, compliance, and the operators who run the physical world.
@@ -217,12 +223,12 @@ export default function Home() {
           <div className="op-grid">
             <div className="op-prose">
               <p>
-                An <strong>AI-native builder</strong> with two decades on the line — aircraft maintenance in the Royal Australian Air Force, subsea quality assurance on Chevron&apos;s Wheatstone project, and eight years building analytics for Fortune 500 workforce strategy.
+                Five industries across three countries. Aircraft maintenance in the Royal Australian Air Force. Subsea quality assurance on Chevron&apos;s Wheatstone project in Western Australia. Eight years building analytics and workforce strategy for Fortune 500 companies in the US. Data visualization. And now, AI-native software.
               </p>
               <p>
-                The throughline is <em>standards, repeatability, and close attention to what actually works</em> — a discipline carried from the hangar floor into the software.
+                The throughline is <em>standards, repeatability, and close attention to what actually works</em> — applied creatively to whatever frontier technology makes the work better.
               </p>
-              <p>DANZUS is the holding structure. The work is the proof.</p>
+              <p>DANZUS is the holding structure. The work is experimental — applying hard-won experience from hangars, job sites, and enterprise data to problems most AI companies aren&apos;t looking at.</p>
             </div>
 
             <div className="op-card">
