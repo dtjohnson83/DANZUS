@@ -254,13 +254,13 @@ nav {
 .wordmark {
   font-family: var(--display);
   font-weight: 700;
-  font-size: clamp(72px, 16vw, 320px);
+  font-size: clamp(72px, 16vw, 260px);
   line-height: 0.86;
   letter-spacing: -0.005em;
   text-transform: uppercase;
   color: var(--ink);
   position: relative;
-  margin-bottom: 64px;
+  margin-bottom: 0;
 }
 
 .wordmark .row {
@@ -277,17 +277,31 @@ nav {
 }
 
 .wordmark .row:nth-child(1) span { animation-delay: 0.2s; }
-.wordmark .row:nth-child(2) span { animation-delay: 0.32s; }
-.wordmark .row:nth-child(2) {
-  padding-left: 12vw;
-  font-style: italic;
-  font-weight: 500;
-  color: var(--gold);
-  letter-spacing: 0.005em;
+
+.wordmark-tagline {
+  font-family: var(--mono);
+  font-size: clamp(11px, 1.2vw, 15px);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--ink-3);
+  margin-top: 16px;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: rise 1s 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.wordmark .row:nth-child(3) span { animation-delay: 0.44s; }
-.wordmark .row:nth-child(3) { padding-left: 4vw; }
+.hero-display {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(28px, 4.5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  max-width: 18ch;
+  margin: 0;
+  opacity: 0;
+  animation: rise 1s 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
 
 @keyframes rise {
   to { opacity: 1; transform: translateY(0); }
