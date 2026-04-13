@@ -2,7 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'DANZUS Holdings — A studio for the agent era',
+  title: 'DANZUS Holdings — AI-native software for the trades',
   description: 'DANZUS Holdings LLC. A privately held software studio building AI-native products for the trades, compliance, and the operators who run the physical world.',
 }
 
