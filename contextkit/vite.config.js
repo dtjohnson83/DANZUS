@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/context/',
-  build: { outDir: '../public/context', emptyOutDir: true }
+  base: '/contextkit/',
+  build: { outDir: '../public/contextkit', emptyOutDir: true }
 })

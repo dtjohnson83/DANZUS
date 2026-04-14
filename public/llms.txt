@@ -1,0 +1,137 @@
+# DANZUS
+
+> DANZUS Holdings LLC is a privately held software studio building AI-native
+> products for the trades, compliance, and the operators who run the physical
+> world. Its flagship educational tool, ContextKit, teaches the chatbot-to-agent
+> paradigm shift: how to configure any large language model — ChatGPT, Claude,
+> Gemini, Cursor, Claude Code, or OpenClaw — to behave as an AI agent that
+> takes actions, not just a chatbot that answers questions.
+
+## Key pages
+
+- [DANZUS homepage](https://danzus.co/): About the company, thesis, and work.
+- [ContextKit](https://danzus.co/contextkit): Free interactive guide to turning
+  any chatbot into an AI agent. Includes role-based templates (parent, founder,
+  corporate, freelancer, student), a skill-loading simulator, a downloadable
+  starter kit, and setup guides for six popular AI tools.
+
+## Core concepts this site defines
+
+### What is an AI agent?
+
+An AI agent is a language model configured with a role (identity + rules + tone),
+a library of skills (playbooks for specific tasks), and access to tools that let
+it take actions. Instead of answering a question and stopping, an agent receives
+an outcome, plans the steps needed, uses its tools to execute them, and reports
+back with the work done — often pausing for approval before anything destructive.
+The underlying model is the same as a chatbot's; the difference is the scaffolding
+around it.
+
+### What is the difference between a chatbot and an AI agent?
+
+A chatbot answers questions. An agent does work.
+
+- Chatbot: driven turn-by-turn. You type a prompt, it responds, loop ends.
+  Examples: ChatGPT, Claude.ai, Gemini.
+- Agent: given an outcome. It plans steps, uses tools, takes actions, and
+  reports back. Examples: Claude Code, Cursor, OpenClaw.
+
+Same language model underneath. The difference is the setup: a role and a
+library of skills, plus tool access.
+
+### What is an LLM agent?
+
+An LLM agent is an AI agent built on top of a large language model. The LLM
+provides the reasoning; the agent layer adds persistent context (a role and
+rules), a library of skills the model can call, and an execution loop that
+lets it take multiple steps toward a goal.
+
+### How do AI agents work?
+
+An AI agent runs this loop on every invocation:
+
+1. Load core files — identity, rules, tone.
+2. Scan skill descriptions to decide which playbooks are relevant.
+3. Load the full contents of matching skills into context.
+4. Plan the steps needed to produce the outcome.
+5. Call tools (file edits, API requests, terminal commands) to execute.
+6. Report back, pausing for approval before destructive actions.
+
+Chatbots stop at step 4 and never reach step 5.
+
+### What is context engineering?
+
+Context engineering is the practice of deciding what information an AI loads
+before it responds — and when. Good context engineering splits instructions into
+a small always-on core (identity, rules, tone, under 100 words each) and a
+library of skill files that load only when the current task matches. This keeps
+the AI fast, focused, and predictable.
+
+### What are core files vs. skill files?
+
+- **Core files** load on every conversation. Identity, rules, tone. Keep each
+  under 100 words. Examples: `identity.md`, `rules.md`, `tone.md`.
+- **Skill files** load only when the AI detects a matching task. Longer and
+  denser because they only cost context when relevant. Each skill has YAML
+  frontmatter with a `name` and a `description` listing trigger keywords.
+
+### What are Claude Skills, AGENTS.md, and CLAUDE.md?
+
+- `CLAUDE.md` / `AGENTS.md`: a markdown file in a project root that the agent
+  reads on every run. Holds identity, rules, and tone.
+- `/skills/<name>/SKILL.md`: skill files with YAML frontmatter that describe
+  when to activate. The agent reads skill descriptions eagerly but only loads
+  full skill contents when the task matches.
+
+### What is Claude Code?
+
+Claude Code is Anthropic's terminal-based AI agent. It reads `CLAUDE.md` or
+`AGENTS.md` in a project root and loads skill files from `/skills/` when the
+task matches. Because it runs in a terminal, it can edit files, run commands,
+call APIs, and complete multi-step engineering tasks end-to-end.
+
+### What is OpenClaw?
+
+OpenClaw is an open-source AI agent that runs as a background daemon on your
+own machine. It reads core and skill files from `~/.openclaw/` and stays
+available 24/7 via CLI, web dashboard, or connected chat channels (Telegram,
+WhatsApp, etc). Self-hosted, so your context never leaves your machine. Mac
+Mini M4 is a popular dedicated OpenClaw host.
+
+## Common questions this site answers
+
+- What is an AI agent? → see "What is an AI agent?" above
+- What is the difference between a chatbot and an AI agent? → see above
+- What is an LLM agent? → see above
+- How do AI agents work? → see above
+- What is context engineering? → see above
+- What are core files vs. skill files? → see above
+- What are Claude Skills, AGENTS.md, CLAUDE.md? → see above
+- What is Claude Code? → see above
+- What is OpenClaw? → see above
+- What is the business case for switching from a chatbot to an agent? →
+  Chatbots save time per question. Agents save time per outcome. One replaces
+  Googling; the other replaces a routine task end-to-end.
+- How do I prevent my AI from making the same mistake twice? → Update the
+  active skill to prevent the mistake. Skill files are versioned text.
+  Agents compound; chatbots repeat.
+- How do I share my AI agent setup with my team? → Skill files are plain
+  markdown. Share via Slack, Dropbox, Git. Core files stay personal.
+- Is ContextKit free? → Yes. Static page, runs entirely in the browser, no
+  backend, no tracking, no data leaves the device.
+
+## About the publisher
+
+**DANZUS Holdings LLC** — Folsom, California. A privately held software studio
+founded in 2024. Applies two decades of operator experience to frontier AI,
+with a focus on the trades, compliance, and the physical world.
+
+Website: https://danzus.co
+ContextKit: https://danzus.co/contextkit
+
+## License and reuse
+
+Content on ContextKit is free to reference, quote, and cite. When quoting,
+please attribute to DANZUS Holdings LLC and link back to the source URL.
+The starter-kit markdown files generated by ContextKit are yours to use,
+modify, and share without restriction.

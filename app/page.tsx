@@ -1,6 +1,54 @@
+const ORGANIZATION_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'DANZUS Holdings LLC',
+  alternateName: 'DANZUS',
+  url: 'https://danzus.co',
+  logo: 'https://danzus.co/icon.svg',
+  description:
+    'A privately held software studio building AI-native products for the trades, compliance, and the operators who run the physical world.',
+  foundingDate: '2024',
+  foundingLocation: {
+    '@type': 'Place',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Folsom',
+      addressRegion: 'CA',
+      addressCountry: 'US',
+    },
+  },
+  knowsAbout: [
+    'AI agents',
+    'AI-native software',
+    'Context engineering',
+    'Large language models',
+    'Claude Code',
+    'Software for the trades',
+    'Compliance software',
+  ],
+  sameAs: [],
+}
+
+const WEBSITE_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'DANZUS',
+  url: 'https://danzus.co',
+  publisher: { '@type': 'Organization', name: 'DANZUS Holdings LLC' },
+  inLanguage: 'en',
+}
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSONLD) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBSITE_JSONLD) }}
+      />
       {/* Navigation */}
       <nav>
         <div className="wrap nav-inner">
@@ -14,7 +62,7 @@ export default function Home() {
             <a href="#operator">Operator</a>
             <a href="#contact">Signal</a>
           </div>
-          <a className="nav-pill" href="/context">
+          <a className="nav-pill" href="/contextkit">
             ContextKit <span className="pill-arr">↗</span>
           </a>
         </div>
@@ -195,11 +243,11 @@ export default function Home() {
               <div className="w-arrow">&rarr;</div>
             </a>
 
-            <a className="work" href="/context">
+            <a className="work" href="/contextkit">
               <div className="w-num">/06</div>
               <div className="w-name">ContextKit</div>
               <div className="w-desc">
-                A free interactive tool that teaches anyone how to organize their AI assistant&apos;s memory. Explore a working setup, simulate how skills fire, or build your own config.
+                A free interactive guide to the chatbot-to-agent paradigm shift. Write core files and skills that turn any AI — ChatGPT, Claude, Gemini, Cursor, Claude Code, or OpenClaw — into an agent that does the work, not just answers questions.
               </div>
               <div className="w-tags">
                 <span className="live">Live</span>
