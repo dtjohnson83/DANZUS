@@ -70,7 +70,7 @@ lines:[{h:"Family"},{k:"Oldest",v:"Jun 12"},{k:"Youngest",v:"Mar 4"},{k:"Partner
 {a:"Important dates + gift memory. Prevents 'did we already get them this?' Christmas morning."}]},
 ],
 sims:[
-{q:"What should I make for dinner tonight?",match:["meals"],answer:"Based on your 30-min weeknight rule and peanut-free constraint: sheet pan chicken with roasted veggies. You probably have everything already."},
+{q:"What should I make for dinner tonight?",match:["meals"],answer:"Picked sheet-pan chicken — fits your 30-min weeknight rule, peanut-free. Checked your pantry skill: you're missing paprika. Adding it to the grocery list now. Want me to set a 5:30 prep reminder?"},
 {q:"What's the pickup schedule tomorrow?",match:["school"],answer:"Tomorrow's Tuesday, so Grandma handles pickup. Preschool at 2:30, elementary at 3:15."},
 {q:"My oldest has a rash. What should I tell the doctor?",match:["medical"],answer:"Dr. Rivera's on file. Bring allergy history (peanut, epipen). Note when the rash started."},
 {q:"Are we over budget on groceries?",match:["budget"],answer:"Target is $800/month. Your usual weekly shop is ~$180, tracking to $720. You have room."},
@@ -118,7 +118,7 @@ sims:[
 {q:"How are we positioned against the new competitor?",match:["product"],answer:"Strong on differentiator 1. Exposed on point 2. They can't copy your first-mover advantage."},
 {q:"Deploy the latest build to staging",match:["deploy"],answer:"Running conventions. Confirming: staging, not production. Ready?"},
 {q:"A customer is demanding a refund after 45 days. What do I say?",match:["support"],answer:"Past the 30-day window, so case-by-case. Acknowledge the frustration first, no corporate filler. What's their reason? If it's a bug you can fix, lean toward approving."},
-{q:"Draft this month's investor update",match:["investors"],answer:"Wins > Losses > Asks > Metrics > Ask for help. What shipped? What didn't? Pull MRR, burn, runway, headcount from your metrics doc. Flag the bad news up front — investors always find out later."},
+{q:"Draft this month's investor update",match:["investors"],answer:"Drafted in Wins > Losses > Asks > Metrics format. Pulled MRR ($42k), burn ($38k), runway (11mo) from your metrics doc. Flagged two numbers I couldn't verify — churn and NPS. Review the draft before I send; I'll hold it as a draft in your email until you approve."},
 ],
 learnExamples:{desk:"Reading your entire company wiki before answering a Slack message.",skill:"Blog post? Brand folder. Shipping code? Engineering folder."},
 },
@@ -160,7 +160,7 @@ sims:[
 {q:"Draft an update for the VP of Engineering",match:["comms"],answer:"VP Eng wants technical depth. Decision first, data below, one clear ask."},
 {q:"What's our D7 retention?",match:["data"],answer:"D7 = users returning within 7 days. Pulling with date range specified."},
 {q:"Summarize today's standup",match:["meetings"],answer:"Decisions made, action items with owners and deadlines. Discussion skipped."},
-{q:"Prep for my 1:1 with Alex tomorrow",match:["onetoones"],answer:"Their agenda first: what's blocking them, what should you know, what should you be doing differently. Pull last week's notes — were the action items on you completed?"},
+{q:"Prep for my 1:1 with Alex tomorrow",match:["onetoones"],answer:"Pulled last week's notes: two action items were on you — one done, one not. Drafted tomorrow's agenda starting with their items, then the open one, then your feedback. Attaching to the calendar invite. OK to send?"},
 {q:"Help me draft Q3 OKRs for the platform team",match:["planning"],answer:"3-5 KRs per objective. Measurable. Capacity: 8 engineers × 50% planned = 4 FTE-quarters. Don't over-commit. What are the top 3 outcomes the team needs to hit?"},
 ],
 learnExamples:{desk:"Printing every Notion page before starting each task.",skill:"PRD? Template loads. VP email? Stakeholder context loads."},
@@ -201,7 +201,7 @@ lines:[{c:"Triggers: hours, time, logged, how long, billable."},{h:"How"},{v:"Lo
 sims:[
 {q:"Start the Acme homepage mockup",match:["clientA"],answer:"Acme: minimal, bold type, navy + white. Wireframes approved. Building high-fi mockups."},
 {q:"Write Bloom's blog post for this week",match:["clientB"],answer:"Bloom voice: earthy, wellness. What topic did Jay want this week?"},
-{q:"Invoice Acme for March",match:["invoicing"],answer:"Design rate $125/hr. Pulling March hours. Net 30. Draft it?"},
+{q:"Invoice Acme for March",match:["invoicing"],answer:"Summed March hours from your time log: 28.5 billable, rounded to 15-min blocks. Design rate $125/hr = $3,562.50. Draft invoice ready, Net 30, addressed to Sarah. Holding it in drafts until you say send."},
 {q:"A new cafe wants branding. Draft a pitch",match:["portfolio"],answer:"Strategic design angle. Including Acme rebrand and Bloom system as proof."},
 {q:"Draft a SOW for a new e-commerce site project",match:["proposals"],answer:"Structure: Problem > Approach > Deliverables > Timeline > Price > Terms. Fixed price for the build, 50% deposit since it's over $5k. Need scope specifics — how many pages, how many custom components?"},
 {q:"How many hours did I log for Acme last week?",match:["time","clientA"],answer:"Pulling from your time log. Sum the rounded 15-min blocks. Note: admin time (email, meetings about scheduling) isn't billable per your rule."},
@@ -244,7 +244,7 @@ lines:[{c:"Triggers: group, team project, classmates, split up."},{h:"Structure"
 sims:[
 {q:"Help me with gene expression for the lab report",match:["bio"],answer:"Gene expression: DNA to protein. For your report: promoter region, RNA polymerase, mRNA processing. Dr. Kim wants diagrams."},
 {q:"Outline my Cold War paper",match:["history","writing"],answer:"Thesis: containment failures in SE Asia. APA 7th. Thesis > evidence > analysis > counter > conclusion. 12 pages, April 20."},
-{q:"Bio exam in 3 days",match:["bio","study"],answer:"Day 3 of your plan: deep review of gene expression. Tomorrow: practice problems. Day 5: weak spots only."},
+{q:"Bio exam in 3 days",match:["bio","study"],answer:"Built your 3-day plan: today deep review on gene expression (your weakest area), tomorrow practice problems, day of = weak spots only. Generated 12 active-recall questions from Dr. Kim's lecture notes. Want me to quiz you now or schedule a session for tonight?"},
 {q:"Check my citations",match:["writing","citations"],answer:"APA 7th: checking author-date format, et al. rules, page numbers for direct quotes. I'll flag any paraphrases missing in-text citations."},
 {q:"Add these 3 new sources to my Cold War paper",match:["citations","history"],answer:"Dropping into your Zotero 'Spring Semester' library, tagged 'History 305'. Formatting as APA 7th. Paste the URLs or DOIs."},
 {q:"I'm on a group project and my teammate is ghosting",match:["groups"],answer:"Your rule: don't ghost, speak up within 24 hours. Tell them you need them to write 'I'm stuck on X' in the chat or you'll redistribute. Be direct but not hostile — this is likely overwhelm, not malice."},
@@ -436,23 +436,47 @@ function NodeMap() {
 }
 
 function Intake({onSelect}) {
+  const compareRows = [
+    {a:"You ask. It answers.", b:"You delegate an outcome. It does the work."},
+    {a:"You drive every step.", b:"It plans the steps. You approve them."},
+    {a:"You type prompts.", b:"You write a job description."},
+    {a:"Measured in: good answers.", b:"Measured in: tasks off your plate."},
+  ];
   return (
     <div style={{minHeight:"100vh",display:"flex",flexDirection:"column",justifyContent:"center",padding:"6rem 1.5rem 3rem",maxWidth:800,margin:"0 auto"}}>
       <div style={{fontFamily:"var(--fh)",fontSize:".7rem",color:T.gold,letterSpacing:".2em",marginBottom:"1.2rem"}}>CONTEXTKIT</div>
       <div style={{display:"flex",alignItems:"center",gap:"2rem",marginBottom:"1.2rem",flexWrap:"wrap"}}>
         <div style={{flex:"1 1 320px"}}>
           <h1 style={{fontFamily:"var(--fh)",fontWeight:800,fontSize:"clamp(2.2rem,6vw,4rem)",lineHeight:.92,marginBottom:"1.2rem"}}>
-            How your AI's <span style={{color:T.gold}}>memory works.</span>
+            Stop prompting. <span style={{color:T.gold}}>Start delegating.</span>
           </h1>
           <p style={{fontSize:".95rem",color:T.txD,maxWidth:460,lineHeight:1.7}}>
-            Your AI reads a set of instructions before every response. How you organize those instructions changes what the AI can do. This guide shows you how it works.
+            Chatbots answer questions. Agents do the work — if you give them a role. ContextKit shows you how to write that role so any AI can run it.
           </p>
         </div>
         <div style={{flex:"0 0 auto",maxWidth:220}}>
           <NodeMap />
         </div>
       </div>
-      <div style={{fontFamily:"var(--fh)",fontSize:".75rem",color:T.goldD,letterSpacing:".12em",marginBottom:".8rem"}}>PICK A SCENARIO</div>
+
+      {/* Chatbot vs. Agent comparison */}
+      <div style={{background:T.sf,border:`1px solid ${T.rule}`,borderRadius:8,padding:"1rem 1.1rem",marginBottom:"2rem",maxWidth:640}}>
+        <div style={{fontFamily:"var(--fm)",fontSize:".55rem",color:T.goldD,letterSpacing:".12em",marginBottom:".6rem"}}>THE PARADIGM SHIFT</div>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:".5rem 1rem",fontSize:".75rem",lineHeight:1.5}}>
+          <div style={{fontFamily:"var(--fh)",fontSize:".78rem",fontWeight:700,color:T.txD,paddingBottom:".3rem",borderBottom:`1px solid ${T.rule}`}}>Chatbot</div>
+          <div style={{fontFamily:"var(--fh)",fontSize:".78rem",fontWeight:700,color:T.gold,paddingBottom:".3rem",borderBottom:`1px solid ${T.goldD}`}}>Agent</div>
+          {compareRows.flatMap((r,i) => [
+            <div key={`a-${i}`} style={{color:T.txD}}>{r.a}</div>,
+            <div key={`b-${i}`} style={{color:T.tx}}>{r.b}</div>,
+          ])}
+        </div>
+        <div style={{marginTop:".7rem",paddingTop:".6rem",borderTop:`1px solid ${T.rule}`,fontSize:".72rem",color:T.txD,lineHeight:1.55,fontStyle:"italic"}}>
+          Same language model underneath. The difference is the setup around it — which is what you're here to build.
+        </div>
+      </div>
+
+      <div style={{fontFamily:"var(--fh)",fontSize:".75rem",color:T.goldD,letterSpacing:".12em",marginBottom:".4rem"}}>PICK A ROLE</div>
+      <div style={{fontSize:".78rem",color:T.txD,marginBottom:".9rem",maxWidth:540,lineHeight:1.55}}>What job are you hiring this AI to do?</div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(160px,1fr))",gap:".8rem",maxWidth:600}}>
         {Object.entries(PERSONAS).map(([k,v]) => (
           <button key={k} onClick={() => onSelect(k)} style={{
@@ -702,6 +726,7 @@ function BuildTab({personaKey}) {
     {
       id: "claude",
       name: "Claude.ai",
+      kind: "chatbot",
       difficulty: "Easy",
       steps: [
         "Go to claude.ai and create a new Project (left sidebar, 'Projects', then '+ Create')",
@@ -715,6 +740,7 @@ function BuildTab({personaKey}) {
     {
       id: "chatgpt",
       name: "ChatGPT",
+      kind: "chatbot",
       difficulty: "Easy",
       steps: [
         "Go to Settings > Personalization > Custom Instructions.",
@@ -728,6 +754,7 @@ function BuildTab({personaKey}) {
     {
       id: "gemini",
       name: "Google Gemini",
+      kind: "chatbot",
       difficulty: "Easy",
       steps: [
         "Open Gemini and go to Settings > Extensions or Gems.",
@@ -740,6 +767,7 @@ function BuildTab({personaKey}) {
     {
       id: "claude-code",
       name: "Claude Code",
+      kind: "agent",
       difficulty: "Technical",
       steps: [
         "In your project root, create a file called CLAUDE.md (or AGENTS.md). Paste your core files here. Claude Code reads this automatically.",
@@ -753,6 +781,7 @@ function BuildTab({personaKey}) {
     {
       id: "cursor",
       name: "Cursor",
+      kind: "agent",
       difficulty: "Technical",
       steps: [
         "Create a .cursorrules file in your project root. Paste your core files here.",
@@ -765,6 +794,7 @@ function BuildTab({personaKey}) {
     {
       id: "openclaw",
       name: "OpenClaw",
+      kind: "agent",
       difficulty: "Technical (but guided)",
       steps: [
         "PREREQUISITES\n\nYou need a Mac, Linux, or Windows (WSL2) computer, and an API key from an AI provider (Anthropic, OpenAI, etc). Mac is the easiest path. You'll use the Terminal app for everything below.",
@@ -783,6 +813,7 @@ function BuildTab({personaKey}) {
     {
       id: "manual",
       name: "Any AI / Manual Setup",
+      kind: "chatbot",
       difficulty: "Simple",
       steps: [
         "Save your core file somewhere you can quickly copy it (notes app, pinned doc, bookmarked file).",
@@ -857,11 +888,14 @@ function BuildTab({personaKey}) {
       <div style={{fontFamily:"var(--fh)",fontSize:".7rem",color:T.goldD,letterSpacing:".12em",marginBottom:".4rem"}}>STEP 2</div>
       <div style={{fontFamily:"var(--fh)",fontSize:"1.15rem",fontWeight:700,marginBottom:".5rem"}}>Where do the files go?</div>
       <p style={{color:T.txD,maxWidth:480,marginBottom:"1.2rem",fontSize:".86rem",lineHeight:1.7}}>
-        It depends on which tool you use. Here's how each one handles context files.
+        Same files, two very different ceilings. Configured chatbots give better answers. Agents take actions. Pick based on what you want this AI to do.
       </p>
 
-      <div style={{display:"flex",flexDirection:"column",gap:".6rem",marginBottom:"2.5rem"}}>
-        {guides.filter(g => GUIDE_ALLOWLIST[personaKey].includes(g.id)).map(g => (
+      {(() => {
+        const visible = guides.filter(g => GUIDE_ALLOWLIST[personaKey].includes(g.id));
+        const chatbots = visible.filter(g => g.kind === "chatbot");
+        const agents = visible.filter(g => g.kind === "agent");
+        const renderGuide = (g) => (
           <div key={g.id} style={{background:T.sf,border:`1px solid ${openGuide===g.id?T.gold:T.rule}`,borderRadius:8,overflow:"hidden",transition:"border-color .2s"}}>
             <button onClick={() => setOpenGuide(openGuide===g.id?null:g.id)} style={{
               width:"100%",display:"flex",justifyContent:"space-between",alignItems:"center",
@@ -893,8 +927,39 @@ function BuildTab({personaKey}) {
               </div>
             )}
           </div>
-        ))}
-      </div>
+        );
+        const GroupHeader = ({label, caption, color}) => (
+          <div style={{marginBottom:".5rem",marginTop:".2rem"}}>
+            <div style={{fontFamily:"var(--fm)",fontSize:".55rem",color,letterSpacing:".12em",marginBottom:".1rem"}}>{label}</div>
+            <div style={{fontSize:".72rem",color:T.txD,lineHeight:1.5}}>{caption}</div>
+          </div>
+        );
+        return (
+          <div style={{display:"flex",flexDirection:"column",gap:".6rem",marginBottom:"2.5rem"}}>
+            {chatbots.length > 0 && (
+              <>
+                <GroupHeader
+                  label="CONFIGURED CHATBOTS"
+                  caption="Better answers, consistent tone. Does not take actions on your behalf."
+                  color={T.goldD}
+                />
+                {chatbots.map(renderGuide)}
+              </>
+            )}
+            {agents.length > 0 && (
+              <>
+                <div style={{height:".4rem"}} />
+                <GroupHeader
+                  label="REAL AGENTS"
+                  caption="Uses tools, takes multi-step actions, reports back. Asks before anything destructive."
+                  color={T.grn}
+                />
+                {agents.map(renderGuide)}
+              </>
+            )}
+          </div>
+        );
+      })()}
 
       {/* STEP 3: TEST IT */}
       <div style={{fontFamily:"var(--fh)",fontSize:".7rem",color:T.goldD,letterSpacing:".12em",marginBottom:".4rem"}}>STEP 3</div>
@@ -924,14 +989,22 @@ function BuildTab({personaKey}) {
 // ============ LEARN ============
 function LearnTab({persona}) {
   const rules = [
-    {n:"01",t:"Keep the always-on file small",p:"Only your name, rules, and tone. Everything else waits."},
-    {n:"02",t:"Skills do the heavy lifting",p:"A skill sits idle using almost no memory until the AI needs it."},
-    {n:"03",t:"Let the AI write the skill",p:"Succeed at a workflow once. Then have the AI write the skill from what worked."},
-    {n:"04",t:"Fix it when it breaks",p:"Update the skill so the same mistake never recurs. Your setup improves over time."},
-    {n:"05",t:"Earn complexity",p:"One workflow first. Make it reliable. Then add the next."},
-    {n:"06",t:"Your process is what matters",p:"The AI knows everything. What it lacks is your way of doing things."},
+    {n:"01",t:"The job description fits on one page",p:"Core files hold identity, rules, tone. Everything else is a playbook the agent opens when needed."},
+    {n:"02",t:"Skills are playbooks — one per part of the role",p:"Write each skill like a procedure for a new hire. If X happens, do Y, check Z."},
+    {n:"03",t:"After a task goes well, document how",p:"Have the agent write the skill from the steps that worked. Reusable next time."},
+    {n:"04",t:"Train on mistakes. Agents improve; chatbots don't",p:"When it gets something wrong, update the skill so the same mistake never recurs."},
+    {n:"05",t:"Earn trust before you expand scope",p:"One responsibility first. Make it reliable. Then hand off the next one."},
+    {n:"06",t:"The AI knows facts. You teach it your way of working",p:"What makes your setup valuable isn't the model — it's the process only you know."},
   ];
   const faqs = [
+    {
+      q:"Isn't this just ChatGPT with extra steps?",
+      a:"ChatGPT is a chatbot — you type, it answers, the loop ends. An agent does work between your instruction and the outcome: it picks which playbook to use, runs through steps, uses tools, and reports back. ContextKit is how you set up that playbook library. The tools on Step 2 range from 'configured chatbot' (ChatGPT, Gemini, Claude.ai) to 'real agent' (Claude Code, OpenClaw). Same files, different ceiling.",
+    },
+    {
+      q:"What's the business case for switching from a chatbot to an agent?",
+      a:"Chatbots save time per question. Agents save time per outcome. One replaces Googling; the other replaces a routine task end-to-end — drafting the invoice, prepping the 1:1, building the exam plan. Stop counting answers; start counting tasks off your plate. That's where the ROI math actually lives.",
+    },
     {
       q:"Does ContextKit send my data anywhere?",
       a:"No. ContextKit is a static page that runs entirely in your browser. There's no backend, no tracking, no analytics. The starter kit download is generated locally from a Blob. You can verify this by opening DevTools → Network and watching nothing go out.",
@@ -958,11 +1031,12 @@ function LearnTab({persona}) {
     },
   ];
   const flowSteps = [
-    {label:"Your question",sub:null,color:T.tx},
+    {label:"Your instruction",sub:"a task, not a question",color:T.tx},
     {label:"Core files load",sub:"identity, rules, tone (~80 words)",color:T.gold},
     {label:"AI scans skill descriptions",sub:"reads one-line summaries, not full files",color:T.goldD},
-    {label:"Matching skills open",sub:"only relevant skills load into memory",color:T.grn},
-    {label:"Response",sub:"informed by core + matched skills only",color:T.tx},
+    {label:"Matching skills open",sub:"only relevant playbooks load into context",color:T.grn},
+    {label:"Plan + response",sub:"informed by core + matched skills only",color:T.tx},
+    {label:"Action (with your approval)",sub:"tool-using agents only — chatbots stop at step 5",color:T.gold},
   ];
   return (
     <div>
