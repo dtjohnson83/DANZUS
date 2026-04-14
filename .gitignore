@@ -9,10 +9,10 @@ out/
 build/
 dist/
 
-# ContextKit sub-app: ignore deps/intermediate dist, but keep public/context (built output committed)
-context/node_modules/
-context/dist/
-!public/context/
+# ContextKit sub-app: ignore deps/intermediate dist, but keep public/contextkit (built output committed)
+contextkit/node_modules/
+contextkit/dist/
+!public/contextkit/
 
 # Testing
 coverage/

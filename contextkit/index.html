@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#050505" />
+    <title>ContextKit · Turn any chatbot into an AI agent</title>
+    <meta name="description" content="Free interactive guide to the chatbot-to-agent paradigm shift. Learn how to write core files and skills that turn ChatGPT, Claude, Gemini, Cursor, or Claude Code into an AI worker that takes actions, not just answers." />
+    <meta name="keywords" content="AI agent, chatbot vs agent, Claude skills, Claude Code, AGENTS.md, CLAUDE.md, Cursor rules, custom GPT, system prompt, prompt engineering, AI context, AI worker, LLM agent, agent architecture, context engineering, skill files, AI onboarding" />
+    <meta name="author" content="DANZUS Holdings LLC" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://danzus.co/contextkit" />
+
+    <!-- AI crawler directives (GEO) — explicitly allow discovery by generative engines -->
+    <meta name="GPTBot" content="index, follow" />
+    <meta name="ClaudeBot" content="index, follow" />
+    <meta name="anthropic-ai" content="index, follow" />
+    <meta name="PerplexityBot" content="index, follow" />
+    <meta name="Google-Extended" content="index, follow" />
+    <meta name="CCBot" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://danzus.co/contextkit" />
+    <meta property="og:title" content="ContextKit · Turn any chatbot into an AI agent" />
+    <meta property="og:description" content="Chatbots answer questions. Agents do the work. ContextKit shows you how to write the role so any AI can run it — ChatGPT, Claude, Gemini, Cursor, Claude Code, or OpenClaw." />
+    <meta property="og:site_name" content="DANZUS" />
+    <meta property="og:image" content="https://danzus.co/icon.svg" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ContextKit · Turn any chatbot into an AI agent" />
+    <meta name="twitter:description" content="Free interactive guide to the chatbot-to-agent paradigm shift. Core files + skills that any AI can run." />
+    <meta name="twitter:image" content="https://danzus.co/icon.svg" />
+
+    <!-- JSON-LD: WebApplication -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "ContextKit",
+        "url": "https://danzus.co/contextkit",
+        "description": "A free interactive tool that teaches the chatbot-to-agent paradigm shift: how to write core files and skills that turn a language model into an AI worker capable of taking actions.",
+        "applicationCategory": "EducationalApplication",
+        "applicationSubCategory": "AI tools",
+        "operatingSystem": "Any (web browser)",
+        "browserRequirements": "Requires JavaScript",
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Five role-based starter templates (parent, founder, corporate, freelancer, student)",
+          "Interactive simulation of skill loading and agent action",
+          "Downloadable starter kit for any AI tool",
+          "Setup guides for Claude.ai, ChatGPT, Gemini, Claude Code, Cursor, and OpenClaw",
+          "Architecture that works across configured chatbots and tool-using agents"
+        ],
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "creator": {
+          "@type": "Organization",
+          "name": "DANZUS Holdings LLC",
+          "url": "https://danzus.co",
+          "logo": "https://danzus.co/icon.svg"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "DANZUS Holdings LLC",
+          "url": "https://danzus.co"
+        }
+      }
+    </script>
+
+    <!-- JSON-LD: HowTo (setup workflow) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to turn any chatbot into an AI agent",
+        "description": "A three-step process to configure an AI assistant with core files and skill files so it behaves as an agent instead of a chatbot.",
+        "totalTime": "PT30M",
+        "supply": [
+          { "@type": "HowToSupply", "name": "An AI account (Claude.ai, ChatGPT, Gemini, Claude Code, Cursor, or OpenClaw)" }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Get your files",
+            "text": "Download a role-based starter kit, or have an AI interview you with the ContextKit builder prompt. You end up with 3 core files (identity, rules, tone) and 4-8 skill files (playbooks that only load when relevant)."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Install them in your AI tool",
+            "text": "Configured chatbots (Claude.ai, ChatGPT, Gemini): paste core files into Custom Instructions or Projects, upload skills as Knowledge. Real agents (Claude Code, Cursor, OpenClaw): save as AGENTS.md / CLAUDE.md / .cursorrules with a /skills directory."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Verify it's working",
+            "text": "Run three checks: a skill-trigger test (does it activate the right skill?), a skill-isolation test (does it ignore unrelated skills?), and a rules check (does it refuse to break your guardrails?)."
+          }
+        ]
+      }
+    </script>
+
+    <!-- JSON-LD: FAQPage (mirrors in-app FAQ for rich results + LLM extraction) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is an AI agent?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "An AI agent is a language model configured with a role, a set of rules, and a library of skills, plus access to tools that let it take actions. Instead of answering a question and stopping, an agent receives an outcome, plans the steps needed, uses its tools to execute them, and reports back with the work done. Agents can draft and send emails, update files, run code, query APIs, and chain multiple steps together — with approval checkpoints on anything destructive. The underlying model is the same as a chatbot's; the difference is the scaffolding around it: identity, guardrails, playbooks, and tool access."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between a chatbot and an AI agent?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A chatbot answers questions. An agent does work. Chatbots are driven turn-by-turn — you type a prompt, it responds, loop ends. Agents are given an outcome — they plan steps, use tools, take actions, and report back with the work done. Same language model underneath; the difference is the setup around it: a role (identity + rules + tone) and a library of skills (playbooks for each part of the role). Chatbot examples: ChatGPT, Claude.ai, Gemini. Agent examples: Claude Code, Cursor, OpenClaw."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is an LLM agent?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "An LLM agent is an AI agent built on top of a large language model (LLM). The LLM provides the reasoning; the agent layer adds persistent context (a role and rules), a library of skills or tools the model can call, and an execution loop that lets it take multiple steps toward a goal. Claude Code, Cursor, and OpenClaw are LLM agents; ChatGPT and Claude.ai in their default mode are LLM chatbots."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do AI agents work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "An AI agent runs this loop: (1) Load its core files — identity, rules, tone — on every invocation. (2) Scan its skill descriptions to decide which playbooks are relevant to the task. (3) Load the full contents of matching skills into context. (4) Plan the steps needed to produce the outcome. (5) Call tools — file edits, API requests, terminal commands — to execute those steps. (6) Report back, often pausing for approval before destructive actions. Chatbots stop at step 4 (planning) and never reach step 5 (action)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Isn't an AI agent just ChatGPT with extra steps?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ChatGPT is a chatbot — you type, it answers, the loop ends. An agent does work between your instruction and the outcome: it picks which playbook to use, runs through steps, uses tools, and reports back. ContextKit is how you set up that playbook library. The tools range from 'configured chatbot' (ChatGPT, Gemini, Claude.ai) to 'real agent' (Claude Code, OpenClaw). Same files, different ceiling."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the business case for switching from a chatbot to an agent?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Chatbots save time per question. Agents save time per outcome. One replaces Googling; the other replaces a routine task end-to-end — drafting the invoice, prepping the 1:1, building the exam plan. Stop counting answers; start counting tasks off your plate. That is where the ROI math actually lives."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are Claude Skills and AGENTS.md?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "AGENTS.md (or CLAUDE.md) is a markdown file in a project that the agent reads on every run — it holds identity, rules, and tone. Skills are separate markdown files with YAML frontmatter that describe when to activate. The agent reads skill descriptions eagerly but only loads full skill contents when the task matches. This keeps context small and behavior scoped."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will ContextKit work with my AI tool?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "If the tool accepts persistent instructions — Custom Instructions, Projects, Gems, CLAUDE.md, .cursorrules, or system prompts — yes. The skill file format is plain markdown with YAML frontmatter, which any model can parse. If your tool does not support persistent instructions, the Manual setup guide works as a fallback."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is ContextKit free? Does it send my data anywhere?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ContextKit is free. It is a static page that runs entirely in your browser. There is no backend, no tracking, no analytics. The starter kit download is generated locally. You can verify this by opening DevTools → Network and watching nothing go out."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is context engineering?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Context engineering is the practice of deciding what information an AI loads before it responds — and when. Good context engineering splits instructions into a small always-on core (identity, rules, tone, under 100 words each) and a library of skill files that load only when the current task matches. This keeps the AI fast, focused, and predictable. ContextKit teaches context engineering through role-based templates and an interactive simulator."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does an AI agent need context to work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Without context, a language model is a generic assistant — it does not know who you are, what rules you follow, or what 'done' looks like for your work. Context is what turns a generic model into an agent that fits your role. Core files give the agent its identity and guardrails. Skills give it playbooks for specific tasks. Together they define what the agent does before every response, so the same question produces the same quality answer every time."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between core files and skill files?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Core files load on every conversation — identity, rules, tone. Keep each under 100 words. Skill files load only when the AI detects a matching task. Skills can be longer and denser because they only cost context when they are relevant. A parent's core file names the family and sets the no-peanut rule; their meal-planning skill file holds pantry preferences and weeknight templates, and only loads when dinner is the topic."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the right size for my AGENTS.md or CLAUDE.md?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Keep it small. The always-on file should fit on one screen: under ~100 words per section (identity, rules, tone). Everything task-specific belongs in a skill file that loads only when needed. A bloated core file burns context on every request and slows the agent down; a lean core file leaves room for the right skill to load at the right time."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I prevent my AI agent from making the same mistake twice?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "When the agent gets something wrong, identify which skill was active during that task and add a line that prevents the same mistake. Skill files are versioned text, so you can track changes in git. Over time, your setup improves — this is the key advantage agents have over chatbots: agents compound, chatbots repeat."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I share my AI agent setup with my team or family?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Skill files are plain markdown — send them over Slack, Dropbox, Google Drive, or commit them to a shared repository. Core files (identity, tone) should stay personal since they name you specifically. Many teams share a common set of skills (compliance rules, writing style, approved terminology) and each person maintains their own core file."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is ContextKit different from Claude Projects, Gems, or custom GPTs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Projects, Gems, and custom GPTs are the containers — places to put persistent instructions. ContextKit teaches you what to put in them: the core-vs-skill split, the under-100-words rule for core files, and how to separate sensitive data into skills that only load when relevant. ContextKit outputs files that work in any of those containers, plus Claude Code, Cursor, and OpenClaw."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is Claude Code?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Claude Code is Anthropic's terminal-based AI agent. It reads a CLAUDE.md or AGENTS.md file in your project root on every run and loads skill files from a /skills directory when the task matches. Because it runs in a terminal, it can edit files, run commands, call APIs, and complete multi-step engineering tasks. It is one of the native formats ContextKit's starter kits target."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is OpenClaw?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "OpenClaw is an open-source AI agent that runs as a background daemon on your own machine. It reads core files and skill files from ~/.openclaw/ and stays available 24/7 via CLI, web dashboard, or connected chat channels like Telegram. Because it is self-hosted, your context never leaves your machine. A Mac Mini M4 is a popular dedicated OpenClaw host."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I write a good skill file?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A good skill file has three parts: (1) YAML frontmatter with a 'name' and a 'description' that lists the trigger words the AI should watch for; (2) a short block of domain rules or preferences the agent should always apply when the skill is loaded; (3) optional procedures — step-by-step playbooks for common tasks. Keep each skill focused on one domain. If it starts to span two topics, split it into two skills."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can the same AI agent handle both work and personal tasks?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, but keep the roles separate. The cleanest setup is one agent per major role — a work agent with work skills, a home agent with home skills. In Claude.ai and Gemini, that means separate Projects or Gems. In Claude Code and OpenClaw, it means separate working directories or workspace configurations. Mixing roles in one agent tends to bleed context and break privacy boundaries."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is DANZUS?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "DANZUS Holdings LLC is a privately held software studio building AI-native products for the trades, compliance, and the operators who run the physical world. ContextKit is a free educational tool from DANZUS that teaches the chatbot-to-agent paradigm shift."
+            }
+          }
+        ]
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!--
+      GEO fallback content. Most AI crawlers (GPTBot, ClaudeBot, PerplexityBot,
+      CCBot) index raw HTML without executing JavaScript. This noscript block
+      ensures the core positioning, definitions, and answers are discoverable
+      even without rendering the React app. Human visitors with JS enabled
+      never see this — they get the full interactive app above.
+    -->
+    <noscript>
+      <article style="max-width:760px;margin:2rem auto;padding:2rem;font-family:system-ui,sans-serif;line-height:1.6;color:#f5f1e8;background:#050505">
+        <h1>ContextKit — Turn any chatbot into an AI agent</h1>
+        <p><strong>Chatbots answer questions. Agents do the work.</strong> ContextKit is a free interactive guide that shows you how to write the role (core files + skills) so any AI — ChatGPT, Claude, Gemini, Cursor, Claude Code, or OpenClaw — can run it.</p>
+
+        <h2>What is an AI agent?</h2>
+        <p>An AI agent is a language model configured with a role, a set of rules, and a library of skills, plus access to tools that let it take actions. Instead of answering a question and stopping, an agent receives an outcome, plans the steps needed, uses its tools to execute them, and reports back with the work done. Agents can draft and send emails, update files, run code, query APIs, and chain multiple steps together — with approval checkpoints on anything destructive. The underlying model is the same as a chatbot's; the difference is the scaffolding around it: identity, guardrails, playbooks, and tool access.</p>
+
+        <h2>What is the difference between a chatbot and an AI agent?</h2>
+        <p>A chatbot answers questions. An agent does work. Chatbots are driven turn-by-turn — you type a prompt, it responds, loop ends. Agents are given an outcome — they plan steps, use tools, take actions, and report back with the work done. Same language model underneath; the difference is the setup around it: a role (identity + rules + tone) and a library of skills (playbooks for each part of the role). Chatbot examples: ChatGPT, Claude.ai, Gemini. Agent examples: Claude Code, Cursor, OpenClaw.</p>
+
+        <h2>What is an LLM agent?</h2>
+        <p>An LLM agent is an AI agent built on top of a large language model. The LLM provides the reasoning; the agent layer adds persistent context (a role and rules), a library of skills or tools the model can call, and an execution loop that lets it take multiple steps toward a goal.</p>
+
+        <h2>How do AI agents work?</h2>
+        <p>An AI agent runs this loop: (1) Load its core files — identity, rules, tone — on every invocation. (2) Scan its skill descriptions to decide which playbooks are relevant to the task. (3) Load the full contents of matching skills into context. (4) Plan the steps needed to produce the outcome. (5) Call tools — file edits, API requests, terminal commands — to execute those steps. (6) Report back, often pausing for approval before destructive actions. Chatbots stop at step 4 and never reach step 5.</p>
+
+        <h2>What is the business case for switching from a chatbot to an agent?</h2>
+        <p>Chatbots save time per question. Agents save time per outcome. One replaces Googling; the other replaces a routine task end-to-end — drafting the invoice, prepping the 1:1, building the exam plan. Stop counting answers; start counting tasks off your plate.</p>
+
+        <h2>What are Claude Skills, AGENTS.md, and CLAUDE.md?</h2>
+        <p>AGENTS.md (or CLAUDE.md) is a markdown file in a project that the agent reads on every run — it holds identity, rules, and tone. Skills are separate markdown files with YAML frontmatter that describe when to activate. The agent reads skill descriptions eagerly but only loads full skill contents when the task matches. This keeps context small and behavior scoped.</p>
+
+        <h2>What is context engineering?</h2>
+        <p>Context engineering is the practice of deciding what information an AI loads before it responds — and when. Good context engineering splits instructions into a small always-on core (identity, rules, tone, under 100 words each) and a library of skill files that load only when the current task matches. This keeps the AI fast, focused, and predictable.</p>
+
+        <h2>What is the difference between core files and skill files?</h2>
+        <p>Core files load on every conversation — identity, rules, tone. Keep each under 100 words. Skill files load only when the AI detects a matching task. Skills can be longer and denser because they only cost context when they are relevant.</p>
+
+        <h2>What is Claude Code?</h2>
+        <p>Claude Code is Anthropic's terminal-based AI agent. It reads a CLAUDE.md or AGENTS.md file in your project root on every run and loads skill files from a /skills directory when the task matches. Because it runs in a terminal, it can edit files, run commands, call APIs, and complete multi-step engineering tasks.</p>
+
+        <h2>What is OpenClaw?</h2>
+        <p>OpenClaw is an open-source AI agent that runs as a background daemon on your own machine. It reads core files and skill files from ~/.openclaw/ and stays available 24/7 via CLI, web dashboard, or connected chat channels. Because it is self-hosted, your context never leaves your machine.</p>
+
+        <h2>How do I prevent my AI from making the same mistake twice?</h2>
+        <p>When the agent gets something wrong, identify which skill was active during that task and add a line that prevents the same mistake. Skill files are versioned text, so you can track changes in git. Agents compound; chatbots repeat.</p>
+
+        <h2>Can I share my AI agent setup with my team?</h2>
+        <p>Yes. Skill files are plain markdown — send them over Slack, Dropbox, Google Drive, or commit them to a shared repository. Core files should stay personal since they name you specifically.</p>
+
+        <h2>What is DANZUS?</h2>
+        <p>DANZUS Holdings LLC is a privately held software studio building AI-native products for the trades, compliance, and the operators who run the physical world. ContextKit is a free educational tool from DANZUS.</p>
+
+        <h2>How to turn any chatbot into an agent (3 steps)</h2>
+        <ol>
+          <li><strong>Get your files.</strong> Download a role-based starter kit (parent, founder, corporate, freelancer, student), or have an AI interview you with the ContextKit builder prompt. You end up with 3 core files and 4-8 skill files.</li>
+          <li><strong>Install them in your AI tool.</strong> Configured chatbots (Claude.ai, ChatGPT, Gemini): paste core files into Custom Instructions or Projects, upload skills as Knowledge. Real agents (Claude Code, Cursor, OpenClaw): save as AGENTS.md / CLAUDE.md / .cursorrules with a /skills directory.</li>
+          <li><strong>Verify it's working.</strong> Run three checks: a skill-trigger test, a skill-isolation test, and a rules check.</li>
+        </ol>
+
+        <p>ContextKit is free, open in the browser, and runs 100% client-side (no tracking, no data leaves your device). Enable JavaScript to use the interactive guide. Published by <a href="https://danzus.co">DANZUS Holdings LLC</a>.</p>
+      </article>
+    </noscript>
+
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
