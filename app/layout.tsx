@@ -3,9 +3,9 @@ import type { Metadata } from 'next'
 
 const SITE_URL = 'https://danzus.co'
 const SITE_NAME = 'DANZUS'
-const DEFAULT_TITLE = 'DANZUS Holdings — AI-native software for the trades'
+const DEFAULT_TITLE = 'DANZUS Holdings — AI Software for Trades & Compliance'
 const DEFAULT_DESCRIPTION =
-  'DANZUS Holdings LLC. A privately held software studio building AI-native products for the trades, compliance, and the operators who run the physical world. Publisher of ContextKit, the free guide to turning any chatbot into an AI agent.'
+  'DANZUS Holdings builds AI-native software for the physical world — from AI welding coaches for trade students to compliance infrastructure for agentic AI systems.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

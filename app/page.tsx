@@ -26,6 +26,27 @@ const ORGANIZATION_JSONLD = {
     'Software for the trades',
     'Compliance software',
   ],
+  founder: {
+    '@type': 'Person',
+    name: 'Dan Johnson',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    itemListElement: [
+      {
+        '@type': 'SoftwareApplication',
+        name: 'DimeVision',
+        url: 'https://dimevision.app',
+        description: 'Free AI welding coach for students and apprentices',
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: 'AgentAudit',
+        url: 'https://aiagentaudit.dev',
+        description: 'Compliance infrastructure for agentic AI systems',
+      },
+    ],
+  },
   sameAs: [],
 }
 
@@ -345,6 +366,44 @@ export default function Home() {
               <div className="ch-value">
                 dimevision.app <span className="arr">↗</span>
               </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Products */}
+      <section className="block" id="products">
+        <div className="wrap">
+          <div className="idx">&sect; 006 / Products</div>
+          <h2 className="h-display">Our Products</h2>
+
+          <div className="work-list">
+            <a className="work" href="https://dimevision.app" target="_blank" rel="noopener">
+              <div className="w-num">/01</div>
+              <div className="w-name">DimeVision &mdash; AI Welding Coach</div>
+              <div className="w-desc">
+                Free AI-powered weld analysis for trade students and apprentices. Upload a photo, get instant quality scores and defect detection.
+              </div>
+              <div className="w-tags">
+                <span className="live">Live</span>
+                <span>Trades</span>
+                <span>Vision</span>
+              </div>
+              <div className="w-arrow">&rarr;</div>
+            </a>
+
+            <a className="work" href="https://aiagentaudit.dev" target="_blank" rel="noopener">
+              <div className="w-num">/02</div>
+              <div className="w-name">AgentAudit &mdash; AI Compliance Infrastructure</div>
+              <div className="w-desc">
+                Cryptographically immutable audit logs for AI agents in regulated industries. Tamper-evident, chain-verified, and compliance-ready.
+              </div>
+              <div className="w-tags">
+                <span className="live">Live</span>
+                <span>Compliance</span>
+                <span>Infra</span>
+              </div>
+              <div className="w-arrow">&rarr;</div>
             </a>
           </div>
         </div>
