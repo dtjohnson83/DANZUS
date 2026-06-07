@@ -6,7 +6,7 @@ const ORGANIZATION_JSONLD = {
   url: 'https://danzus.co',
   logo: 'https://danzus.co/icon.svg',
   description:
-    'A privately held software studio building AI-native products for the trades, compliance, and the operators who run the physical world.',
+    'DANZUS builds practical AI software for trades, compliance, and physical-world operations.',
   foundingDate: '2024',
   foundingLocation: {
     '@type': 'Place',
@@ -99,7 +99,7 @@ export default function Home() {
           <div className="hero-top">
             <div>
               Index / 001<br />
-              <strong>Applying two decades of experience to frontier AI</strong>
+              <strong>Operator-built AI systems</strong>
             </div>
             <div className="right">
               Folsom &middot; California &middot; MMXXIV<br />
@@ -110,26 +110,18 @@ export default function Home() {
           <div className="wordmark">
             <div className="row"><span>DANZUS</span></div>
           </div>
-          <div className="wordmark-tagline">builds quietly</div>
-          <div className="wordmark-etymology">
-            <span className="ety-d">D</span> &middot;{' '}
-            <span className="ety-a">AU</span> &middot;{' '}
-            <span className="ety-nz">NZ</span> &middot;{' '}
-            <span className="ety-us">US</span>
-          </div>
-
           <h1 className="hero-display">
-            AI-native software for the trades, compliance, and the operators who run the physical world.
+            Software for trades, compliance, and AI operations.
           </h1>
         </div>
 
         <div className="wrap">
           <div className="hero-foot">
             <p className="hero-statement">
-              A privately held software studio. Six active projects across AI, compliance, and the trades.
+              Practical systems for physical-world work.
             </p>
             <div className="hero-scroll">
-              Scroll to explore
+              Explore
               <br />
               <span className="line"></span>
             </div>
@@ -145,7 +137,7 @@ export default function Home() {
               <div className="idx">&sect; 002 / Thesis</div>
             </div>
             <h2 className="h-display">
-              Three beliefs.
+              Operating thesis.
             </h2>
           </div>
 
@@ -154,21 +146,21 @@ export default function Home() {
               <span className="pillar-num">i.</span>
               <h3 className="pillar-title">Agents become the interface.</h3>
               <p className="pillar-body">
-                The next layer of the internet is mediated by software that acts on our behalf. The infrastructure that makes those agents auditable, governable, and trustworthy is undervalued and under-built.
+                Software will act on behalf of people and businesses. It needs audit trails, policy, and control.
               </p>
             </div>
             <div className="thesis-pillar">
               <span className="pillar-num">ii.</span>
               <h3 className="pillar-title">Intelligence moves to the device.</h3>
               <p className="pillar-body">
-                Inference belongs where the work happens. The applications that matter in the next decade are designed for real environments — workshops, job sites, classrooms, the cabs of trucks.
+                The best AI tools belong where the work happens: shops, classrooms, job sites, and vehicles.
               </p>
             </div>
             <div className="thesis-pillar">
               <span className="pillar-num">iii.</span>
               <h3 className="pillar-title">Operators need better software.</h3>
               <p className="pillar-body">
-                Robots are the future of the factory. Humans are the future of the infrastructure. The next generation of welders, drivers, electricians and inspectors deserves software built for the way the work actually happens.
+                Welders, drivers, electricians, and inspectors need tools built around real operating conditions.
               </p>
             </div>
           </div>
@@ -182,7 +174,7 @@ export default function Home() {
             <div>
               <div className="idx">&sect; 003 / Work</div>
               <h2 className="h-display">
-                What we&apos;ve shipped.
+                Shipped work.
               </h2>
             </div>
             <div className="portfolio-meta">
@@ -196,7 +188,7 @@ export default function Home() {
               <div className="w-num">/01</div>
               <div className="w-name">DimeVision <em>(incl. BeadBuilder)</em></div>
               <div className="w-desc">
-                An AI mentor for welders. Computer vision scores beads on a phone, Danny Dime coaches in plain English, and BeadBuilder simulates GMAW before students ever strike an arc.
+                AI weld coaching, bead scoring, and GMAW simulation for students and apprentices.
               </div>
               <div className="w-tags">
                 <span className="live">Live</span>
@@ -211,7 +203,7 @@ export default function Home() {
               <div className="w-num">/02</div>
               <div className="w-name">Agent Audit Trail</div>
               <div className="w-desc">
-                A tamper-evident logging layer for AI agents. Hash-chained records and a policy engine, delivered as an MCP server. Built for SMBs facing Colorado SB{'\u00A0'}205 and the EU AI Act.
+                Tamper-evident AI agent logs, policy checks, and MCP infrastructure.
               </div>
               <div className="w-tags">
                 <span className="live">Live</span>
@@ -226,7 +218,7 @@ export default function Home() {
               <div className="w-num">/03</div>
               <div className="w-name">OSHA Compliance MCP</div>
               <div className="w-desc">
-                A Model Context Protocol server giving AI agents structured access to OSHA standards. Open infrastructure for compliance-aware automation in the trades.
+                Structured OSHA standards for compliance-aware AI agents.
               </div>
               <div className="w-tags">
                 <span className="live">Live</span>
@@ -240,7 +232,7 @@ export default function Home() {
               <div className="w-num">/04</div>
               <div className="w-name">DOT / FMCSA MCP</div>
               <div className="w-desc">
-                The same playbook applied to commercial transport. Federal motor carrier rules, hours-of-service logic, and inspection criteria — exposed to agents that need them in the cab and the back office.
+                FMCSA rules, hours-of-service logic, and inspection criteria for transport agents.
               </div>
               <div className="w-tags">
                 <span className="live">Live</span>
@@ -254,7 +246,7 @@ export default function Home() {
               <div className="w-num">/05</div>
               <div className="w-name">Agent Readiness <em>Audit</em></div>
               <div className="w-desc">
-                A practical audit showing how AI systems may classify, evaluate, compare, and recommend a business based on public website content.
+                A practical audit of how AI systems read and evaluate a business online.
               </div>
               <div className="w-tags">
                 <span className="live">Live</span>
@@ -268,7 +260,7 @@ export default function Home() {
               <div className="w-num">/06</div>
               <div className="w-name">ContextKit</div>
               <div className="w-desc">
-                A free interactive guide to the chatbot-to-agent paradigm shift. Write core files and skills that turn any AI — ChatGPT, Claude, Gemini, Cursor, Claude Code, or OpenClaw — into an agent that does the work, not just answers questions.
+                A free guide for turning chatbots into working agents with files, skills, and context.
               </div>
               <div className="w-tags">
                 <span className="live">Live</span>
@@ -292,12 +284,12 @@ export default function Home() {
           <div className="op-grid">
             <div className="op-prose">
               <p>
-                Five industries across three countries. Aircraft maintenance in the Royal Australian Air Force. Subsea quality assurance on Chevron&apos;s Wheatstone project in Western Australia. Eight years building analytics and workforce strategy for Fortune 500 companies in the US. Data visualization. And now, AI-native software.
+                DANZUS is built from aircraft maintenance, subsea QA, enterprise analytics, and applied AI systems.
               </p>
               <p>
-                The throughline is <em>standards, repeatability, and close attention to what actually works</em> — applied creatively to whatever frontier technology makes the work better.
+                The throughline is <em>standards, repeatability, and practical execution</em>.
               </p>
-              <p>DANZUS is the holding structure. The work is experimental — applying hard-won experience from hangars, job sites, and enterprise data to problems most AI companies aren&apos;t looking at.</p>
+              <p>The work focuses on problems most AI companies ignore: trades, compliance, and operators.</p>
             </div>
 
             <div className="op-card">
@@ -366,44 +358,6 @@ export default function Home() {
               <div className="ch-value">
                 hello@danzus.co <span className="arr">↗</span>
               </div>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Products */}
-      <section className="block" id="products">
-        <div className="wrap">
-          <div className="idx">&sect; 006 / Products</div>
-          <h2 className="h-display">Our Products</h2>
-
-          <div className="work-list">
-            <a className="work" href="https://dimevision.app" target="_blank" rel="noopener">
-              <div className="w-num">/01</div>
-              <div className="w-name">DimeVision &mdash; AI Welding Coach</div>
-              <div className="w-desc">
-                Free AI-powered weld analysis for trade students and apprentices. Upload a photo, get instant quality scores and defect detection.
-              </div>
-              <div className="w-tags">
-                <span className="live">Live</span>
-                <span>Trades</span>
-                <span>Vision</span>
-              </div>
-              <div className="w-arrow">&rarr;</div>
-            </a>
-
-            <a className="work" href="https://aiagentaudit.dev" target="_blank" rel="noopener">
-              <div className="w-num">/02</div>
-              <div className="w-name">AgentAudit &mdash; AI Compliance Infrastructure</div>
-              <div className="w-desc">
-                Cryptographically immutable audit logs for AI agents in regulated industries. Tamper-evident, chain-verified, and compliance-ready.
-              </div>
-              <div className="w-tags">
-                <span className="live">Live</span>
-                <span>Compliance</span>
-                <span>Infra</span>
-              </div>
-              <div className="w-arrow">&rarr;</div>
             </a>
           </div>
         </div>

@@ -316,8 +316,8 @@ nav {
   line-height: 1.05;
   letter-spacing: -0.005em;
   color: var(--ink);
-  max-width: 18ch;
-  margin: 0;
+  max-width: 17ch;
+  margin: clamp(28px, 5vw, 64px) 0 0;
   opacity: 0;
   animation: rise 1s 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
