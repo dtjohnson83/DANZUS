@@ -1,0 +1,54 @@
+# DANZUS Agent Readiness
+
+Website: https://danzus.co/agent-readiness
+Company: DANZUS Holdings LLC
+
+## Summary
+
+DANZUS Agent Readiness provides Agent Readiness Audits and Agent Readiness Snapshots for businesses that want to understand how AI systems may classify, evaluate, compare, and recommend them based on public website content. The audit includes GEO readiness, or generative engine optimization readiness, for AI search, copilots, answer engines, and buyer agents.
+
+## Primary offer
+
+Agent Readiness Snapshot: a $149 introductory report based on public website content.
+
+## What the Snapshot includes
+
+- Agent Readiness Score
+- GEO readiness findings
+- likely AI classification
+- likely buyer interpretation
+- recommendation confidence
+- 10-category scorecard
+- page-level findings
+- top recommended fixes
+- suggested copy improvements
+- starter llms.txt draft
+
+## Target buyers
+
+- AI agent and automation startups
+- voice AI agent companies
+- LLMOps and AI infrastructure companies
+- developer tooling companies
+- GTM, sales, and customer intelligence SaaS companies
+- B2B companies with complex website-led buyer journeys
+
+## Methodology
+
+The Snapshot reviews public website content only. It does not access private systems, accounts, analytics, source code, or customer data.
+
+## Limitations
+
+The Agent Readiness Snapshot is not legal, compliance, cybersecurity, or SEO advice. It does not guarantee ranking or recommendation behavior by any specific AI system.
+
+## Buying path
+
+Email hello@danzus.co to request or unlock an Agent Readiness Snapshot.
+
+## Related pages
+
+- Overview: https://danzus.co/agent-readiness
+- Why it matters: https://danzus.co/agent-readiness/why
+- Methodology: https://danzus.co/agent-readiness/methodology
+- FAQ: https://danzus.co/agent-readiness/faq
+- Sample report: https://danzus.co/agent-readiness/sample-report

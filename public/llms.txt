@@ -10,6 +10,7 @@
 ## Key pages
 
 - [DANZUS homepage](https://danzus.co/): About the company, thesis, and work.
+- [Agent Readiness Audit](https://danzus.co/agent-readiness): Service that reviews whether AI systems can classify, evaluate, compare, and recommend a business based on public website content. Includes methodology, FAQ, sample report, and a dedicated `llms.txt` at https://danzus.co/agent-readiness/llms.txt.
 - [ContextKit](https://danzus.co/contextkit): Free interactive guide to turning
   any chatbot into an AI agent. Includes role-based templates (parent, founder,
   corporate, freelancer, student), a skill-loading simulator, a downloadable

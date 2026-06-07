@@ -80,11 +80,11 @@ export default function Home() {
           <div className="nav-links">
             <a href="#thesis">Thesis</a>
             <a href="#work">Work</a>
-            <a href="#operator">Operator</a>
+            <a href="/agent-readiness">Agent Readiness</a>
             <a href="#contact">Signal</a>
           </div>
-          <a className="nav-pill" href="/contextkit">
-            ContextKit <span className="pill-arr">↗</span>
+          <a className="nav-pill" href="/agent-readiness">
+            Agent Readiness <span className="pill-arr">↗</span>
           </a>
         </div>
       </nav>
@@ -250,16 +250,16 @@ export default function Home() {
               <div className="w-arrow">&rarr;</div>
             </a>
 
-            <a className="work" href="#">
+            <a className="work" href="/agent-readiness">
               <div className="w-num">/05</div>
-              <div className="w-name">Ed <em>(clawdbot)</em></div>
+              <div className="w-name">Agent Readiness <em>Audit</em></div>
               <div className="w-desc">
-                An in-house operator agent running on a Mac Mini M4. Handles routine engineering work across the portfolio under a tiered architecture that reserves higher-judgment tasks for Claude.
+                A practical audit showing how AI systems may classify, evaluate, compare, and recommend a business based on public website content.
               </div>
               <div className="w-tags">
-                <span className="live">Internal</span>
-                <span>Agent</span>
-                <span>Local AI</span>
+                <span className="live">Live</span>
+                <span>Audit</span>
+                <span>AI Discovery</span>
               </div>
               <div className="w-arrow">&rarr;</div>
             </a>
@@ -314,8 +314,8 @@ export default function Home() {
                 <div className="cv-row">
                   <div className="cv-year">2024 &rarr;</div>
                   <div className="cv-body">
-                    <strong>App Orchid</strong>
-                    <span>Data Visualization Lead</span>
+                    <strong>Applied AI Systems</strong>
+                    <span>Enterprise data, AI implementation, and operational software</span>
                   </div>
                 </div>
                 <div className="cv-row">
@@ -355,16 +355,16 @@ export default function Home() {
           </h2>
 
           <div className="contact-channels">
-            <a className="ch" href="https://www.linkedin.com/in/danjohnsondata" target="_blank" rel="noopener">
-              <div className="ch-label">LinkedIn &middot; Professional</div>
+            <a className="ch" href="/agent-readiness">
+              <div className="ch-label">Service &middot; Live</div>
               <div className="ch-value">
-                /in/danjohnsondata <span className="arr">↗</span>
+                Agent Readiness <span className="arr">→</span>
               </div>
             </a>
-            <a className="ch" href="https://dimevision.app" target="_blank" rel="noopener">
-              <div className="ch-label">Flagship &middot; Live</div>
+            <a className="ch" href="mailto:hello@danzus.co">
+              <div className="ch-label">Email &middot; Contact</div>
               <div className="ch-value">
-                dimevision.app <span className="arr">↗</span>
+                hello@danzus.co <span className="arr">↗</span>
               </div>
             </a>
           </div>
