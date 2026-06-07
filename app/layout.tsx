@@ -5,7 +5,7 @@ const SITE_URL = 'https://danzus.co'
 const SITE_NAME = 'DANZUS'
 const DEFAULT_TITLE = 'DANZUS Holdings — AI Software for Trades & Compliance'
 const DEFAULT_DESCRIPTION =
-  'DANZUS Holdings builds AI-native software for the physical world — from AI welding coaches for trade students to compliance infrastructure for agentic AI systems.'
+  'DANZUS builds practical AI software for trades, compliance, and physical-world operations.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -54,18 +54,21 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
-    images: [{ url: '/icon.svg', width: 512, height: 512, alt: 'DANZUS' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'DANZUS Holdings' }],
   },
   twitter: {
     card: 'summary',
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
-    images: ['/icon.svg'],
+    images: ['/og-image.png'],
   },
   icons: {
-    icon: '/icon.svg',
-    shortcut: '/icon.svg',
-    apple: '/icon.svg',
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/apple-icon.png',
   },
   other: {
     // GEO: explicit allow for AI crawlers at the document level

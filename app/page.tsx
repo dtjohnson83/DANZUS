@@ -4,7 +4,7 @@ const ORGANIZATION_JSONLD = {
   name: 'DANZUS Holdings LLC',
   alternateName: 'DANZUS',
   url: 'https://danzus.co',
-  logo: 'https://danzus.co/icon.svg',
+  logo: 'https://danzus.co/danzus-mark-512.png',
   description:
     'DANZUS builds practical AI software for trades, compliance, and physical-world operations.',
   foundingDate: '2024',
@@ -74,7 +74,11 @@ export default function Home() {
       <nav>
         <div className="wrap nav-inner">
           <div className="nav-mark">
-            <span className="dot"></span>
+            <span className="brand-glyph" aria-hidden="true">
+              <span className="glyph-bracket glyph-bracket-a"></span>
+              <span className="glyph-bracket glyph-bracket-b"></span>
+              <span className="glyph-datum"></span>
+            </span>
             <span className="name">DANZUS</span>
           </div>
           <div className="nav-links">
