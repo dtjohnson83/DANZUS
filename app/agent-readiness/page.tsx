@@ -53,10 +53,32 @@ const SERVICE_JSONLD = {
   },
 }
 
+const VIDEO_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: 'DANZUS AI Buyer Readiness Audit walkthrough',
+  description:
+    'A 69-second walkthrough showing how DANZUS checks whether AI buyers can find, explain, trust, and recommend a business based on public website content.',
+  thumbnailUrl: ['https://danzus.co/video/danzus-ai-buyer-readiness-mobile-v6-poster.jpg'],
+  uploadDate: '2026-06-08T00:00:00-07:00',
+  duration: 'PT1M9S',
+  contentUrl: 'https://danzus.co/video/danzus-ai-buyer-readiness-mobile-v6.mp4',
+  embedUrl: 'https://danzus.co/agent-readiness',
+  publisher: {
+    '@type': 'Organization',
+    name: 'DANZUS Holdings LLC',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://danzus.co/danzus-mark-512.png',
+    },
+  },
+}
+
 export default function AgentReadinessHome() {
   return (
     <AgentReadinessPageShell>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_JSONLD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(VIDEO_JSONLD) }} />
       <header className="ar-hero">
         <div className="wrap ar-hero-grid">
           <div className="ar-hero-copy">

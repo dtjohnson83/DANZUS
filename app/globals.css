@@ -1247,10 +1247,33 @@ footer {
 
 @media (max-width: 900px) {
   .ar-nav-inner,
-  .ar-footer-inner,
-  .ar-nav-links {
+  .ar-footer-inner {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .ar-nav {
+    position: relative;
+    padding: 16px 0;
+  }
+
+  .ar-nav-inner {
+    gap: 18px;
+  }
+
+  .ar-nav-links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .ar-nav-links a {
+    border: 1px solid rgba(212, 168, 83, 0.26);
+    border-radius: 999px;
+    padding: 9px 11px;
+    background: rgba(17, 14, 11, 0.48);
   }
 
   .ar-grid-2,
@@ -1264,7 +1287,15 @@ footer {
   }
 
   .ar-hero {
-    padding: 118px 0 76px;
+    padding: 76px 0 76px;
+  }
+
+  .ar-hero h1,
+  .ar-doc h1 {
+    font-size: clamp(42px, 12vw, 56px);
+    line-height: 0.96;
+    max-width: 100%;
+    overflow-wrap: normal;
   }
 
   .ar-hero-grid {
