@@ -1,19 +1,21 @@
+@import './danzus-tokens.css';
+
 :root {
-  --bg: #0b0907;
-  --bg-2: #110e0b;
-  --bg-3: #181410;
-  --ink: #f5ecda;
-  --ink-2: #b8ad97;
-  --ink-3: #6f6657;
-  --ink-4: #3a3429;
-  --gold: #bfa15e;
-  --gold-2: #d1b676;
-  --rust: #697257;
-  --line: rgba(191, 161, 94, 0.14);
-  --line-2: rgba(245, 236, 218, 0.08);
-  --display: 'Barlow Condensed', sans-serif;
-  --body: 'DM Sans', sans-serif;
-  --mono: 'JetBrains Mono', monospace;
+  --bg: var(--danzus-graphite);
+  --bg-2: var(--danzus-carbon);
+  --bg-3: var(--danzus-carbon-2);
+  --ink: var(--danzus-bone);
+  --ink-2: #c9c1b2;
+  --ink-3: var(--danzus-rail);
+  --ink-4: #343a42;
+  --gold: var(--danzus-arc);
+  --gold-2: var(--danzus-arc-light);
+  --rust: var(--danzus-rail);
+  --line: rgba(242, 162, 60, 0.16);
+  --line-2: rgba(236, 230, 218, 0.08);
+  --display: var(--danzus-font-display);
+  --body: var(--danzus-font-body);
+  --mono: var(--danzus-font-mono);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -87,46 +89,12 @@ nav {
 
 .nav-mark { display: flex; align-items: center; gap: 10px; }
 
-.brand-glyph {
-  position: relative;
-  width: 24px;
-  height: 24px;
-  display: inline-block;
-  border: 1px solid #697257;
-  border-radius: 5px;
-  background: #0e1013;
+.brand-glyph-img {
+  width: 34px;
+  height: 34px;
+  display: block;
+  border-radius: 7px;
   box-shadow: 0 0 0 1px rgba(191, 161, 94, 0.12), 0 0 14px rgba(105, 114, 87, 0.22);
-}
-
-.glyph-bracket {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-}
-
-.glyph-bracket-a {
-  left: 6px;
-  top: 6px;
-  border-top: 3px solid var(--ink);
-  border-left: 3px solid var(--ink);
-}
-
-.glyph-bracket-b {
-  right: 6px;
-  bottom: 6px;
-  border-right: 3px solid var(--ink);
-  border-bottom: 3px solid var(--ink);
-}
-
-.glyph-datum {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 4px;
-  height: 4px;
-  transform: translate(-50%, -50%);
-  border-radius: 1px;
-  background: #bfa15e;
 }
 
 .nav-mark .name {
@@ -301,7 +269,7 @@ nav {
   opacity: 0;
   transform: translateY(110%);
   animation: rise 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  background: linear-gradient(90deg, #bfa15e 0%, #a9875e 30%, #697257 62%, #8f958c 100%);
+  background: linear-gradient(90deg, var(--danzus-arc-light) 0%, var(--danzus-arc) 30%, var(--danzus-rail) 62%, var(--danzus-bone) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -331,10 +299,10 @@ nav {
   animation: rise 1s 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.ety-d  { color: #bfa15e; }
-.ety-a  { color: #a9875e; }
-.ety-nz { color: #697257; }
-.ety-us { color: #8f958c; }
+.ety-d  { color: var(--danzus-arc); }
+.ety-a  { color: var(--danzus-arc-deep); }
+.ety-nz { color: var(--danzus-rail); }
+.ety-us { color: var(--danzus-bone); }
 
 .hero-display {
   font-family: var(--display);
@@ -934,7 +902,7 @@ footer {
 /* ── Agent Readiness pages ── */
 .agent-readiness-page {
   min-height: 100vh;
-  background: #0b0907;
+  background: var(--danzus-graphite);
   color: var(--ink);
 }
 

@@ -74,11 +74,7 @@ export default function Home() {
       <nav>
         <div className="wrap nav-inner">
           <div className="nav-mark">
-            <span className="brand-glyph" aria-hidden="true">
-              <span className="glyph-bracket glyph-bracket-a"></span>
-              <span className="glyph-bracket glyph-bracket-b"></span>
-              <span className="glyph-datum"></span>
-            </span>
+            <img className="brand-glyph-img" src="/danzus-mark.svg" alt="" aria-hidden="true" />
             <span className="name">DANZUS</span>
           </div>
           <div className="nav-links">
@@ -357,10 +353,10 @@ export default function Home() {
                 Agent Readiness <span className="arr">→</span>
               </div>
             </a>
-            <a className="ch" href="mailto:hello@danzus.co">
+            <a className="ch" href="mailto:dan@dimevision.app?subject=DANZUS%20inquiry">
               <div className="ch-label">Email &middot; Contact</div>
               <div className="ch-value">
-                hello@danzus.co <span className="arr">↗</span>
+                dan@dimevision.app <span className="arr">↗</span>
               </div>
             </a>
           </div>

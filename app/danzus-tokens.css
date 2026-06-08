@@ -1,0 +1,13 @@
+:root{
+  --danzus-graphite: #15181D;
+  --danzus-bone: #ECE6DA;
+  --danzus-arc: #F2A23C;
+  --danzus-arc-deep: #E07E1F;
+  --danzus-arc-light: #FFC97A;
+  --danzus-carbon: #1B1F26;
+  --danzus-carbon-2: #22272F;
+  --danzus-rail: #6B7178;
+  --danzus-font-display: 'Saira', system-ui, sans-serif;
+  --danzus-font-body: 'Hanken Grotesk', system-ui, sans-serif;
+  --danzus-font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}

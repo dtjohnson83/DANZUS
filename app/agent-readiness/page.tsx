@@ -38,7 +38,7 @@ export default function AgentReadinessHome() {
             The Agent Readiness Snapshot reviews how AI systems may classify, evaluate, compare, and recommend your company based on public website content.
           </p>
           <div className="ar-actions">
-            <a className="ar-btn ar-btn-primary" href="mailto:hello@danzus.co?subject=Agent%20Readiness%20Snapshot">
+            <a className="ar-btn ar-btn-primary" href="mailto:dan@dimevision.app?subject=Agent%20Readiness%20Snapshot">
               Request or unlock a report
             </a>
             <Link className="ar-btn ar-btn-secondary" href="/agent-readiness/sample-report">
