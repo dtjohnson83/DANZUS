@@ -58,19 +58,37 @@ export default function AgentReadinessHome() {
     <AgentReadinessPageShell>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_JSONLD) }} />
       <header className="ar-hero">
-        <div className="wrap">
-          <div className="ar-eyebrow">AI Buyer Readiness &amp; Agent Readiness Audit by DANZUS Holdings LLC</div>
-          <h1>Will AI buyers understand and recommend your business?</h1>
-          <p className="ar-lead">
-            The Agent Readiness Snapshot reviews how AI search tools, answer engines, copilots, and buyer agents may find, classify, compare, and recommend your company based on public website content.
-          </p>
-          <div className="ar-actions">
-            <a className="ar-btn ar-btn-primary" href="mailto:dan@dimevision.app?subject=Agent%20Readiness%20Snapshot">
-              Request or unlock a report
-            </a>
-            <Link className="ar-btn ar-btn-secondary" href="/agent-readiness/sample-report">
-              View sample report
-            </Link>
+        <div className="wrap ar-hero-grid">
+          <div className="ar-hero-copy">
+            <div className="ar-eyebrow">AI Buyer Readiness &amp; Agent Readiness Audit by DANZUS Holdings LLC</div>
+            <h1>Will AI buyers understand and recommend your business?</h1>
+            <p className="ar-lead">
+              The Agent Readiness Snapshot reviews how AI search tools, answer engines, copilots, and buyer agents may find, classify, compare, and recommend your company based on public website content.
+            </p>
+            <div className="ar-actions">
+              <a className="ar-btn ar-btn-primary" href="mailto:dan@dimevision.app?subject=Agent%20Readiness%20Snapshot">
+                Request or unlock a report
+              </a>
+              <Link className="ar-btn ar-btn-secondary" href="/agent-readiness/sample-report">
+                View sample report
+              </Link>
+            </div>
+          </div>
+
+          <div className="ar-video-card" aria-label="AI Buyer Readiness Audit explainer video">
+            <div className="ar-video-frame">
+              <video
+                className="ar-video"
+                src="/video/danzus-ai-buyer-readiness-mobile-v6.mp4"
+                poster="/video/danzus-ai-buyer-readiness-mobile-v6-poster.jpg"
+                controls
+                playsInline
+                preload="metadata"
+              />
+            </div>
+            <div className="ar-video-caption">
+              69-second walkthrough: how DANZUS checks whether AI buyers can find, explain, trust, and recommend your business.
+            </div>
           </div>
         </div>
       </header>
