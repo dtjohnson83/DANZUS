@@ -3,21 +3,48 @@ import Link from 'next/link'
 import { AgentReadinessPageShell, Card, DisclaimerCard, Section } from './AgentReadinessShell'
 
 export const metadata: Metadata = {
-  title: 'Agent Readiness Audit',
+  title: 'AI Buyer Readiness & Agent Readiness Audit',
   description:
-    'See what AI agents understand, misunderstand, and miss about your business based on public website content.',
+    'DANZUS reviews whether AI search tools, answer engines, copilots, and buyer agents can correctly find, understand, compare, and recommend your business.',
+  keywords: [
+    'AI buyer readiness',
+    'agent readiness audit',
+    'AI search readiness',
+    'generative engine optimization readiness',
+    'GEO readiness audit',
+    'AI visibility audit',
+    'AI buyer journey',
+    'answer engine optimization',
+    'AI recommendation readiness',
+    'llms.txt audit',
+  ],
   alternates: { canonical: '/agent-readiness' },
+  openGraph: {
+    title: 'AI Buyer Readiness & Agent Readiness Audit',
+    description:
+      'Check whether AI search tools, answer engines, copilots, and buyer agents can correctly understand, compare, and recommend your business.',
+    url: 'https://danzus.co/agent-readiness',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'DANZUS AI Buyer Readiness' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AI Buyer Readiness & Agent Readiness Audit',
+    description:
+      'Check whether AI search tools and buyer agents can correctly understand, compare, and recommend your business.',
+    images: ['/og-image.png'],
+  },
 }
 
 const SERVICE_JSONLD = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Agent Readiness Audit',
-  serviceType: 'Agent Readiness Snapshot',
+  name: 'AI Buyer Readiness & Agent Readiness Audit',
+  alternateName: ['AI Buyer Readiness Audit', 'Agent Readiness Snapshot', 'GEO Readiness Audit'],
+  serviceType: ['AI Buyer Readiness Audit', 'Agent Readiness Snapshot', 'GEO Readiness Audit'],
   provider: { '@type': 'Organization', name: 'DANZUS Holdings LLC', url: 'https://danzus.co' },
   url: 'https://danzus.co/agent-readiness',
   description:
-    'A practical review of how AI systems may classify, evaluate, compare, and recommend a business based on public website content.',
+    'A practical review of whether AI search tools, answer engines, copilots, and buyer agents can correctly find, classify, compare, and recommend a business based on public website content.',
   offers: {
     '@type': 'Offer',
     price: '149',
@@ -32,10 +59,10 @@ export default function AgentReadinessHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_JSONLD) }} />
       <header className="ar-hero">
         <div className="wrap">
-          <div className="ar-eyebrow">Agent Readiness Audit by DANZUS Holdings LLC</div>
-          <h1>See what AI agents understand about your business.</h1>
+          <div className="ar-eyebrow">AI Buyer Readiness &amp; Agent Readiness Audit by DANZUS Holdings LLC</div>
+          <h1>Will AI buyers understand and recommend your business?</h1>
           <p className="ar-lead">
-            The Agent Readiness Snapshot reviews how AI systems may classify, evaluate, compare, and recommend your company based on public website content.
+            The Agent Readiness Snapshot reviews how AI search tools, answer engines, copilots, and buyer agents may find, classify, compare, and recommend your company based on public website content.
           </p>
           <div className="ar-actions">
             <a className="ar-btn ar-btn-primary" href="mailto:dan@dimevision.app?subject=Agent%20Readiness%20Snapshot">

@@ -16,6 +16,29 @@
   corporate, freelancer, student), a skill-loading simulator, a downloadable
   starter kit, and setup guides for six popular AI tools.
 
+
+## AI Buyer Readiness / Agent Readiness
+
+DANZUS offers an AI Buyer Readiness and Agent Readiness Audit for specialized
+B2B companies. The audit reviews whether AI search tools, answer engines,
+copilots, and buyer agents can correctly find, understand, compare, and
+recommend a business from public website content.
+
+Related search phrases this site answers:
+
+- AI buyer readiness audit
+- agent readiness audit
+- AI search readiness
+- generative engine optimization readiness
+- GEO readiness audit
+- AI visibility audit
+- answer engine optimization for B2B
+- llms.txt audit
+
+The public service page is https://danzus.co/agent-readiness. It explains the
+offer, methodology, FAQ, sample report, and contact path. Contact email:
+dan@dimevision.app.
+
 ## Core concepts this site defines
 
 ### What is an AI agent?
