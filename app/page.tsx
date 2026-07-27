@@ -45,6 +45,12 @@ const ORGANIZATION_JSONLD = {
         url: 'https://aiagentaudit.dev',
         description: 'Compliance infrastructure for agentic AI systems',
       },
+      {
+        '@type': 'Product',
+        name: 'Family Agent by DANZUS',
+        url: 'https://danzus.co/family-agent',
+        description: 'A configurable household assistant for shared calendars, Messages, and family logistics',
+      },
     ],
   },
   sameAs: [],
@@ -179,7 +185,7 @@ export default function Home() {
             </div>
             <div className="portfolio-meta">
               Active Ventures<br />
-              <strong>Six / 06</strong>
+              <strong>Seven / 07</strong>
             </div>
           </div>
 
@@ -269,6 +275,20 @@ export default function Home() {
               </div>
               <div className="w-arrow">&rarr;</div>
             </a>
+
+            <a className="work" href="/family-agent">
+              <div className="w-num">/07</div>
+              <div className="w-name">Family Agent</div>
+              <div className="w-desc">
+                A configurable household assistant for shared calendars, Messages, and family logistics.
+              </div>
+              <div className="w-tags">
+                <span>Pilot</span>
+                <span>Family</span>
+                <span>Agents</span>
+              </div>
+              <div className="w-arrow">&rarr;</div>
+            </a>
           </div>
         </div>
       </section>
@@ -353,10 +373,10 @@ export default function Home() {
                 Agent Readiness <span className="arr">→</span>
               </div>
             </a>
-            <a className="ch" href="mailto:dan@dimevision.app?subject=DANZUS%20inquiry">
+            <a className="ch" href="mailto:dan@danzus.co?subject=DANZUS%20inquiry">
               <div className="ch-label">Email &middot; Contact</div>
               <div className="ch-value">
-                dan@dimevision.app <span className="arr">↗</span>
+                dan@danzus.co <span className="arr">↗</span>
               </div>
             </a>
           </div>
