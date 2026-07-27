@@ -8,7 +8,7 @@ const CONTACT_URL = 'mailto:dan@danzus.co?subject=Family%20Agent%20Founding%20Pi
 export const metadata: Metadata = {
   title: 'Family Agent for Shared Calendars and Messages',
   description:
-    'A configurable family AI that connects approved calendars, sports, school information, weather, and household rules in one Messages conversation.',
+    'A configurable family AI that connects approved calendars, public schedules, weather, and household rules in one Messages conversation.',
   keywords: [
     'family AI agent',
     'family calendar assistant',
@@ -91,7 +91,7 @@ const PRODUCT_JSONLD = {
   name: 'Family Agent by DANZUS',
   alternateName: 'DANZUS Family Agent',
   description:
-    'A configurable family AI that connects approved calendars, sports, school information, weather, and household rules in one Messages conversation.',
+    'A configurable family AI that connects approved calendars, public schedules, weather, and household rules in one Messages conversation.',
   url: PAGE_URL,
   image: 'https://danzus.co/family-agent/og-family-agent.png',
   brand: {
@@ -114,11 +114,11 @@ const VIDEO_JSONLD = {
   '@type': 'VideoObject',
   name: 'Family Agent by DANZUS product demo',
   description:
-    'A narrated walkthrough of a configurable family agent connecting calendars, team apps, school information, weather, family permissions, files, meal planning, and requested voice notes.',
-  thumbnailUrl: ['https://danzus.co/family-agent/family-agent-demo-poster.jpg'],
+    'A narrated walkthrough of a configurable family agent combining approved calendars, public schedules, household rules, identity checks, and scoped family permissions.',
+  thumbnailUrl: ['https://danzus.co/family-agent/family-agent-demo-v2-poster.jpg'],
   uploadDate: '2026-07-27T00:00:00-07:00',
-  duration: 'PT57.606S',
-  contentUrl: 'https://danzus.co/video/family-agent-demo-v1.mp4',
+  duration: 'PT41.667S',
+  contentUrl: 'https://danzus.co/video/family-agent-demo-v2.mp4',
   embedUrl: PAGE_URL,
   publisher: {
     '@type': 'Organization',
@@ -145,13 +145,11 @@ const FAQ_JSONLD = {
 
 const SOURCES = [
   'Apple Calendar',
-  'Team apps',
-  'School information',
   'Public schedules',
   'Weather',
   'Messages',
   'Household rules',
-  'Protected documents',
+  'Parent-provided context',
 ]
 
 const OUTPUTS = [
@@ -194,11 +192,11 @@ export default function FamilyAgentPage() {
               <div className={styles.eyebrow}>DANZUS / FAMILY AGENT / FOUNDING PILOT</div>
               <h1>One message for the whole family schedule.</h1>
               <p className={styles.lead}>
-                Family Agent connects approved calendars, team apps, school information, weather, and household rules. Ask what is happening Saturday and get one answer that respects who is asking.
+                Family Agent connects approved calendars, public schedules, weather, and household rules. Ask what is happening Saturday and get one answer that respects who is asking.
               </p>
               <div className={styles.actions}>
                 <a className={styles.primaryButton} href={CONTACT_URL}>Join the founding pilot</a>
-                <a className={styles.secondaryButton} href="#demo">Watch the 58-second demo</a>
+                <a className={styles.secondaryButton} href="#demo">Watch the 42-second demo</a>
               </div>
               <div className={styles.originNote}>
                 <span>Built from a working household system</span>
@@ -209,12 +207,12 @@ export default function FamilyAgentPage() {
             <figure className={styles.demoCard} id="demo">
               <div className={styles.demoMeta}>
                 <span>Product demonstration</span>
-                <span>00:58</span>
+                <span>00:42</span>
               </div>
               <video
                 className={styles.video}
-                src="/video/family-agent-demo-v1.mp4"
-                poster="/family-agent/family-agent-demo-poster.jpg"
+                src="/video/family-agent-demo-v2.mp4"
+                poster="/family-agent/family-agent-demo-v2-poster.jpg"
                 controls
                 playsInline
                 preload="metadata"
@@ -254,7 +252,7 @@ export default function FamilyAgentPage() {
         <div className={styles.container}>
           <div className={styles.sectionHead}>
             <div className={styles.sectionIndex}>§ 003 / FAMILY KNOWLEDGE GRAPH</div>
-            <h2 id="system-heading">One context. Every useful source.</h2>
+            <h2 id="system-heading">One context. Every approved source.</h2>
             <p>The graph is operational, not decorative. Each connection maps to an approved source, a household rule, or an allowed result.</p>
           </div>
 
