@@ -1,3 +1,12 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'DANZUS — AI Employees for Small Business',
+  openGraph: {
+    title: 'DANZUS — AI Employees for Small Business',
+  },
+}
+
 const ORGANIZATION_JSONLD = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
