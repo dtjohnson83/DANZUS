@@ -5,7 +5,7 @@ const SITE_URL = 'https://danzus.co'
 const SITE_NAME = 'DANZUS'
 const DEFAULT_TITLE = 'DANZUS Holdings — AI Software for Trades & Compliance'
 const DEFAULT_DESCRIPTION =
-  'DANZUS builds practical AI software for trades, compliance, and physical-world operations.'
+  'DANZUS builds autonomous AI employees for small businesses — not chatbots. Handles repetitive work, escalates when needed. Free consultation. Folsom, CA.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
