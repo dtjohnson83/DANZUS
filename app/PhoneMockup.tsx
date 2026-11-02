@@ -153,24 +153,24 @@ export function PhoneMockup() {
           <span className={`${styles.side} ${styles.power}`} aria-hidden="true" />
           <div className={styles.screen} aria-hidden="true">
             <div className={styles.status}>
-              <span className={styles.time}>2:14</span>
               <span className={styles.island} />
+              <span className={styles.time}>2:14</span>
               <span className={styles.statusIcons}>
-                <svg width="17" height="12" viewBox="0 0 17 12" aria-hidden="true">
-                  <rect x="0" y="7.2" width="3" height="4.2" rx="0.6" fill="#111" />
-                  <rect x="4.5" y="4.8" width="3" height="6.6" rx="0.6" fill="#111" />
-                  <rect x="9" y="2.4" width="3" height="9" rx="0.6" fill="#111" />
-                  <rect x="13.5" y="0" width="3" height="11.4" rx="0.6" fill="#111" />
+                <svg className={styles.cell} viewBox="0 0 17 12" aria-hidden="true">
+                  <rect x="0" y="7.6" width="3.1" height="4.4" rx="0.7" />
+                  <rect x="4.6" y="5.1" width="3.1" height="6.9" rx="0.7" />
+                  <rect x="9.2" y="2.5" width="3.1" height="9.5" rx="0.7" />
+                  <rect x="13.8" y="0" width="3.1" height="12" rx="0.7" />
                 </svg>
-                <svg width="15" height="12" viewBox="0 0 15 12" fill="none" stroke="#111" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
-                  <path d="M1.1 4.5c3.5-3.3 9.3-3.3 12.8 0" />
-                  <path d="M3.5 7c2.2-2 5.8-2 8 0" />
-                  <path d="M6.1 9.3c.9-.8 1.9-.8 2.8 0" />
+                <svg className={styles.wifi} viewBox="0 0 16 12" aria-hidden="true">
+                  <path d="M8 2.05c2.62 0 5 .98 6.78 2.58l-1.42 1.36A7.2 7.2 0 0 0 8 3.95c-1.95 0-3.72.77-5.05 2.04L1.53 4.63A9.45 9.45 0 0 1 8 2.05z" />
+                  <path d="M8 5.85c1.52 0 2.9.58 3.95 1.54L10.55 8.7A3.55 3.55 0 0 0 8 7.65c-.98 0-1.87.38-2.52 1.02L4.08 7.39A5.45 5.45 0 0 1 8 5.85z" />
+                  <circle cx="8" cy="10.35" r="1.35" />
                 </svg>
-                <svg width="25" height="12" viewBox="0 0 25 12" aria-hidden="true">
-                  <rect x="0.7" y="1" width="20" height="10" rx="2.4" fill="none" stroke="#111" strokeWidth="1.1" />
-                  <rect x="2.1" y="2.4" width="16.4" height="7.2" rx="1.1" fill="#111" />
-                  <path d="M21.6 4.2h1.2c.5 0 .9.4.9.9v1.8c0 .5-.4.9-.9.9h-1.2" fill="#111" />
+                <svg className={styles.battery} viewBox="0 0 28 13" aria-hidden="true">
+                  <rect x="0.7" y="0.7" width="22.6" height="11.6" rx="3.1" fill="none" stroke="#000" strokeWidth="1.25" />
+                  <rect x="2.25" y="2.25" width="17.6" height="8.5" rx="1.45" fill="#000" />
+                  <rect x="24.55" y="4.15" width="1.85" height="4.7" rx="0.7" fill="#000" />
                 </svg>
               </span>
             </div>

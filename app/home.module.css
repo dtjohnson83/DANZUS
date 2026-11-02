@@ -362,25 +362,25 @@
 
 .action {
   left: -4px;
-  top: 108px;
-  height: 22px;
+  top: 15.4%;
+  height: 4.6%;
   border-radius: 2px 0 0 2px;
 }
 
 .vol1,
 .vol2 {
   left: -4px;
-  height: 46px;
+  height: 9.2%;
   border-radius: 2px 0 0 2px;
 }
 
-.vol1 { top: 146px; }
-.vol2 { top: 202px; }
+.vol1 { top: 22.6%; }
+.vol2 { top: 33.4%; }
 
 .power {
   right: -4px;
-  top: 168px;
-  height: 74px;
+  top: 26.2%;
+  height: 14.6%;
   border-radius: 0 2px 2px 0;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.9),
@@ -389,15 +389,17 @@
 }
 
 .screen {
+  --u: calc(100cqw / 393);
   position: relative;
   width: 100%;
   aspect-ratio: 9 / 19.5;
   background: #fff;
   border-radius: 44px;
-  color: #111;
+  color: #000;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  container-type: inline-size;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   box-shadow:
@@ -423,52 +425,82 @@
 .status {
   position: relative;
   z-index: 7;
-  height: 46px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  padding: 0 14px 6px;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  height: calc(54 * var(--u));
   flex: 0 0 auto;
-}
-
-.time {
-  position: relative;
-  z-index: 1;
-  min-width: 46px;
+  color: #000;
 }
 
 .island {
   position: absolute;
+  z-index: 2;
   left: 50%;
-  top: 8px;
-  width: 34%;
-  height: 30px;
+  top: calc(11 * var(--u));
+  width: calc(126 * var(--u));
+  height: calc(37 * var(--u));
   transform: translateX(-50%);
   background: #000;
-  border-radius: 18px;
-  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.08);
+  border-radius: calc(18.5 * var(--u));
+}
+
+.time,
+.statusIcons {
+  position: absolute;
+  z-index: 3;
+  top: calc(11 * var(--u));
+  height: calc(37 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.time {
+  left: 0;
+  width: calc(133.5 * var(--u));
+  padding-inline: calc(10 * var(--u));
+  font-size: calc(17 * var(--u));
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
 }
 
 .statusIcons {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
+  right: 0;
+  width: calc(133.5 * var(--u));
+  gap: calc(6 * var(--u));
+  padding-inline: calc(8 * var(--u));
+  color: #000;
 }
 
 .statusIcons svg {
   display: block;
+  fill: currentColor;
+  flex: 0 0 auto;
+}
+
+.cell {
+  width: calc(17 * var(--u));
+  height: calc(12 * var(--u));
+}
+
+.wifi {
+  width: calc(16 * var(--u));
+  height: calc(12 * var(--u));
+}
+
+.battery {
+  width: calc(27.5 * var(--u));
+  height: calc(13 * var(--u));
 }
 
 .msgBar {
   position: relative;
   z-index: 7;
   display: grid;
-  grid-template-columns: 54px 1fr 28px;
-  align-items: center;
-  padding: 0 8px 6px;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  padding: calc(1 * var(--u)) calc(8 * var(--u)) calc(7 * var(--u));
   border-bottom: 0.5px solid rgba(60, 60, 67, 0.29);
   color: #000;
   flex: 0 0 auto;
@@ -479,6 +511,12 @@
   align-items: center;
   gap: 1px;
   justify-self: start;
+  height: 32px;
+}
+
+.back svg {
+  width: 12px;
+  height: 20px;
 }
 
 .backCount {
@@ -506,12 +544,12 @@
 }
 
 .avatar {
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: linear-gradient(165deg, #8ecbff 0%, #0a84ff 46%, #0040dd 100%);
   color: #fff;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: -0.03em;
   display: grid;
@@ -525,17 +563,21 @@
   color: #000;
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   line-height: 1.15;
 }
 
 .nameChevron {
   margin-left: 1px;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.95em;
 }
 
 .facetime {
   justify-self: end;
+  width: 25px;
+  height: auto;
+  margin-top: 8px;
 }
 
 .thread {
@@ -579,36 +621,51 @@
   margin: 1px 12px 1px auto;
 }
 
+.bubbleIn::before,
+.bubbleOut::before,
 .bubbleIn::after,
 .bubbleOut::after {
   content: '';
   position: absolute;
   bottom: 0;
-  width: 20px;
-  height: 18px;
+  width: 12px;
+  height: 16px;
+}
+
+.bubbleIn::before {
+  left: -5px;
+  background: #e9e9eb;
+  border-bottom-right-radius: 10px 12px;
 }
 
 .bubbleIn::after {
-  left: -7px;
-  background: #e9e9eb;
-  border-bottom-right-radius: 14px 12px;
-  clip-path: polygon(100% 0, 100% 100%, 0 100%, 28% 40%);
+  left: -10px;
+  width: 10px;
+  background: #fff;
+  border-bottom-right-radius: 8px;
+}
+
+.bubbleOut::before {
+  right: -5px;
+  background: #0a84ff;
+  border-bottom-left-radius: 10px 12px;
 }
 
 .bubbleOut::after {
-  right: -7px;
-  background: #0a84ff;
-  border-bottom-left-radius: 14px 12px;
-  clip-path: polygon(0 0, 100% 100%, 0 100%, 72% 40%);
+  right: -10px;
+  width: 10px;
+  background: #fff;
+  border-bottom-left-radius: 8px;
 }
 
 .delivered {
-  margin: 1px 18px 6px;
+  margin: 1px 14px 4px;
   text-align: right;
   color: #8e8e93;
   font-size: 11px;
   font-weight: 400;
   letter-spacing: -0.01em;
+  line-height: 1.2;
 }
 
 /* Bubbles stay in normal flow so the finished phone matches the static layout.
@@ -684,8 +741,8 @@
 .composer {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 4px 10px 0;
+  gap: calc(8 * var(--u));
+  padding: calc(6 * var(--u)) calc(8 * var(--u)) 0;
   flex: 0 0 auto;
   position: relative;
   z-index: 7;
@@ -700,14 +757,20 @@
   flex: 0 0 auto;
 }
 
+.plus svg,
+.mic svg {
+  width: 78%;
+  height: 78%;
+}
+
 .pill {
   flex: 1;
   display: flex;
   align-items: center;
   min-height: 36px;
   padding: 0 14px;
-  border: 1px solid #c7c7cc;
-  border-radius: 18px;
+  border: 1px solid #c6c6c8;
+  border-radius: 999px;
   color: #8e8e93;
   font-size: 17px;
   letter-spacing: -0.024em;
@@ -715,9 +778,9 @@
 }
 
 .homeBar {
-  width: 36%;
-  height: 5px;
-  margin: 8px auto 7px;
+  width: calc(134 * var(--u));
+  height: calc(5 * var(--u));
+  margin: calc(8 * var(--u)) auto calc(8 * var(--u));
   border-radius: 100px;
   background: #000;
   flex: 0 0 auto;
