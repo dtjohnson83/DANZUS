@@ -1,0 +1,46 @@
+.main {
+  padding: 48px 0 88px;
+}
+
+.main h1 {
+  font-family: var(--display), 'Inter', system-ui, sans-serif;
+  font-weight: 680;
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  letter-spacing: -0.045em;
+  line-height: 0.96;
+  margin: 0 0 18px;
+  max-width: 16ch;
+}
+
+.main h2 {
+  font-family: var(--display), 'Inter', system-ui, sans-serif;
+  font-weight: 650;
+  font-size: 1.45rem;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 32px 0 8px;
+}
+
+.main p,
+.main li {
+  color: var(--muted);
+  max-width: 40rem;
+}
+
+.main p + p {
+  margin-top: 12px;
+}
+
+.main ul {
+  margin: 10px 0 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 8px;
+}
+
+.main a {
+  color: var(--paper);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

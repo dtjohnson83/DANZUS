@@ -259,6 +259,22 @@
   border-bottom: 1px solid var(--paper);
 }
 
+.smsNote {
+  margin-top: 8px;
+  max-width: 34rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.smsNote a {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .who {
   margin-top: 22px;
   max-width: 36rem;
@@ -846,6 +862,11 @@
   color: var(--muted);
 }
 
+.form,
+.field select {
+  color-scheme: dark;
+}
+
 .field input,
 .field select,
 .field textarea {
@@ -853,12 +874,28 @@
   font: inherit;
   font-weight: 400;
   font-size: 16px;
-  color: var(--paper);
+  color: #f3efe6;
   background: transparent;
   border: 0;
   border-bottom: 1px solid rgba(246, 241, 232, 0.55);
   border-radius: 0;
   padding: 10px 0 12px;
+}
+
+/* Windows Chrome paints the native menu light unless options set their own colors. */
+.field select option {
+  background-color: #0f1a14;
+  color: #f3efe6;
+}
+
+.field select option:checked {
+  background-color: #24362c;
+  color: #f3efe6;
+}
+
+.field select option:disabled {
+  background-color: #0f1a14;
+  color: #d9d0c0;
 }
 
 .field textarea {
