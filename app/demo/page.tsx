@@ -40,7 +40,7 @@ export default async function DemoPage({
           <p className={styles.kicker}>Lead to booked job</p>
           <h1 className={styles.title}>Demo inbox</h1>
           <p className={styles.lede}>
-            Conversations for the configured demo line. This page is separate from the public site.
+            Conversations for the DANZUS business line. This page is separate from the public site.
           </p>
           <form className={`${styles.panel} ${styles.form}`} action={login}>
             {password ? null : (
@@ -79,7 +79,8 @@ export default async function DemoPage({
             <p className={styles.kicker}>Lead to booked job</p>
             <h1 className={styles.title}>{demo.businessName}</h1>
             <p className={styles.meta}>
-              {formatPhone(demo.twilioNumber)} texts leads. Escalations go to {formatPhone(demo.ownerPhone)}.
+              Calls to {formatPhone(demo.twilioNumber)} ring {formatPhone(demo.forwardTo)} for {demo.ringTimeoutSeconds}s,
+              then text back if nobody picks up. Escalations go to {formatPhone(demo.ownerPhone)}.
               Times offered are a stub from the hours in the client config.
             </p>
           </div>

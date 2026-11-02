@@ -65,6 +65,27 @@ export function twimlResponse(inner: string, status = 200): Response {
   })
 }
 
+const MISSED_DIAL_STATUSES = new Set(['no-answer', 'busy', 'failed'])
+
+/** Missed-call text-back runs only for these Dial results. Answered calls are `completed`. */
+export function isMissedDial(status: string | null): boolean {
+  return status !== null && MISSED_DIAL_STATUSES.has(status)
+}
+
+/**
+ * Ring the owner's cell. callerId is the original caller when we have one,
+ * otherwise the Twilio number. Twilio allows either on an inbound call to a
+ * Twilio number. The action URL receives DialCallStatus when the attempt ends.
+ */
+export function dialOwnerTwiml(input: {
+  forwardTo: string
+  callerId: string
+  timeoutSeconds: number
+  actionUrl: string
+}): string {
+  return `<Dial action="${xmlEscape(input.actionUrl)}" method="POST" timeout="${input.timeoutSeconds}" callerId="${xmlEscape(input.callerId)}"><Number>${xmlEscape(input.forwardTo)}</Number></Dial>`
+}
+
 export function sayAndHangup(greeting: string): string {
   // Hangup ends the verb list, so the SMS is sent by the app after this
   // TwiML is returned rather than with an <Sms> verb after <Hangup/>.

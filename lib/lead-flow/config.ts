@@ -17,6 +17,8 @@ const clientConfigSchema = z.object({
     close: z.string().regex(/^\d{2}:\d{2}$/),
   }),
   ownerPhone: z.string().regex(/^\+[1-9]\d{9,14}$/),
+  forwardTo: z.string().regex(/^\+[1-9]\d{9,14}$/),
+  ringTimeoutSeconds: z.number().int().min(5).max(600),
   twilioNumber: z.string().regex(/^\+[1-9]\d{9,14}$/),
   allowedPriceRanges: z
     .array(
@@ -37,6 +39,9 @@ export function parseClientConfig(input: ClientConfig): ClientConfig {
   const close = config.hours.close
   if (close <= open) {
     throw new Error(`${config.id}: hours.close must be later than hours.open`)
+  }
+  if (config.forwardTo === config.twilioNumber) {
+    throw new Error(`${config.id}: forwardTo must be the owner cell, not the Twilio number`)
   }
   for (const range of config.allowedPriceRanges) {
     if (range.max < range.min) {

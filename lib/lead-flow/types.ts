@@ -58,6 +58,10 @@ export type ClientConfig = {
   }
   /** Person who gets an SMS when a lead is upset or unsure. */
   ownerPhone: string
+  /** Cell that rings first on an inbound call. Not a Twilio number this app sends from. */
+  forwardTo: string
+  /** How long to ring `forwardTo` before treating the call as missed. Twilio allows 5–600. */
+  ringTimeoutSeconds: number
   /** Inbound Twilio number for this client. Also the From number on outbound SMS. */
   twilioNumber: string
   /** Ballpark ranges the assistant may mention. Never a single firm price. */

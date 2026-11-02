@@ -50,9 +50,11 @@ beforeEach(() => {
 })
 
 describe('client registry', () => {
-  it('handles only the demo Twilio number', () => {
+  it('handles only the DANZUS business line', () => {
     expect(clients.map((client) => client.twilioNumber)).toEqual([DEMO])
     expect(clients[0]?.ownerPhone).toBe(OWNER)
+    expect(clients[0]?.forwardTo).toBe(OWNER)
+    expect(clients[0]?.ringTimeoutSeconds).toBe(20)
     expect(clients[0]?.greeting).toBe("Sorry we missed you, we'll text you right now")
     expect(clientForInboundNumber('+15550001111')).toBeUndefined()
   })
@@ -89,11 +91,12 @@ describe('voice webhook', () => {
     const xml = await response.text()
     expect(response.status).toBe(200)
     expect(xml).toContain('<Hangup/>')
+    expect(xml).not.toContain('<Dial')
     expect(xml).not.toContain('Sorry we missed you')
     expect(sendSms).not.toHaveBeenCalled()
   })
 
-  it('plays the greeting, hangs up, and texts the caller from the demo number', async () => {
+  it('rings the owner with the caller id and does not text yet', async () => {
     const sendSms = vi.fn<SendSms>()
     const store = createMemoryStore()
     const response = await handleVoiceRequest(
@@ -107,19 +110,98 @@ describe('voice webhook', () => {
       },
     )
     const xml = await response.text()
-    expect(xml).toContain(`<Say>${xmlEscape(clients[0].greeting)}</Say><Hangup/>`)
-    expect(sendSms).toHaveBeenCalledTimes(1)
-    expect(sendSms).toHaveBeenCalledWith({
-      to: CALLER,
-      from: DEMO,
-      body: clients[0].missedCallSms,
-    })
-    const [lead] = await store.list()
-    expect(lead?.status).toBe('qualifying')
-    expect(lead?.messages[0]?.delivery).toBe('sent')
+    expect(xml).toContain(
+      `<Dial action="https://danzus.co/api/twilio/voice" method="POST" timeout="${clients[0].ringTimeoutSeconds}" callerId="${CALLER}"><Number>${clients[0].forwardTo}</Number></Dial>`,
+    )
+    expect(xml).not.toContain('Sorry we missed you')
+    expect(sendSms).not.toHaveBeenCalled()
+    expect(await store.list()).toEqual([])
   })
 
-  it('does not text a second time when Twilio retries the same call', async () => {
+  it('uses the Twilio number as callerId when the caller id is withheld', async () => {
+    const sendSms = vi.fn<SendSms>()
+    const response = await handleVoiceRequest(
+      signedRequest('/api/twilio/voice', { To: DEMO, From: 'Anonymous', CallSid: 'CA5' }),
+      {
+        authToken: TOKEN,
+        store: createMemoryStore(),
+        clientForNumber: clientForInboundNumber,
+        sendSms,
+        now: () => NOW,
+      },
+    )
+    const xml = await response.text()
+    expect(xml).toContain(`callerId="${DEMO}"`)
+    expect(xml).toContain(`<Number>${OWNER}</Number>`)
+    expect(xml).not.toContain('Sorry we missed you')
+    expect(sendSms).not.toHaveBeenCalled()
+  })
+
+  it.each(['no-answer', 'busy', 'failed'])(
+    'plays the greeting and texts the caller when the forward is %s',
+    async (dialStatus) => {
+      const sendSms = vi.fn<SendSms>()
+      const store = createMemoryStore()
+      const response = await handleVoiceRequest(
+        signedRequest('/api/twilio/voice', {
+          To: DEMO,
+          From: CALLER,
+          CallSid: `CA-${dialStatus}`,
+          DialCallStatus: dialStatus,
+        }),
+        {
+          authToken: TOKEN,
+          store,
+          clientForNumber: clientForInboundNumber,
+          sendSms,
+          now: () => NOW,
+        },
+      )
+      const xml = await response.text()
+      expect(xml).toContain(`<Say>${xmlEscape(clients[0].greeting)}</Say><Hangup/>`)
+      expect(xml).not.toContain('<Dial')
+      expect(sendSms).toHaveBeenCalledTimes(1)
+      expect(sendSms).toHaveBeenCalledWith({
+        to: CALLER,
+        from: DEMO,
+        body: clients[0].missedCallSms,
+      })
+      const lead = await store.get(clients[0].id, CALLER)
+      expect(lead?.status).toBe('qualifying')
+      expect(lead?.messages[0]?.delivery).toBe('sent')
+    },
+  )
+
+  it.each(['completed', 'answered', 'canceled'])(
+    'does nothing else when DialCallStatus is %s',
+    async (dialStatus) => {
+      const sendSms = vi.fn<SendSms>()
+      const store = createMemoryStore()
+      const response = await handleVoiceRequest(
+        signedRequest('/api/twilio/voice', {
+          To: DEMO,
+          From: CALLER,
+          CallSid: `CA-${dialStatus}`,
+          DialCallStatus: dialStatus,
+        }),
+        {
+          authToken: TOKEN,
+          store,
+          clientForNumber: clientForInboundNumber,
+          sendSms,
+          now: () => NOW,
+        },
+      )
+      const xml = await response.text()
+      expect(xml).toContain('<Hangup/>')
+      expect(xml).not.toContain('Sorry we missed you')
+      expect(xml).not.toContain('<Dial')
+      expect(sendSms).not.toHaveBeenCalled()
+      expect(await store.list()).toEqual([])
+    },
+  )
+
+  it('does not text a second time when Twilio retries the same missed call', async () => {
     const sendSms = vi.fn<SendSms>()
     const store = createMemoryStore()
     const deps = {
@@ -129,16 +211,22 @@ describe('voice webhook', () => {
       sendSms,
       now: () => NOW,
     }
-    const request = () => signedRequest('/api/twilio/voice', { To: DEMO, From: CALLER, CallSid: 'CA4' })
+    const request = () =>
+      signedRequest('/api/twilio/voice', { To: DEMO, From: CALLER, CallSid: 'CA4', DialCallStatus: 'no-answer' })
     await handleVoiceRequest(request(), deps)
     await handleVoiceRequest(request(), deps)
     expect(sendSms).toHaveBeenCalledTimes(1)
   })
 
-  it('skips SMS when the caller id is withheld', async () => {
+  it('says the greeting without a text when a missed call has no caller id', async () => {
     const sendSms = vi.fn<SendSms>()
     const response = await handleVoiceRequest(
-      signedRequest('/api/twilio/voice', { To: DEMO, From: 'Anonymous', CallSid: 'CA5' }),
+      signedRequest('/api/twilio/voice', {
+        To: DEMO,
+        From: 'Anonymous',
+        CallSid: 'CA5b',
+        DialCallStatus: 'no-answer',
+      }),
       {
         authToken: TOKEN,
         store: createMemoryStore(),
@@ -162,7 +250,8 @@ describe('voice webhook', () => {
       sendSms,
       now: () => NOW,
     }
-    const request = () => signedRequest('/api/twilio/voice', { To: DEMO, From: CALLER, CallSid: 'CA6' })
+    const request = () =>
+      signedRequest('/api/twilio/voice', { To: DEMO, From: CALLER, CallSid: 'CA6', DialCallStatus: 'busy' })
     const first = await handleVoiceRequest(request(), deps)
     expect(first.status).toBe(200)
     expect((await store.get(clients[0].id, CALLER))?.messages[0]?.delivery).toBe('failed')
@@ -347,26 +436,26 @@ describe('SMS webhook', () => {
   })
 
   it('strips a firm price and keeps a configured range', async () => {
-    const firm = vi.fn<Qualify>(async () => blankTurn({ reply: "That'll be $250 flat." }))
+    const firm = vi.fn<Qualify>(async () => blankTurn({ reply: "That'll be $75 flat." }))
     const firmResponse = await handleSmsRequest(
       signedRequest('/api/twilio/sms', { To: DEMO, From: CALLER, Body: 'How much?', MessageSid: 'SM10' }),
       deps(firm),
     )
     const firmXml = await firmResponse.text()
-    expect(firmXml).not.toContain('$250')
+    expect(firmXml).not.toContain('$75')
     expect(firmXml).toContain('firm price')
-    expect(firmXml).toContain('$175')
+    expect(firmXml).toContain('$200')
 
     const range = vi.fn<Qualify>(async () =>
-      blankTurn({ reply: 'Drain cleaning usually runs $175 to $400, and the owner confirms after a look.' }),
+      blankTurn({ reply: 'One workflow usually runs $200 to $300 a month, and Dan confirms after a look.' }),
     )
     const rangeResponse = await handleSmsRequest(
-      signedRequest('/api/twilio/sms', { To: DEMO, From: '+19165550200', Body: 'How much for a drain?', MessageSid: 'SM11' }),
+      signedRequest('/api/twilio/sms', { To: DEMO, From: '+19165550200', Body: 'How much for a workflow?', MessageSid: 'SM11' }),
       deps(range),
     )
     const rangeXml = await rangeResponse.text()
-    expect(rangeXml).toContain('$175')
-    expect(rangeXml).toContain('$400')
+    expect(rangeXml).toContain('$200')
+    expect(rangeXml).toContain('$300')
     expect(rangeXml).not.toContain("can't give a firm price")
   })
 

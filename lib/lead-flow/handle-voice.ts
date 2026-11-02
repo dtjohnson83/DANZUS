@@ -1,6 +1,14 @@
 import { emptyLead } from '@/lib/lead-flow/lead'
 import { normalizePhone } from '@/lib/lead-flow/phone'
-import { hangupOnly, isValidTwilioRequest, readTwilioForm, sayAndHangup, twimlResponse } from '@/lib/lead-flow/twilio'
+import {
+  dialOwnerTwiml,
+  hangupOnly,
+  isMissedDial,
+  isValidTwilioRequest,
+  readTwilioForm,
+  sayAndHangup,
+  twimlResponse,
+} from '@/lib/lead-flow/twilio'
 import type { ClientConfig, LeadStore, SendSms } from '@/lib/lead-flow/types'
 
 export type VoiceDeps = {
@@ -12,8 +20,11 @@ export type VoiceDeps = {
 }
 
 /**
- * Missed-call webhook. Play the client's greeting, hang up, and text the caller.
- * Numbers that are not in the client registry get a silent hangup and no SMS.
+ * Inbound call: ring the owner's cell first.
+ * The Dial action posts back here with DialCallStatus. The missed-call
+ * greeting and text-back run only for no-answer, busy, or failed.
+ * An answered call (completed) gets a hangup and nothing else.
+ * Numbers that are not in the client registry get a silent hangup and no dial.
  */
 export async function handleVoiceRequest(request: Request, deps: VoiceDeps): Promise<Response> {
   if (!deps.authToken) {
@@ -35,7 +46,23 @@ export async function handleVoiceRequest(request: Request, deps: VoiceDeps): Pro
     return twimlResponse(hangupOnly())
   }
 
+  const dialStatus = params.get('DialCallStatus')
+  if (dialStatus && !isMissedDial(dialStatus)) {
+    return twimlResponse(hangupOnly())
+  }
+
   const from = normalizePhone(params.get('From'))
+  if (!dialStatus) {
+    return twimlResponse(
+      dialOwnerTwiml({
+        forwardTo: config.forwardTo,
+        callerId: from ?? config.twilioNumber,
+        timeoutSeconds: config.ringTimeoutSeconds,
+        actionUrl: url,
+      }),
+    )
+  }
+
   const greeting = twimlResponse(sayAndHangup(config.greeting))
   if (!from) return greeting
 
@@ -70,7 +97,7 @@ export async function handleVoiceRequest(request: Request, deps: VoiceDeps): Pro
       await deps.store.save(saved)
     }
   } catch (error) {
-    console.error('Missed-call SMS failed', { callSid })
+    console.error('Missed-call SMS failed', { callSid, dialStatus })
     console.error(error)
     const saved = await deps.store.get(config.id, from)
     if (saved) {
