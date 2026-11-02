@@ -1308,10 +1308,10 @@ footer {
   }
 }
 
-/* Homepage is a light service page. Keep the dark grain and vignette on other routes. */
+/* Homepage uses its own warm-charcoal field. Keep the grain and vignette on other routes. */
 body:has(.danzus-home) {
-  background: #f3eee6;
-  color: #1a1714;
+  background: #1c1814;
+  color: #f6f1e8;
   font-weight: 400;
 }
 

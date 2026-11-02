@@ -1,15 +1,19 @@
 .page {
-  --paper: #f3eee6;
-  --ink: #1a1714;
-  --muted: #4e4943;
-  --rule: rgba(26, 23, 20, 0.16);
-  --clay: #8d4e34;
-  --display: 'Fraunces', Georgia, 'Times New Roman', serif;
-  background: var(--paper);
-  color: var(--ink);
+  --bg: #1c1814;
+  --raise: #272119;
+  --paper: #f6f1e8;
+  --ink: #1c1814;
+  --muted: #d4c6b6;
+  --rule: rgba(246, 241, 232, 0.18);
+  --clay: #ff9a1a;
+  --amber-deep: #6b3418;
+  --display: var(--font-display), 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--paper);
+  color-scheme: dark;
   font-family: 'Hanken Grotesk', system-ui, sans-serif;
-  font-weight: 400;
-  line-height: 1.5;
+  font-weight: 500;
+  line-height: 1.55;
   min-height: 100vh;
 }
 
@@ -30,7 +34,7 @@
 }
 
 .page :focus-visible {
-  outline: 2px solid var(--ink);
+  outline: 2px solid var(--clay);
   outline-offset: 3px;
 }
 
@@ -38,8 +42,8 @@
   position: absolute;
   left: 16px;
   top: -48px;
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--clay);
+  color: var(--ink);
   padding: 8px 12px;
   z-index: 40;
 }
@@ -57,7 +61,7 @@
   position: sticky;
   top: 0;
   z-index: 20;
-  background: var(--paper);
+  background: var(--bg);
   border-bottom: 1px solid var(--rule);
 }
 
@@ -74,9 +78,9 @@
   align-items: center;
   gap: 10px;
   font-family: var(--display);
-  font-weight: 560;
-  font-size: 1.15rem;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.04em;
 }
 
 .brand img {
@@ -117,18 +121,18 @@
   justify-content: center;
   min-height: 44px;
   padding: 0 14px;
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--clay);
+  color: var(--ink);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.92rem;
   white-space: nowrap;
   flex: 0 0 auto;
 }
 
 .call:hover {
-  background: var(--clay);
-  color: var(--paper);
+  background: #ffb14a;
+  color: var(--ink);
 }
 
 .mobLinks {
@@ -136,30 +140,46 @@
 }
 
 .hero {
+  position: relative;
   padding: 36px 0 72px;
 }
 
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(246, 241, 232, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(246, 241, 232, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(180deg, #000 0%, transparent 100%);
+  pointer-events: none;
+}
+
 .heroGrid {
+  position: relative;
+  z-index: 1;
   display: grid;
   gap: 40px;
   align-items: end;
 }
 
 .place {
-  font-family: var(--display);
-  font-style: italic;
-  font-weight: 560;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--clay);
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .hero h1 {
   font-family: var(--display);
-  font-weight: 560;
-  font-size: clamp(3.15rem, 8vw, 6.5rem);
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-  max-width: 7.4em;
+  font-weight: 700;
+  font-size: clamp(2.85rem, 6vw, 5.05rem);
+  line-height: 0.96;
+  letter-spacing: -0.048em;
+  max-width: 8.4em;
   font-optical-sizing: auto;
 }
 
@@ -171,14 +191,15 @@
 }
 
 .punch {
-  margin-top: 18px;
+  margin-top: 22px;
   max-width: 16em;
   font-family: var(--display);
-  font-style: italic;
-  font-weight: 560;
-  font-size: clamp(1.55rem, 2.5vw, 2.05rem);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-size: clamp(1.35rem, 2.1vw, 1.7rem);
+  line-height: 1.2;
+  letter-spacing: -0.034em;
+  padding-left: 14px;
+  border-left: 2px solid var(--clay);
 }
 
 .support {
@@ -201,18 +222,19 @@
   justify-content: center;
   min-height: 48px;
   padding: 0 18px;
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--clay);
+  color: var(--ink);
   border: 0;
   border-radius: 0;
   font: inherit;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   text-decoration: none;
 }
 
 .primary:hover {
-  background: var(--clay);
+  background: #ffb14a;
+  color: var(--ink);
 }
 
 .textLink {
@@ -227,14 +249,14 @@
 .phoneLine {
   margin-top: 14px;
   font-family: var(--display);
-  font-weight: 560;
+  font-weight: 650;
   font-size: 1.45rem;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
 }
 
 .phoneLine a {
   text-decoration: none;
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid var(--paper);
 }
 
 .who {
@@ -266,10 +288,12 @@
 }
 
 .bezel {
-  background: var(--ink);
+  background: #120f0c;
   border-radius: 36px;
   padding: 12px;
-  box-shadow: 0 22px 40px rgba(26, 23, 20, 0.14);
+  box-shadow:
+    0 0 0 1px rgba(255, 154, 26, 0.45),
+    0 28px 50px rgba(0, 0, 0, 0.5);
 }
 
 .screen {
@@ -307,21 +331,22 @@
 
 .threadHead strong {
   font-family: var(--display);
-  font-weight: 560;
-  font-size: 1.05rem;
+  font-weight: 650;
+  font-size: 1.02rem;
+  letter-spacing: -0.03em;
 }
 
 .threadHead span {
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--clay);
+  color: var(--amber-deep);
 }
 
 .missed {
   text-align: center;
   font-size: 0.75rem;
-  color: var(--muted);
+  color: #4a453f;
   margin: 8px 0 12px;
 }
 
@@ -347,7 +372,7 @@
 
 .stamp {
   font-size: 0.72rem;
-  color: var(--clay);
+  color: var(--amber-deep);
   margin: -2px 0 10px 4px;
 }
 
@@ -369,19 +394,20 @@
 }
 
 .kicker {
-  font-family: var(--display);
-  font-style: italic;
-  font-weight: 560;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--clay);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .page h2 {
   font-family: var(--display);
-  font-weight: 560;
-  font-size: clamp(2.1rem, 4vw, 3.4rem);
-  line-height: 0.98;
-  letter-spacing: -0.03em;
+  font-weight: 680;
+  font-size: clamp(1.9rem, 3.1vw, 2.65rem);
+  line-height: 1.02;
+  letter-spacing: -0.042em;
 }
 
 .intro {
@@ -406,9 +432,9 @@
 .package h3,
 .how h3 {
   font-family: var(--display);
-  font-weight: 560;
-  font-size: 1.55rem;
-  letter-spacing: -0.02em;
+  font-weight: 640;
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
   line-height: 1.1;
   margin-bottom: 6px;
 }
@@ -427,7 +453,7 @@
   margin: 22px 0 8px;
   padding: 0;
   list-style: none;
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .packages {
@@ -462,7 +488,7 @@
   gap: 12px;
   align-items: start;
   padding-bottom: 14px;
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .flow li::before {
@@ -472,7 +498,7 @@
   margin-top: 6px;
   border: 1px solid var(--clay);
   border-radius: 50%;
-  background: var(--paper);
+  background: var(--bg);
   position: relative;
   z-index: 1;
 }
@@ -501,11 +527,11 @@
 
 .num {
   font-family: var(--display);
-  font-weight: 560;
-  font-size: 2rem;
+  font-weight: 700;
+  font-size: 1.65rem;
   line-height: 1;
+  letter-spacing: -0.04em;
   color: var(--clay);
-  font-variant-numeric: oldstyle-nums;
 }
 
 .rates {
@@ -521,18 +547,18 @@
 
 .rateName {
   font-family: var(--display);
-  font-weight: 560;
-  font-size: 1.7rem;
-  letter-spacing: -0.02em;
+  font-weight: 680;
+  font-size: 1.45rem;
+  letter-spacing: -0.038em;
 }
 
 .ratePrice {
   font-family: var(--display);
-  font-weight: 560;
-  font-size: clamp(1.35rem, 2vw, 1.7rem);
-  letter-spacing: -0.03em;
+  font-weight: 680;
+  font-size: clamp(1.3rem, 1.8vw, 1.6rem);
+  letter-spacing: -0.04em;
   line-height: 1.1;
-  color: var(--ink);
+  color: var(--paper);
   white-space: nowrap;
 }
 
@@ -555,8 +581,9 @@
 .frame {
   width: min(100%, 280px);
   aspect-ratio: 4 / 5;
-  background: #e7e0d4;
-  border: 1px solid var(--ink);
+  background: var(--raise);
+  border: 1px solid rgba(255, 154, 26, 0.7);
+  color: var(--paper);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -572,10 +599,10 @@
 
 .monogram {
   font-family: var(--display);
-  font-weight: 560;
-  font-size: 4.5rem;
-  line-height: 0.85;
-  letter-spacing: -0.04em;
+  font-weight: 700;
+  font-size: 4.25rem;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
 }
 
 .frame small {
@@ -614,17 +641,17 @@
   display: grid;
   gap: 36px;
   padding-top: 12px;
-  border-top: 1px solid var(--ink);
+  border-top: 2px solid var(--clay);
 }
 
 .contactNumber {
   display: inline-block;
   margin-top: 12px;
   font-family: var(--display);
-  font-weight: 560;
-  font-size: clamp(2.4rem, 6vw, 3.8rem);
-  line-height: 0.95;
-  letter-spacing: -0.04em;
+  font-weight: 680;
+  font-size: clamp(2.3rem, 5vw, 3.4rem);
+  line-height: 1;
+  letter-spacing: -0.046em;
   text-decoration: none;
   color: inherit;
 }
@@ -668,10 +695,10 @@
   font: inherit;
   font-weight: 400;
   font-size: 16px;
-  color: var(--ink);
+  color: var(--paper);
   background: transparent;
   border: 0;
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid rgba(246, 241, 232, 0.55);
   border-radius: 0;
   padding: 10px 0 12px;
 }
@@ -683,7 +710,7 @@
 
 .field input::placeholder,
 .field textarea::placeholder {
-  color: #6f695f;
+  color: #d4c6b6;
 }
 
 .formHint,
@@ -706,9 +733,9 @@
 
 .product strong {
   font-family: var(--display);
-  font-weight: 560;
-  font-size: 1.35rem;
-  letter-spacing: -0.02em;
+  font-weight: 650;
+  font-size: 1.25rem;
+  letter-spacing: -0.03em;
 }
 
 .product p {
@@ -732,14 +759,14 @@
   font-weight: 400;
   letter-spacing: normal;
   text-transform: none;
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .operated {
   font-family: var(--display);
-  font-weight: 560;
-  font-size: 1.35rem;
-  letter-spacing: -0.02em;
+  font-weight: 650;
+  font-size: 1.2rem;
+  letter-spacing: -0.03em;
 }
 
 .footer p {

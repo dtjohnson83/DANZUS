@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ContactForm } from './ContactForm'
+import { display } from './fonts'
 import styles from './home.module.css'
 import {
   CONTACT_EMAIL,
@@ -338,7 +339,7 @@ function Flow({ steps }: { steps: string[] }) {
 
 export default function Home() {
   return (
-    <div className={`danzus-home ${styles.page}`}>
+    <div className={`danzus-home ${styles.page} ${display.variable}`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
