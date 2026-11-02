@@ -6,6 +6,7 @@ import { PackageDemo } from './PackageDemo'
 import { BrassEmblem } from './BrassEmblem'
 import { StoryList } from './StoryList'
 import { HeroLoop } from './HeroLoop'
+import { MobileNav } from './MobileNav'
 import { PhoneMockup } from './PhoneMockup'
 import { ResultsCounters } from './ResultsCounters'
 import { TRADES } from './sample-sites/trades'
@@ -221,6 +222,7 @@ export default function Home() {
             <a className={styles.call} href={CONTACT_PHONE_TEL}>
               Call or text Dan
             </a>
+            <MobileNav />
           </div>
           <nav className={styles.mobLinks} aria-label="Primary">
             <a href="#uses">What it does</a>
@@ -248,6 +250,9 @@ export default function Home() {
               <p className={styles.punch}>You were under a sink. The lead texted the next guy.</p>
             </div>
             <HeroLoop />
+            <a className={styles.foldCall} href={CONTACT_PHONE_TEL}>
+              Call or text Dan
+            </a>
             <PhoneMockup />
             <div className={styles.heroRest}>
               <p className={styles.support}>

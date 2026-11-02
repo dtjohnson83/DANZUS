@@ -27,6 +27,18 @@ describe('sample sites and home extras', () => {
     expect(robots).not.toContain('Disallow: /demo')
   })
 
+  it('keeps the mobile hero to a headline, one line, the video, and a call', () => {
+    const css = readFileSync('app/home.module.css', 'utf8')
+    const page = readFileSync('app/page.tsx', 'utf8')
+    const nav = readFileSync('app/MobileNav.tsx', 'utf8')
+    expect(css).toContain('max-width: 767px')
+    expect(css).toContain('.place,\n  .booked,\n  .lead')
+    expect(page).toContain('You were under a sink. The lead texted the next guy.')
+    expect(page).toContain('Sacramento, Folsom, Roseville')
+    expect(nav).toContain('Open menu')
+    expect(nav).toContain('aria-expanded')
+  })
+
   it('scrolls the homepage story in normal document flow', () => {
     const css = readFileSync('app/home.module.css', 'utf8')
     const page = readFileSync('app/page.tsx', 'utf8')
