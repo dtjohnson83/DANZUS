@@ -27,6 +27,16 @@ describe('sample sites and home extras', () => {
     expect(robots).not.toContain('Disallow: /demo')
   })
 
+  it('scrolls the homepage story in normal document flow', () => {
+    const css = readFileSync('app/home.module.css', 'utf8')
+    const page = readFileSync('app/page.tsx', 'utf8')
+    expect(css).not.toContain('240vh')
+    expect(css).not.toContain('animation-timeline')
+    expect(css).not.toContain('view-timeline')
+    expect(page).toContain('While you were on the job.')
+    expect(page).not.toContain('storyPin')
+  })
+
   it('ships an empty results list and the approved hero loop', () => {
     expect(RESULTS).toEqual([])
     expect(HERO_LOOP.poster).toBe(

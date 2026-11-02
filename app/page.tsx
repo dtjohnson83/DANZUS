@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ContactForm } from './ContactForm'
 import { PackageDemo } from './PackageDemo'
 import { BrassEmblem } from './BrassEmblem'
+import { StoryList } from './StoryList'
 import { HeroLoop } from './HeroLoop'
 import { PhoneMockup } from './PhoneMockup'
 import { ResultsCounters } from './ResultsCounters'
@@ -278,11 +279,11 @@ export default function Home() {
 
         <section className={styles.section} id="uses" aria-labelledby="uses-heading">
           <div className={`${styles.shell} ${styles.story}`}>
-            <div className={styles.storyPin}>
+            <div>
               <p className={styles.kicker}>What it does</p>
               <h2 id="uses-heading">While you were on the job.</h2>
               <p className={styles.intro}>The call still gets handled. Here is the order.</p>
-              <ol className={styles.storyList}>
+              <StoryList>
                 <li>
                   <h3>Missed call</h3>
                   <p>You are on the roof, under a sink, or in the chair. The phone rings out.</p>
@@ -303,7 +304,7 @@ export default function Home() {
                   <h3>Review requested</h3>
                   <p>When the work is done, a happy customer gets asked for the review.</p>
                 </li>
-              </ol>
+              </StoryList>
             </div>
           </div>
         </section>

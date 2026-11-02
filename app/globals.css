@@ -26,7 +26,7 @@ body {
   font-family: var(--body);
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body::before {
