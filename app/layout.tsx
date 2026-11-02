@@ -21,7 +21,6 @@ export const metadata: Metadata = {
     'Folsom small business',
     'AI assistant for contractors',
     'missed call text back',
-    'DimeVision',
     'Agent Audit Trail',
   ],
   authors: [
