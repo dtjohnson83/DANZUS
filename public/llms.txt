@@ -1,134 +1,46 @@
 # DANZUS
 
-> DANZUS Holdings LLC, in Folsom, California, sets up done-for-you AI assistants
-> for Sacramento-area small businesses: contractors, trades, and local services.
-> The offer is an outcome at a flat monthly price: missed-call text-back within
-> 60 seconds, instant replies to website and Facebook leads, quote follow-up,
-> booking and reminders, Google review requests, admin busywork, and FAQ chat.
-> Owner: Dan Johnson, Lead AI Solutions Engineer. He builds AI agents for enterprise
-> companies. Ex-RAAF.
+> DANZUS Holdings LLC, in Folsom, California, sets up AI assistants and automation
+> for small businesses in Sacramento, Folsom, Roseville, El Dorado Hills, and nearby.
+> The offer is a workflow package at a flat monthly price. Owner: Dan Johnson.
+> Call or text (916) 404-6129. Email dan@danzus.co.
 > LinkedIn: https://linkedin.com/in/danjohnsondata
-> Contact: call or text Dan at (916) 404-6129, or email dan@danzus.co
 
-## Key pages
+## Service area
 
-- [DANZUS homepage](https://danzus.co/): AI assistants for Sacramento and Folsom small businesses. Workflow packages (Lead to Booked Job, Quote to Cash, Job Closeout, Back Office, Customer Service), three-step setup, starting prices, Dan Johnson, and contact by phone or email.
-- [Privacy](https://danzus.co/privacy): DANZUS Holdings LLC does not share or sell phone numbers or SMS opt-in data to third parties for marketing.
-- [Terms](https://danzus.co/terms): Includes SMS terms for people who call or text (916) 404-6129.
+Sacramento, Folsom, Roseville, El Dorado Hills, and nearby.
 
-## Core concepts this site defines
+## Services
 
-### What is an AI agent?
+- Lead to Booked Job: a new inquiry becomes a time on the calendar.
+- Quote to Cash: an estimate becomes money in the account.
+- Job Closeout: a finished job leaves a review and a referral.
+- Back Office: the inbox, the bills, and the week land in one place.
+- Customer Service: the customer gets an answer, a status, or a person.
 
-An AI agent is a language model configured with a role (identity + rules + tone),
-a library of skills (playbooks for specific tasks), and access to tools that let
-it take actions. Instead of answering a question and stopping, an agent receives
-an outcome, plans the steps needed, uses its tools to execute them, and reports
-back with the work done, often pausing for approval before anything destructive.
-The underlying model is the same as a chatbot's; the difference is the scaffolding
-around it.
+The assistant uses the calendar, QuickBooks, a CRM, and the texting the shop already has. A person signs off on anything risky before it reaches a customer.
 
-### What is the difference between a chatbot and an AI agent?
+## Starting prices
 
-A chatbot answers questions. An agent does work.
+These are starting ranges. The free call turns one into a fixed quote.
 
-- Chatbot: driven turn-by-turn. You type a prompt, it responds, loop ends.
-  Examples: ChatGPT, Claude.ai, Gemini.
-- Agent: given an outcome. It plans steps, uses tools, takes actions, and
-  reports back. Examples: Claude Code, Cursor, OpenClaw.
+- Pilot: $150 a month, setup starting at $250. First three Sacramento-area shops, one package, in exchange for an honest testimonial.
+- Starter: $200 to $300 a month, setup starting at $500. One package.
+- Growth: $400 to $600 a month, setup starting at $1,000 to $1,500. Lead to Booked Job, Quote to Cash, and Job Closeout.
+- Custom: $100 to $150 an hour, setup starting at $1,500. Back Office, live status, and connections into software the shop already runs.
 
-Same language model underneath. The difference is the setup: a role and a
-library of skills, plus tool access.
+## Contact
 
-### What is an LLM agent?
+- Phone: (916) 404-6129
+- Email: dan@danzus.co
+- LinkedIn: https://linkedin.com/in/danjohnsondata
+- Privacy: https://danzus.co/privacy
+- Terms, including SMS: https://danzus.co/terms
 
-An LLM agent is an AI agent built on top of a large language model. The LLM
-provides the reasoning; the agent layer adds persistent context (a role and
-rules), a library of skills the model can call, and an execution loop that
-lets it take multiple steps toward a goal.
+## Pages
 
-### How do AI agents work?
+- [Homepage](https://danzus.co/): packages, pricing, questions, and contact.
+- [Privacy](https://danzus.co/privacy): phone numbers and SMS opt-in data are never shared or sold for marketing.
+- [Terms](https://danzus.co/terms): SMS terms for people who call or text (916) 404-6129.
 
-An AI agent runs this loop on every invocation:
-
-1. Load core files: identity, rules, tone.
-2. Scan skill descriptions to decide which playbooks are relevant.
-3. Load the full contents of matching skills into context.
-4. Plan the steps needed to produce the outcome.
-5. Call tools (file edits, API requests, terminal commands) to execute.
-6. Report back, pausing for approval before destructive actions.
-
-Chatbots stop at step 4 and never reach step 5.
-
-### What is context engineering?
-
-Context engineering is the practice of deciding what information an AI loads
-before it responds, and when. Good context engineering splits instructions into
-a small always-on core (identity, rules, tone, under 100 words each) and a
-library of skill files that load only when the current task matches. This keeps
-the AI fast, focused, and predictable.
-
-### What are core files vs. skill files?
-
-- **Core files** load on every conversation. Identity, rules, tone. Keep each
-  under 100 words. Examples: `identity.md`, `rules.md`, `tone.md`.
-- **Skill files** load only when the AI detects a matching task. Longer and
-  denser because they only cost context when relevant. Each skill has YAML
-  frontmatter with a `name` and a `description` listing trigger keywords.
-
-### What are Claude Skills, AGENTS.md, and CLAUDE.md?
-
-- `CLAUDE.md` / `AGENTS.md`: a markdown file in a project root that the agent
-  reads on every run. Holds identity, rules, and tone.
-- `/skills/<name>/SKILL.md`: skill files with YAML frontmatter that describe
-  when to activate. The agent reads skill descriptions eagerly but only loads
-  full skill contents when the task matches.
-
-### What is Claude Code?
-
-Claude Code is Anthropic's terminal-based AI agent. It reads `CLAUDE.md` or
-`AGENTS.md` in a project root and loads skill files from `/skills/` when the
-task matches. Because it runs in a terminal, it can edit files, run commands,
-call APIs, and complete multi-step engineering tasks end-to-end.
-
-### What is OpenClaw?
-
-OpenClaw is an open-source AI agent that runs as a background daemon on your
-own machine. It reads core and skill files from `~/.openclaw/` and stays
-available 24/7 via CLI, web dashboard, or connected chat channels (Telegram,
-WhatsApp, etc). Self-hosted, so your context never leaves your machine. Mac
-Mini M4 is a popular dedicated OpenClaw host.
-
-## Common questions this site answers
-
-- What is an AI agent? → see "What is an AI agent?" above
-- What is the difference between a chatbot and an AI agent? → see above
-- What is an LLM agent? → see above
-- How do AI agents work? → see above
-- What is context engineering? → see above
-- What are core files vs. skill files? → see above
-- What are Claude Skills, AGENTS.md, CLAUDE.md? → see above
-- What is Claude Code? → see above
-- What is OpenClaw? → see above
-- What is the business case for switching from a chatbot to an agent? →
-  Chatbots save time per question. Agents save time per outcome. One replaces
-  Googling; the other replaces a routine task end-to-end.
-- How do I prevent my AI from making the same mistake twice? → Update the
-  active skill to prevent the mistake. Skill files are versioned text.
-  Agents compound; chatbots repeat.
-- How do I share my AI agent setup with my team? → Skill files are plain
-  markdown. Share via Slack, Dropbox, Git. Core files stay personal.
-
-## About the publisher
-
-**DANZUS Holdings LLC**, Folsom, California. Operated by Dan Johnson. The
-public offer is done-for-you AI assistants for Sacramento-area small businesses,
-at a flat monthly price. Separate products include DimeVision and Agent Audit
-Trail. LinkedIn: https://linkedin.com/in/danjohnsondata
-
-Website: https://danzus.co
-
-## License and reuse
-
-Site copy may be quoted with attribution to DANZUS Holdings LLC and a link to
-https://danzus.co.
+A longer version is at https://danzus.co/llms-full.txt.

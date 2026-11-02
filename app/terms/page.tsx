@@ -3,12 +3,27 @@ import Link from 'next/link'
 import { LegalPage } from '../LegalPage'
 import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL } from '../site'
 
+const TITLE = 'Terms and SMS Policy | DANZUS Holdings LLC'
+const DESCRIPTION =
+  'Terms for DANZUS Holdings LLC, including SMS terms for people who call or text (916) 404-6129. Message frequency varies. Reply STOP to opt out.'
+
 export const metadata: Metadata = {
-  title: 'Terms',
-  description:
-    'Terms for DANZUS Holdings LLC, including SMS terms for people who call or text (916) 404-6129.',
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
   alternates: { canonical: '/terms' },
   robots: { index: true, follow: true },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: '/terms',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'DANZUS Holdings LLC' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+    images: ['/og-image.png'],
+  },
 }
 
 export default function TermsPage() {

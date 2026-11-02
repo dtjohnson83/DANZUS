@@ -2,12 +2,27 @@ import type { Metadata } from 'next'
 import { LegalPage } from '../LegalPage'
 import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY } from '../site'
 
+const TITLE = 'Privacy Notice | DANZUS Holdings LLC'
+const DESCRIPTION =
+  'Privacy notice for DANZUS Holdings LLC in Folsom. Phone numbers and SMS opt-in data from (916) 404-6129 are never shared or sold to third parties for marketing.'
+
 export const metadata: Metadata = {
-  title: 'Privacy',
-  description:
-    'DANZUS Holdings LLC privacy notice. Phone numbers and SMS opt-in data are never shared or sold to third parties for marketing.',
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
   alternates: { canonical: '/privacy' },
   robots: { index: true, follow: true },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: '/privacy',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'DANZUS Holdings LLC' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+    images: ['/og-image.png'],
+  },
 }
 
 export default function PrivacyPage() {

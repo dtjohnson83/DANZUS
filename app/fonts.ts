@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google'
 export const display = Inter({
   subsets: ['latin'],
   display: 'swap',
+  preload: true,
   axes: ['opsz'],
   variable: '--font-display',
+  adjustFontFallback: true,
 })

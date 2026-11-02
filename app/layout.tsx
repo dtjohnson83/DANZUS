@@ -17,11 +17,11 @@ export const metadata: Metadata = {
   keywords: [
     'DANZUS',
     'DANZUS Holdings LLC',
-    'Sacramento AI assistant',
-    'Folsom small business',
-    'AI assistant for contractors',
+    'AI assistant for small business Sacramento',
+    'small business automation Folsom',
+    'AI assistant Roseville',
+    'AI assistant El Dorado Hills',
     'missed call text back',
-    'Agent Audit Trail',
   ],
   authors: [
     { name: 'Dan Johnson', url: 'https://linkedin.com/in/danjohnsondata' },

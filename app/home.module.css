@@ -847,6 +847,24 @@
   font-size: 0.95rem;
 }
 
+.faq article {
+  padding: 22px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.faq h3 {
+  font-family: var(--display);
+  font-weight: 640;
+  font-size: 1.2rem;
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+}
+
+.faq p {
+  color: var(--muted);
+  max-width: 46rem;
+}
+
 .priceNote {
   margin-top: 18px;
   max-width: 44rem;
