@@ -131,9 +131,9 @@ const SITE_OFFERINGS = [
   },
   {
     name: 'SEO and AI search',
-    outcome: 'So the shop can show up in Google and in answers from tools such as ChatGPT and Perplexity.',
-    tier: 'Starting at $300/mo. A Google Business Profile and AI listing starter is $150/mo.',
-    steps: ['Google Business Profile', 'Local SEO for the towns you serve', 'Schema and structured data', 'An llms.txt file and pages a person or an AI can read'],
+    outcome: 'So the shop can show up on Google, and so ChatGPT and other AI tools can describe it.',
+    tier: 'Starting at $300/mo. Starting with your Google listing is $150/mo.',
+    steps: ['Your Google listing', 'Shows up for the towns you serve', 'Tells Google exactly what you do', 'Makes you readable by ChatGPT and other AI tools'],
   },
 ]
 
@@ -190,17 +190,17 @@ const TIERS = [
   },
   {
     name: 'SEO and AI search',
-    who: 'Google and AI answers',
+    who: 'Google and ChatGPT',
     price: 'Starting at $300/mo',
-    setup: 'Profile, pages, and structure',
-    body: 'Google Business Profile, local SEO, schema, an llms.txt file, and copy so the business can be described in Google and in answers from tools such as ChatGPT and Perplexity.',
+    setup: 'Listing, towns, and pages',
+    body: 'Your Google listing, the towns you serve, and pages written so Google and ChatGPT can say what you do.',
   },
   {
     name: 'Google Business Profile',
-    who: 'AI listing starter',
+    who: 'Start with your Google listing',
     price: 'Starting at $150/mo',
-    setup: 'Before the full search package',
-    body: 'The Google Business Profile and an AI listing, for a shop that is not ready for the fuller SEO and AI search work.',
+    setup: 'Before the full search work',
+    body: 'Your Google listing, plus enough that ChatGPT can find the shop, if you are not ready for the full search package.',
   },
 ]
 
@@ -410,8 +410,8 @@ export default function Home() {
             <p className={styles.priceNote}>
               Pilot and Starter each cover one assistant package. Growth runs Lead to Booked Job, Quote to Cash, and Job
               Closeout together. Custom covers Back Office, live status, and connections into tools you already use. A
-              website starts at $1,500. SEO and AI search starts at $300 a month, or $150 a month for the Google
-              Business Profile and AI listing starter.
+              website starts at $1,500. SEO and AI search starts at $300 a month, or $150 a month to start with your
+              Google listing.
             </p>
           </div>
         </section>
