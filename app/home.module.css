@@ -742,9 +742,165 @@
 
 .package {
   display: grid;
-  gap: 8px;
+  gap: 18px;
   padding: 32px 0;
   border-bottom: 1px solid var(--rule);
+}
+
+.demoOpen {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.demoPoster {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--rule);
+  background: #0c1410;
+}
+
+.demoImage {
+  object-fit: cover;
+}
+
+.demoShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 26, 20, 0.05) 42%, rgba(15, 26, 20, 0.78) 100%);
+}
+
+.demoChrome {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: rgba(15, 26, 20, 0.92);
+}
+
+.demoPlay {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--clay);
+  color: var(--ink);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+}
+
+.demoOpen:hover .demoPlay,
+.demoOpen:focus-visible .demoPlay {
+  background: #c4a36a;
+}
+
+.demoLabel {
+  color: var(--paper);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  font-size: 0.98rem;
+}
+
+.demoFallback {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--clay);
+  font-weight: 650;
+}
+
+.demoBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  background: rgba(8, 14, 11, 0.78);
+}
+
+.demoDialog {
+  width: min(920px, 100%);
+  background: var(--raise);
+  color: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 20px;
+  padding: 14px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.demoDialogBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.demoDialogBar p {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 640;
+  letter-spacing: -0.03em;
+  color: var(--paper);
+}
+
+.demoClose {
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--paper);
+  border-radius: 999px;
+  min-height: 36px;
+  padding: 0 14px;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.demoClose:hover {
+  border-color: var(--clay);
+  color: var(--clay);
+}
+
+.demoFrame,
+.demoFramePortrait {
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.demoFrame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.demoFramePortrait {
+  width: min(100%, calc((100dvh - 160px) * 9 / 16));
+  aspect-ratio: 9 / 16;
+  margin-inline: auto;
+}
+
+.demoFrame video,
+.demoFramePortrait video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #000;
 }
 
 .fit {

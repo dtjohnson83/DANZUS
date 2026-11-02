@@ -2,7 +2,9 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ContactForm } from './ContactForm'
+import { PackageDemo } from './PackageDemo'
 import { PhoneMockup } from './PhoneMockup'
+import { PACKAGE_DEMOS, type PackageName } from '@/lib/package-demos'
 import { display } from './fonts'
 import { SiteFooter } from './SiteFooter'
 import { SmsDisclosure } from './SmsDisclosure'
@@ -426,8 +428,9 @@ export default function Home() {
                     <h3>{item.name}</h3>
                     <p>{item.outcome}</p>
                     <p className={styles.fit}>{item.tier}</p>
+                    <Flow steps={item.steps} />
                   </div>
-                  <Flow steps={item.steps} />
+                  <PackageDemo slug={PACKAGE_DEMOS[item.name as PackageName]} title={item.name} />
                 </article>
               ))}
             </div>

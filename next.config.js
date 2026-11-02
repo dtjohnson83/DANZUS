@@ -1,5 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'ic048emi0kpty2jd.public.blob.vercel-storage.com',
+        pathname: '/demos/**',
+      },
+    ],
+  },
   async rewrites() {
     return [
       { source: '/contextkit', destination: '/contextkit/index.html' },
