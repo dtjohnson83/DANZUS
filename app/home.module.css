@@ -445,6 +445,7 @@
 }
 
 .thread {
+  position: relative;
   flex: 1;
   padding: 8px 0 6px;
 }
@@ -510,6 +511,76 @@
   color: #636366;
   font-size: 11px;
   font-weight: 500;
+}
+
+/* Bubbles stay in normal flow so the finished phone matches the static layout.
+   JS reveals them once; no-JS and reduced-motion keep this end state. */
+.typing {
+  position: absolute;
+  z-index: 2;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 16px;
+  background: #e9e9eb;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.typing[data-side='out'] {
+  left: auto;
+  right: 12px;
+  background: #0066d6;
+}
+
+.typingOn {
+  opacity: 1;
+}
+
+.typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8e8e93;
+}
+
+.typing[data-side='out'] span {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+@media (prefers-reduced-motion: no-preference) and (scripting: enabled) {
+  .reveal {
+    opacity: 0;
+    animation: imsg-show 0.2s linear 16s forwards;
+  }
+
+  .phone[data-armed] .reveal {
+    opacity: 0;
+    animation: none;
+  }
+
+  .phone[data-armed] .reveal.isOn {
+    opacity: 1;
+    animation: imsg-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .typingOn span {
+    animation: imsg-dot 1s infinite ease-in-out;
+  }
+
+  .typingOn span:nth-child(2) { animation-delay: 0.15s; }
+  .typingOn span:nth-child(3) { animation-delay: 0.3s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
 }
 
 .composer {
@@ -1019,6 +1090,20 @@
 @keyframes enter {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: none; }
+}
+
+@keyframes imsg-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes imsg-show {
+  to { opacity: 1; }
+}
+
+@keyframes imsg-dot {
+  0%, 70%, 100% { transform: translateY(0); opacity: 0.45; }
+  35% { transform: translateY(-3px); opacity: 1; }
 }
 
 @media (min-width: 720px) {
