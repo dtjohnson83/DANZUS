@@ -32,6 +32,9 @@ export const metadata: Metadata = {
     'AI assistant El Dorado Hills',
     'missed call text back Folsom',
     'contractor lead follow up Sacramento',
+    'small business website Sacramento',
+    'local SEO Folsom',
+    'AI search optimization',
     'DANZUS Holdings LLC',
     'Dan Johnson Folsom',
   ],
@@ -119,6 +122,21 @@ const PACKAGES = [
   },
 ]
 
+const SITE_OFFERINGS = [
+  {
+    name: 'Website',
+    outcome: 'A custom site for one local business. Fast on a phone, and built so the next step is a call or a lead.',
+    tier: 'Starting at $1,500.',
+    steps: ['Services and the towns you cover', 'A layout that works on a phone', 'Tap to call and a way to send a lead', 'Pages that load quickly'],
+  },
+  {
+    name: 'SEO and AI search',
+    outcome: 'So the shop can show up in Google and in answers from tools such as ChatGPT and Perplexity.',
+    tier: 'Starting at $300/mo. A Google Business Profile and AI listing starter is $150/mo.',
+    steps: ['Google Business Profile', 'Local SEO for the towns you serve', 'Schema and structured data', 'An llms.txt file and pages a person or an AI can read'],
+  },
+]
+
 const STEPS = [
   {
     title: 'Free call',
@@ -163,6 +181,27 @@ const TIERS = [
     setup: 'Starting at $1,500',
     body: 'Back Office, live job status, and any package that has to write into QuickBooks, a CRM, or another system you already run.',
   },
+  {
+    name: 'Website',
+    who: 'One local business',
+    price: 'Starting at $1,500',
+    setup: 'A project, not a monthly assistant',
+    body: 'A custom site, fast on a phone, with a clear way to call or send a lead.',
+  },
+  {
+    name: 'SEO and AI search',
+    who: 'Google and AI answers',
+    price: 'Starting at $300/mo',
+    setup: 'Profile, pages, and structure',
+    body: 'Google Business Profile, local SEO, schema, an llms.txt file, and copy so the business can be described in Google and in answers from tools such as ChatGPT and Perplexity.',
+  },
+  {
+    name: 'Google Business Profile',
+    who: 'AI listing starter',
+    price: 'Starting at $150/mo',
+    setup: 'Before the full search package',
+    body: 'The Google Business Profile and an AI listing, for a shop that is not ready for the fuller SEO and AI search work.',
+  },
 ]
 
 const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Free call request')}`
@@ -199,6 +238,7 @@ export default function Home() {
             <nav className={styles.deskLinks} aria-label="Primary">
               <a href="#uses">What it does</a>
               <a href="#packages">Packages</a>
+              <a href="#site">Site & search</a>
               <a href="#how">How it works</a>
               <a href="#pricing">Pricing</a>
               <a href="#faq">Questions</a>
@@ -211,6 +251,7 @@ export default function Home() {
           <nav className={styles.mobLinks} aria-label="Primary">
             <a href="#uses">What it does</a>
             <a href="#packages">Packages</a>
+            <a href="#site">Site & search</a>
             <a href="#how">How it works</a>
             <a href="#pricing">Pricing</a>
             <a href="#faq">Questions</a>
@@ -226,8 +267,8 @@ export default function Home() {
               <p className={styles.place}>Folsom, California. Sacramento, Roseville, El Dorado Hills, and nearby.</p>
               <h1>Never miss another lead.</h1>
               <p className={styles.lead}>
-                AI assistants and automation for small businesses in Sacramento, Folsom, Roseville, and El Dorado Hills.
-                Set up for you, flat monthly price.
+                Websites, local search, and AI assistants for small businesses in Sacramento, Folsom, Roseville, and
+                El Dorado Hills.
               </p>
               <p className={styles.punch}>You were on a roof. The lead texted the next guy.</p>
             </div>
@@ -302,6 +343,26 @@ export default function Home() {
                 </article>
               ))}
             </div>
+            <div className={styles.offerHead} id="site">
+              <p className={styles.kicker}>Site and search</p>
+              <h3>Found before they call.</h3>
+              <p className={styles.intro}>
+                A site for one shop, and the search work that tells Google and AI tools what that shop does. Priced on
+                their own, separate from the assistant packages above.
+              </p>
+            </div>
+            <div className={styles.packages}>
+              {SITE_OFFERINGS.map((item) => (
+                <article className={styles.package} key={item.name}>
+                  <div>
+                    <h3>{item.name}</h3>
+                    <p>{item.outcome}</p>
+                    <p className={styles.fit}>{item.tier}</p>
+                  </div>
+                  <Flow steps={item.steps} />
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -326,10 +387,10 @@ export default function Home() {
         <section className={styles.section} id="pricing" aria-labelledby="pricing-heading">
           <div className={styles.shell}>
             <p className={styles.kicker}>Pricing</p>
-            <h2 id="pricing-heading">Flat monthly price.</h2>
+            <h2 id="pricing-heading">Starting prices.</h2>
             <p className={styles.intro}>
-              Setup is separate. Every number here is a starting range. The free call turns it into a fixed quote for
-              your shop.
+              Every number here is a starting range. The free call turns it into a fixed quote for your shop. A website
+              is a project. Search and the assistants are monthly.
             </p>
             <div className={styles.rates}>
               {TIERS.map((tier) => (
@@ -347,8 +408,10 @@ export default function Home() {
               ))}
             </div>
             <p className={styles.priceNote}>
-              Pilot and Starter each cover one package. Growth runs Lead to Booked Job, Quote to Cash, and Job Closeout
-              together. Custom covers Back Office, live status, and connections into tools you already use.
+              Pilot and Starter each cover one assistant package. Growth runs Lead to Booked Job, Quote to Cash, and Job
+              Closeout together. Custom covers Back Office, live status, and connections into tools you already use. A
+              website starts at $1,500. SEO and AI search starts at $300 a month, or $150 a month for the Google
+              Business Profile and AI listing starter.
             </p>
           </div>
         </section>
@@ -406,8 +469,8 @@ export default function Home() {
                   Before that, he served in the Royal Australian Air Force.
                 </p>
                 <p>
-                  The offer on this page is that same standard of care, scoped for a shop and billed as a flat monthly
-                  price. The company is DANZUS Holdings LLC.
+                  The work on this page is that same standard of care, scoped for a shop. Assistants and search are a flat
+                  monthly price. A website is a project. The company is DANZUS Holdings LLC.
                 </p>
                 <a className={styles.linkedin} href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
                   Dan Johnson on LinkedIn
