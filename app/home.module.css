@@ -299,7 +299,7 @@
 }
 
 .phone {
-  width: min(100%, 292px);
+  width: min(100%, 336px);
   justify-self: start;
 }
 
@@ -362,25 +362,25 @@
 
 .action {
   left: -4px;
-  top: 108px;
-  height: 22px;
+  top: 15.4%;
+  height: 4.6%;
   border-radius: 2px 0 0 2px;
 }
 
 .vol1,
 .vol2 {
   left: -4px;
-  height: 46px;
+  height: 9.2%;
   border-radius: 2px 0 0 2px;
 }
 
-.vol1 { top: 146px; }
-.vol2 { top: 202px; }
+.vol1 { top: 22.6%; }
+.vol2 { top: 33.4%; }
 
 .power {
   right: -4px;
-  top: 168px;
-  height: 74px;
+  top: 26.2%;
+  height: 14.6%;
   border-radius: 0 2px 2px 0;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.9),
@@ -389,18 +389,22 @@
 }
 
 .screen {
+  --u: calc(100cqw / 393);
   position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 19.5;
   background: #fff;
-  border-radius: 42px;
-  min-height: 548px;
-  color: #111;
+  border-radius: 44px;
+  color: #000;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+  container-type: inline-size;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
   box-shadow:
-    0 0 0 2px #121214,
-    inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+    0 0 0 2px #0e0e10,
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22);
   transform: translateZ(1px);
 }
 
@@ -420,135 +424,248 @@
 
 .status {
   position: relative;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 18px 0;
-  font-size: 14px;
-  font-weight: 650;
-  letter-spacing: -0.02em;
+  z-index: 7;
+  height: calc(54 * var(--u));
+  flex: 0 0 auto;
+  color: #000;
 }
 
 .island {
   position: absolute;
+  z-index: 2;
   left: 50%;
-  top: 11px;
-  width: 96px;
-  height: 28px;
+  top: calc(11 * var(--u));
+  width: calc(126 * var(--u));
+  height: calc(37 * var(--u));
   transform: translateX(-50%);
   background: #000;
-  border-radius: 20px;
+  border-radius: calc(18.5 * var(--u));
+}
+
+.time,
+.statusIcons {
+  position: absolute;
+  z-index: 3;
+  top: calc(11 * var(--u));
+  height: calc(37 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.time {
+  left: 0;
+  width: calc(133.5 * var(--u));
+  padding-inline: calc(10 * var(--u));
+  font-size: calc(17 * var(--u));
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
 }
 
 .statusIcons {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
+  right: 0;
+  width: calc(133.5 * var(--u));
+  gap: calc(6 * var(--u));
+  padding-inline: calc(8 * var(--u));
+  color: #000;
 }
 
 .statusIcons svg {
   display: block;
+  fill: currentColor;
+  flex: 0 0 auto;
+}
+
+.cell {
+  width: calc(17 * var(--u));
+  height: calc(12 * var(--u));
+}
+
+.wifi {
+  width: calc(16 * var(--u));
+  height: calc(12 * var(--u));
+}
+
+.battery {
+  width: calc(27.5 * var(--u));
+  height: calc(13 * var(--u));
 }
 
 .msgBar {
+  position: relative;
+  z-index: 7;
   display: grid;
-  grid-template-columns: 22px 1fr 22px;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  padding: calc(1 * var(--u)) calc(8 * var(--u)) calc(7 * var(--u));
+  border-bottom: 0.5px solid rgba(60, 60, 67, 0.29);
+  color: #000;
+  flex: 0 0 auto;
+}
+
+.back {
+  display: flex;
   align-items: center;
-  padding: 2px 8px 8px;
-  border-bottom: 0.5px solid rgba(60, 60, 67, 0.18);
-  color: #111;
+  gap: 1px;
+  justify-self: start;
+  height: 32px;
+}
+
+.back svg {
+  width: 12px;
+  height: 20px;
+}
+
+.backCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: #007aff;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.who {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  min-width: 0;
 }
 
 .avatar {
-  width: 26px;
-  height: 26px;
-  margin: 0 auto 1px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: #c7c7cc;
+  background: linear-gradient(165deg, #8ecbff 0%, #0a84ff 46%, #0040dd 100%);
   color: #fff;
-  font-size: 10px;
-  font-weight: 650;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
   display: grid;
   place-items: center;
 }
 
-.msgBar strong {
+.who strong {
   display: block;
+  max-width: 168px;
   text-align: center;
+  color: #000;
   font-size: 12px;
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: -0.02em;
-  line-height: 1.1;
+  line-height: 1.15;
+}
+
+.nameChevron {
+  margin-left: 1px;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.facetime {
+  justify-self: end;
+  width: 25px;
+  height: auto;
+  margin-top: 8px;
 }
 
 .thread {
   position: relative;
-  flex: 1;
-  padding: 8px 0 6px;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 2px 0 2px;
 }
 
 .when {
   text-align: center;
-  color: #636366;
-  font-size: 11px;
-  font-weight: 550;
-  margin: 6px 0 8px;
+  color: #8e8e93;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 4px 12px 6px;
 }
 
 .bubbleIn,
 .bubbleOut {
   position: relative;
-  max-width: 78%;
-  padding: 8px 12px;
-  font-size: 15px;
-  line-height: 1.25;
-  letter-spacing: -0.015em;
+  max-width: 75%;
+  padding: 6px 12px;
+  font-size: 17px;
+  line-height: 21px;
+  letter-spacing: -0.024em;
+  font-weight: 400;
 }
 
 .bubbleIn {
   background: #e9e9eb;
-  color: #111;
-  border-radius: 18px 18px 18px 6px;
-  margin: 2px 36px 2px 12px;
+  color: #000;
+  border-radius: 18px 18px 18px 4px;
+  margin: 1px 0 1px 12px;
 }
 
+.bubbleOut {
+  background: #0a84ff;
+  color: #fff;
+  border-radius: 18px 18px 4px 18px;
+  margin: 1px 12px 1px auto;
+}
+
+.bubbleIn::before,
+.bubbleOut::before,
 .bubbleIn::after,
 .bubbleOut::after {
   content: '';
   position: absolute;
   bottom: 0;
   width: 12px;
-  height: 14px;
+  height: 16px;
+}
+
+.bubbleIn::before {
+  left: -5px;
+  background: #e9e9eb;
+  border-bottom-right-radius: 10px 12px;
 }
 
 .bubbleIn::after {
-  left: -5px;
-  background: #e9e9eb;
-  border-bottom-right-radius: 10px;
-  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  left: -10px;
+  width: 10px;
+  background: #fff;
+  border-bottom-right-radius: 8px;
 }
 
-.bubbleOut {
-  background: #0066d6;
-  color: #fff;
-  border-radius: 18px 18px 6px 18px;
-  margin: 2px 12px 2px auto;
+.bubbleOut::before {
+  right: -5px;
+  background: #0a84ff;
+  border-bottom-left-radius: 10px 12px;
 }
 
 .bubbleOut::after {
-  right: -5px;
-  background: #0066d6;
-  border-bottom-left-radius: 10px;
-  clip-path: polygon(0 0, 100% 100%, 0 100%);
+  right: -10px;
+  width: 10px;
+  background: #fff;
+  border-bottom-left-radius: 8px;
 }
 
 .delivered {
-  margin: 1px 18px 8px;
+  margin: 1px 14px 4px;
   text-align: right;
-  color: #636366;
+  color: #8e8e93;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
 }
 
 /* Bubbles stay in normal flow so the finished phone matches the static layout.
@@ -556,13 +673,13 @@
 .typing {
   position: absolute;
   z-index: 2;
-  left: 12px;
+  left: 14px;
   display: flex;
   align-items: center;
   gap: 4px;
-  height: 30px;
+  height: 34px;
   padding: 0 12px;
-  border-radius: 16px;
+  border-radius: 18px;
   background: #e9e9eb;
   opacity: 0;
   pointer-events: none;
@@ -592,7 +709,7 @@
 @media (prefers-reduced-motion: no-preference) and (scripting: enabled) {
   .reveal {
     opacity: 0;
-    animation: imsg-show 0.2s linear 16s forwards;
+    animation: imsg-show 0.2s linear 20s forwards;
   }
 
   .phone[data-armed] .reveal {
@@ -624,36 +741,49 @@
 .composer {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 10px 4px;
-  color: #636366;
+  gap: calc(8 * var(--u));
+  padding: calc(6 * var(--u)) calc(8 * var(--u)) 0;
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 7;
 }
 
-.composer span[aria-hidden] {
-  width: 26px;
-  height: 26px;
+.plus,
+.mic {
+  width: 28px;
+  height: 28px;
   display: grid;
   place-items: center;
   flex: 0 0 auto;
 }
 
-.composer i {
+.plus svg,
+.mic svg {
+  width: 78%;
+  height: 78%;
+}
+
+.pill {
   flex: 1;
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 14px;
   border: 1px solid #c6c6c8;
-  border-radius: 18px;
-  min-height: 32px;
-  padding: 7px 12px;
-  font-style: normal;
-  font-size: 15px;
-  color: #636366;
+  border-radius: 999px;
+  color: #8e8e93;
+  font-size: 17px;
+  letter-spacing: -0.024em;
+  line-height: 22px;
 }
 
 .homeBar {
-  width: 112px;
-  height: 5px;
-  margin: 6px auto 8px;
-  border-radius: 4px;
-  background: #111;
+  width: calc(134 * var(--u));
+  height: calc(5 * var(--u));
+  margin: calc(8 * var(--u)) auto calc(8 * var(--u));
+  border-radius: 100px;
+  background: #000;
+  flex: 0 0 auto;
 }
 
 .phone figcaption {
@@ -1203,11 +1333,11 @@
   }
 
   .heroGrid {
-    grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.62fr);
+    grid-template-columns: minmax(0, 1.1fr) minmax(380px, 0.78fr);
     grid-template-areas:
       'top phone'
       'rest phone';
-    gap: 28px 48px;
+    gap: 28px 40px;
     align-items: end;
   }
 
@@ -1215,8 +1345,14 @@
   .heroRest { grid-area: rest; }
   .phone {
     grid-area: phone;
+    width: 368px;
     margin-bottom: -36px;
     justify-self: end;
+  }
+
+  .stage {
+    padding-left: 14px;
+    padding-right: 14px;
   }
 
   .split {
