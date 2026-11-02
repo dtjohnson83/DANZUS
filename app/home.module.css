@@ -139,6 +139,140 @@
   padding-bottom: 12px;
 }
 
+.menuButton {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--clay);
+  flex: 0 0 auto;
+  cursor: pointer;
+}
+
+.burger {
+  display: grid;
+  gap: 5px;
+  width: 18px;
+}
+
+.burger span {
+  display: block;
+  height: 1.5px;
+  background: currentColor;
+  transform-origin: center;
+}
+
+.menuPanel {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .mobLinks {
+    display: none;
+  }
+
+  .menuButton {
+    display: inline-flex;
+  }
+
+  .headerInner {
+    min-height: 64px;
+    gap: 10px;
+  }
+
+  .call {
+    min-height: 40px;
+    padding: 0 12px;
+    font-size: 0.84rem;
+  }
+
+  .page .menuPanel {
+    position: absolute;
+    inset: auto 0 auto 0;
+    top: 100%;
+    display: grid;
+    gap: 2px;
+    margin: 0;
+    padding: 8px 20px 20px;
+    background: var(--bg);
+    border: 0;
+    border-bottom: 1px solid var(--rule);
+    box-shadow: 0 22px 40px rgba(0, 0, 0, 0.35);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    z-index: 30;
+  }
+
+  .page .menuPanel a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    font-size: 1.05rem;
+    letter-spacing: -0.02em;
+  }
+
+  .page .menuPanelOpen {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .place,
+  .booked,
+  .lead {
+    display: none;
+  }
+
+  .hero {
+    padding: 32px 0 72px;
+  }
+
+  .heroGrid {
+    gap: 28px;
+    align-items: start;
+  }
+
+  .punch {
+    margin-top: 20px;
+    max-width: 17em;
+  }
+
+  .foldCall {
+    display: inline-flex;
+    justify-self: start;
+  }
+
+  .actions .primary {
+    display: none;
+  }
+}
+
+.burger[data-open] span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.burger[data-open] span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger[data-open] span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .burger span,
+  .menuPanel {
+    transition: transform 0.22s ease, opacity 0.22s ease, visibility 0.22s ease;
+  }
+}
+
 .hero {
   position: relative;
   padding: 36px 0 72px;
@@ -395,7 +529,8 @@
   margin-top: 26px;
 }
 
-.primary {
+.primary,
+.foldCall {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -411,7 +546,14 @@
   text-decoration: none;
 }
 
-.primary:hover {
+@media (min-width: 768px) {
+  .foldCall {
+    display: none;
+  }
+}
+
+.primary:hover,
+.foldCall:hover {
   background: #c4a56e;
   color: var(--ink);
 }
