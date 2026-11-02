@@ -244,7 +244,7 @@ export default function Home() {
                 Websites, local search, and AI assistants for small businesses in Sacramento, Folsom, Roseville, and
                 El Dorado Hills.
               </p>
-              <p className={styles.punch}>You were on a roof. The lead texted the next guy.</p>
+              <p className={styles.punch}>You were under a sink. The lead texted the next guy.</p>
             </div>
             <HeroLoop />
             <PhoneMockup />

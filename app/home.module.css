@@ -1737,20 +1737,21 @@
       'loop phone'
       'rest phone';
     gap: 28px 40px;
-    align-items: end;
+    align-items: start;
   }
 
   .heroTop { grid-area: top; }
   .heroLoop {
     grid-area: loop;
     justify-self: start;
-    align-self: end;
+    align-self: start;
   }
   .heroRest { grid-area: rest; }
   .phone {
     grid-area: phone;
+    align-self: start;
     width: 368px;
-    margin-bottom: -36px;
+    margin-bottom: 0;
     justify-self: end;
   }
 
