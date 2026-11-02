@@ -3,9 +3,9 @@ import type { Metadata } from 'next'
 
 const SITE_URL = 'https://danzus.co'
 const SITE_NAME = 'DANZUS'
-const DEFAULT_TITLE = 'AI Assistants for Sacramento and Folsom Small Businesses | DANZUS'
+const DEFAULT_TITLE = 'Websites, Search, and AI Assistants for Sacramento and Folsom | DANZUS'
 const DEFAULT_DESCRIPTION =
-  'DANZUS in Folsom sets up AI assistants for Sacramento-area contractors and local services. Missed calls, follow-up, booking, and reviews. Flat monthly price.'
+  'DANZUS in Folsom builds websites and sets up AI assistants and local search for Sacramento-area contractors and local services. A website starts at $1,500. SEO and AI search starts at $300 a month.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -22,6 +22,8 @@ export const metadata: Metadata = {
     'AI assistant Roseville',
     'AI assistant El Dorado Hills',
     'missed call text back',
+    'small business website Folsom',
+    'local SEO Sacramento',
   ],
   authors: [
     { name: 'Dan Johnson', url: 'https://linkedin.com/in/danjohnsondata' },

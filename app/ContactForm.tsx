@@ -63,11 +63,14 @@ export function ContactForm() {
         </label>
       </div>
       <label className={styles.field}>
-        What should it handle first?
+        What should we start with?
         <select name="workflow" required defaultValue="">
           <option value="" disabled>
             Choose one
           </option>
+          <option>A new website</option>
+          <option>SEO and AI search</option>
+          <option>Google Business Profile and AI listing</option>
           <option>Missed-call text-back</option>
           <option>Website or Facebook lead response</option>
           <option>Quote follow-up</option>

@@ -6,10 +6,10 @@ import {
 } from '@/app/site'
 
 export const HOME_TITLE =
-  'AI Assistants for Small Businesses in Sacramento, Folsom, Roseville, and El Dorado Hills | DANZUS'
+  'Websites and AI Assistants for Small Businesses in Sacramento, Folsom, Roseville, and El Dorado Hills | DANZUS'
 
 export const HOME_DESCRIPTION =
-  'DANZUS Holdings LLC in Folsom sets up AI assistants and automation for small businesses in Sacramento, Folsom, Roseville, and El Dorado Hills. Missed calls, quotes, booking, and reviews. Flat monthly price.'
+  'DANZUS Holdings LLC in Folsom builds websites and sets up AI assistants and local search for small businesses in Sacramento, Folsom, Roseville, and El Dorado Hills. A website starts at $1,500. SEO and AI search starts at $300 a month.'
 
 const DEMO_BASE = 'https://ic048emi0kpty2jd.public.blob.vercel-storage.com/demos'
 
@@ -19,7 +19,7 @@ export const FAQS = [
   {
     question: 'What does it cost?',
     answer:
-      'Prices on this page are starting ranges. Pilot is $150 a month, starting at $250 setup, for the first three Sacramento-area shops in exchange for an honest testimonial. Starter is $200 to $300 a month, starting at $500 setup, for one package. Growth is $400 to $600 a month, starting at $1,000 to $1,500 setup, for Lead to Booked Job, Quote to Cash, and Job Closeout. Custom work starts at $1,500, or $100 to $150 an hour, when the assistant has to write into QuickBooks, a CRM, or another system you already run. The free call turns the range into a fixed quote before any setup begins.',
+      'Prices on this page are starting ranges. A website starts at $1,500. SEO and AI search starts at $300 a month, and a Google Business Profile plus AI listing starter starts at $150 a month. Pilot is $150 a month, starting at $250 setup, for the first three Sacramento-area shops in exchange for an honest testimonial. Starter is $200 to $300 a month, starting at $500 setup, for one assistant package. Growth is $400 to $600 a month, starting at $1,000 to $1,500 setup, for Lead to Booked Job, Quote to Cash, and Job Closeout. Custom work starts at $1,500, or $100 to $150 an hour, when the assistant has to write into QuickBooks, a CRM, or another system you already run. The free call turns the range into a fixed quote before any setup begins.',
   },
   {
     question: 'How long does setup take?',
@@ -48,7 +48,18 @@ export const FAQS = [
   },
 ] as const
 
-export const PACKAGE_SERVICES = [
+type ListedService = {
+  name: string
+  description: string
+  lowPrice: string
+  highPrice?: string
+  unitText?: string
+  offerNote: string
+  serviceType?: string
+  anchor?: string
+}
+
+export const PACKAGE_SERVICES: ListedService[] = [
   {
     name: 'Lead to Booked Job',
     description: 'A new inquiry becomes a time on the calendar. Capture the lead, reply, qualify, then book and remind.',
@@ -89,7 +100,36 @@ export const PACKAGE_SERVICES = [
     unitText: 'MONTH',
     offerNote: 'FAQ answers fit Starter. Live job or order status is Custom.',
   },
-] as const
+  {
+    name: 'Website',
+    description:
+      'A custom website for one local business. Fast on a phone, with a way to call or send a lead.',
+    lowPrice: '1500',
+    offerNote: 'Starting at $1,500. A project, not a monthly assistant.',
+    serviceType: 'Website design for a local business',
+    anchor: '#site',
+  },
+  {
+    name: 'SEO and AI search',
+    description:
+      'Google Business Profile, local SEO, schema, an llms.txt file, and pages so the business can be described in Google and in AI answers.',
+    lowPrice: '300',
+    unitText: 'MONTH',
+    offerNote: 'Starting at $300 per month. A Google Business Profile and AI listing starter starts at $150 per month.',
+    serviceType: 'Local SEO and AI search',
+    anchor: '#site',
+  },
+  {
+    name: 'Google Business Profile and AI listing',
+    description:
+      'A starter for the Google Business Profile and an AI listing, before the fuller SEO and AI search package.',
+    lowPrice: '150',
+    unitText: 'MONTH',
+    offerNote: 'Starting at $150 per month.',
+    serviceType: 'Google Business Profile and AI listing',
+    anchor: '#site',
+  },
+]
 
 export const DEMO_VIDEOS = [
   ['01-lead-to-booked-job', 'Lead to Booked Job'],
@@ -173,16 +213,16 @@ export function siteJsonLd() {
         '@id': `${SITE_URL}/#service-${service.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
         name: service.name,
         description: service.description,
-        serviceType: 'AI assistant for a small business',
+        serviceType: service.serviceType ?? 'AI assistant for a small business',
         provider: { '@id': businessId },
         areaServed: areaServed(),
-        url: `${SITE_URL}/#packages`,
+        url: `${SITE_URL}/${service.anchor ?? '#packages'}`,
         offers: {
           '@type': 'AggregateOffer',
           priceCurrency: 'USD',
           lowPrice: service.lowPrice,
-          highPrice: service.highPrice,
-          unitText: service.unitText,
+          ...(service.highPrice ? { highPrice: service.highPrice } : {}),
+          ...(service.unitText ? { unitText: service.unitText } : {}),
           description: service.offerNote,
         },
       })),

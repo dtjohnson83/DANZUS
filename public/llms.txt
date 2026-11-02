@@ -1,8 +1,10 @@
 # DANZUS
 
-> DANZUS Holdings LLC, in Folsom, California, sets up AI assistants and automation
-> for small businesses in Sacramento, Folsom, Roseville, El Dorado Hills, and nearby.
-> The offer is a workflow package at a flat monthly price. Owner: Dan Johnson.
+> DANZUS Holdings LLC, in Folsom, California, builds websites and sets up local
+> search and AI assistants for small businesses in Sacramento, Folsom, Roseville,
+> El Dorado Hills, and nearby. A website starts at $1,500. SEO and AI search
+> starts at $300 a month. A Google Business Profile and AI listing starter starts
+> at $150 a month. Assistant packages are a flat monthly price. Owner: Dan Johnson.
 > Call or text (916) 404-6129. Email dan@danzus.co.
 > LinkedIn: https://linkedin.com/in/danjohnsondata
 
@@ -12,6 +14,9 @@ Sacramento, Folsom, Roseville, El Dorado Hills, and nearby.
 
 ## Services
 
+- Website: a custom site for one local business, fast on a phone, built so the next step is a call or a lead. Starting at $1,500.
+- SEO and AI search: Google Business Profile, local SEO, schema, an llms.txt file, and pages so the business can be described in Google and in AI answers such as ChatGPT and Perplexity. Starting at $300 a month.
+- Google Business Profile and AI listing: a starter before the fuller search package. Starting at $150 a month.
 - Lead to Booked Job: a new inquiry becomes a time on the calendar.
 - Quote to Cash: an estimate becomes money in the account.
 - Job Closeout: a finished job leaves a review and a referral.
@@ -28,6 +33,9 @@ These are starting ranges. The free call turns one into a fixed quote.
 - Starter: $200 to $300 a month, setup starting at $500. One package.
 - Growth: $400 to $600 a month, setup starting at $1,000 to $1,500. Lead to Booked Job, Quote to Cash, and Job Closeout.
 - Custom: $100 to $150 an hour, setup starting at $1,500. Back Office, live status, and connections into software the shop already runs.
+- Website: starting at $1,500. A project, not a monthly assistant.
+- SEO and AI search: starting at $300 a month.
+- Google Business Profile and AI listing: starting at $150 a month.
 
 ## Contact
 
@@ -39,7 +47,7 @@ These are starting ranges. The free call turns one into a fixed quote.
 
 ## Pages
 
-- [Homepage](https://danzus.co/): packages, pricing, questions, and contact.
+- [Homepage](https://danzus.co/): websites, local search, assistant packages, starting prices, questions, and contact.
 - [Privacy](https://danzus.co/privacy): phone numbers and SMS opt-in data are never shared or sold for marketing.
 - [Terms](https://danzus.co/terms): SMS terms for people who call or text (916) 404-6129.
 

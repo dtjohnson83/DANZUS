@@ -866,6 +866,20 @@
   color: var(--paper);
 }
 
+.offerHead {
+  margin-top: 56px;
+  max-width: 38rem;
+  scroll-margin-top: 120px;
+}
+
+.offerHead h3 {
+  font-family: var(--display);
+  font-weight: 650;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
 .packages {
   border-top: 1px solid var(--rule);
 }
@@ -1482,7 +1496,7 @@
   }
 
   .rate {
-    grid-template-columns: 160px minmax(0, 1fr) 250px;
+    grid-template-columns: 230px minmax(0, 1fr) 250px;
     gap: 28px;
     align-items: baseline;
   }
