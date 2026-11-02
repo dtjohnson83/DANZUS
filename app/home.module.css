@@ -764,7 +764,8 @@
   position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  /* Shorter than 16:9 so the burned-in caption band is outside the frame. */
+  aspect-ratio: 16 / 7.2;
   overflow: hidden;
   border-radius: 16px;
   border: 1px solid var(--rule);
@@ -773,12 +774,13 @@
 
 .demoImage {
   object-fit: cover;
+  object-position: center top;
 }
 
 .demoShade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(15, 26, 20, 0.05) 42%, rgba(15, 26, 20, 0.78) 100%);
+  background: linear-gradient(180deg, rgba(15, 26, 20, 0) 62%, #0f1a14 100%);
 }
 
 .demoChrome {
@@ -789,8 +791,8 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 14px;
-  background: rgba(15, 26, 20, 0.92);
+  padding: 14px 14px 12px;
+  background: #0f1a14;
 }
 
 .demoPlay {
