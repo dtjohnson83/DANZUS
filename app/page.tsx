@@ -1,395 +1,686 @@
-const ORGANIZATION_JSONLD = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'DANZUS Holdings LLC',
-  alternateName: 'DANZUS',
-  url: 'https://danzus.co',
-  logo: 'https://danzus.co/danzus-mark-512.png',
-  description:
-    'DANZUS builds practical AI software for trades, compliance, and physical-world operations.',
-  foundingDate: '2024',
-  foundingLocation: {
-    '@type': 'Place',
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Folsom',
-      addressRegion: 'CA',
-      addressCountry: 'US',
-    },
-  },
-  knowsAbout: [
-    'AI agents',
-    'AI-native software',
-    'Context engineering',
-    'Large language models',
-    'Claude Code',
-    'Software for the trades',
-    'Compliance software',
+import type { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+import { ContactForm } from './ContactForm'
+import { display } from './fonts'
+import styles from './home.module.css'
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_PHONE_SCHEMA,
+  CONTACT_PHONE_TEL,
+  LINKEDIN_URL,
+  PORTRAIT_SRC,
+  SITE_URL,
+} from './site'
+
+const TITLE = 'Never Miss Another Lead | Folsom & Sacramento AI | DANZUS'
+const DESCRIPTION =
+  'DANZUS in Folsom sets up AI assistants for Sacramento-area contractors and local services. Missed calls, follow-up, booking, and reviews. Flat monthly price.'
+
+export const metadata: Metadata = {
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
+  keywords: [
+    'Sacramento AI assistant',
+    'Folsom AI assistant',
+    'AI assistant for small business Sacramento',
+    'missed call text back Folsom',
+    'contractor lead follow up Sacramento',
+    'AI for contractors Folsom',
+    'local service booking reminders',
+    'Google review requests small business',
+    'DANZUS Holdings LLC',
+    'Dan Johnson Folsom',
   ],
-  founder: {
-    '@type': 'Person',
-    name: 'Dan Johnson',
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: SITE_URL,
+    siteName: 'DANZUS',
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [{ url: '/og-home.jpg', width: 1200, height: 630, alt: 'Dan Johnson of DANZUS in Folsom, California' }],
   },
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    itemListElement: [
-      {
-        '@type': 'SoftwareApplication',
-        name: 'DimeVision',
-        url: 'https://dimevision.app',
-        description: 'Free AI welding coach for students and apprentices',
-      },
-      {
-        '@type': 'SoftwareApplication',
-        name: 'AgentAudit',
-        url: 'https://aiagentaudit.dev',
-        description: 'Compliance infrastructure for agentic AI systems',
-      },
-      {
-        '@type': 'Product',
-        name: 'Family Agent by DANZUS',
-        url: 'https://danzus.co/family-agent',
-        description: 'A configurable household assistant for shared calendars, Messages, and family logistics',
-      },
-    ],
+  twitter: {
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+    images: ['/og-home.jpg'],
   },
-  sameAs: [],
 }
 
-const WEBSITE_JSONLD = {
+const LOCAL_BUSINESS_JSONLD = {
   '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'DANZUS',
-  url: 'https://danzus.co',
-  publisher: { '@type': 'Organization', name: 'DANZUS Holdings LLC' },
-  inLanguage: 'en',
+  '@graph': [
+    {
+      '@type': ['LocalBusiness', 'ProfessionalService'],
+      '@id': `${SITE_URL}/#business`,
+      name: 'DANZUS',
+      legalName: 'DANZUS Holdings LLC',
+      url: SITE_URL,
+      image: `${SITE_URL}/dan-johnson.jpg`,
+      logo: `${SITE_URL}/danzus-mark-512.png`,
+      email: CONTACT_EMAIL,
+      telephone: CONTACT_PHONE_SCHEMA,
+      description: DESCRIPTION,
+      priceRange: '$$',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Folsom',
+        addressRegion: 'CA',
+        addressCountry: 'US',
+      },
+      areaServed: [
+        {
+          '@type': 'City',
+          name: 'Sacramento',
+          containedInPlace: { '@type': 'State', name: 'California' },
+        },
+        {
+          '@type': 'City',
+          name: 'Folsom',
+          containedInPlace: { '@type': 'State', name: 'California' },
+        },
+      ],
+      founder: { '@id': `${SITE_URL}/#dan-johnson` },
+      sameAs: [LINKEDIN_URL],
+      knowsAbout: [
+        'Missed-call text-back',
+        'Lead follow-up for contractors',
+        'Appointment booking and reminders',
+        'Google review requests',
+        'AI assistants for small businesses',
+      ],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Done-for-you AI assistants',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            name: 'Pilot',
+            description:
+              'First three clients. One workflow package, starting at $250 setup and $150 per month, in exchange for an honest testimonial.',
+            priceCurrency: 'USD',
+            priceSpecification: {
+              '@type': 'UnitPriceSpecification',
+              price: '150',
+              priceCurrency: 'USD',
+              unitText: 'MONTH',
+            },
+          },
+          {
+            '@type': 'Offer',
+            name: 'Starter',
+            description:
+              'One workflow package, such as part of Lead to Booked Job, quote follow-up, or FAQ answers. Setup starting at $500. Monthly starting at $200 to $300.',
+            priceCurrency: 'USD',
+            priceSpecification: {
+              '@type': 'UnitPriceSpecification',
+              minPrice: '200',
+              maxPrice: '300',
+              priceCurrency: 'USD',
+              unitText: 'MONTH',
+            },
+          },
+          {
+            '@type': 'Offer',
+            name: 'Growth',
+            description:
+              'Lead to Booked Job, Quote to Cash, and Job Closeout. Setup starting at $1,000 to $1,500. Monthly starting at $400 to $600.',
+            priceCurrency: 'USD',
+            priceSpecification: {
+              '@type': 'UnitPriceSpecification',
+              minPrice: '400',
+              maxPrice: '600',
+              priceCurrency: 'USD',
+              unitText: 'MONTH',
+            },
+          },
+          {
+            '@type': 'Offer',
+            name: 'Custom integrations',
+            description:
+              'Back Office, live job status, and connections to QuickBooks, a CRM, or other tools. Starting at $1,500, or $100 to $150 per hour.',
+            priceCurrency: 'USD',
+            priceSpecification: {
+              '@type': 'PriceSpecification',
+              minPrice: '1500',
+              priceCurrency: 'USD',
+            },
+          },
+        ],
+      },
+    },
+    {
+      '@type': 'Person',
+      '@id': `${SITE_URL}/#dan-johnson`,
+      name: 'Dan Johnson',
+      url: LINKEDIN_URL,
+      jobTitle: 'Lead AI Solutions Engineer',
+      worksFor: { '@type': 'Organization', name: 'App Orchid' },
+      homeLocation: {
+        '@type': 'Place',
+        name: 'Folsom, California',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Folsom',
+          addressRegion: 'CA',
+          addressCountry: 'US',
+        },
+      },
+      sameAs: [LINKEDIN_URL],
+      description:
+        'Dan Johnson lives in Folsom, California. He is Lead AI Solutions Engineer at App Orchid, where he builds enterprise AI agents and ontologies, and he previously served in the Royal Australian Air Force. He operates DANZUS Holdings LLC.',
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      name: 'DANZUS',
+      url: SITE_URL,
+      description: DESCRIPTION,
+      publisher: { '@id': `${SITE_URL}/#business` },
+      inLanguage: 'en-US',
+    },
+  ],
+}
+
+const USE_CASES = [
+  {
+    title: 'Missed-call text-back',
+    body: 'Within 60 seconds. They called while you were on a ladder. A text goes out before they dial the next truck.',
+  },
+  {
+    title: 'Lead replies',
+    body: 'A form on your site, or a Facebook message. Answered right away, including after the crew is home.',
+  },
+  {
+    title: 'Quote follow-up',
+    body: 'The estimate went quiet. A plain nudge goes out, and the conversation stays alive.',
+  },
+  {
+    title: 'Booking and reminders',
+    body: 'They get a time on the calendar, then a reminder before you roll the truck.',
+  },
+  {
+    title: 'Google reviews',
+    body: 'The job is finished. A happy customer gets asked for the review while the work is still fresh.',
+  },
+  {
+    title: 'The paperwork',
+    body: 'Invoice nudges, payment reminders, and a first sort of the inbox. Sunday can stay Sunday.',
+  },
+  {
+    title: 'Questions on the site',
+    body: 'Hours, the towns you cover, and which jobs you take. Answered while you are in the truck.',
+  },
+]
+
+const PACKAGES = [
+  {
+    name: 'Lead to Booked Job',
+    outcome: 'A new inquiry becomes a time on the calendar.',
+    tier: 'Fits Growth. One step of it can start on Pilot or Starter.',
+    steps: ['Capture the lead', 'Instant reply', 'Qualify', 'Book and remind'],
+  },
+  {
+    name: 'Quote to Cash',
+    outcome: 'An estimate becomes money in the account.',
+    tier: 'Fits Growth. Follow-up alone is Starter. QuickBooks is Custom.',
+    steps: ['Draft the estimate', 'Follow up', 'Send the invoice', 'Chase the payment'],
+  },
+  {
+    name: 'Job Closeout',
+    outcome: 'A finished job leaves a review and a referral.',
+    tier: 'Fits Growth.',
+    steps: ['Completion photos', 'Review request', 'Referral ask'],
+  },
+  {
+    name: 'Back Office',
+    outcome: 'The inbox, the bills, and the week land in one place.',
+    tier: 'Fits Custom. Inbox triage alone can start on Starter.',
+    steps: ['Inbox triage', 'Receipts and bills into the books', 'Weekly summary for the owner'],
+  },
+  {
+    name: 'Customer Service',
+    outcome: 'The customer gets an answer, a status, or you.',
+    tier: 'FAQ answers fit Starter. Live job or order status is Custom.',
+    steps: ['FAQ answers', 'Job or order status', 'Hand off to a person'],
+  },
+]
+
+const STEPS = [
+  {
+    title: 'Free call',
+    body: 'You walk through where the leads leak. We pick the first job for the assistant to run.',
+  },
+  {
+    title: 'We set it up',
+    body: 'It connects to the calendar, QuickBooks, the CRM, or the texts you already use. You read the replies. A person signs off on anything risky before it reaches a customer.',
+  },
+  {
+    title: 'It runs, with a monthly tune-up',
+    body: 'It answers, follows up, and books. Each month we read what it sent and fix what sounds off.',
+  },
+]
+
+const TIERS = [
+  {
+    name: 'Pilot',
+    who: 'First 3 clients',
+    price: '$150/mo',
+    setup: 'Starting at $250 setup',
+    body: 'Any one package, in exchange for an honest testimonial once it is running. Open to the first three Sacramento-area shops.',
+  },
+  {
+    name: 'Starter',
+    who: 'One package',
+    price: '$200 to $300/mo',
+    setup: 'Starting at $500 setup',
+    body: 'One package. A common start is the text-back inside Lead to Booked Job, quote follow-up, or the FAQ answers.',
+  },
+  {
+    name: 'Growth',
+    who: 'The front of the shop',
+    price: '$400 to $600/mo',
+    setup: 'Starting at $1,000 to $1,500 setup',
+    body: 'Lead to Booked Job, Quote to Cash, and Job Closeout together. Catch the lead, follow the quote, and close the job.',
+  },
+  {
+    name: 'Custom',
+    who: 'Your other software',
+    price: '$100 to $150/hr',
+    setup: 'Starting at $1,500',
+    body: 'Back Office, live job status, and any package that has to write into QuickBooks, a CRM, or another system you already run.',
+  },
+]
+
+const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Free call request')}`
+
+function PhoneMockup() {
+  return (
+    <figure className={styles.phone}>
+      <div className={styles.stage}>
+        <div className={styles.device}>
+          <span className={`${styles.side} ${styles.action}`} aria-hidden="true" />
+          <span className={`${styles.side} ${styles.vol1}`} aria-hidden="true" />
+          <span className={`${styles.side} ${styles.vol2}`} aria-hidden="true" />
+          <span className={`${styles.side} ${styles.power}`} aria-hidden="true" />
+          <div className={styles.screen} aria-hidden="true">
+            <div className={styles.status}>
+              <span>2:14</span>
+              <span className={styles.island} />
+              <span className={styles.statusIcons}>
+                <svg width="17" height="12" viewBox="0 0 17 12" fill="#111">
+                  <rect x="0" y="8" width="3" height="4" rx="0.5" />
+                  <rect x="4.5" y="5.5" width="3" height="6.5" rx="0.5" />
+                  <rect x="9" y="3" width="3" height="9" rx="0.5" />
+                  <rect x="13.5" y="0" width="3" height="12" rx="0.5" />
+                </svg>
+                <svg width="15" height="12" viewBox="0 0 15 12" fill="none" stroke="#111" strokeWidth="1.4" strokeLinecap="round">
+                  <path d="M1.2 4.6c3.4-3.2 9.2-3.2 12.6 0" />
+                  <path d="M3.4 7c2.2-2 5.9-2 8.2 0" />
+                  <path d="M6 9.2c1-0.8 2.1-0.8 3.1 0" />
+                </svg>
+                <svg width="25" height="12" viewBox="0 0 25 12">
+                  <rect x="0.6" y="1" width="20" height="10" rx="2.2" fill="none" stroke="#111" strokeWidth="1.2" />
+                  <rect x="2" y="2.4" width="15" height="7.2" rx="1" fill="#111" />
+                  <rect x="21.4" y="4" width="1.6" height="4" rx="0.6" fill="#111" />
+                </svg>
+              </span>
+            </div>
+            <div className={styles.msgBar}>
+              <svg width="12" height="20" viewBox="0 0 12 20" fill="none" stroke="#007AFF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M10 2 L2 10 L10 18" />
+              </svg>
+              <div>
+                <div className={styles.avatar}>NS</div>
+                <strong>North Side Roofing</strong>
+              </div>
+              <svg width="18" height="14" viewBox="0 0 18 14" fill="none" stroke="#007AFF" strokeWidth="1.6">
+                <rect x="1" y="2" width="11" height="10" rx="2" />
+                <path d="M12 5.5 L17 3 V11 L12 8.5" />
+              </svg>
+            </div>
+            <div className={styles.thread}>
+              <p className={styles.when}>Today 2:14 PM</p>
+              <div className={styles.bubbleIn}>
+                Sorry I missed you. This is North Side Roofing. What do you need looked at?
+              </div>
+              <div className={styles.bubbleOut}>Leak in the kitchen. Can you come Thursday?</div>
+              <div className={styles.bubbleIn}>
+                Thursday at 10 is open. I will text a reminder Wednesday. What is the street?
+              </div>
+              <div className={styles.bubbleOut}>412 Oak Street.</div>
+              <p className={styles.delivered}>Delivered</p>
+            </div>
+            <div className={styles.composer}>
+              <span aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#636366" strokeWidth="1.6">
+                  <circle cx="11" cy="11" r="9" />
+                  <path d="M11 7 V15 M7 11 H15" />
+                </svg>
+              </span>
+              <i>iMessage</i>
+              <span aria-hidden="true">
+                <svg width="16" height="22" viewBox="0 0 16 22" fill="none" stroke="#636366" strokeWidth="1.6">
+                  <rect x="4" y="1" width="8" height="13" rx="4" />
+                  <path d="M2 10 a6 6 0 0 0 12 0" />
+                  <path d="M8 16 V20 M5 20 H11" />
+                </svg>
+              </span>
+            </div>
+            <div className={styles.homeBar} />
+          </div>
+        </div>
+      </div>
+      <figcaption>An example missed-call text-back. Not a real customer.</figcaption>
+    </figure>
+  )
+}
+
+function Flow({ steps }: { steps: string[] }) {
+  return (
+    <ol className={styles.flow} aria-label="Steps">
+      {steps.map((step) => (
+        <li key={step}>{step}</li>
+      ))}
+    </ol>
+  )
 }
 
 export default function Home() {
   return (
-    <>
+    <div className={`danzus-home ${styles.page} ${display.variable}`}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSONLD) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(LOCAL_BUSINESS_JSONLD).replace(/</g, '\\u003c'),
+        }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBSITE_JSONLD) }}
-      />
-      {/* Navigation */}
-      <nav>
-        <div className="wrap nav-inner">
-          <div className="nav-mark">
-            <img className="brand-glyph-img" src="/danzus-mark.svg" alt="" aria-hidden="true" />
-            <span className="name">DANZUS</span>
+      <a className={styles.skip} href="#content">
+        Skip to content
+      </a>
+      <header className={styles.header}>
+        <div className={styles.shell}>
+          <div className={styles.headerInner}>
+            <Link className={styles.brand} href="/" aria-label="DANZUS home">
+              <img src="/danzus-mark.svg" alt="" width={28} height={28} />
+              DANZUS
+            </Link>
+            <nav className={styles.deskLinks} aria-label="Primary">
+              <a href="#uses">What it does</a>
+              <a href="#packages">Packages</a>
+              <a href="#how">How it works</a>
+              <a href="#pricing">Pricing</a>
+              <a href="#about">About</a>
+            </nav>
+            <a className={styles.call} href={CONTACT_PHONE_TEL}>
+              Call or text Dan
+            </a>
           </div>
-          <div className="nav-links">
-            <a href="#thesis">Thesis</a>
-            <a href="#work">Work</a>
-            <a href="/agent-readiness">Agent Readiness</a>
-            <a href="#contact">Signal</a>
-          </div>
-          <a className="nav-pill" href="/agent-readiness">
-            Agent Readiness <span className="pill-arr">↗</span>
-          </a>
-        </div>
-      </nav>
-
-      {/* Hero */}
-      <header className="hero">
-        <div className="hero-bg"></div>
-        <div className="hero-glow"></div>
-        <div className="hero-glow-2"></div>
-
-        <div className="wrap">
-          <div className="hero-top">
-            <div>
-              Index / 001<br />
-              <strong>Operator-built AI systems</strong>
-            </div>
-            <div className="right">
-              Folsom &middot; California &middot; MMXXIV<br />
-              <strong>Privately Held</strong>
-            </div>
-          </div>
-
-          <div className="wordmark">
-            <div className="row"><span>DANZUS</span></div>
-          </div>
-          <h1 className="hero-display">
-            Software for trades, compliance, and AI operations.
-          </h1>
-        </div>
-
-        <div className="wrap">
-          <div className="hero-foot">
-            <p className="hero-statement">
-              Practical systems for physical-world work.
-            </p>
-            <div className="hero-scroll">
-              Explore
-              <br />
-              <span className="line"></span>
-            </div>
-          </div>
+          <nav className={styles.mobLinks} aria-label="Primary">
+            <a href="#uses">What it does</a>
+            <a href="#packages">Packages</a>
+            <a href="#how">How it works</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#about">About</a>
+          </nav>
         </div>
       </header>
 
-      {/* Thesis */}
-      <section className="block thesis" id="thesis">
-        <div className="wrap">
-          <div className="thesis-head">
+      <main id="content">
+        <section className={styles.hero}>
+          <div className={`${styles.shell} ${styles.heroGrid}`}>
+            <div className={styles.heroTop}>
+              <p className={styles.place}>Folsom, California. Sacramento and nearby.</p>
+              <h1>Never miss another lead.</h1>
+              <p className={styles.lead}>
+                AI assistants for Sacramento-area small businesses, set up for you, flat monthly price.
+              </p>
+              <p className={styles.punch}>You were on a roof. The lead texted the next guy.</p>
+            </div>
+            <PhoneMockup />
+            <div className={styles.heroRest}>
+              <p className={styles.support}>
+                A missed call gets a text back within 60 seconds. The estimate gets a follow-up. The job lands on the
+                calendar. You get a flat monthly bill after setup.
+              </p>
+              <div className={styles.actions}>
+                <a className={styles.primary} href={CONTACT_PHONE_TEL}>
+                  Call or text Dan
+                </a>
+                <a className={styles.textLink} href="#pricing">
+                  See pricing
+                </a>
+              </div>
+              <p className={styles.phoneLine}>
+                <a href={CONTACT_PHONE_TEL}>{CONTACT_PHONE_DISPLAY}</a>
+              </p>
+              <p className={styles.who}>
+                Dan Johnson, Folsom. Lead AI Solutions Engineer at App Orchid. Ex-RAAF.
+              </p>
+              <a className={styles.linkedin} href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
+                Dan Johnson on LinkedIn
+                <small>linkedin.com/in/danjohnsondata</small>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.section} id="uses" aria-labelledby="uses-heading">
+          <div className={`${styles.shell} ${styles.split}`}>
+            <div className={styles.splitHead}>
+              <p className={styles.kicker}>What it does</p>
+              <h2 id="uses-heading">While you were on the job.</h2>
+              <p className={styles.intro}>
+                Seven things that cost you the next job, handled without you standing by the phone.
+              </p>
+            </div>
+            <ol className={styles.ledger}>
+              {USE_CASES.map((item) => (
+                <li key={item.title}>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section className={styles.section} id="packages" aria-labelledby="packages-heading">
+          <div className={styles.shell}>
+            <p className={styles.kicker}>Workflow packages</p>
+            <h2 id="packages-heading">Prebuilt setups, adjusted for your shop.</h2>
+            <p className={styles.intro}>
+              Proven templates. About 80% is ready-made, and about 20% is written for your shop, so setup is fast. It
+              plugs into the calendar, QuickBooks, a CRM, and the texting you already use. A human signs off on
+              anything risky before it goes out.
+            </p>
+            <div className={styles.packages}>
+              {PACKAGES.map((item) => (
+                <article className={styles.package} key={item.name}>
+                  <div>
+                    <h3>{item.name}</h3>
+                    <p>{item.outcome}</p>
+                    <p className={styles.fit}>{item.tier}</p>
+                  </div>
+                  <Flow steps={item.steps} />
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.section} id="how" aria-labelledby="how-heading">
+          <div className={styles.shell}>
+            <p className={styles.kicker}>How it works</p>
+            <h2 id="how-heading">Three steps, then it runs.</h2>
+            <div className={styles.howList}>
+              {STEPS.map((step, index) => (
+                <article className={styles.how} key={step.title}>
+                  <span className={styles.num}>{index + 1}</span>
+                  <div>
+                    <h3>{step.title}</h3>
+                    <p>{step.body}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.section} id="pricing" aria-labelledby="pricing-heading">
+          <div className={styles.shell}>
+            <p className={styles.kicker}>Pricing</p>
+            <h2 id="pricing-heading">Flat monthly price.</h2>
+            <p className={styles.intro}>
+              Setup is separate. Every number here is a starting range. The free call turns it into a fixed quote for
+              your shop.
+            </p>
+            <div className={styles.rates}>
+              {TIERS.map((tier) => (
+                <article className={styles.rate} key={tier.name}>
+                  <div>
+                    <h3 className={styles.rateName}>{tier.name}</h3>
+                    <p>{tier.who}</p>
+                  </div>
+                  <p>{tier.body}</p>
+                  <div>
+                    <p className={styles.ratePrice}>{tier.price}</p>
+                    <p className={styles.rateSetup}>{tier.setup}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <p className={styles.priceNote}>
+              Pilot and Starter each cover one package. Growth runs Lead to Booked Job, Quote to Cash, and Job Closeout
+              together. Custom covers Back Office, live status, and connections into tools you already use.
+            </p>
+          </div>
+        </section>
+
+        <section className={styles.section} id="about" aria-labelledby="about-heading">
+          <div className={`${styles.shell} ${styles.about}`}>
+            <figure>
+              {PORTRAIT_SRC ? (
+                <div className={styles.frame}>
+                  <Image
+                    src={PORTRAIT_SRC}
+                    alt="Dan Johnson, Folsom, California"
+                    fill
+                    sizes="280px"
+                    quality={85}
+                    className={styles.portrait}
+                  />
+                </div>
+              ) : (
+                <div className={styles.frame} role="img" aria-label="Portrait placeholder for Dan Johnson">
+                  <span className={styles.monogram}>DJ</span>
+                  <small>Photograph coming</small>
+                </div>
+              )}
+              <figcaption className={styles.caption}>
+                Dan Johnson
+                <span>Folsom, California</span>
+              </figcaption>
+            </figure>
             <div>
-              <div className="idx">&sect; 002 / Thesis</div>
-            </div>
-            <h2 className="h-display">
-              Operating thesis.
-            </h2>
-          </div>
-
-          <div className="thesis-numbers">
-            <div className="thesis-pillar">
-              <span className="pillar-num">i.</span>
-              <h3 className="pillar-title">Agents become the interface.</h3>
-              <p className="pillar-body">
-                Software will act on behalf of people and businesses. It needs audit trails, policy, and control.
-              </p>
-            </div>
-            <div className="thesis-pillar">
-              <span className="pillar-num">ii.</span>
-              <h3 className="pillar-title">Intelligence moves to the device.</h3>
-              <p className="pillar-body">
-                The best AI tools belong where the work happens: shops, classrooms, job sites, and vehicles.
-              </p>
-            </div>
-            <div className="thesis-pillar">
-              <span className="pillar-num">iii.</span>
-              <h3 className="pillar-title">Operators need better software.</h3>
-              <p className="pillar-body">
-                Welders, drivers, electricians, and inspectors need tools built around real operating conditions.
-              </p>
+              <p className={styles.kicker}>About</p>
+              <h2 id="about-heading">Dan Johnson, in Folsom.</h2>
+              <div className={styles.bio}>
+                <p>
+                  He lives here and sets this up for contractors, trades, and local services around Sacramento.
+                </p>
+                <p>
+                  He is Lead AI Solutions Engineer at App Orchid. The day job is enterprise AI agents and ontologies.
+                  Before that, he served in the Royal Australian Air Force.
+                </p>
+                <p>
+                  The offer on this page is that same standard of care, scoped for a shop and billed as a flat monthly
+                  price. The company is DANZUS Holdings LLC.
+                </p>
+                <a className={styles.linkedin} href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
+                  Dan Johnson on LinkedIn
+                  <small>linkedin.com/in/danjohnsondata</small>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Portfolio */}
-      <section className="block portfolio" id="work">
-        <div className="wrap">
-          <div className="portfolio-head">
+        <section className={styles.contact} id="contact" aria-labelledby="contact-heading">
+          <div className={`${styles.shell} ${styles.contactGrid}`}>
             <div>
-              <div className="idx">&sect; 003 / Work</div>
-              <h2 className="h-display">
-                Shipped work.
-              </h2>
-            </div>
-            <div className="portfolio-meta">
-              Active Ventures<br />
-              <strong>Seven / 07</strong>
-            </div>
-          </div>
-
-          <div className="work-list">
-            <a className="work" href="https://dimevision.app" target="_blank" rel="noopener">
-              <div className="w-num">/01</div>
-              <div className="w-name">DimeVision <em>(incl. BeadBuilder)</em></div>
-              <div className="w-desc">
-                AI weld coaching, bead scoring, and GMAW simulation for students and apprentices.
-              </div>
-              <div className="w-tags">
-                <span className="live">Live</span>
-                <span>Mobile</span>
-                <span>Vision</span>
-                <span>Trades</span>
-              </div>
-              <div className="w-arrow">&rarr;</div>
-            </a>
-
-            <a className="work" href="https://aiagentaudit.dev" target="_blank" rel="noopener">
-              <div className="w-num">/02</div>
-              <div className="w-name">Agent Audit Trail</div>
-              <div className="w-desc">
-                Tamper-evident AI agent logs, policy checks, and MCP infrastructure.
-              </div>
-              <div className="w-tags">
-                <span className="live">Live</span>
-                <span>MCP</span>
-                <span>Compliance</span>
-                <span>Infra</span>
-              </div>
-              <div className="w-arrow">&rarr;</div>
-            </a>
-
-            <a className="work" href="https://osha-mcp.vercel.app" target="_blank" rel="noopener">
-              <div className="w-num">/03</div>
-              <div className="w-name">OSHA Compliance MCP</div>
-              <div className="w-desc">
-                Structured OSHA standards for compliance-aware AI agents.
-              </div>
-              <div className="w-tags">
-                <span className="live">Live</span>
-                <span>MCP</span>
-                <span>Compliance</span>
-              </div>
-              <div className="w-arrow">&rarr;</div>
-            </a>
-
-            <a className="work" href="https://dot-mcp.vercel.app" target="_blank" rel="noopener">
-              <div className="w-num">/04</div>
-              <div className="w-name">DOT / FMCSA MCP</div>
-              <div className="w-desc">
-                FMCSA rules, hours-of-service logic, and inspection criteria for transport agents.
-              </div>
-              <div className="w-tags">
-                <span className="live">Live</span>
-                <span>MCP</span>
-                <span>Transport</span>
-              </div>
-              <div className="w-arrow">&rarr;</div>
-            </a>
-
-            <a className="work" href="/agent-readiness">
-              <div className="w-num">/05</div>
-              <div className="w-name">Agent Readiness <em>Audit</em></div>
-              <div className="w-desc">
-                A practical audit of how AI systems read and evaluate a business online.
-              </div>
-              <div className="w-tags">
-                <span className="live">Live</span>
-                <span>Audit</span>
-                <span>AI Discovery</span>
-              </div>
-              <div className="w-arrow">&rarr;</div>
-            </a>
-
-            <a className="work" href="/contextkit">
-              <div className="w-num">/06</div>
-              <div className="w-name">ContextKit</div>
-              <div className="w-desc">
-                A free guide for turning chatbots into working agents with files, skills, and context.
-              </div>
-              <div className="w-tags">
-                <span className="live">Live</span>
-                <span>Free</span>
-                <span>Education</span>
-              </div>
-              <div className="w-arrow">&rarr;</div>
-            </a>
-
-            <a className="work" href="/family-agent">
-              <div className="w-num">/07</div>
-              <div className="w-name">Family Agent</div>
-              <div className="w-desc">
-                A configurable household assistant for shared calendars, Messages, and family logistics.
-              </div>
-              <div className="w-tags">
-                <span>Pilot</span>
-                <span>Family</span>
-                <span>Agents</span>
-              </div>
-              <div className="w-arrow">&rarr;</div>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Operator */}
-      <section className="block operator" id="operator">
-        <div className="wrap">
-          <div className="idx">&sect; 004 / Operator</div>
-          <h2 className="h-display">
-            Who&apos;s behind this.
-          </h2>
-
-          <div className="op-grid">
-            <div className="op-prose">
-              <p>
-                DANZUS is built from aircraft maintenance, subsea QA, enterprise analytics, and applied AI systems.
+              <p className={styles.kicker}>Contact</p>
+              <h2 id="contact-heading">Call or text Dan.</h2>
+              <a className={styles.contactNumber} href={CONTACT_PHONE_TEL}>
+                {CONTACT_PHONE_DISPLAY}
+              </a>
+              <p className={styles.intro}>
+                Tell him which lead keeps getting away. The form books a time by email. Your number on the form is
+                optional.
               </p>
-              <p>
-                The throughline is <em>standards, repeatability, and practical execution</em>.
-              </p>
-              <p>The work focuses on problems most AI companies ignore: trades, compliance, and operators.</p>
+              <a className={styles.contactMail} href={mailto}>
+                {CONTACT_EMAIL}
+              </a>
             </div>
-
-            <div className="op-card">
-              <div className="op-name">Dan Johnson</div>
-              <div className="op-handle">Founder &middot; DANZUS Holdings</div>
-              <div className="cv">
-                <div className="cv-row">
-                  <div className="cv-year">2024 &rarr;</div>
-                  <div className="cv-body">
-                    <strong>DANZUS Holdings</strong>
-                    <span>Founder</span>
-                  </div>
-                </div>
-                <div className="cv-row">
-                  <div className="cv-year">2024 &rarr;</div>
-                  <div className="cv-body">
-                    <strong>Applied AI Systems</strong>
-                    <span>Enterprise data, AI implementation, and operational software</span>
-                  </div>
-                </div>
-                <div className="cv-row">
-                  <div className="cv-year">2016—24</div>
-                  <div className="cv-body">
-                    <strong>Magnit / PRO Unlimited</strong>
-                    <span>Analytics Manager, Strategic Advisory</span>
-                  </div>
-                </div>
-                <div className="cv-row">
-                  <div className="cv-year">2013—15</div>
-                  <div className="cv-body">
-                    <strong>PPI / Chevron Wheatstone</strong>
-                    <span>QA/QC, Subsea Systems &middot; Perth, AU</span>
-                  </div>
-                </div>
-                <div className="cv-row">
-                  <div className="cv-year">2002—12</div>
-                  <div className="cv-body">
-                    <strong>Royal Australian Air Force</strong>
-                    <span>Aircraft Maintenance Engineer</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ContactForm />
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Contact */}
-      <section className="contact" id="contact">
-        <div className="contact-glow"></div>
-        <div className="wrap">
-          <div className="idx">&sect; 005 / Signal</div>
-          <h2 className="contact-mega">
-            <span className="l1">Say hello.</span>
-          </h2>
-
-          <div className="contact-channels">
-            <a className="ch" href="/agent-readiness">
-              <div className="ch-label">Service &middot; Live</div>
-              <div className="ch-value">
-                Agent Readiness <span className="arr">→</span>
-              </div>
+        <section className={styles.products} id="products" aria-labelledby="products-heading">
+          <div className={styles.shell}>
+            <p className={styles.kicker}>Products</p>
+            <h2 id="products-heading">Other work from DANZUS.</h2>
+            <p className={styles.intro}>
+              DimeVision and Agent Audit Trail are separate products. They show the kind of software behind the
+              assistant.
+            </p>
+            <a className={styles.product} href="https://dimevision.app" target="_blank" rel="noopener noreferrer">
+              <strong>DimeVision</strong>
+              <p>A free AI welding coach for students and apprentices, including BeadBuilder.</p>
+              <span>dimevision.app</span>
             </a>
-            <a className="ch" href="mailto:dan@danzus.co?subject=DANZUS%20inquiry">
-              <div className="ch-label">Email &middot; Contact</div>
-              <div className="ch-value">
-                dan@danzus.co <span className="arr">↗</span>
-              </div>
+            <a className={styles.product} href="https://aiagentaudit.dev" target="_blank" rel="noopener noreferrer">
+              <strong>Agent Audit Trail</strong>
+              <p>Logs and policy checks for AI agents that need a record of what they did.</p>
+              <span>aiagentaudit.dev</span>
             </a>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
-      {/* Footer */}
-      <footer>
-        <div className="wrap footer-inner">
-          <div>&copy; MMXXVI &middot; DANZUS Holdings LLC &middot; Folsom, California</div>
-          <div className="mark">Danzus</div>
+      <footer className={styles.footer}>
+        <div className={styles.shell}>
+          <p className={styles.operated}>Operated by DANZUS Holdings LLC</p>
+          <p>Folsom, California. Contractors, trades, and local services in Sacramento, Folsom, and nearby.</p>
+          <ul className={styles.footerLinks}>
+            <li>
+              <a href={CONTACT_PHONE_TEL}>Call or text Dan, {CONTACT_PHONE_DISPLAY}</a>
+            </li>
+            <li>
+              <a href={mailto}>{CONTACT_EMAIL}</a>
+            </li>
+            <li>
+              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <Link href="/agent-readiness">Agent Readiness</Link>
+            </li>
+            <li>
+              <Link href="/family-agent">Family Agent</Link>
+            </li>
+            <li>
+              <Link href="/contextkit">ContextKit</Link>
+            </li>
+          </ul>
+          <p className={styles.fine}>© 2026 DANZUS Holdings LLC</p>
         </div>
       </footer>
-    </>
+    </div>
   )
 }
