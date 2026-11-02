@@ -299,7 +299,7 @@
 }
 
 .phone {
-  width: min(100%, 292px);
+  width: min(100%, 300px);
   justify-self: start;
 }
 
@@ -390,17 +390,19 @@
 
 .screen {
   position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 19.5;
   background: #fff;
-  border-radius: 42px;
-  min-height: 548px;
+  border-radius: 44px;
   color: #111;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
   box-shadow:
-    0 0 0 2px #121214,
-    inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+    0 0 0 2px #0e0e10,
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22);
   transform: translateZ(1px);
 }
 
@@ -420,25 +422,33 @@
 
 .status {
   position: relative;
-  height: 48px;
+  height: 54px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  padding: 10px 18px 0;
-  font-size: 14px;
-  font-weight: 650;
+  padding: 0 14px 7px;
+  font-size: 16px;
+  font-weight: 600;
   letter-spacing: -0.02em;
+  flex: 0 0 auto;
+}
+
+.time {
+  position: relative;
+  z-index: 1;
+  min-width: 46px;
 }
 
 .island {
   position: absolute;
   left: 50%;
-  top: 11px;
-  width: 96px;
-  height: 28px;
+  top: 10px;
+  width: 34%;
+  height: 34px;
   transform: translateX(-50%);
   background: #000;
   border-radius: 20px;
+  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.08);
 }
 
 .statusIcons {
@@ -453,33 +463,70 @@
 
 .msgBar {
   display: grid;
-  grid-template-columns: 22px 1fr 22px;
+  grid-template-columns: 58px 1fr 32px;
   align-items: center;
   padding: 2px 8px 8px;
-  border-bottom: 0.5px solid rgba(60, 60, 67, 0.18);
+  border-bottom: 0.5px solid rgba(60, 60, 67, 0.29);
   color: #111;
+  flex: 0 0 auto;
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  justify-self: start;
+}
+
+.backCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: #007aff;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.who {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  min-width: 0;
 }
 
 .avatar {
-  width: 26px;
-  height: 26px;
-  margin: 0 auto 1px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: #c7c7cc;
+  background: linear-gradient(165deg, #8ecbff 0%, #0a84ff 46%, #0040dd 100%);
   color: #fff;
-  font-size: 10px;
-  font-weight: 650;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
   display: grid;
   place-items: center;
 }
 
-.msgBar strong {
+.who strong {
   display: block;
+  max-width: 132px;
   text-align: center;
-  font-size: 12px;
-  font-weight: 650;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.facetime {
+  justify-self: end;
 }
 
 .thread {
@@ -490,27 +537,36 @@
 
 .when {
   text-align: center;
-  color: #636366;
-  font-size: 11px;
-  font-weight: 550;
-  margin: 6px 0 8px;
+  color: #8e8e93;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 8px 12px 10px;
 }
 
 .bubbleIn,
 .bubbleOut {
   position: relative;
-  max-width: 78%;
-  padding: 8px 12px;
-  font-size: 15px;
-  line-height: 1.25;
-  letter-spacing: -0.015em;
+  max-width: 76%;
+  padding: 7px 12px;
+  font-size: 17px;
+  line-height: 22px;
+  letter-spacing: -0.024em;
+  font-weight: 400;
 }
 
 .bubbleIn {
   background: #e9e9eb;
-  color: #111;
-  border-radius: 18px 18px 18px 6px;
-  margin: 2px 36px 2px 12px;
+  color: #000;
+  border-radius: 18px 18px 18px 4px;
+  margin: 1px 28px 1px 14px;
+}
+
+.bubbleOut {
+  background: #0a84ff;
+  color: #fff;
+  border-radius: 18px 18px 4px 18px;
+  margin: 1px 14px 1px auto;
 }
 
 .bubbleIn::after,
@@ -518,37 +574,31 @@
   content: '';
   position: absolute;
   bottom: 0;
-  width: 12px;
-  height: 14px;
+  width: 20px;
+  height: 18px;
 }
 
 .bubbleIn::after {
-  left: -5px;
+  left: -7px;
   background: #e9e9eb;
-  border-bottom-right-radius: 10px;
-  clip-path: polygon(100% 0, 100% 100%, 0 100%);
-}
-
-.bubbleOut {
-  background: #0066d6;
-  color: #fff;
-  border-radius: 18px 18px 6px 18px;
-  margin: 2px 12px 2px auto;
+  border-bottom-right-radius: 14px 12px;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%, 28% 40%);
 }
 
 .bubbleOut::after {
-  right: -5px;
-  background: #0066d6;
-  border-bottom-left-radius: 10px;
-  clip-path: polygon(0 0, 100% 100%, 0 100%);
+  right: -7px;
+  background: #0a84ff;
+  border-bottom-left-radius: 14px 12px;
+  clip-path: polygon(0 0, 100% 100%, 0 100%, 72% 40%);
 }
 
 .delivered {
-  margin: 1px 18px 8px;
+  margin: 1px 18px 6px;
   text-align: right;
-  color: #636366;
+  color: #8e8e93;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
 /* Bubbles stay in normal flow so the finished phone matches the static layout.
@@ -556,13 +606,13 @@
 .typing {
   position: absolute;
   z-index: 2;
-  left: 12px;
+  left: 14px;
   display: flex;
   align-items: center;
   gap: 4px;
-  height: 30px;
+  height: 34px;
   padding: 0 12px;
-  border-radius: 16px;
+  border-radius: 18px;
   background: #e9e9eb;
   opacity: 0;
   pointer-events: none;
@@ -592,7 +642,7 @@
 @media (prefers-reduced-motion: no-preference) and (scripting: enabled) {
   .reveal {
     opacity: 0;
-    animation: imsg-show 0.2s linear 16s forwards;
+    animation: imsg-show 0.2s linear 20s forwards;
   }
 
   .phone[data-armed] .reveal {
@@ -625,35 +675,40 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 10px 4px;
-  color: #636366;
+  padding: 6px 10px 2px;
+  flex: 0 0 auto;
 }
 
-.composer span[aria-hidden] {
-  width: 26px;
-  height: 26px;
+.plus,
+.mic {
+  width: 28px;
+  height: 28px;
   display: grid;
   place-items: center;
   flex: 0 0 auto;
 }
 
-.composer i {
+.pill {
   flex: 1;
-  border: 1px solid #c6c6c8;
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid #c7c7cc;
   border-radius: 18px;
-  min-height: 32px;
-  padding: 7px 12px;
-  font-style: normal;
-  font-size: 15px;
-  color: #636366;
+  color: #8e8e93;
+  font-size: 17px;
+  letter-spacing: -0.024em;
+  line-height: 22px;
 }
 
 .homeBar {
-  width: 112px;
+  width: 36%;
   height: 5px;
-  margin: 6px auto 8px;
-  border-radius: 4px;
-  background: #111;
+  margin: 8px auto 7px;
+  border-radius: 100px;
+  background: #000;
+  flex: 0 0 auto;
 }
 
 .phone figcaption {

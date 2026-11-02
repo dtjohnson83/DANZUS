@@ -16,8 +16,11 @@ const MESSAGES = [
   { side: 'out' as const, text: '412 Oak Street.' },
 ]
 
-const BUBBLE_GAP_MS = 1250
-const TYPING_MS = 650
+const INITIAL_MS = 800
+const TYPING_MS = 2000
+const OUTGOING_AFTER_MS = 1500
+const READ_AFTER_OUT_MS = 1000
+const DELIVERED_AFTER_MS = 1600
 
 export function PhoneMockup() {
   const rootRef = useRef<HTMLElement>(null)
@@ -94,8 +97,9 @@ export function PhoneMockup() {
     }
 
     const play = async () => {
+      await wait(INITIAL_MS)
+      if (cancelled) return
       show('when')
-      await wait(280)
       for (let index = 0; index < MESSAGES.length; index += 1) {
         if (cancelled) return
         const message = MESSAGES[index]
@@ -105,15 +109,18 @@ export function PhoneMockup() {
           await wait(TYPING_MS)
           if (cancelled) return
           setTypingSide(null)
+        } else if (index > 0) {
+          await wait(OUTGOING_AFTER_MS)
+          if (cancelled) return
         }
         show(`m${index}`)
         const next = MESSAGES[index + 1]
-        if (!next) break
-        const typingLead = next.side === 'in' ? TYPING_MS : 0
-        await wait(BUBBLE_GAP_MS - typingLead)
+        if (next?.side === 'in') {
+          await wait(READ_AFTER_OUT_MS)
+        }
       }
       if (cancelled) return
-      await wait(1100)
+      await wait(DELIVERED_AFTER_MS)
       show('delivered')
     }
 
@@ -146,38 +153,41 @@ export function PhoneMockup() {
           <span className={`${styles.side} ${styles.power}`} aria-hidden="true" />
           <div className={styles.screen} aria-hidden="true">
             <div className={styles.status}>
-              <span>2:14</span>
+              <span className={styles.time}>2:14</span>
               <span className={styles.island} />
               <span className={styles.statusIcons}>
-                <svg width="17" height="12" viewBox="0 0 17 12" fill="#111">
-                  <rect x="0" y="8" width="3" height="4" rx="0.5" />
-                  <rect x="4.5" y="5.5" width="3" height="6.5" rx="0.5" />
-                  <rect x="9" y="3" width="3" height="9" rx="0.5" />
-                  <rect x="13.5" y="0" width="3" height="12" rx="0.5" />
+                <svg width="17" height="12" viewBox="0 0 17 12" aria-hidden="true">
+                  <rect x="0" y="7.2" width="3" height="4.2" rx="0.6" fill="#111" />
+                  <rect x="4.5" y="4.8" width="3" height="6.6" rx="0.6" fill="#111" />
+                  <rect x="9" y="2.4" width="3" height="9" rx="0.6" fill="#111" />
+                  <rect x="13.5" y="0" width="3" height="11.4" rx="0.6" fill="#111" />
                 </svg>
-                <svg width="15" height="12" viewBox="0 0 15 12" fill="none" stroke="#111" strokeWidth="1.4" strokeLinecap="round">
-                  <path d="M1.2 4.6c3.4-3.2 9.2-3.2 12.6 0" />
-                  <path d="M3.4 7c2.2-2 5.9-2 8.2 0" />
-                  <path d="M6 9.2c1-0.8 2.1-0.8 3.1 0" />
+                <svg width="15" height="12" viewBox="0 0 15 12" fill="none" stroke="#111" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+                  <path d="M1.1 4.5c3.5-3.3 9.3-3.3 12.8 0" />
+                  <path d="M3.5 7c2.2-2 5.8-2 8 0" />
+                  <path d="M6.1 9.3c.9-.8 1.9-.8 2.8 0" />
                 </svg>
-                <svg width="25" height="12" viewBox="0 0 25 12">
-                  <rect x="0.6" y="1" width="20" height="10" rx="2.2" fill="none" stroke="#111" strokeWidth="1.2" />
-                  <rect x="2" y="2.4" width="15" height="7.2" rx="1" fill="#111" />
-                  <rect x="21.4" y="4" width="1.6" height="4" rx="0.6" fill="#111" />
+                <svg width="25" height="12" viewBox="0 0 25 12" aria-hidden="true">
+                  <rect x="0.7" y="1" width="20" height="10" rx="2.4" fill="none" stroke="#111" strokeWidth="1.1" />
+                  <rect x="2.1" y="2.4" width="16.4" height="7.2" rx="1.1" fill="#111" />
+                  <path d="M21.6 4.2h1.2c.5 0 .9.4.9.9v1.8c0 .5-.4.9-.9.9h-1.2" fill="#111" />
                 </svg>
               </span>
             </div>
             <div className={styles.msgBar}>
-              <svg width="12" height="20" viewBox="0 0 12 20" fill="none" stroke="#007AFF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M10 2 L2 10 L10 18" />
-              </svg>
-              <div>
+              <div className={styles.back}>
+                <svg width="12" height="20" viewBox="0 0 12 20" fill="none" stroke="#007AFF" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M10 2 L2 10 L10 18" />
+                </svg>
+                <span className={styles.backCount}>3</span>
+              </div>
+              <div className={styles.who}>
                 <div className={styles.avatar}>NS</div>
                 <strong>North Side Roofing</strong>
               </div>
-              <svg width="18" height="14" viewBox="0 0 18 14" fill="none" stroke="#007AFF" strokeWidth="1.6">
-                <rect x="1" y="2" width="11" height="10" rx="2" />
-                <path d="M12 5.5 L17 3 V11 L12 8.5" />
+              <svg className={styles.facetime} width="25" height="16" viewBox="0 0 25 16" fill="none" aria-hidden="true">
+                <rect x="0.8" y="2.2" width="15" height="11.6" rx="3" stroke="#007AFF" strokeWidth="1.6" />
+                <path d="M16.2 6.2 L23.2 3.4 V12.6 L16.2 9.8" stroke="#007AFF" strokeWidth="1.6" strokeLinejoin="round" />
               </svg>
             </div>
             <div ref={threadRef} className={styles.thread}>
@@ -206,18 +216,18 @@ export function PhoneMockup() {
               </div>
             </div>
             <div className={styles.composer}>
-              <span aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#636366" strokeWidth="1.6">
-                  <circle cx="11" cy="11" r="9" />
-                  <path d="M11 7 V15 M7 11 H15" />
+              <span className={styles.plus} aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#8E8E93" strokeWidth="1.6">
+                  <circle cx="11" cy="11" r="9.2" />
+                  <path d="M11 7.2 V14.8 M7.2 11 H14.8" strokeWidth="1.7" />
                 </svg>
               </span>
-              <i>iMessage</i>
-              <span aria-hidden="true">
-                <svg width="16" height="22" viewBox="0 0 16 22" fill="none" stroke="#636366" strokeWidth="1.6">
-                  <rect x="4" y="1" width="8" height="13" rx="4" />
-                  <path d="M2 10 a6 6 0 0 0 12 0" />
-                  <path d="M8 16 V20 M5 20 H11" />
+              <span className={styles.pill}>iMessage</span>
+              <span className={styles.mic} aria-hidden="true">
+                <svg width="16" height="22" viewBox="0 0 16 22" fill="none" stroke="#8E8E93" strokeWidth="1.6">
+                  <rect x="4.2" y="1.2" width="7.6" height="12.2" rx="3.8" />
+                  <path d="M2.2 9.6 a5.8 5.8 0 0 0 11.6 0" />
+                  <path d="M8 15.6 V19.2 M5.2 19.2 H10.8" strokeLinecap="round" />
                 </svg>
               </span>
             </div>
