@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#0f1a14"/>
+  <g fill="none" stroke="#b08d57" stroke-opacity="0.35">
+    <path d="M0 80 H960 M0 160 H960 M0 240 H960 M0 320 H960 M0 400 H960 M0 480 H960"/>
+    <path d="M80 0 V540 M160 0 V540 M240 0 V540 M320 0 V540 M400 0 V540 M480 0 V540 M560 0 V540 M640 0 V540 M720 0 V540 M800 0 V540 M880 0 V540"/>
+  </g>
+</svg>

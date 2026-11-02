@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+  <defs>
+    <radialGradient id="g" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#f3e2bf"/>
+      <stop offset="45%" stop-color="#b08d57"/>
+      <stop offset="100%" stop-color="#6d542e"/>
+    </radialGradient>
+  </defs>
+  <circle cx="48" cy="48" r="44" fill="url(#g)" stroke="#f3ecdf" stroke-width="2"/>
+  <circle cx="48" cy="48" r="36" fill="none" stroke="#3a2c14" stroke-opacity="0.45" stroke-width="1.5"/>
+  <text x="48" y="56" text-anchor="middle" font-family="Georgia, serif" font-size="26" font-weight="700" fill="#2a1d0c">DZ</text>
+</svg>

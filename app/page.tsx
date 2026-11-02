@@ -3,7 +3,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ContactForm } from './ContactForm'
 import { PackageDemo } from './PackageDemo'
+import { BrassEmblem } from './BrassEmblem'
+import { HeroLoop } from './HeroLoop'
 import { PhoneMockup } from './PhoneMockup'
+import { ResultsCounters } from './ResultsCounters'
+import { TRADES } from './sample-sites/trades'
 import { PACKAGE_DEMOS, type PackageName } from '@/lib/package-demos'
 import { display } from './fonts'
 import { SiteFooter } from './SiteFooter'
@@ -57,37 +61,6 @@ export const metadata: Metadata = {
 }
 
 const LOCAL_BUSINESS_JSONLD = siteJsonLd()
-
-const USE_CASES = [
-  {
-    title: 'Missed-call text-back',
-    body: 'Within 60 seconds. They called while you were on a ladder. A text goes out before they dial the next truck.',
-  },
-  {
-    title: 'Lead replies',
-    body: 'A form on your site, or a Facebook message. Answered right away, including after the crew is home.',
-  },
-  {
-    title: 'Quote follow-up',
-    body: 'The estimate went quiet. A plain nudge goes out, and the conversation stays alive.',
-  },
-  {
-    title: 'Booking and reminders',
-    body: 'They get a time on the calendar, then a reminder before you roll the truck.',
-  },
-  {
-    title: 'Google reviews',
-    body: 'The job is finished. A happy customer gets asked for the review while the work is still fresh.',
-  },
-  {
-    title: 'The paperwork',
-    body: 'Invoice nudges, payment reminders, and a first sort of the inbox. Sunday can stay Sunday.',
-  },
-  {
-    title: 'Questions on the site',
-    body: 'Hours, the towns you cover, and which jobs you take. Answered while you are in the truck.',
-  },
-]
 
 const PACKAGES = [
   {
@@ -272,7 +245,13 @@ export default function Home() {
               </p>
               <p className={styles.punch}>You were on a roof. The lead texted the next guy.</p>
             </div>
-            <PhoneMockup />
+            <div className={styles.phoneSlot}>
+              <p className={styles.booked} aria-hidden="true">
+                BOOKED.
+              </p>
+              <HeroLoop />
+              <PhoneMockup />
+            </div>
             <div className={styles.heroRest}>
               <p className={styles.support}>
                 A missed call gets a text back within 60 seconds. The estimate gets a follow-up. The job lands on the
@@ -302,22 +281,34 @@ export default function Home() {
         </section>
 
         <section className={styles.section} id="uses" aria-labelledby="uses-heading">
-          <div className={`${styles.shell} ${styles.split}`}>
-            <div className={styles.splitHead}>
+          <div className={`${styles.shell} ${styles.story}`}>
+            <div className={styles.storyPin}>
               <p className={styles.kicker}>What it does</p>
               <h2 id="uses-heading">While you were on the job.</h2>
-              <p className={styles.intro}>
-                Seven things that cost you the next job, handled without you standing by the phone.
-              </p>
-            </div>
-            <ol className={styles.ledger}>
-              {USE_CASES.map((item) => (
-                <li key={item.title}>
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
+              <p className={styles.intro}>The call still gets handled. Here is the order.</p>
+              <ol className={styles.storyList}>
+                <li>
+                  <h3>Missed call</h3>
+                  <p>You are on the roof, under a sink, or in the chair. The phone rings out.</p>
                 </li>
-              ))}
-            </ol>
+                <li>
+                  <h3>Text sent</h3>
+                  <p>A text goes out in your shop&apos;s voice, so the lead is not sitting in silence.</p>
+                </li>
+                <li>
+                  <h3>Customer replies</h3>
+                  <p>They say what they need. The thread stays on the phone they already use.</p>
+                </li>
+                <li>
+                  <h3>Job booked</h3>
+                  <p>A time lands on the calendar, with a reminder before you roll.</p>
+                </li>
+                <li>
+                  <h3>Review requested</h3>
+                  <p>When the work is done, a happy customer gets asked for the review.</p>
+                </li>
+              </ol>
+            </div>
           </div>
         </section>
 
@@ -363,6 +354,22 @@ export default function Home() {
                 </article>
               ))}
             </div>
+            <div className={styles.showcase} id="showcase">
+              <p className={styles.kicker}>Samples</p>
+              <h2>See it for your business</h2>
+              <p className={styles.intro}>
+                Four sample sites. Not real shops. Every call button rings DANZUS.
+              </p>
+              <div className={styles.cards}>
+                {TRADES.map((trade) => (
+                  <a className={styles.card} href={trade.path} key={trade.id}>
+                    <span className={styles.swatch} style={{ background: trade.accent }} />
+                    <strong>{trade.name}</strong>
+                    <span>{trade.trade}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -384,6 +391,7 @@ export default function Home() {
           </div>
         </section>
 
+        <ResultsCounters />
         <section className={styles.section} id="pricing" aria-labelledby="pricing-heading">
           <div className={styles.shell}>
             <p className={styles.kicker}>Pricing</p>
