@@ -28,15 +28,6 @@ export function SiteFooter() {
           <li>
             <Link href="/terms">Terms</Link>
           </li>
-          <li>
-            <Link href="/agent-readiness">Agent Readiness</Link>
-          </li>
-          <li>
-            <Link href="/family-agent">Family Agent</Link>
-          </li>
-          <li>
-            <Link href="/contextkit">ContextKit</Link>
-          </li>
         </ul>
         <p className={styles.fine}>© 2026 DANZUS Holdings LLC</p>
       </div>
