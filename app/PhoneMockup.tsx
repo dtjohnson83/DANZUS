@@ -183,7 +183,9 @@ export function PhoneMockup() {
               </div>
               <div className={styles.who}>
                 <div className={styles.avatar}>NS</div>
-                <strong>North Side Roofing</strong>
+                <strong>
+                  North Side Roofing <span className={styles.nameChevron}>›</span>
+                </strong>
               </div>
               <svg className={styles.facetime} width="25" height="16" viewBox="0 0 25 16" fill="none" aria-hidden="true">
                 <rect x="0.8" y="2.2" width="15" height="11.6" rx="3" stroke="#007AFF" strokeWidth="1.6" />
