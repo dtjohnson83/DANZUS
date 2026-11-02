@@ -3,9 +3,9 @@ import type { Metadata } from 'next'
 
 const SITE_URL = 'https://danzus.co'
 const SITE_NAME = 'DANZUS'
-const DEFAULT_TITLE = 'DANZUS Holdings — AI Software for Trades & Compliance'
+const DEFAULT_TITLE = 'AI Assistants for Sacramento and Folsom Small Businesses | DANZUS'
 const DEFAULT_DESCRIPTION =
-  'DANZUS builds practical AI software for trades, compliance, and physical-world operations.'
+  'DANZUS in Folsom sets up AI assistants for Sacramento-area contractors and local services. Missed calls, follow-up, booking, and reviews. Flat monthly price.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -16,20 +16,19 @@ export const metadata: Metadata = {
   description: DEFAULT_DESCRIPTION,
   keywords: [
     'DANZUS',
-    'AI-native software',
-    'trades software',
-    'compliance software',
-    'AI agent',
-    'chatbot vs agent',
-    'ContextKit',
-    'Claude Code',
-    'AGENTS.md',
-    'CLAUDE.md',
-    'context engineering',
-    'LLM agent',
+    'DANZUS Holdings LLC',
+    'Sacramento AI assistant',
+    'Folsom small business',
+    'AI assistant for contractors',
+    'missed call text back',
+    'DimeVision',
+    'Agent Audit Trail',
   ],
-  authors: [{ name: 'DANZUS Holdings LLC', url: SITE_URL }],
-  creator: 'DANZUS Holdings LLC',
+  authors: [
+    { name: 'Dan Johnson', url: 'https://linkedin.com/in/danjohnsondata' },
+    { name: 'DANZUS Holdings LLC', url: SITE_URL },
+  ],
+  creator: 'Dan Johnson',
   publisher: 'DANZUS Holdings LLC',
   applicationName: SITE_NAME,
   category: 'technology',
@@ -78,6 +77,8 @@ export const metadata: Metadata = {
     'PerplexityBot': 'index, follow',
     'Google-Extended': 'index, follow',
     'CCBot': 'index, follow',
+    'geo.region': 'US-CA',
+    'geo.placename': 'Folsom, California',
   },
 }
 
@@ -92,7 +93,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,560;0,9..144,640;1,9..144,560&family=Saira:wght@400;500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
           rel="stylesheet"
         />
       </head>

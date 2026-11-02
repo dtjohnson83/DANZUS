@@ -1307,3 +1307,19 @@ footer {
     width: min(100%, 430px);
   }
 }
+
+/* Homepage is a light service page. Keep the dark grain and vignette on other routes. */
+body:has(.danzus-home) {
+  background: #f3eee6;
+  color: #1a1714;
+  font-weight: 400;
+}
+
+body:has(.danzus-home)::before,
+body:has(.danzus-home)::after {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
