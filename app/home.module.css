@@ -215,6 +215,17 @@
   max-width: 40rem;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .storyList[data-ready] > li {
+    opacity: 0.4;
+    transition: opacity 0.35s ease;
+  }
+
+  .storyList[data-ready] > li.isOn {
+    opacity: 1;
+  }
+}
+
 .showcase {
   margin-top: 64px;
 }
@@ -308,47 +319,6 @@
   color: var(--clay);
 }
 
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .booked {
-      animation: booked-drift linear both;
-      animation-timeline: view();
-      animation-range: cover 0% cover 80%;
-    }
-
-    .story {
-      height: 240vh;
-      view-timeline-name: --job;
-    }
-
-    .storyPin {
-      position: sticky;
-      top: 92px;
-    }
-
-    .storyList li {
-      opacity: 0.3;
-      animation: story-on linear both;
-      animation-timeline: --job;
-    }
-
-    .storyList li:nth-child(1) { animation-range: entry 0% entry 18%; }
-    .storyList li:nth-child(2) { animation-range: entry 18% entry 36%; }
-    .storyList li:nth-child(3) { animation-range: entry 36% entry 54%; }
-    .storyList li:nth-child(4) { animation-range: entry 54% entry 72%; }
-    .storyList li:nth-child(5) { animation-range: entry 72% entry 90%; }
-  }
-}
-
-@keyframes booked-drift {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(0, -8px, 0); }
-}
-
-@keyframes story-on {
-  to { opacity: 1; }
-}
-
 @media (min-width: 980px) and (prefers-reduced-motion: no-preference) {
   .emblemStill {
     visibility: hidden;
@@ -357,10 +327,13 @@
   .emblemLive {
     display: block;
     position: fixed;
+    top: 0;
+    left: 0;
     z-index: 3;
     width: 72px;
     height: 72px;
     pointer-events: none;
+    will-change: transform;
   }
 }
 

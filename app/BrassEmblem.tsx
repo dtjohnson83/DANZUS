@@ -9,7 +9,7 @@ export function BrassEmblem() {
 
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const small = window.matchMedia('(max-width: 719px)').matches
+    const small = window.matchMedia('(max-width: 979px)').matches
     const canvas = canvasRef.current
     const slot = slotRef.current
     if (reduce || small || !canvas || !slot) return
@@ -17,11 +17,8 @@ export function BrassEmblem() {
     let stopped = false
     let raf = 0
     let last = 0
-    let seeing = true
-    const observer = new IntersectionObserver((entries) => {
-      seeing = entries.some((entry) => entry.isIntersecting)
-    })
-    observer.observe(slot)
+    canvas.style.top = '0px'
+    canvas.style.left = '0px'
 
     let dispose = () => {}
     void import('three').then((THREE) => {
@@ -52,7 +49,7 @@ export function BrassEmblem() {
 
       const tick = (now: number) => {
         raf = window.requestAnimationFrame(tick)
-        if (!seeing || document.hidden || now - last < 34) return
+        if (document.hidden || now - last < 34) return
         last = now
         const slotBox = slot.getBoundingClientRect()
         const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight)
@@ -61,8 +58,7 @@ export function BrassEmblem() {
         const startLeft = window.innerWidth - 96
         const top = startTop + (slotBox.top - startTop) * progress
         const left = startLeft + (slotBox.left - startLeft) * progress
-        canvas.style.top = `${top}px`
-        canvas.style.left = `${left}px`
+        canvas.style.transform = `translate3d(${left}px, ${top}px, 0)`
         const onScreen = top > -80 && top < window.innerHeight
         if (!onScreen) return
         group.rotation.y = progress * Math.PI * 1.6
@@ -81,7 +77,6 @@ export function BrassEmblem() {
     return () => {
       stopped = true
       window.cancelAnimationFrame(raf)
-      observer.disconnect()
       dispose()
     }
   }, [])
