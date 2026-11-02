@@ -3,6 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ContactForm } from './ContactForm'
 import { display } from './fonts'
+import { SiteFooter } from './SiteFooter'
+import { SmsDisclosure } from './SmsDisclosure'
 import styles from './home.module.css'
 import {
   CONTACT_EMAIL,
@@ -457,6 +459,7 @@ export default function Home() {
               <p className={styles.phoneLine}>
                 <a href={CONTACT_PHONE_TEL}>{CONTACT_PHONE_DISPLAY}</a>
               </p>
+              <SmsDisclosure />
               <p className={styles.who}>
                 Dan Johnson, Folsom. Lead AI Solutions Engineer. Builds AI agents for enterprise companies. Ex-RAAF.
               </p>
@@ -617,6 +620,7 @@ export default function Home() {
               <a className={styles.contactNumber} href={CONTACT_PHONE_TEL}>
                 {CONTACT_PHONE_DISPLAY}
               </a>
+              <SmsDisclosure />
               <p className={styles.intro}>
                 Tell him which lead keeps getting away. The form books a time by email. Your number on the form is
                 optional.
@@ -651,35 +655,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className={styles.footer}>
-        <div className={styles.shell}>
-          <p className={styles.operated}>Operated by DANZUS Holdings LLC</p>
-          <p>Folsom, California. Contractors, trades, and local services in Sacramento, Folsom, and nearby.</p>
-          <ul className={styles.footerLinks}>
-            <li>
-              <a href={CONTACT_PHONE_TEL}>Call or text Dan, {CONTACT_PHONE_DISPLAY}</a>
-            </li>
-            <li>
-              <a href={mailto}>{CONTACT_EMAIL}</a>
-            </li>
-            <li>
-              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
-                LinkedIn
-              </a>
-            </li>
-            <li>
-              <Link href="/agent-readiness">Agent Readiness</Link>
-            </li>
-            <li>
-              <Link href="/family-agent">Family Agent</Link>
-            </li>
-            <li>
-              <Link href="/contextkit">ContextKit</Link>
-            </li>
-          </ul>
-          <p className={styles.fine}>© 2026 DANZUS Holdings LLC</p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

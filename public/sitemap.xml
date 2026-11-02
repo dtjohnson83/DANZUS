@@ -43,6 +43,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://danzus.co/privacy</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://danzus.co/terms</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://danzus.co/family-agent</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>weekly</changefreq>

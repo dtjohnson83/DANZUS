@@ -1,0 +1,45 @@
+import Link from 'next/link'
+import styles from './home.module.css'
+import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL, LINKEDIN_URL } from './site'
+
+const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Free call request')}`
+
+export function SiteFooter() {
+  return (
+    <footer className={styles.footer}>
+      <div className={styles.shell}>
+        <p className={styles.operated}>Operated by DANZUS Holdings LLC</p>
+        <p>Folsom, California. Contractors, trades, and local services in Sacramento, Folsom, and nearby.</p>
+        <ul className={styles.footerLinks}>
+          <li>
+            <a href={CONTACT_PHONE_TEL}>Call or text Dan, {CONTACT_PHONE_DISPLAY}</a>
+          </li>
+          <li>
+            <a href={mailto}>{CONTACT_EMAIL}</a>
+          </li>
+          <li>
+            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <Link href="/privacy">Privacy</Link>
+          </li>
+          <li>
+            <Link href="/terms">Terms</Link>
+          </li>
+          <li>
+            <Link href="/agent-readiness">Agent Readiness</Link>
+          </li>
+          <li>
+            <Link href="/family-agent">Family Agent</Link>
+          </li>
+          <li>
+            <Link href="/contextkit">ContextKit</Link>
+          </li>
+        </ul>
+        <p className={styles.fine}>© 2026 DANZUS Holdings LLC</p>
+      </div>
+    </footer>
+  )
+}
