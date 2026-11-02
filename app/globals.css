@@ -1308,10 +1308,10 @@ footer {
   }
 }
 
-/* Homepage uses its own warm-charcoal field. Keep the grain and vignette on other routes. */
+/* Homepage uses its own forest-green field. Keep the grain and vignette on other routes. */
 body:has(.danzus-home) {
-  background: #1c1814;
-  color: #f6f1e8;
+  background: #0f1a14;
+  color: #f3ecdf;
   font-weight: 400;
 }
 
