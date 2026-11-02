@@ -159,7 +159,6 @@ const LOCAL_BUSINESS_JSONLD = {
       name: 'Dan Johnson',
       url: LINKEDIN_URL,
       jobTitle: 'Lead AI Solutions Engineer',
-      worksFor: { '@type': 'Organization', name: 'App Orchid' },
       homeLocation: {
         '@type': 'Place',
         name: 'Folsom, California',
@@ -172,7 +171,7 @@ const LOCAL_BUSINESS_JSONLD = {
       },
       sameAs: [LINKEDIN_URL],
       description:
-        'Dan Johnson lives in Folsom, California. He is Lead AI Solutions Engineer at App Orchid, where he builds enterprise AI agents and ontologies, and he previously served in the Royal Australian Air Force. He operates DANZUS Holdings LLC.',
+        'Dan Johnson lives in Folsom, California. He is a Lead AI Solutions Engineer and builds AI agents for enterprise companies. He previously served in the Royal Australian Air Force and operates DANZUS Holdings LLC.',
     },
     {
       '@type': 'WebSite',
@@ -459,7 +458,7 @@ export default function Home() {
                 <a href={CONTACT_PHONE_TEL}>{CONTACT_PHONE_DISPLAY}</a>
               </p>
               <p className={styles.who}>
-                Dan Johnson, Folsom. Lead AI Solutions Engineer at App Orchid. Ex-RAAF.
+                Dan Johnson, Folsom. Lead AI Solutions Engineer. Builds AI agents for enterprise companies. Ex-RAAF.
               </p>
               <a className={styles.linkedin} href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
                 Dan Johnson on LinkedIn
@@ -594,7 +593,7 @@ export default function Home() {
                   He lives here and sets this up for contractors, trades, and local services around Sacramento.
                 </p>
                 <p>
-                  He is Lead AI Solutions Engineer at App Orchid. The day job is enterprise AI agents and ontologies.
+                  He is a Lead AI Solutions Engineer. He builds AI agents for enterprise companies.
                   Before that, he served in the Royal Australian Air Force.
                 </p>
                 <p>
