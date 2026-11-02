@@ -164,6 +164,24 @@
   align-items: end;
 }
 
+.heroLoop {
+  width: min(100%, 520px);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid rgba(176, 141, 87, 0.55);
+  background: #101910;
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.32);
+}
+
+.heroLoop img,
+.heroLoop video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .booked {
   margin: 2px 0 12px;
   font-family: var(--display);
@@ -209,20 +227,35 @@
 
 .card {
   display: grid;
-  grid-template-columns: 14px 1fr;
-  column-gap: 12px;
-  align-items: center;
-  padding: 16px;
+  gap: 4px;
+  padding: 10px;
   border: 1px solid var(--rule);
-  border-radius: 16px;
+  border-radius: 18px;
   text-decoration: none;
   color: inherit;
+  background: rgba(15, 26, 20, 0.35);
+}
+
+.preview {
+  display: block;
+  aspect-ratio: 800 / 524;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #17241c;
+}
+
+.preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .card strong {
   font-family: var(--display);
   font-size: 1.15rem;
   letter-spacing: -0.03em;
+  margin-top: 8px;
 }
 
 .card span:last-child {
@@ -230,11 +263,16 @@
   font-size: 0.92rem;
 }
 
-.swatch {
-  grid-row: span 2;
-  width: 14px;
-  height: 42px;
-  border-radius: 999px;
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+
+  .card:hover,
+  .card:focus-visible {
+    transform: translateY(-4px);
+    border-color: var(--clay);
+  }
 }
 
 .emblemSlot {
@@ -467,6 +505,8 @@
 }
 
 .phone {
+  position: relative;
+  z-index: 1;
   width: min(100%, 336px);
   justify-self: start;
 }
@@ -1694,12 +1734,18 @@
     grid-template-columns: minmax(0, 1.1fr) minmax(380px, 0.78fr);
     grid-template-areas:
       'top phone'
+      'loop phone'
       'rest phone';
     gap: 28px 40px;
     align-items: end;
   }
 
   .heroTop { grid-area: top; }
+  .heroLoop {
+    grid-area: loop;
+    justify-self: start;
+    align-self: end;
+  }
   .heroRest { grid-area: rest; }
   .phone {
     grid-area: phone;

@@ -27,10 +27,13 @@ describe('sample sites and home extras', () => {
     expect(robots).not.toContain('Disallow: /demo')
   })
 
-  it('ships an empty results list and a swappable hero loop', () => {
+  it('ships an empty results list and the approved hero loop', () => {
     expect(RESULTS).toEqual([])
-    expect(HERO_LOOP.poster).toBe('/hero-loop-poster.svg')
-    expect(HERO_LOOP).toHaveProperty('mp4')
-    expect(HERO_LOOP).toHaveProperty('webm')
+    expect(HERO_LOOP.poster).toBe(
+      'https://ic048emi0kpty2jd.public.blob.vercel-storage.com/demos/hero/danzus-hero-poster.webp',
+    )
+    expect(HERO_LOOP.posterJpg).toContain('danzus-hero-poster.jpg')
+    expect(HERO_LOOP.mp4).toContain('danzus-hero.mp4')
+    expect(HERO_LOOP.webm).toContain('danzus-hero.webm')
   })
 })

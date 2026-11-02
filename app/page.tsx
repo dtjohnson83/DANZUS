@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ContactForm } from './ContactForm'
 import { PackageDemo } from './PackageDemo'
 import { BrassEmblem } from './BrassEmblem'
+import { HeroLoop } from './HeroLoop'
 import { PhoneMockup } from './PhoneMockup'
 import { ResultsCounters } from './ResultsCounters'
 import { TRADES } from './sample-sites/trades'
@@ -245,6 +246,7 @@ export default function Home() {
               </p>
               <p className={styles.punch}>You were on a roof. The lead texted the next guy.</p>
             </div>
+            <HeroLoop />
             <PhoneMockup />
             <div className={styles.heroRest}>
               <p className={styles.support}>
@@ -357,7 +359,16 @@ export default function Home() {
               <div className={styles.cards}>
                 {TRADES.map((trade) => (
                   <a className={styles.card} href={trade.path} key={trade.id}>
-                    <span className={styles.swatch} style={{ background: trade.accent }} />
+                    <span className={styles.preview}>
+                      <Image
+                        src={`/samples/${trade.id}.webp`}
+                        alt=""
+                        width={800}
+                        height={524}
+                        sizes="(min-width: 720px) 480px, 100vw"
+                        loading="lazy"
+                      />
+                    </span>
                     <strong>{trade.name}</strong>
                     <span>{trade.trade}</span>
                   </a>
