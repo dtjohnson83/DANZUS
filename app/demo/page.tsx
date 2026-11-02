@@ -11,7 +11,9 @@ import styles from './demo.module.css'
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-  title: 'Lead inbox',
+  title: { absolute: 'Lead inbox | DANZUS' },
+  description: 'Private lead inbox for DANZUS. Not for public search.',
+  alternates: { canonical: '/demo' },
   robots: { index: false, follow: false },
 }
 

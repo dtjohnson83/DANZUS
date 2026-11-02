@@ -12,29 +12,26 @@ import styles from './home.module.css'
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE_DISPLAY,
-  CONTACT_PHONE_SCHEMA,
   CONTACT_PHONE_TEL,
   LINKEDIN_URL,
   PORTRAIT_SRC,
   SITE_URL,
 } from './site'
+import { FAQS, HOME_DESCRIPTION, HOME_TITLE, siteJsonLd } from '@/lib/site-schema'
 
-const TITLE = 'Never Miss Another Lead | Folsom & Sacramento AI | DANZUS'
-const DESCRIPTION =
-  'DANZUS in Folsom sets up AI assistants for Sacramento-area contractors and local services. Missed calls, follow-up, booking, and reviews. Flat monthly price.'
+const TITLE = HOME_TITLE
+const DESCRIPTION = HOME_DESCRIPTION
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   keywords: [
-    'Sacramento AI assistant',
-    'Folsom AI assistant',
     'AI assistant for small business Sacramento',
+    'small business automation Folsom',
+    'AI assistant Roseville',
+    'AI assistant El Dorado Hills',
     'missed call text back Folsom',
     'contractor lead follow up Sacramento',
-    'AI for contractors Folsom',
-    'local service booking reminders',
-    'Google review requests small business',
     'DANZUS Holdings LLC',
     'Dan Johnson Folsom',
   ],
@@ -56,139 +53,7 @@ export const metadata: Metadata = {
   },
 }
 
-const LOCAL_BUSINESS_JSONLD = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': ['LocalBusiness', 'ProfessionalService'],
-      '@id': `${SITE_URL}/#business`,
-      name: 'DANZUS',
-      legalName: 'DANZUS Holdings LLC',
-      url: SITE_URL,
-      image: `${SITE_URL}/dan-johnson.jpg`,
-      logo: `${SITE_URL}/danzus-mark-512.png`,
-      email: CONTACT_EMAIL,
-      telephone: CONTACT_PHONE_SCHEMA,
-      description: DESCRIPTION,
-      priceRange: '$$',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Folsom',
-        addressRegion: 'CA',
-        addressCountry: 'US',
-      },
-      areaServed: [
-        {
-          '@type': 'City',
-          name: 'Sacramento',
-          containedInPlace: { '@type': 'State', name: 'California' },
-        },
-        {
-          '@type': 'City',
-          name: 'Folsom',
-          containedInPlace: { '@type': 'State', name: 'California' },
-        },
-      ],
-      founder: { '@id': `${SITE_URL}/#dan-johnson` },
-      sameAs: [LINKEDIN_URL],
-      knowsAbout: [
-        'Missed-call text-back',
-        'Lead follow-up for contractors',
-        'Appointment booking and reminders',
-        'Google review requests',
-        'AI assistants for small businesses',
-      ],
-      hasOfferCatalog: {
-        '@type': 'OfferCatalog',
-        name: 'Done-for-you AI assistants',
-        itemListElement: [
-          {
-            '@type': 'Offer',
-            name: 'Pilot',
-            description:
-              'First three clients. One workflow package, starting at $250 setup and $150 per month, in exchange for an honest testimonial.',
-            priceCurrency: 'USD',
-            priceSpecification: {
-              '@type': 'UnitPriceSpecification',
-              price: '150',
-              priceCurrency: 'USD',
-              unitText: 'MONTH',
-            },
-          },
-          {
-            '@type': 'Offer',
-            name: 'Starter',
-            description:
-              'One workflow package, such as part of Lead to Booked Job, quote follow-up, or FAQ answers. Setup starting at $500. Monthly starting at $200 to $300.',
-            priceCurrency: 'USD',
-            priceSpecification: {
-              '@type': 'UnitPriceSpecification',
-              minPrice: '200',
-              maxPrice: '300',
-              priceCurrency: 'USD',
-              unitText: 'MONTH',
-            },
-          },
-          {
-            '@type': 'Offer',
-            name: 'Growth',
-            description:
-              'Lead to Booked Job, Quote to Cash, and Job Closeout. Setup starting at $1,000 to $1,500. Monthly starting at $400 to $600.',
-            priceCurrency: 'USD',
-            priceSpecification: {
-              '@type': 'UnitPriceSpecification',
-              minPrice: '400',
-              maxPrice: '600',
-              priceCurrency: 'USD',
-              unitText: 'MONTH',
-            },
-          },
-          {
-            '@type': 'Offer',
-            name: 'Custom integrations',
-            description:
-              'Back Office, live job status, and connections to QuickBooks, a CRM, or other tools. Starting at $1,500, or $100 to $150 per hour.',
-            priceCurrency: 'USD',
-            priceSpecification: {
-              '@type': 'PriceSpecification',
-              minPrice: '1500',
-              priceCurrency: 'USD',
-            },
-          },
-        ],
-      },
-    },
-    {
-      '@type': 'Person',
-      '@id': `${SITE_URL}/#dan-johnson`,
-      name: 'Dan Johnson',
-      url: LINKEDIN_URL,
-      jobTitle: 'Lead AI Solutions Engineer',
-      homeLocation: {
-        '@type': 'Place',
-        name: 'Folsom, California',
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: 'Folsom',
-          addressRegion: 'CA',
-          addressCountry: 'US',
-        },
-      },
-      sameAs: [LINKEDIN_URL],
-      description:
-        'Dan Johnson lives in Folsom, California. He is a Lead AI Solutions Engineer and builds AI agents for enterprise companies. He previously served in the Royal Australian Air Force and operates DANZUS Holdings LLC.',
-    },
-    {
-      '@type': 'WebSite',
-      '@id': `${SITE_URL}/#website`,
-      name: 'DANZUS',
-      url: SITE_URL,
-      description: DESCRIPTION,
-      publisher: { '@id': `${SITE_URL}/#business` },
-      inLanguage: 'en-US',
-    },
-  ],
-}
+const LOCAL_BUSINESS_JSONLD = siteJsonLd()
 
 const USE_CASES = [
   {
@@ -336,6 +201,7 @@ export default function Home() {
               <a href="#packages">Packages</a>
               <a href="#how">How it works</a>
               <a href="#pricing">Pricing</a>
+              <a href="#faq">Questions</a>
               <a href="#about">About</a>
             </nav>
             <a className={styles.call} href={CONTACT_PHONE_TEL}>
@@ -347,6 +213,7 @@ export default function Home() {
             <a href="#packages">Packages</a>
             <a href="#how">How it works</a>
             <a href="#pricing">Pricing</a>
+            <a href="#faq">Questions</a>
             <a href="#about">About</a>
           </nav>
         </div>
@@ -356,10 +223,11 @@ export default function Home() {
         <section className={styles.hero}>
           <div className={`${styles.shell} ${styles.heroGrid}`}>
             <div className={styles.heroTop}>
-              <p className={styles.place}>Folsom, California. Sacramento and nearby.</p>
+              <p className={styles.place}>Folsom, California. Sacramento, Roseville, El Dorado Hills, and nearby.</p>
               <h1>Never miss another lead.</h1>
               <p className={styles.lead}>
-                AI assistants for Sacramento-area small businesses, set up for you, flat monthly price.
+                AI assistants and automation for small businesses in Sacramento, Folsom, Roseville, and El Dorado Hills.
+                Set up for you, flat monthly price.
               </p>
               <p className={styles.punch}>You were on a roof. The lead texted the next guy.</p>
             </div>
@@ -485,6 +353,21 @@ export default function Home() {
           </div>
         </section>
 
+        <section className={styles.section} id="faq" aria-labelledby="faq-heading">
+          <div className={styles.shell}>
+            <p className={styles.kicker}>Questions</p>
+            <h2 id="faq-heading">Before the free call.</h2>
+            <div className={styles.faq}>
+              {FAQS.map((item) => (
+                <article key={item.question}>
+                  <h3>{item.question}</h3>
+                  <p>{item.answer}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className={styles.section} id="about" aria-labelledby="about-heading">
           <div className={`${styles.shell} ${styles.about}`}>
             <figure>
@@ -515,7 +398,8 @@ export default function Home() {
               <h2 id="about-heading">Dan Johnson, in Folsom.</h2>
               <div className={styles.bio}>
                 <p>
-                  He lives here and sets this up for contractors, trades, and local services around Sacramento.
+                  He lives here and sets this up for contractors, trades, and local services in Sacramento, Folsom,
+                  Roseville, El Dorado Hills, and nearby.
                 </p>
                 <p>
                   He is a Lead AI Solutions Engineer. He builds AI agents for enterprise companies.
