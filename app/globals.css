@@ -49,6 +49,11 @@ body::after {
   z-index: 9998;
 }
 
+body:has([data-sample-site])::before,
+body:has([data-sample-site])::after {
+  display: none;
+}
+
 a { color: inherit; text-decoration: none; }
 
 .wrap {
