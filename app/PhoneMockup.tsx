@@ -21,6 +21,7 @@ const TYPING_MS = 650
 
 export function PhoneMockup() {
   const rootRef = useRef<HTMLElement>(null)
+  const stageRef = useRef<HTMLDivElement>(null)
   const threadRef = useRef<HTMLDivElement>(null)
   const typingRef = useRef<HTMLDivElement>(null)
   const bubbleRefs = useRef<Array<HTMLDivElement | null>>([])
@@ -31,6 +32,43 @@ export function PhoneMockup() {
   useLayoutEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     setArmed(true)
+  }, [])
+
+  useEffect(() => {
+    const stage = stageRef.current
+    if (!stage) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return
+
+    let frame = 0
+    const onMove = (event: PointerEvent) => {
+      if (window.innerWidth < 980) {
+        stage.style.removeProperty('--tilt-y')
+        stage.style.removeProperty('--tilt-x')
+        return
+      }
+      const rect = stage.getBoundingClientRect()
+      const dx = (event.clientX - (rect.left + rect.width / 2)) / window.innerWidth
+      const dy = (event.clientY - (rect.top + rect.height / 2)) / window.innerHeight
+      const tiltY = Math.min(-6, Math.max(-18, -12 + dx * -10))
+      const tiltX = Math.min(8, Math.max(1, 4 + dy * 6))
+      window.cancelAnimationFrame(frame)
+      frame = window.requestAnimationFrame(() => {
+        stage.style.setProperty('--tilt-y', `${tiltY.toFixed(2)}deg`)
+        stage.style.setProperty('--tilt-x', `${tiltX.toFixed(2)}deg`)
+      })
+    }
+    const reset = () => {
+      stage.style.removeProperty('--tilt-y')
+      stage.style.removeProperty('--tilt-x')
+    }
+    window.addEventListener('pointermove', onMove)
+    window.addEventListener('blur', reset)
+    return () => {
+      window.cancelAnimationFrame(frame)
+      window.removeEventListener('pointermove', onMove)
+      window.removeEventListener('blur', reset)
+    }
   }, [])
 
   useEffect(() => {
@@ -100,7 +138,7 @@ export function PhoneMockup() {
 
   return (
     <figure ref={rootRef} className={styles.phone} data-armed={armed ? '' : undefined}>
-      <div className={styles.stage}>
+      <div ref={stageRef} className={styles.stage}>
         <div className={styles.device}>
           <span className={`${styles.side} ${styles.action}`} aria-hidden="true" />
           <span className={`${styles.side} ${styles.vol1}`} aria-hidden="true" />
@@ -184,6 +222,7 @@ export function PhoneMockup() {
               </span>
             </div>
             <div className={styles.homeBar} />
+            <div className={styles.glare} aria-hidden="true" />
           </div>
         </div>
       </div>
