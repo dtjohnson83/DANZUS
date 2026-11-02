@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { ContactForm } from './ContactForm'
 import { PackageDemo } from './PackageDemo'
 import { BrassEmblem } from './BrassEmblem'
-import { HeroLoop } from './HeroLoop'
 import { PhoneMockup } from './PhoneMockup'
 import { ResultsCounters } from './ResultsCounters'
 import { TRADES } from './sample-sites/trades'
@@ -238,6 +237,7 @@ export default function Home() {
           <div className={`${styles.shell} ${styles.heroGrid}`}>
             <div className={styles.heroTop}>
               <p className={styles.place}>Folsom, California. Sacramento, Roseville, El Dorado Hills, and nearby.</p>
+              <p className={styles.booked}>BOOKED.</p>
               <h1>Never miss another lead.</h1>
               <p className={styles.lead}>
                 Websites, local search, and AI assistants for small businesses in Sacramento, Folsom, Roseville, and
@@ -245,13 +245,7 @@ export default function Home() {
               </p>
               <p className={styles.punch}>You were on a roof. The lead texted the next guy.</p>
             </div>
-            <div className={styles.phoneSlot}>
-              <p className={styles.booked} aria-hidden="true">
-                BOOKED.
-              </p>
-              <HeroLoop />
-              <PhoneMockup />
-            </div>
+            <PhoneMockup />
             <div className={styles.heroRest}>
               <p className={styles.support}>
                 A missed call gets a text back within 60 seconds. The estimate gets a follow-up. The job lands on the
