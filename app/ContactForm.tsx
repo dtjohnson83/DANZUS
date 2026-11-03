@@ -90,7 +90,13 @@ export function ContactForm() {
           placeholder="How leads come in today, and which one slips most often."
         />
       </label>
-      <button className={styles.primary} type="submit">
+      <button
+        className={styles.primary}
+        type="submit"
+        data-track="cta_click"
+        data-track-label="Book a free call"
+        data-track-section="about"
+      >
         Book a free call
       </button>
       {status ? (

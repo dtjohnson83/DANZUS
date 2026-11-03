@@ -63,6 +63,9 @@ export function PackageDemo({ slug, title }: { slug: DemoSlug; title: string }) 
         aria-haspopup="dialog"
         aria-expanded={open}
         aria-label={`Watch the 75-second demo: ${title}`}
+        data-track="cta_click"
+        data-track-label={`Watch the 75-second demo: ${title}`}
+        data-track-section="packages"
         onClick={() => {
           setNarrow(window.matchMedia(DEMO_MOBILE_MEDIA).matches)
           setOpen(true)

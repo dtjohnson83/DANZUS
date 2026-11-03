@@ -27,7 +27,14 @@ export function SampleSite({ trade }: { trade: TradeDemo }) {
             {trade.name}
             <span className={styles.trade}>{trade.trade}</span>
           </p>
-          <a className={styles.call} href={DEMO_PHONE_TEL}>
+          <a
+            className={styles.call}
+            href={DEMO_PHONE_TEL}
+            data-track="call_click"
+            data-track-location="nav"
+            data-track-label={`Call ${DEMO_PHONE_DISPLAY}`}
+            data-track-section="nav"
+          >
             Call {DEMO_PHONE_DISPLAY}
           </a>
         </div>
@@ -38,7 +45,14 @@ export function SampleSite({ trade }: { trade: TradeDemo }) {
             <p className={styles.kicker}>{trade.trade}</p>
             <h1>{trade.headline}</h1>
             <p className={styles.sub}>{trade.sub}</p>
-            <a className={styles.bigCall} href={DEMO_PHONE_TEL}>
+            <a
+              className={styles.bigCall}
+              href={DEMO_PHONE_TEL}
+              data-track="call_click"
+              data-track-location="hero"
+              data-track-label={`Call ${DEMO_PHONE_DISPLAY}`}
+              data-track-section="hero"
+            >
               Call {DEMO_PHONE_DISPLAY}
             </a>
           </div>

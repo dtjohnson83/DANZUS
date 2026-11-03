@@ -175,9 +175,27 @@ const SHORT_ANSWERS = [
 
 const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Free call request')}`
 
-function Ghost({ href, children }: { href: string; children: string }) {
+function Ghost({
+  href,
+  children,
+  section,
+  location,
+}: {
+  href: string
+  children: string
+  section: string
+  location?: string
+}) {
+  const track = href.startsWith('tel:') ? 'call_click' : href.startsWith('sms:') ? 'text_click' : 'cta_click'
   return (
-    <a className={styles.ghost} href={href}>
+    <a
+      className={styles.ghost}
+      href={href}
+      data-track={track}
+      data-track-label={children}
+      data-track-section={section}
+      {...(track === 'cta_click' ? {} : { 'data-track-location': location || section })}
+    >
       {children}
       <span aria-hidden="true">→</span>
     </a>
@@ -229,12 +247,27 @@ export default function Home() {
               DANZUS
             </Link>
             <nav className={styles.deskLinks} aria-label="Primary">
-              <a href="#services">Services</a>
-              <a href="#pricing">Pricing</a>
-              <a href="#work">Work</a>
-              <a href="#about">About</a>
+              <a href="#services" data-track="nav_click" data-track-label="Services" data-track-location="desktop">
+                Services
+              </a>
+              <a href="#pricing" data-track="nav_click" data-track-label="Pricing" data-track-location="desktop">
+                Pricing
+              </a>
+              <a href="#work" data-track="nav_click" data-track-label="Work" data-track-location="desktop">
+                Work
+              </a>
+              <a href="#about" data-track="nav_click" data-track-label="About" data-track-location="desktop">
+                About
+              </a>
             </nav>
-            <a className={styles.call} href={CONTACT_PHONE_TEL}>
+            <a
+              className={styles.call}
+              href={CONTACT_PHONE_TEL}
+              data-track="call_click"
+              data-track-location="nav"
+              data-track-label="Call or text Dan"
+              data-track-section="nav"
+            >
               Call or text Dan
             </a>
             <MobileNav />
@@ -250,7 +283,9 @@ export default function Home() {
             <p className={styles.label}>For your shop</p>
             <h1>Never miss another lead.</h1>
             <p className={styles.line}>You were under a sink. The lead texted the next guy.</p>
-            <Ghost href={CONTACT_PHONE_TEL}>Call or text Dan</Ghost>
+            <Ghost href={CONTACT_PHONE_TEL} section="hero" location="hero">
+              Call or text Dan
+            </Ghost>
           </div>
         </section>
 
@@ -259,7 +294,9 @@ export default function Home() {
             <p className={styles.label}>Missed call</p>
             <h2 id="services-title">The phone rings out.</h2>
             <p className={styles.line}>You are on the job. The lead does not wait.</p>
-            <Ghost href="#reply">See the text</Ghost>
+            <Ghost href="#reply" section="services">
+              See the text
+            </Ghost>
           </Reveal>
         </section>
 
@@ -271,7 +308,9 @@ export default function Home() {
             <div className={styles.phoneStage}>
               <PhoneMockup />
             </div>
-            <Ghost href="#booked">See the booking</Ghost>
+            <Ghost href="#booked" section="reply">
+              See the booking
+            </Ghost>
           </Reveal>
         </section>
 
@@ -280,7 +319,9 @@ export default function Home() {
             <p className={styles.label}>Booked job</p>
             <h2 id="booked-title">A time lands.</h2>
             <p className={styles.line}>The job is on the calendar before you roll.</p>
-            <Ghost href="#work">See the work</Ghost>
+            <Ghost href="#work" section="booked">
+              See the work
+            </Ghost>
           </Reveal>
         </section>
 
@@ -291,7 +332,13 @@ export default function Home() {
             <p className={styles.line}>Four samples. Not real shops. Calls ring DANZUS.</p>
             <div className={styles.cards}>
               {TRADES.map((trade) => (
-                <a className={styles.card} href={trade.path} key={trade.id}>
+                <a
+                  className={styles.card}
+                  href={trade.path}
+                  key={trade.id}
+                  data-track="sample_open"
+                  data-track-slug={trade.id}
+                >
                   <span className={styles.preview}>
                     <Image
                       src={`/samples/${trade.id}.webp`}
@@ -307,7 +354,9 @@ export default function Home() {
                 </a>
               ))}
             </div>
-            <Ghost href="#pricing">See pricing</Ghost>
+            <Ghost href="#pricing" section="work">
+              See pricing
+            </Ghost>
           </Reveal>
         </section>
 
@@ -421,16 +470,32 @@ export default function Home() {
                   <p>Sacramento, Roseville, and El Dorado Hills are in range.</p>
                   <p>Lead AI Solutions Engineer. Enterprise agents. Ex-RAAF.</p>
                   <p>The company is DANZUS Holdings LLC.</p>
-                  <a className={styles.linkedin} href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
+                  <a
+                    className={styles.linkedin}
+                    href={LINKEDIN_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-track="outbound_click"
+                    data-track-label="LinkedIn"
+                  >
                     Dan Johnson on LinkedIn
                     <small>linkedin.com/in/danjohnsondata</small>
                   </a>
                 </div>
                 <p className={styles.phoneLine}>
-                  <a href={CONTACT_PHONE_TEL}>{CONTACT_PHONE_DISPLAY}</a>
+                  <a href={CONTACT_PHONE_TEL} data-track="call_click" data-track-location="section">
+                    {CONTACT_PHONE_DISPLAY}
+                  </a>
                 </p>
                 <SmsDisclosure />
-                <a className={styles.solid} href={CONTACT_PHONE_TEL}>
+                <a
+                  className={styles.solid}
+                  href={CONTACT_PHONE_TEL}
+                  data-track="call_click"
+                  data-track-location="section"
+                  data-track-label="Call or text Dan"
+                  data-track-section="about"
+                >
                   Call or text Dan
                   <span aria-hidden="true">→</span>
                 </a>
