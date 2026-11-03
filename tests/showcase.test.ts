@@ -46,11 +46,11 @@ describe('sample sites and home extras', () => {
 
   it('ships an empty results list and the approved hero loop', () => {
     expect(RESULTS).toEqual([])
-    expect(HERO_LOOP.poster).toBe(
-      'https://ic048emi0kpty2jd.public.blob.vercel-storage.com/demos/hero/danzus-hero-poster.webp',
-    )
-    expect(HERO_LOOP.posterJpg).toContain('danzus-hero-poster.jpg')
-    expect(HERO_LOOP.mp4).toContain('danzus-hero.mp4')
-    expect(HERO_LOOP.webm).toContain('danzus-hero.webm')
+    expect(HERO_LOOP.desktop.mp4).toContain('danzus-hero-v3-desktop.mp4')
+    expect(HERO_LOOP.desktop.webm).toContain('danzus-hero-v3-desktop.webm')
+    expect(HERO_LOOP.desktop.poster).toContain('danzus-hero-v3-desktop-poster.webp')
+    expect(HERO_LOOP.mobile.mp4).toContain('danzus-hero-v3-mobile.mp4')
+    expect(HERO_LOOP.mobile.webm).toContain('danzus-hero-v3-mobile.webm')
+    expect(HERO_LOOP.mobile.poster).toContain('danzus-hero-v3-mobile-poster.webp')
   })
 })

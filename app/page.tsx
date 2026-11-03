@@ -22,6 +22,7 @@ import {
   SITE_URL,
 } from './site'
 import { FAQS, HOME_DESCRIPTION, HOME_TITLE, siteJsonLd } from '@/lib/site-schema'
+import { HERO_LOOP } from './hero-loop'
 
 const TITLE = HOME_TITLE
 const DESCRIPTION = HOME_DESCRIPTION
@@ -202,6 +203,20 @@ export default function Home() {
         }}
       />
       <script dangerouslySetInnerHTML={{ __html: 'document.documentElement.classList.add("js")' }} />
+      <link
+        rel="preload"
+        as="image"
+        href={HERO_LOOP.mobile.poster}
+        media="(max-width: 767px)"
+        fetchPriority="high"
+      />
+      <link
+        rel="preload"
+        as="image"
+        href={HERO_LOOP.desktop.poster}
+        media="(min-width: 768px)"
+        fetchPriority="high"
+      />
       <a className={styles.skip} href="#content">
         Skip to content
       </a>
