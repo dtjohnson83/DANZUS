@@ -71,6 +71,7 @@ describe('search metadata', () => {
       expect(robots).toMatch(new RegExp(`User-agent: ${bot}\\nAllow: /`))
     }
     expect(sitemap).toContain('https://danzus.co/')
+    expect(sitemap).toContain('https://danzus.co/ai-search')
     expect(sitemap).toContain('https://danzus.co/privacy')
     expect(sitemap).toContain('https://danzus.co/terms')
     expect(sitemap).not.toContain('agent-readiness')

@@ -119,6 +119,7 @@ https://danzus.co/privacy Terms: https://danzus.co/terms
 ## Pages
 
 - https://danzus.co/
+- https://danzus.co/ai-search
 - https://danzus.co/privacy
 - https://danzus.co/terms
 - https://danzus.co/llms.txt

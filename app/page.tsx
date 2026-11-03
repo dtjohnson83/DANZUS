@@ -253,6 +253,9 @@ export default function Home() {
               <a href="#pricing" data-track="nav_click" data-track-label="Pricing" data-track-location="desktop">
                 Pricing
               </a>
+              <a href="/ai-search" data-track="nav_click" data-track-label="AI search" data-track-location="desktop">
+                AI search
+              </a>
               <SampleMenu />
               <a href="#about" data-track="nav_click" data-track-label="About" data-track-location="desktop">
                 About
