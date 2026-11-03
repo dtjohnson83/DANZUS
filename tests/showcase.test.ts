@@ -24,7 +24,7 @@ describe('sample sites and home extras', () => {
     expect(readFileSync('app/sample-sites/SampleSite.tsx', 'utf8')).toContain(
       'Sample site by DANZUS. Not a real business.',
     )
-    expect(readFileSync('next.config.js', 'utf8')).toContain("pathname: '/samples/**'")
+    expect(readFileSync('next.config.js', 'utf8')).toContain("pathname: '/samples-illustrated/**'")
     const copy = JSON.stringify(TRADES)
     expect(copy).not.toMatch(/—|DimeVision|App Orchid|GoHighLevel/i)
   })

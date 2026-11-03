@@ -160,13 +160,16 @@
 }
 
 .hero {
+  position: relative;
   display: grid;
+  align-items: end;
+  min-height: calc(100svh - 108px);
+  background: #10241c;
 }
 
 .heroMedia {
-  position: relative;
-  aspect-ratio: 16 / 10;
-  min-height: 220px;
+  position: absolute;
+  inset: 0;
 }
 
 .heroImg,
@@ -175,22 +178,46 @@
 }
 
 .heroImg {
-  object-position: 68% center;
+  object-position: 72% 28%;
 }
 
 .heroShade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent 30%);
+  background:
+    linear-gradient(180deg, rgba(8, 20, 16, 0.08) 30%, rgba(8, 20, 16, 0.82) 100%),
+    linear-gradient(90deg, rgba(8, 20, 16, 0.42) 0%, rgba(8, 20, 16, 0) 46%);
 }
 
 .heroCopy {
+  position: relative;
+  z-index: 1;
   display: grid;
   gap: 16px;
-  align-content: start;
-  padding: 32px 0 8px;
+  align-content: end;
+  padding: 96px 0 32px;
   width: min(1120px, calc(100% - 40px));
   margin-inline: auto;
+  color: #f6f1e6;
+}
+
+.heroCopy .kicker {
+  color: color-mix(in srgb, var(--accent) 38%, #fff);
+}
+
+.heroCopy h1,
+.heroCopy .sub {
+  color: #f6f1e6;
+}
+
+.heroCopy .sub {
+  color: rgba(246, 241, 230, 0.88);
+  max-width: 22rem;
+}
+
+.heroCopy .secondary {
+  color: #f6f1e6;
+  border-color: rgba(246, 241, 230, 0.72);
 }
 
 .kicker {
@@ -325,7 +352,8 @@
   aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: var(--radius);
-  background: var(--line);
+  background: #10241c;
+  box-shadow: 0 0 0 1px rgba(196, 164, 106, 0.45);
 }
 
 .shot figcaption,
@@ -505,9 +533,9 @@
 
 .chatToggle {
   width: auto;
-  background: var(--ink);
-  color: var(--paper);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  background: #f6f1e6;
+  color: #10241c;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
@@ -560,16 +588,8 @@
   }
 
   .hero {
-    position: relative;
     min-height: 100svh;
-    display: block;
-  }
-
-  .heroMedia {
-    position: absolute;
-    inset: 0;
-    aspect-ratio: auto;
-    min-height: 0;
+    align-items: center;
   }
 
   .heroImg {
@@ -577,31 +597,13 @@
   }
 
   .heroShade {
-    background: linear-gradient(90deg, rgba(8, 18, 32, 0.88) 0%, rgba(8, 18, 32, 0.62) 34%, rgba(8, 18, 32, 0.12) 58%, rgba(8, 18, 32, 0) 72%);
+    background: linear-gradient(90deg, rgba(8, 20, 16, 0.58) 0%, rgba(8, 20, 16, 0.28) 24%, rgba(8, 20, 16, 0) 46%);
   }
 
   .heroCopy {
-    position: relative;
-    z-index: 1;
     min-height: 100svh;
-    align-content: end;
+    align-content: center;
     padding: 120px 0 72px;
-    color: #fff;
-  }
-
-  .heroCopy .kicker,
-  .heroCopy h1,
-  .heroCopy .sub {
-    color: #fff;
-  }
-
-  .heroCopy .sub {
-    color: rgba(255, 255, 255, 0.86);
-  }
-
-  .heroCopy .secondary {
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.7);
   }
 
   .splitGrid {
@@ -661,10 +663,6 @@
   border-radius: var(--radius);
   padding: 24px;
   box-shadow: 0 10px 30px rgba(90, 42, 18, 0.06);
-}
-
-.page[data-brand='hvac'] .heroShade {
-  background: linear-gradient(180deg, rgba(62, 32, 16, 0.15), transparent 28%);
 }
 
 .page[data-brand='auto'] .header {
@@ -731,59 +729,9 @@
 }
 
 @media (min-width: 960px) {
-  .page[data-brand='hvac'] .heroShade {
-    background: linear-gradient(90deg, rgba(62, 28, 12, 0.78) 0%, rgba(62, 28, 12, 0.28) 42%, rgba(62, 28, 12, 0) 68%);
-  }
-
-  .page[data-brand='auto'] .heroShade {
-    background: linear-gradient(90deg, rgba(12, 10, 8, 0.2), rgba(12, 10, 8, 0.05) 40%, rgba(12, 10, 8, 0.35));
-  }
-
-  .page[data-brand='auto'] .heroCopy {
-    max-width: 640px;
-    margin-left: max(32px, calc((100% - 1120px) / 2));
-    padding: 28px 32px;
-    background: rgba(16, 14, 12, 0.82);
-    min-height: 0;
-    align-self: end;
-    margin-bottom: 64px;
-    align-content: start;
-  }
-
-  .page[data-brand='auto'] .hero {
-    display: flex;
-    align-items: flex-end;
-  }
-
-  .page[data-brand='salon'] .heroShade {
-    background: linear-gradient(90deg, rgba(247, 242, 239, 0.94) 0%, rgba(247, 242, 239, 0.78) 32%, rgba(247, 242, 239, 0) 54%);
-  }
-
-  .page[data-brand='salon'] .heroCopy,
-  .page[data-brand='salon'] .heroCopy .kicker,
-  .page[data-brand='salon'] .heroCopy h1,
-  .page[data-brand='salon'] .heroCopy .sub {
-    color: #2c1c20;
-  }
-
-  .page[data-brand='salon'] .heroCopy .sub {
-    color: #5c464c;
-  }
-
-  .page[data-brand='salon'] .heroCopy .secondary {
-    color: #2c1c20;
-    border-color: #8c4a55;
-  }
-
   .page[data-brand='salon'] .hero h1 {
-    max-width: 11ch;
-    font-size: clamp(3.4rem, 6vw, 6rem);
-  }
-
-  .page[data-brand='hvac'] .heroCopy .sub,
-  .page[data-brand='plumber'] .heroCopy .sub,
-  .page[data-brand='salon'] .heroCopy .sub {
-    max-width: 22rem;
+    max-width: 12ch;
+    font-size: clamp(3.2rem, 5vw, 5.2rem);
   }
 
   .page[data-brand='auto'] .split {

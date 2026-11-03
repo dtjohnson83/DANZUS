@@ -178,7 +178,7 @@ export function SampleSite({ trade, className }: { trade: TradeDemo; className?:
               <div className={styles.frame}>
                 <Image src={trade.photos.happy} alt={trade.alts.happy} fill sizes="(min-width: 900px) 36vw, 100vw" />
               </div>
-              <figcaption>Sample photo. Not a review from Google or Yelp.</figcaption>
+              <figcaption>Sample illustration. Not a review from Google or Yelp.</figcaption>
             </figure>
             <div>
               <p className={styles.kicker}>Sample notes</p>

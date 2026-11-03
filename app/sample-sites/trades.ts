@@ -2,7 +2,9 @@ import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL, SITE_URL } from '@/app/site'
 
 export type TradeId = 'plumber' | 'hvac' | 'auto' | 'salon'
 
-export const SAMPLE_PHOTO_BASE = 'https://hwidthwh7olawzlg.public.blob.vercel-storage.com/samples'
+/** Swap this base to change every sample image. File names stay hero, work, detail, happy. */
+export const SAMPLE_PHOTO_BASE =
+  'https://hwidthwh7olawzlg.public.blob.vercel-storage.com/samples-illustrated'
 
 type PhotoName = 'hero' | 'work' | 'detail' | 'happy'
 
@@ -115,13 +117,13 @@ export const TRADES: TradeDemo[] = [
     ],
     photos: photos('plumber'),
     alts: {
-      hero: 'Sample photo of a plumber repairing a kitchen sink trap',
-      work: 'Sample photo of a plumber working on a water heater',
-      detail: 'Sample close-up of plumbing work',
-      happy: 'Sample photo of a homeowner testing a new kitchen faucet',
+      hero: 'Illustration of a plumber repairing a kitchen sink trap',
+      work: 'Illustration of a plumber tightening fittings on a water heater',
+      detail: 'Illustration of hands wrapping tape on a brass fitting',
+      happy: 'Illustration of a plumber and a homeowner at a running faucet',
     },
     splitTitle: 'The work, up close.',
-    splitBody: 'Heaters, traps, and the parts you can see once the door is open. These photos are for the sample.',
+    splitBody: 'Heaters, traps, and the parts you can see once the door is open. These illustrations are for the sample.',
     ctaTitle: 'Call the sample line.',
     ctaBody: 'It rings DANZUS, not a plumber. Ask how a site like this would work for your shop.',
   },
@@ -198,13 +200,13 @@ export const TRADES: TradeDemo[] = [
     ],
     photos: photos('hvac'),
     alts: {
-      hero: 'Sample photo of a technician checking an outdoor air conditioner',
-      work: 'Sample photo of a technician sliding a furnace filter into place',
-      detail: 'Sample close-up of heating and air equipment',
-      happy: 'Sample photo of a couple at home with the heat on',
+      hero: 'Illustration of a technician connecting gauges to an outdoor unit',
+      work: 'Illustration of a technician changing a furnace filter',
+      detail: 'Illustration close-up of heating and air equipment',
+      happy: 'Illustration of a technician with homeowners beside a thermostat',
     },
     splitTitle: 'Cool air, then the quiet part.',
-    splitBody: 'The outdoor unit, the filter, and the room you actually live in. Photos are for this sample.',
+    splitBody: 'The outdoor unit, the filter, and the room you actually live in. Illustrations are for this sample.',
     ctaTitle: 'Too warm to wait on hold?',
     ctaBody: 'This number is DANZUS. Use it to ask about a site like this for your own shop.',
   },
@@ -282,13 +284,13 @@ export const TRADES: TradeDemo[] = [
     ],
     photos: photos('auto'),
     alts: {
-      hero: 'Sample photo of a mechanic working on a brake under a lifted car',
-      work: 'Sample photo of a mechanic loosening lug nuts',
-      detail: 'Sample close-up of auto repair work',
-      happy: 'Sample photo of a customer getting keys back at the shop door',
+      hero: 'Illustration of a mechanic working under an open hood',
+      work: 'Illustration of a mechanic inspecting the underside of a car',
+      detail: 'Illustration close-up of auto repair work',
+      happy: 'Illustration of a mechanic handing keys back at the shop door',
     },
     splitTitle: 'In the bay.',
-    splitBody: 'Brakes on the lift, lug nuts on the ground, keys back at the door. Sample photos only.',
+    splitBody: 'The hood, the underside, and the keys at the door. Sample illustrations only.',
     ctaTitle: 'Book the conversation, not a bay.',
     ctaBody: 'This line reaches DANZUS. Ask what a shop site like this would cost.',
   },
@@ -366,13 +368,13 @@ export const TRADES: TradeDemo[] = [
     ],
     photos: photos('salon'),
     alts: {
-      hero: 'Sample photo of a stylist cutting hair in a mauve chair',
-      work: 'Sample photo of a stylist blow-drying long hair',
-      detail: 'Sample close-up from the studio',
-      happy: 'Sample photo of a guest laughing after a haircut',
+      hero: 'Illustration of a stylist cutting long hair beside a window',
+      work: 'Illustration of a stylist blow-drying long hair',
+      detail: 'Illustration close-up from the studio',
+      happy: 'Illustration of a guest seeing a finished cut in the mirror',
     },
     splitTitle: 'The chair, then the finish.',
-    splitBody: 'A cut at the window. A blowout before you leave. These photographs are for the sample.',
+    splitBody: 'A cut at the window. A blowout before you leave. These illustrations are for the sample.',
     ctaTitle: 'Ask for a site with this much quiet.',
     ctaBody: 'The number belongs to DANZUS. Tell us about your studio, or your shop.',
   },

@@ -17,6 +17,11 @@ const nextConfig = {
         hostname: 'hwidthwh7olawzlg.public.blob.vercel-storage.com',
         pathname: '/samples/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'hwidthwh7olawzlg.public.blob.vercel-storage.com',
+        pathname: '/samples-illustrated/**',
+      },
     ],
   },
   async rewrites() {
