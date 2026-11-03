@@ -2086,10 +2086,11 @@
   text-transform: uppercase;
 }
 
-.deskLinks {
+.page .deskLinks,
+.page .deskLinks a {
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -2130,6 +2131,19 @@
   color: #b08d57;
 }
 
+@media (max-width: 767px) {
+  .hero {
+    padding-bottom: 24vh;
+  }
+
+  .heroLoop img,
+  .heroLoop video {
+    object-position: 75% center;
+    animation: none;
+    transform: none;
+  }
+}
+
 @media (min-width: 768px) {
   .deskLinks {
     display: flex;
@@ -2152,7 +2166,7 @@
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
   .heroLoop img,
   .heroLoop video {
     animation: hero-zoom 24s ease-out forwards;
