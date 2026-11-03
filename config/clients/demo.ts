@@ -48,5 +48,5 @@ export const demoClient = {
   ],
   greeting: "Sorry we missed you, we'll text you right now",
   missedCallSms:
-    "Hey, this is Dan at DANZUS. Sorry I missed your call — text me what you need and I'll get right back to you.",
+    "Hey, this is Dan at DANZUS. Sorry I missed your call. Text me what you need and I'll get right back to you. Reply STOP to opt out.",
 } satisfies ClientConfig

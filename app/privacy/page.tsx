@@ -4,7 +4,7 @@ import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY } from '../site'
 
 const TITLE = 'Privacy Notice | DANZUS Holdings LLC'
 const DESCRIPTION =
-  'Privacy notice for DANZUS Holdings LLC in Folsom. Phone numbers and SMS opt-in data from (916) 404-6129 are never shared or sold to third parties for marketing.'
+  'Privacy notice for DANZUS Holdings LLC in Folsom. Mobile phone numbers and SMS opt-in data and consent are not shared with any third parties or affiliates.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -36,13 +36,18 @@ export default function PrivacyPage() {
         calling or texting, and the messages we need in order to reply. If you use the contact form, we also keep
         your name, email, and what you wrote.
       </p>
+      <section id="sms">
+        <h2>Text messaging (SMS)</h2>
+        <p>
+          We do not share, sell, rent, or trade mobile phone numbers or SMS opt-in data and consent with any third
+          parties or affiliates for any purpose, including marketing or promotional purposes. Text messaging originator
+          opt-in data and consent will not be shared with any third parties. Information is used only to reply to you
+          and provide the service you asked for.
+        </p>
+      </section>
       <p>
-        Phone numbers and SMS opt-in data are never shared or sold to third parties for marketing.
-      </p>
-      <p>
-        We use this information to answer you, follow up, and book a time. Carriers and the texting provider deliver
-        the messages. They are not allowed to use your number for their own marketing. We keep the record only as
-        long as we need it for the conversation and our own books.
+        We use this information to answer you, follow up, and book a time. We keep the record only as long as we need
+        it for the conversation and our own books.
       </p>
       <p>
         Reply STOP to opt out of texts. Reply HELP for help. Privacy questions go to{' '}

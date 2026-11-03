@@ -1628,6 +1628,38 @@
 .formRow {
   display: grid;
   gap: 16px;
+  align-items: start;
+}
+
+.phoneField {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.consent {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.consent input {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--clay);
+}
+
+.consent a {
+  color: inherit;
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .field {

@@ -34,7 +34,7 @@ export const FAQS = [
   {
     question: 'Is it secure?',
     answer:
-      'You read the replies. A person signs off on anything risky before it reaches a customer. Phone numbers and SMS opt-in data are never shared or sold to third parties for marketing. The privacy notice is at danzus.co/privacy.',
+      'You read the replies. A person signs off on anything risky before it reaches a customer. Mobile phone numbers and SMS opt-in data and consent are not shared with any third parties or affiliates. The privacy notice is at danzus.co/privacy.',
   },
   {
     question: 'What if the AI says something wrong?',

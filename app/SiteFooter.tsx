@@ -42,6 +42,9 @@ export function SiteFooter() {
             <Link href="/terms">Terms</Link>
           </li>
         </ul>
+        <p className={styles.smsNote}>
+          Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help.
+        </p>
         <p className={styles.fine}>© 2026 DANZUS Holdings LLC</p>
       </div>
     </footer>

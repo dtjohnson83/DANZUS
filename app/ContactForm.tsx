@@ -1,11 +1,33 @@
 'use client'
 
+import Link from 'next/link'
 import { flushSync } from 'react-dom'
 import { FormEvent, useState } from 'react'
 import { CONTACT_EMAIL } from './site'
 import styles from './home.module.css'
 
 const MAILTO_SUBJECT = 'Free call request'
+
+export function contactLeadBody(input: {
+  name: string
+  business: string
+  email: string
+  phone: string
+  workflow: string
+  details: string
+  smsConsent: boolean
+}) {
+  return [
+    `Name: ${input.name}`,
+    `Business: ${input.business}`,
+    `Email: ${input.email}`,
+    `Phone: ${input.phone || 'not provided'}`,
+    `SMS consent: ${input.smsConsent ? 'yes' : 'no'}`,
+    `First workflow: ${input.workflow}`,
+    '',
+    input.details || 'No extra details.',
+  ].join('\n')
+}
 
 export function ContactForm() {
   const [status, setStatus] = useState('')
@@ -19,20 +41,13 @@ export function ContactForm() {
     const phone = String(data.get('phone') || '').trim()
     const workflow = String(data.get('workflow') || '').trim()
     const details = String(data.get('details') || '').trim()
-
-    const lines = [
-      `Name: ${name}`,
-      `Business: ${business}`,
-      `Email: ${email}`,
-      `Phone: ${phone || 'not provided'}`,
-      `First workflow: ${workflow}`,
-      '',
-      details || 'No extra details.',
-    ]
+    const smsConsent = data.get('smsConsent') === 'yes'
 
     const href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
       `${MAILTO_SUBJECT}: ${business}`,
-    )}&body=${encodeURIComponent(lines.join('\n'))}`
+    )}&body=${encodeURIComponent(
+      contactLeadBody({ name, business, email, phone, workflow, details, smsConsent }),
+    )}`
 
     flushSync(() => {
       setStatus(`Your email app should open with this note addressed to ${CONTACT_EMAIL}. If it does not, use the email link below.`)
@@ -57,10 +72,22 @@ export function ContactForm() {
           Email
           <input name="email" type="email" autoComplete="email" required maxLength={160} />
         </label>
-        <label className={styles.field}>
-          Phone <span className={styles.optional}>(optional)</span>
-          <input name="phone" type="tel" autoComplete="tel" maxLength={40} />
-        </label>
+        <div className={styles.phoneField}>
+          <label className={styles.field}>
+            Phone <span className={styles.optional}>(optional)</span>
+            <input name="phone" type="tel" autoComplete="tel" maxLength={40} />
+          </label>
+          <div className={styles.consent}>
+            <input id="sms-consent" name="smsConsent" type="checkbox" value="yes" />
+            <label htmlFor="sms-consent">
+              I agree to receive text messages from DANZUS Holdings LLC about my inquiry, scheduling, and reminders.
+              Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent
+              is not a condition of purchase. <Link href="/privacy">Privacy</Link>
+              {' · '}
+              <Link href="/terms">Terms</Link>
+            </label>
+          </div>
+        </div>
       </div>
       <label className={styles.field}>
         What should we start with?
