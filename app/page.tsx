@@ -7,6 +7,7 @@ import { HeroLoop } from './HeroLoop'
 import { MobileNav } from './MobileNav'
 import { PhoneMockup } from './PhoneMockup'
 import { Reveal } from './Reveal'
+import { SiteHeader } from './SiteHeader'
 import { TRADES } from './sample-sites/trades'
 import { PACKAGE_DEMOS, type PackageName } from '@/lib/package-demos'
 import { condensed, sans } from './fonts'
@@ -220,7 +221,7 @@ export default function Home() {
       <a className={styles.skip} href="#content">
         Skip to content
       </a>
-      <header className={styles.header}>
+      <SiteHeader>
         <div className={styles.shell}>
           <div className={styles.headerInner}>
             <Link className={styles.brand} href="/" aria-label="DANZUS home">
@@ -239,7 +240,7 @@ export default function Home() {
             <MobileNav />
           </div>
         </div>
-      </header>
+      </SiteHeader>
 
       <main id="content">
         <section className={styles.hero}>
