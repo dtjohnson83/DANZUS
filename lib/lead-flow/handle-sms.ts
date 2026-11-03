@@ -27,6 +27,9 @@ const STOP = /^(stop|stopall|unsubscribe|cancel|end|quit)$/i
 const START = /^(start|unstop)$/i
 const HELP = /^(help|info)$/i
 
+export const SMS_HELP_REPLY =
+  'DANZUS Holdings LLC: For help, email dan@danzus.co or call (916) 404-6129. Msg freq varies. Msg&data rates may apply. Reply STOP to opt out.'
+
 /**
  * Inbound SMS webhook. The reply is TwiML so Twilio sends it.
  * Owner escalation is a separate Messages API send from the client's number.
@@ -143,9 +146,7 @@ function keywordResponse(config: ClientConfig, lead: Lead, body: string): string
     lead.status = lead.status === 'new' ? 'qualifying' : lead.status
     return `Welcome back to ${config.businessName}. ${config.qualifyingQuestions[0]}`
   }
-  if (HELP.test(body)) {
-    return `${config.businessName} texts about ${config.area}. Tell us what you need done. Reply STOP to opt out. Ask for the owner if you want a person.`
-  }
+  if (HELP.test(body)) return SMS_HELP_REPLY
   return null
 }
 

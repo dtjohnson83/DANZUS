@@ -100,15 +100,21 @@ range into a fixed quote before setup begins.
 - What does it cost? See the starting ranges above. The free call fixes the quote.
 - How long does setup take? The free call picks the first job. Most of the package is a template, then it is connected to tools the shop already uses.
 - Do I need new software? No.
-- Is it secure? A person signs off on anything risky before it goes out. Phone numbers and SMS opt-in data are never shared or sold for marketing. https://danzus.co/privacy
+- Is it secure? A person signs off on anything risky before it goes out. Mobile phone numbers and SMS opt-in data and consent are not shared with any third parties or affiliates. https://danzus.co/privacy
 - What if the AI says something wrong? Risky messages wait for a person. Each month DANZUS reads what was sent and fixes what sounds off. An upset customer gets the owner.
 - Do you work in person? Dan is in Folsom. The free call is by phone. The service area is Sacramento, Folsom, Roseville, El Dorado Hills, and nearby.
 
 ## SMS
 
-DANZUS Holdings LLC texts people who call or text (916) 404-6129. Message
-frequency varies. Message and data rates may apply. Reply STOP to opt out.
-Reply HELP for help. Terms: https://danzus.co/terms
+DANZUS Text Messaging Program. When you call or text (916) 404-6129, or enter
+your number on the contact form and check the SMS consent box, you agree to
+receive text messages from DANZUS Holdings LLC. Messages cover missed-call
+replies, answers to your inquiry, appointment scheduling and reminders, and
+customer care. Message frequency varies. Message and data rates may apply.
+Reply STOP to opt out at any time. Reply HELP for help, or contact
+dan@danzus.co or (916) 404-6129. Consent is not a condition of purchase.
+Carriers are not liable for delayed or undelivered messages. Privacy:
+https://danzus.co/privacy Terms: https://danzus.co/terms
 
 ## Pages
 

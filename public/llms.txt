@@ -48,7 +48,7 @@ These are starting ranges. The free call turns one into a fixed quote.
 ## Pages
 
 - [Homepage](https://danzus.co/): websites, local search, assistant packages, starting prices, questions, and contact.
-- [Privacy](https://danzus.co/privacy): phone numbers and SMS opt-in data are never shared or sold for marketing.
+- [Privacy](https://danzus.co/privacy): mobile phone numbers and SMS opt-in data and consent are not shared with any third parties or affiliates.
 - [Terms](https://danzus.co/terms): SMS terms for people who call or text (916) 404-6129.
 
 A longer version is at https://danzus.co/llms-full.txt.

@@ -275,6 +275,20 @@ describe('SMS webhook', () => {
     }
   }
 
+  it('answers HELP with the published program line and does not call the model', async () => {
+    const qualify = vi.fn<Qualify>()
+    const response = await handleSmsRequest(
+      signedRequest('/api/twilio/sms', { To: DEMO, From: CALLER, Body: 'HELP', MessageSid: 'SM-help' }),
+      deps(qualify),
+    )
+    const xml = await response.text()
+    expect(xml).toContain(
+      'DANZUS Holdings LLC: For help, email dan@danzus.co or call (916) 404-6129. Msg freq varies. Msg&amp;data rates may apply. Reply STOP to opt out.',
+    )
+    expect(xml).not.toContain('—')
+    expect(qualify).not.toHaveBeenCalled()
+  })
+
   it('rejects an invalid signature', async () => {
     const qualify = vi.fn<Qualify>()
     const response = await handleSmsRequest(
