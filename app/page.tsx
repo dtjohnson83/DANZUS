@@ -294,11 +294,10 @@ export default function Home() {
                 <a className={styles.card} href={trade.path} key={trade.id}>
                   <span className={styles.preview}>
                     <Image
-                      src={`/samples/${trade.id}.webp`}
+                      src={trade.photos.hero}
                       alt=""
-                      width={800}
-                      height={524}
-                      sizes="(min-width: 720px) 480px, 100vw"
+                      fill
+                      sizes="(min-width: 720px) 50vw, 100vw"
                       loading="lazy"
                     />
                   </span>

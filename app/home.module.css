@@ -397,8 +397,9 @@
 }
 
 .preview {
+  position: relative;
   display: block;
-  aspect-ratio: 800 / 524;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   border-radius: 12px;
   background: #17241c;
