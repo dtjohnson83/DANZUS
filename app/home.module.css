@@ -1947,7 +1947,11 @@
   background: #0b1410;
 }
 
-.heroLoop picture {
+.heroLoop picture,
+.heroLoop img,
+.heroLoop video {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
@@ -1957,15 +1961,17 @@
 .heroLoop video {
   object-fit: cover;
   object-position: center center;
+  filter: none;
 }
 
 .heroShade {
   position: absolute;
   inset: 0;
   z-index: 1;
+  mix-blend-mode: normal;
   background:
-    linear-gradient(180deg, rgba(11, 20, 16, 0.42) 0%, rgba(11, 20, 16, 0) 16%),
-    linear-gradient(90deg, rgba(11, 20, 16, 0.9) 0%, rgba(11, 20, 16, 0.5) 22%, rgba(11, 20, 16, 0.08) 46%, rgba(11, 20, 16, 0) 62%);
+    linear-gradient(180deg, rgba(11, 20, 16, 0.28) 0%, rgba(11, 20, 16, 0) 12%),
+    linear-gradient(90deg, rgba(11, 20, 16, 0.62) 0%, rgba(11, 20, 16, 0.22) 16%, rgba(11, 20, 16, 0) 38%);
   pointer-events: none;
 }
 
@@ -2140,23 +2146,64 @@
 
 @media (max-width: 767px) {
   .hero {
-    align-items: flex-start;
-    padding: 92px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 72px 0 0;
+    background: #0b1410;
+  }
+
+  .heroCopy {
+    order: -1;
+    flex: 0 0 auto;
+    width: calc(100% - 40px);
+    padding-bottom: 12px;
+  }
+
+  .hero h1 {
+    font-size: 44px;
+  }
+
+  .hero .label {
+    margin-bottom: 8px;
+  }
+
+  .hero .line {
+    margin-top: 10px;
+  }
+
+  .hero .ghost {
+    margin-top: 14px;
   }
 
   .heroShade {
-    background: linear-gradient(
-      180deg,
-      rgba(11, 20, 16, 0.84) 0%,
-      rgba(11, 20, 16, 0.5) 16%,
-      rgba(11, 20, 16, 0.08) 34%,
-      rgba(11, 20, 16, 0) 48%
-    );
+    display: none;
+  }
+
+  .heroLoop {
+    position: relative;
+    inset: auto;
+    flex: 1 1 auto;
+    min-height: 0;
+    height: auto;
+  }
+
+  .heroLoop::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 28px;
+    background: linear-gradient(180deg, #0b1410 0%, rgba(11, 20, 16, 0) 100%);
+    pointer-events: none;
   }
 
   .heroLoop img,
   .heroLoop video {
-    object-position: center bottom;
+    object-position: center center;
   }
 }
 
