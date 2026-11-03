@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { HERO_LOOP } from './hero-loop'
 import styles from './home.module.css'
@@ -41,14 +40,7 @@ export function HeroLoop() {
           {HERO_LOOP.mp4 ? <source src={HERO_LOOP.mp4} type="video/mp4" /> : null}
         </video>
       ) : (
-        <Image
-          src={HERO_LOOP.poster}
-          alt=""
-          width={1280}
-          height={720}
-          priority
-          sizes="(min-width: 980px) 520px, calc(100vw - 48px)"
-        />
+        <img src="/hero-still.webp" alt="" width={960} height={540} fetchPriority="high" decoding="async" />
       )}
     </div>
   )

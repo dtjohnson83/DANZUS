@@ -27,26 +27,21 @@ describe('sample sites and home extras', () => {
     expect(robots).not.toContain('Disallow: /demo')
   })
 
-  it('keeps the mobile hero to a headline, one line, the video, and a call', () => {
+  it('keeps a full-bleed hero and natural scroll', () => {
     const css = readFileSync('app/home.module.css', 'utf8')
     const page = readFileSync('app/page.tsx', 'utf8')
     const nav = readFileSync('app/MobileNav.tsx', 'utf8')
-    expect(css).toContain('max-width: 767px')
-    expect(css).toContain('.place,\n  .booked,\n  .lead')
+    expect(page).toContain('Never miss another lead.')
     expect(page).toContain('You were under a sink. The lead texted the next guy.')
-    expect(page).toContain('Sacramento, Folsom, Roseville')
-    expect(nav).toContain('Open menu')
-    expect(nav).toContain('aria-expanded')
-  })
-
-  it('scrolls the homepage story in normal document flow', () => {
-    const css = readFileSync('app/home.module.css', 'utf8')
-    const page = readFileSync('app/page.tsx', 'utf8')
+    expect(page).toContain('Sacramento, Roseville, and El Dorado Hills')
+    expect(page).not.toContain('BOOKED.')
+    expect(page).not.toContain('storyPin')
     expect(css).not.toContain('240vh')
     expect(css).not.toContain('animation-timeline')
-    expect(css).not.toContain('view-timeline')
-    expect(page).toContain('While you were on the job.')
-    expect(page).not.toContain('storyPin')
+    expect(css).toContain('100svh')
+    expect(nav).toContain('Open menu')
+    expect(nav).toContain('aria-expanded')
+    expect(nav).toContain('#work')
   })
 
   it('ships an empty results list and the approved hero loop', () => {
