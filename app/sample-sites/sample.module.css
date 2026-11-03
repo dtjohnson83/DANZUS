@@ -1,5 +1,6 @@
 .page {
   --radius: 8px;
+  --banner-h: 36px;
   min-height: 100vh;
   background: var(--paper);
   color: var(--ink);
@@ -36,11 +37,12 @@
   position: sticky;
   top: 0;
   z-index: 80;
-  height: 36px;
-  display: flex;
+  min-height: var(--banner-h);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: center;
-  padding: 0 12px;
+  gap: 12px;
+  padding: 0 16px;
   background: #111;
   color: #fff;
   font-family: var(--font-body), sans-serif;
@@ -48,12 +50,43 @@
   font-weight: 600;
   letter-spacing: 0.02em;
   text-transform: none;
+}
+
+.banner p {
+  margin: 0;
+  text-align: center;
+}
+
+.banner a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
   white-space: nowrap;
+}
+
+.banner a:hover {
+  color: #f3ecdf;
+}
+
+.back {
+  justify-self: start;
+}
+
+.backMark {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 6px;
+  vertical-align: -2px;
+}
+
+.homeCta {
+  justify-self: end;
 }
 
 .header {
   position: sticky;
-  top: 36px;
+  top: var(--banner-h);
   z-index: 70;
   background: color-mix(in srgb, var(--paper) 92%, transparent);
   backdrop-filter: blur(14px);
@@ -548,6 +581,28 @@
   .chatSend:hover,
   .chatToggle:hover {
     transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 719px) {
+  .page {
+    --banner-h: 58px;
+  }
+
+  .banner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 4px 12px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .banner p {
+    flex: 1 0 100%;
+    order: 2;
+    font-size: 11px;
+    line-height: 1.3;
   }
 }
 

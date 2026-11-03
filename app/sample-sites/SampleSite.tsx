@@ -27,7 +27,43 @@ export function SampleSite({ trade, className }: { trade: TradeDemo; className?:
 
   return (
     <div className={`${styles.page} ${className ?? ''}`} data-sample-site="" data-brand={trade.id} style={theme}>
-      <p className={styles.banner}>Sample site by DANZUS. Not a real business.</p>
+      <div className={styles.banner}>
+        <a
+          className={styles.back}
+          href="/"
+          data-track="nav_click"
+          data-track-label="Back to DANZUS"
+          data-track-location="banner"
+        >
+          <svg className={styles.backMark} viewBox="0 0 14 14" aria-hidden="true">
+            <path
+              d="M9 2.5 4.5 7 9 11.5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          Back to DANZUS
+        </a>
+        <p>
+          Sample site by{' '}
+          <a href="/" data-track="nav_click" data-track-label="DANZUS" data-track-location="banner">
+            DANZUS
+          </a>
+          . Not a real business.
+        </p>
+        <a
+          className={styles.homeCta}
+          href="/#pricing"
+          data-track="nav_click"
+          data-track-label="Get a site like this"
+          data-track-location="banner"
+        >
+          Get a site like this
+        </a>
+      </div>
       <header className={styles.header}>
         <div className={`${styles.shell} ${styles.bar}`}>
           <a className={styles.brand} href="#top">

@@ -21,9 +21,11 @@ describe('sample sites and home extras', () => {
       `${SAMPLE_PHOTO_BASE}/auto/hero.webp`,
       `${SAMPLE_PHOTO_BASE}/salon/hero.webp`,
     ])
-    expect(readFileSync('app/sample-sites/SampleSite.tsx', 'utf8')).toContain(
-      'Sample site by DANZUS. Not a real business.',
-    )
+    const sample = readFileSync('app/sample-sites/SampleSite.tsx', 'utf8')
+    expect(sample).toContain('Sample site by')
+    expect(sample).toContain('Not a real business.')
+    expect(sample).toContain('Back to DANZUS')
+    expect(sample).toContain('data-track="nav_click"')
     expect(readFileSync('next.config.js', 'utf8')).toContain("pathname: '/samples-branded/**'")
     expect(readFileSync('app/page.tsx', 'utf8')).not.toContain('See it for your shop.')
     expect(readFileSync('app/SampleMenu.tsx', 'utf8')).toContain('sample_open')
