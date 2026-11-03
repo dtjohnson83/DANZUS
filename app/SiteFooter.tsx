@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { BrassEmblem } from './BrassEmblem'
 import styles from './home.module.css'
 import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL, LINKEDIN_URL } from './site'
 
@@ -9,7 +8,6 @@ export function SiteFooter() {
   return (
     <footer className={styles.footer} id="shop-footer">
       <div className={styles.shell}>
-        <BrassEmblem />
         <p className={styles.operated}>Operated by DANZUS Holdings LLC</p>
         <p>Folsom, California. Contractors, trades, and local services in Sacramento, Folsom, and nearby.</p>
         <ul className={styles.footerLinks}>

@@ -96,6 +96,12 @@ export default function RootLayout({
         <link
           href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
           rel="stylesheet"
+          media="print"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.querySelector('link[media=print]').media='all'",
+          }}
         />
       </head>
       <body>{children}</body>

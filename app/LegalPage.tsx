@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import Link from 'next/link'
-import { display } from './fonts'
+import { display } from './legal-font'
 import legal from './legal.module.css'
 import styles from './home.module.css'
 import { SiteFooter } from './SiteFooter'

@@ -1,7 +1,17 @@
-/** Approved 8-second, 16:9 hero loop in Blob storage. */
+const BASE = 'https://hwidthwh7olawzlg.public.blob.vercel-storage.com/demos/hero-v3'
+
+/** Approved V3 hero loop. Desktop and mobile are separate files so a phone never fetches the landscape cut. */
 export const HERO_LOOP = {
-  poster: 'https://ic048emi0kpty2jd.public.blob.vercel-storage.com/demos/hero/danzus-hero-poster.webp',
-  posterJpg: 'https://ic048emi0kpty2jd.public.blob.vercel-storage.com/demos/hero/danzus-hero-poster.jpg',
-  mp4: 'https://ic048emi0kpty2jd.public.blob.vercel-storage.com/demos/hero/danzus-hero.mp4',
-  webm: 'https://ic048emi0kpty2jd.public.blob.vercel-storage.com/demos/hero/danzus-hero.webm',
+  desktop: {
+    poster: `${BASE}/danzus-hero-v3-desktop-poster.webp`,
+    posterJpg: `${BASE}/danzus-hero-v3-desktop-poster.jpg`,
+    mp4: `${BASE}/danzus-hero-v3-desktop.mp4`,
+    webm: `${BASE}/danzus-hero-v3-desktop.webm`,
+  },
+  mobile: {
+    poster: `${BASE}/danzus-hero-v3-mobile-poster.webp`,
+    posterJpg: `${BASE}/danzus-hero-v3-mobile-poster.jpg`,
+    mp4: `${BASE}/danzus-hero-v3-mobile.mp4`,
+    webm: `${BASE}/danzus-hero-v3-mobile.webm`,
+  },
 }

@@ -4,12 +4,9 @@ import { useEffect, useId, useRef, useState } from 'react'
 import styles from './home.module.css'
 
 const LINKS = [
-  ['#uses', 'What it does'],
-  ['#packages', 'Packages'],
-  ['#site', 'Site & search'],
-  ['#how', 'How it works'],
+  ['#services', 'Services'],
   ['#pricing', 'Pricing'],
-  ['#faq', 'Questions'],
+  ['#work', 'Work'],
   ['#about', 'About'],
 ] as const
 
