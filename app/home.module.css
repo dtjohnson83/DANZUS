@@ -58,6 +58,10 @@
   margin-inline: auto;
 }
 
+.page {
+  --nav-h: 72px;
+}
+
 .header {
   position: fixed;
   top: 0;
@@ -65,7 +69,15 @@
   right: 0;
   z-index: 20;
   background: transparent;
-  border-bottom: 0;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.header[data-solid='true'] {
+  background: rgba(11, 20, 16, 0.92);
+  border-bottom-color: rgba(243, 236, 223, 0.14);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .headerInner {
@@ -2045,11 +2057,17 @@
   color: #0b1410;
 }
 
+.page section,
+.hero,
+.scene,
+.stack {
+  scroll-margin-top: var(--nav-h);
+}
+
 .scene,
 .stack {
   display: flex;
   flex-direction: column;
-  scroll-margin-top: 24px;
 }
 
 .scene {
@@ -2128,8 +2146,19 @@
 }
 
 .card {
-  padding: 0;
+  gap: 0;
+  padding: 0 0 2px;
   border-radius: 0;
+}
+
+.card strong {
+  margin-top: 6px;
+  line-height: 1.1;
+}
+
+.card span:last-child {
+  margin-top: 1px;
+  line-height: 1.2;
 }
 
 .preview {
