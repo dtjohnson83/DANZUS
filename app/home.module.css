@@ -213,7 +213,7 @@
     gap: 2px;
     margin: 0;
     padding: 8px 20px 20px;
-    background: var(--bg);
+    background: #0b1410;
     border: 0;
     border-bottom: 1px solid var(--rule);
     box-shadow: 0 22px 40px rgba(0, 0, 0, 0.35);
@@ -232,11 +232,22 @@
     letter-spacing: -0.02em;
   }
 
-  .page .menuPanelOpen {
+  .page .menuPanel .sampleGroup a {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 12px;
+    min-height: 56px;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .page .menuPanelOpen,
+  .page .menuPanel.menuPanelOpen {
     visibility: visible;
     opacity: 1;
     transform: none;
     pointer-events: auto;
+    background: #0b1410;
   }
 
   .place,
@@ -2120,11 +2131,115 @@
 }
 
 .page .deskLinks,
-.page .deskLinks a {
+.page .deskLinks a,
+.page .sampleButton {
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.sampleMenu {
+  position: relative;
+}
+
+.sampleButton,
+.sampleGroupButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.sampleList {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 40;
+  width: 320px;
+  display: grid;
+  gap: 4px;
+  padding: 8px;
+  background: #0b1410;
+  border: 1px solid rgba(243, 236, 223, 0.2);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.sampleList[hidden] {
+  display: none;
+}
+
+.sampleList a,
+.sampleGroup a {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 12px;
+  align-items: center;
+  min-height: 56px;
+  padding: 6px;
+  text-decoration: none;
+  color: inherit;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.sampleList a:hover,
+.sampleList a:focus-visible,
+.sampleGroup a:hover,
+.sampleGroup a:focus-visible {
+  background: rgba(243, 236, 223, 0.08);
+}
+
+.sampleList strong,
+.sampleGroup strong {
+  display: block;
+  font-size: 0.95rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.sampleList small,
+.sampleGroup small {
+  display: block;
+  color: rgba(243, 236, 223, 0.7);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.sampleThumb {
+  position: relative;
+  display: block;
+  width: 56px;
+  height: 40px;
+  overflow: hidden;
+}
+
+.sampleThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sampleGroupButton {
+  width: 100%;
+  justify-content: space-between;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  text-transform: none;
+}
+
+.sampleGroup div[hidden] {
+  display: none;
 }
 
 .call {

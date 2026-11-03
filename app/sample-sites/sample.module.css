@@ -162,14 +162,13 @@
 .hero {
   position: relative;
   display: grid;
-  align-items: end;
-  min-height: calc(100svh - 108px);
-  background: #10241c;
+  background: var(--paper);
 }
 
 .heroMedia {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  min-height: 220px;
 }
 
 .heroImg,
@@ -178,15 +177,11 @@
 }
 
 .heroImg {
-  object-position: 72% 28%;
+  object-position: center center;
 }
 
 .heroShade {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(8, 20, 16, 0.08) 30%, rgba(8, 20, 16, 0.82) 100%),
-    linear-gradient(90deg, rgba(8, 20, 16, 0.42) 0%, rgba(8, 20, 16, 0) 46%);
+  display: none;
 }
 
 .heroCopy {
@@ -194,30 +189,30 @@
   z-index: 1;
   display: grid;
   gap: 16px;
-  align-content: end;
-  padding: 96px 0 32px;
+  align-content: start;
+  padding: 32px 0 8px;
   width: min(1120px, calc(100% - 40px));
   margin-inline: auto;
-  color: #f6f1e6;
+  color: var(--ink);
+  background: var(--paper);
 }
 
 .heroCopy .kicker {
-  color: color-mix(in srgb, var(--accent) 38%, #fff);
+  color: var(--accent);
 }
 
-.heroCopy h1,
-.heroCopy .sub {
-  color: #f6f1e6;
+.heroCopy h1 {
+  color: var(--ink);
 }
 
 .heroCopy .sub {
-  color: rgba(246, 241, 230, 0.88);
-  max-width: 22rem;
+  color: var(--muted);
+  max-width: 34rem;
 }
 
 .heroCopy .secondary {
-  color: #f6f1e6;
-  border-color: rgba(246, 241, 230, 0.72);
+  color: var(--ink);
+  border-color: var(--accent);
 }
 
 .kicker {
@@ -352,8 +347,7 @@
   aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: var(--radius);
-  background: #10241c;
-  box-shadow: 0 0 0 1px rgba(196, 164, 106, 0.45);
+  background: var(--line);
 }
 
 .shot figcaption,
@@ -533,8 +527,8 @@
 
 .chatToggle {
   width: auto;
-  background: #f6f1e6;
-  color: #10241c;
+  background: var(--accent);
+  color: var(--on-accent);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
 }
 
@@ -589,21 +583,22 @@
 
   .hero {
     min-height: 100svh;
-    align-items: center;
+    display: block;
   }
 
-  .heroImg {
-    object-position: center center;
-  }
-
-  .heroShade {
-    background: linear-gradient(90deg, rgba(8, 20, 16, 0.58) 0%, rgba(8, 20, 16, 0.28) 24%, rgba(8, 20, 16, 0) 46%);
+  .heroMedia {
+    position: absolute;
+    inset: 0;
+    aspect-ratio: auto;
+    min-height: 0;
   }
 
   .heroCopy {
-    min-height: 100svh;
-    align-content: center;
-    padding: 120px 0 72px;
+    max-width: 320px;
+    margin: 16vh 0 10vh max(24px, calc((100% - 1120px) / 2));
+    padding: 8px 0;
+    background: transparent;
+    box-shadow: none;
   }
 
   .splitGrid {
@@ -642,6 +637,11 @@
   }
 }
 
+.page[data-brand='plumber'] .trust,
+.page[data-brand='plumber'] .band:nth-of-type(even) {
+  background: #eef4fb;
+}
+
 .page[data-brand='plumber'] .services li {
   background: #fff;
   border: 1px solid var(--line);
@@ -652,6 +652,10 @@
 
 .page[data-brand='hvac'] {
   --radius: 20px;
+}
+
+.page[data-brand='hvac'] .trust {
+  background: #f6e7d8;
 }
 
 .page[data-brand='hvac'] .services li,
@@ -675,7 +679,7 @@
   border: 1px solid var(--line);
   border-radius: 0;
   padding: 24px;
-  background: #1b1713;
+  background: #26231f;
 }
 
 .page[data-brand='auto'] .reviews li {
@@ -684,12 +688,14 @@
   padding: 8px 0 8px 16px;
 }
 
-.page[data-brand='auto'] .trust {
-  background: #100e0c;
+.page[data-brand='auto'] .trust,
+.page[data-brand='auto'] .band:nth-of-type(even) {
+  background: #141210;
 }
 
-.page[data-brand='auto'] .band:nth-of-type(even) {
-  background: #100e0c;
+.page[data-brand='salon'] .trust,
+.page[data-brand='salon'] .band:nth-of-type(even) {
+  background: #f6e6e8;
 }
 
 .page[data-brand='salon'] {
@@ -729,6 +735,33 @@
 }
 
 @media (min-width: 960px) {
+  .page[data-brand='auto'] .heroShade {
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(28, 26, 23, 0.92) 0%, rgba(28, 26, 23, 0.55) 36%, rgba(28, 26, 23, 0) 64%);
+  }
+
+  .page[data-brand='auto'] .heroCopy,
+  .page[data-brand='auto'] .heroCopy h1 {
+    background: transparent;
+    box-shadow: none;
+    color: #f6f1e8;
+  }
+
+  .page[data-brand='auto'] .heroCopy .sub {
+    color: rgba(246, 241, 232, 0.86);
+  }
+
+  .page[data-brand='auto'] .heroCopy .kicker {
+    color: #e0a24a;
+  }
+
+  .page[data-brand='auto'] .heroCopy .secondary {
+    color: #f6f1e8;
+    border-color: #e0a24a;
+  }
+
   .page[data-brand='salon'] .hero h1 {
     max-width: 12ch;
     font-size: clamp(3.2rem, 5vw, 5.2rem);

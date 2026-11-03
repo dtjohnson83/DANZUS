@@ -4,7 +4,7 @@ export type TradeId = 'plumber' | 'hvac' | 'auto' | 'salon'
 
 /** Swap this base to change every sample image. File names stay hero, work, detail, happy. */
 export const SAMPLE_PHOTO_BASE =
-  'https://hwidthwh7olawzlg.public.blob.vercel-storage.com/samples-illustrated'
+  'https://hwidthwh7olawzlg.public.blob.vercel-storage.com/samples-branded'
 
 type PhotoName = 'hero' | 'work' | 'detail' | 'happy'
 
@@ -49,10 +49,10 @@ export const TRADES: TradeDemo[] = [
     name: 'Ridgeline Plumbing Co.',
     trade: 'Plumbing',
     accent: '#1d4e89',
-    ink: '#12263a',
-    paper: '#f4f7fb',
-    muted: '#4c6174',
-    line: '#d5e0ea',
+    ink: '#102a4c',
+    paper: '#ffffff',
+    muted: '#4a6278',
+    line: '#d5e2ef',
     onAccent: '#ffffff',
     kicker: 'Folsom plumbing',
     headline: 'A leak should not wait until Monday.',
@@ -215,12 +215,12 @@ export const TRADES: TradeDemo[] = [
     path: '/demo/auto',
     name: 'Oak Avenue Auto Works',
     trade: 'Auto repair',
-    accent: '#8a5a12',
-    ink: '#f3ecdf',
-    paper: '#14110e',
-    muted: '#cbbba6',
-    line: '#3a3228',
-    onAccent: '#fff8ee',
+    accent: '#e0a24a',
+    ink: '#f6f1e8',
+    paper: '#1c1a17',
+    muted: '#c9bfb3',
+    line: '#3d3832',
+    onAccent: '#1c1a17',
     kicker: 'Auto repair',
     headline: 'The car is in the bay. The phone still gets answered.',
     sub: 'A missed call becomes a text. Drop-off, brakes, or a check-engine light, booked without a hold queue.',
@@ -300,10 +300,10 @@ export const TRADES: TradeDemo[] = [
     name: 'Willow & Brass Studio',
     trade: 'Hair studio',
     accent: '#8c4a55',
-    ink: '#2c1c20',
-    paper: '#f7f2ef',
+    ink: '#3a2428',
+    paper: '#fbf8f4',
     muted: '#6e565c',
-    line: '#e6d9d4',
+    line: '#ead9d4',
     onAccent: '#fffaf8',
     kicker: 'Hair studio',
     headline: 'The chair is full. The book can still fill.',

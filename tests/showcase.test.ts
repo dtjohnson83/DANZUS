@@ -24,7 +24,9 @@ describe('sample sites and home extras', () => {
     expect(readFileSync('app/sample-sites/SampleSite.tsx', 'utf8')).toContain(
       'Sample site by DANZUS. Not a real business.',
     )
-    expect(readFileSync('next.config.js', 'utf8')).toContain("pathname: '/samples-illustrated/**'")
+    expect(readFileSync('next.config.js', 'utf8')).toContain("pathname: '/samples-branded/**'")
+    expect(readFileSync('app/page.tsx', 'utf8')).not.toContain('See it for your shop.')
+    expect(readFileSync('app/SampleMenu.tsx', 'utf8')).toContain('sample_open')
     const copy = JSON.stringify(TRADES)
     expect(copy).not.toMatch(/—|DimeVision|App Orchid|GoHighLevel/i)
   })
@@ -51,7 +53,9 @@ describe('sample sites and home extras', () => {
     expect(css).toContain('100svh')
     expect(nav).toContain('Open menu')
     expect(nav).toContain('aria-expanded')
-    expect(nav).toContain('#work')
+    expect(nav).toContain('SampleMenuGroup')
+    expect(nav).not.toContain('#work')
+    expect(readFileSync('app/SampleMenu.tsx', 'utf8')).toContain('Sample sites')
   })
 
   it('ships an empty results list and the approved hero loop', () => {
