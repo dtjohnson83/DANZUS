@@ -23,7 +23,7 @@ export function MissedCallChat({
   useEffect(() => {
     const update = () => {
       const narrow = window.matchMedia('(max-width: 959px)').matches
-      setShow(!narrow || window.scrollY > 640 || open)
+      setShow(!narrow || window.scrollY > 900 || open)
     }
     update()
     window.addEventListener('scroll', update, { passive: true })

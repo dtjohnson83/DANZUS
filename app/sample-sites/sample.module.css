@@ -167,7 +167,7 @@
 
 .heroMedia {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   min-height: 220px;
 }
 
@@ -225,8 +225,9 @@
 }
 
 .hero h1 {
-  font-size: clamp(2.5rem, 10vw, 4.6rem);
-  max-width: 14ch;
+  font-size: clamp(2.15rem, 7.4vw, 2.7rem);
+  max-width: 18ch;
+  line-height: 1.02;
 }
 
 .sub,
@@ -582,8 +583,10 @@
   }
 
   .hero {
-    min-height: 100svh;
-    display: block;
+    min-height: calc(100svh - 109px);
+    display: grid;
+    grid-template-columns: min(560px, 42%) 1fr;
+    align-items: stretch;
   }
 
   .heroMedia {
@@ -593,12 +596,22 @@
     min-height: 0;
   }
 
+  .hero h1 {
+    font-size: clamp(2.6rem, 3.1vw, 3.25rem);
+    max-width: none;
+  }
+
   .heroCopy {
-    max-width: 320px;
-    margin: 16vh 0 10vh max(24px, calc((100% - 1120px) / 2));
-    padding: 8px 0;
-    background: transparent;
-    box-shadow: none;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 36px 32px;
+    background: color-mix(in srgb, var(--paper) 96%, transparent);
+    align-content: center;
+  }
+
+  .heroCopy .sub {
+    max-width: none;
   }
 
   .splitGrid {
@@ -744,7 +757,7 @@
 
   .page[data-brand='auto'] .heroCopy,
   .page[data-brand='auto'] .heroCopy h1 {
-    background: transparent;
+    background: #1c1a17;
     box-shadow: none;
     color: #f6f1e8;
   }
@@ -763,8 +776,8 @@
   }
 
   .page[data-brand='salon'] .hero h1 {
-    max-width: 12ch;
-    font-size: clamp(3.2rem, 5vw, 5.2rem);
+    max-width: none;
+    font-size: clamp(2.7rem, 3.2vw, 3.45rem);
   }
 
   .page[data-brand='auto'] .split {
