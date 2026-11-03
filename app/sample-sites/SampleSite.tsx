@@ -106,7 +106,7 @@ export function SampleSite({ trade, className }: { trade: TradeDemo; className?:
 
         <section className={styles.trust} aria-label="Sample shop facts">
           <div className={styles.shell}>
-            <p className={styles.trustNote}>Fictional shop facts. Not a real business, and not a review count.</p>
+            <p className={styles.trustNote}>Sample business details.</p>
             <ul>
               {trade.trust.map((item) => (
                 <li key={item.value}>

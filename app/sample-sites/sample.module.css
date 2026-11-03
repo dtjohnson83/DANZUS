@@ -255,10 +255,10 @@
 }
 
 .trustNote {
-  font-size: 0.92rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
   color: var(--muted);
   margin-bottom: 16px;
-  max-width: 36rem;
 }
 
 .trust ul {
@@ -585,7 +585,7 @@
   .hero {
     min-height: calc(100svh - 109px);
     display: grid;
-    grid-template-columns: min(560px, 42%) 1fr;
+    grid-template-columns: min(740px, 52%) 1fr;
     align-items: stretch;
   }
 
@@ -604,8 +604,9 @@
   .heroCopy {
     width: auto;
     max-width: none;
+    height: 100%;
     margin: 0;
-    padding: 36px 32px;
+    padding: 48px 48px 48px max(32px, calc((100vw - 1120px) / 2));
     background: color-mix(in srgb, var(--paper) 96%, transparent);
     align-content: center;
   }
