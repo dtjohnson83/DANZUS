@@ -4,7 +4,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 import { SampleMenuGroup } from './SampleMenu'
 import styles from './home.module.css'
 
-export function MobileNav() {
+export function MobileNav({ home = '' }: { home?: string }) {
   const [open, setOpen] = useState(false)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const panelRef = useRef<HTMLElement>(null)
@@ -61,14 +61,17 @@ export function MobileNav() {
         aria-label="Primary"
         inert={!open}
       >
-        <a href="#services" data-track="nav_click" data-track-label="Services" data-track-location="mobile" onClick={() => setOpen(false)}>
+        <a href={`${home}#services`} data-track="nav_click" data-track-label="Services" data-track-location="mobile" onClick={() => setOpen(false)}>
           Services
         </a>
-        <a href="#pricing" data-track="nav_click" data-track-label="Pricing" data-track-location="mobile" onClick={() => setOpen(false)}>
+        <a href={`${home}#pricing`} data-track="nav_click" data-track-label="Pricing" data-track-location="mobile" onClick={() => setOpen(false)}>
           Pricing
         </a>
+        <a href="/ai-search" data-track="nav_click" data-track-label="AI search" data-track-location="mobile" onClick={() => setOpen(false)}>
+          AI search
+        </a>
         <SampleMenuGroup onNavigate={() => setOpen(false)} />
-        <a href="#about" data-track="nav_click" data-track-label="About" data-track-location="mobile" onClick={() => setOpen(false)}>
+        <a href={`${home}#about`} data-track="nav_click" data-track-label="About" data-track-location="mobile" onClick={() => setOpen(false)}>
           About
         </a>
       </nav>
