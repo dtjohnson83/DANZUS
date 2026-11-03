@@ -36,7 +36,10 @@ export default function TermsPage() {
       <h2>SMS terms</h2>
       <p>
         DANZUS Holdings LLC texts people who call or text{' '}
-        <a href={CONTACT_PHONE_TEL}>{CONTACT_PHONE_DISPLAY}</a>.
+        <a href={CONTACT_PHONE_TEL} data-track="call_click" data-track-location="section">
+          {CONTACT_PHONE_DISPLAY}
+        </a>
+        .
       </p>
       <ul>
         <li>Message frequency varies.</li>

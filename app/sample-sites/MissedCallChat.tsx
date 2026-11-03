@@ -67,6 +67,9 @@ export function MissedCallChat({
         className={styles.chatToggle}
         aria-expanded={open}
         aria-controls={panelId}
+        data-track="cta_click"
+        data-track-label="Missed our call?"
+        data-track-section="chat"
         onClick={() => setOpen((value) => !value)}
       >
         {open ? 'Close' : 'Missed our call?'}

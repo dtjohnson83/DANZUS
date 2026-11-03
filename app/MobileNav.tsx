@@ -51,6 +51,7 @@ export function MobileNav() {
         aria-expanded={open}
         aria-controls={panelId}
         aria-label={open ? 'Close menu' : 'Open menu'}
+        data-track="menu_open"
         onClick={() => setOpen((value) => !value)}
       >
         <span className={styles.burger} data-open={open ? '' : undefined} aria-hidden="true">
@@ -70,6 +71,9 @@ export function MobileNav() {
           <a
             key={href}
             href={href}
+            data-track="nav_click"
+            data-track-label={label}
+            data-track-location="mobile"
             onClick={() => setOpen(false)}
           >
             {label}
