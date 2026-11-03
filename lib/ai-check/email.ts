@@ -21,23 +21,29 @@ export async function sendCheckEmails(input: {
     .digest('hex')
     .slice(0, 32)
   const pdf = Buffer.from(input.pdf)
-  const score = input.report.score === null ? 'not scored' : `${input.report.score} / 100`
-  const fixes = input.report.fixes.map((item, index) => `${index + 1}. ${item.label}: ${item.fix}`).join('\n')
+  const score = input.report.score === null ? 'Not scored' : `${input.report.score} out of 100, ${input.report.scoreLabel}`
+  const fixes = input.report.fixes.map((item, index) => `${index + 1}. ${item.label}: ${item.benefit}`).join('\n')
   const reportText = [
     `AI search check for ${input.report.businessName}`,
     input.report.url,
     input.report.cityTrade,
+    '',
+    input.report.opening,
     `Score: ${score}`,
+    input.report.meaning,
     '',
     input.report.note,
     '',
-    'What passed:',
-    input.report.passed.map((item) => `- ${item.label}`).join('\n') || '- None',
+    'What would help most:',
+    fixes ||
+      (input.report.passed.length === 0
+        ? 'We could not read enough of the site to suggest a change.'
+        : 'Nothing stood out. The basics we could check are already in place.'),
     '',
-    'Top fixes:',
-    fixes || 'None',
+    'Already in place:',
+    input.report.passed.map((item) => `- ${item.label}: ${item.benefit}`).join('\n') || '- Nothing we could check is in place yet.',
     '',
-    'Call or text (916) 404-6129, or book at https://danzus.co/#about.',
+    'Call (916) 404-6129, or book at https://danzus.co/#about.',
   ].join('\n')
 
   const reportSend = await resend.emails.send(
@@ -63,7 +69,10 @@ export async function sendCheckEmails(input: {
     `Follow-up opt-in: ${input.optIn ? 'yes' : 'no'}`,
     `Score: ${score}`,
     '',
-    fixes || 'No failed signals.',
+    fixes ||
+      (input.report.passed.length === 0
+        ? 'We could not read enough of the site to suggest a change.'
+        : 'Nothing stood out in what we could check.'),
   ].join('\n')
   const leadSend = await resend.emails.send(
     {

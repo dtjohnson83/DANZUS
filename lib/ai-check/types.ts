@@ -6,6 +6,7 @@ export type Signal = {
   points: number
   status: SignalStatus
   detail: string
+  benefit: string
   fix: string
 }
 
@@ -35,6 +36,9 @@ export type CheckReport = {
   cityTrade: string
   checkedAt: string
   score: number | null
+  scoreLabel: string
+  meaning: string
+  opening: string
   signals: Signal[]
   passed: Signal[]
   fixes: Signal[]

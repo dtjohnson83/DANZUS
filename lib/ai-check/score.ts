@@ -1,3 +1,4 @@
+import { checkCopy, normalizeSpaces, openingLine, READINESS_NOTE, scoreLabel, scoreMeaning, type CheckId } from '@/lib/ai-check/copy'
 import type { CheckReport, Signal, SignalStatus, Snapshot } from '@/lib/ai-check/types'
 
 export const SPEED_MS = 2000
@@ -47,28 +48,29 @@ const LOCAL_TYPES = new Set([
   'FoodEstablishment',
 ])
 
-const NOTE =
-  'This score is the share of points on signals the check actually measured. It is not a ranking in ChatGPT, Google AI Overviews, or Perplexity.'
-
 export function buildReport(snapshot: Snapshot): CheckReport {
   const signals = buildSignals(snapshot)
   const measured = signals.filter((signal) => signal.status !== 'unmeasured')
   const earned = measured.filter((signal) => signal.status === 'pass').reduce((sum, signal) => sum + signal.points, 0)
   const possible = measured.reduce((sum, signal) => sum + signal.points, 0)
   const name = snapshot.businessName.trim() || titleText(snapshot.html) || hostOf(snapshot.finalUrl || snapshot.requestedUrl)
+  const score = possible === 0 ? null : Math.round((earned / possible) * 100)
   return {
     businessName: name || 'This business',
     url: snapshot.finalUrl || snapshot.requestedUrl,
     cityTrade: snapshot.cityTrade,
     checkedAt: snapshot.checkedAt,
-    score: possible === 0 ? null : Math.round((earned / possible) * 100),
+    score,
+    scoreLabel: scoreLabel(score),
+    meaning: scoreMeaning(score),
+    opening: openingLine(snapshot.cityTrade),
     signals,
     passed: signals.filter((signal) => signal.status === 'pass'),
     fixes: signals
       .filter((signal) => signal.status === 'fail')
       .sort((a, b) => b.points - a.points)
       .slice(0, 3),
-    note: NOTE,
+    note: READINESS_NOTE,
   }
 }
 
@@ -77,18 +79,12 @@ function buildSignals(snapshot: Snapshot): Signal[] {
   const readable = html !== null
   return [
     httpsSignal(snapshot),
-    readable ? viewportSignal(html) : unmeasured('viewport', 'Mobile viewport', POINTS.viewport, 'Add a viewport tag so the site fits a phone.'),
-    readable ? titleSignal(html) : unmeasured('title', 'Page title', POINTS.title, 'Add a page title that names the business and the town.'),
-    readable
-      ? descriptionSignal(html)
-      : unmeasured('description', 'Meta description', POINTS.description, 'Add a meta description that says what you do and where.'),
-    readable ? h1Signal(html) : unmeasured('h1', 'Main heading', POINTS.h1, 'Add one clear heading that says what the business is.'),
-    readable
-      ? schemaSignal(html)
-      : unmeasured('schema', 'LocalBusiness schema', POINTS.schema, 'Add LocalBusiness structured data with the name, address, and phone.'),
-    readable
-      ? napSignal(html, snapshot.businessName)
-      : unmeasured('nap', 'Name, address, and phone', POINTS.nap, 'Put the business name, street address, and phone on the page.'),
+    readable ? viewportSignal(html) : unmeasured('viewport'),
+    readable ? titleSignal(html) : unmeasured('title'),
+    readable ? descriptionSignal(html) : unmeasured('description'),
+    readable ? h1Signal(html) : unmeasured('h1'),
+    readable ? schemaSignal(html) : unmeasured('schema'),
+    readable ? napSignal(html, snapshot.businessName) : unmeasured('nap'),
     speedSignal(snapshot),
     robotsSignal(snapshot),
     llmsSignal(snapshot),
@@ -97,79 +93,45 @@ function buildSignals(snapshot: Snapshot): Signal[] {
 }
 
 function httpsSignal(snapshot: Snapshot): Signal {
-  if (!snapshot.finalUrl) {
-    return unmeasured('https', 'HTTPS', POINTS.https, 'Serve the site over HTTPS so the address starts with https.')
-  }
+  if (!snapshot.finalUrl) return unmeasured('https')
   const pass = snapshot.finalUrl.startsWith('https://')
-  return signal(
-    'https',
-    'HTTPS',
-    POINTS.https,
-    pass ? 'pass' : 'fail',
-    pass ? 'The final address uses HTTPS.' : `The final address is ${snapshot.finalUrl}.`,
-    'Serve the site over HTTPS so the address starts with https.',
-  )
+  return done('https', pass, pass ? 'The address shows a secure connection.' : 'The address does not show the padlock.')
 }
 
 function viewportSignal(html: string): Signal {
   const content = metaContent(html, 'viewport')
   const pass = /width\s*=\s*device-width/i.test(content)
-  return signal(
-    'viewport',
-    'Mobile viewport',
-    POINTS.viewport,
-    pass ? 'pass' : 'fail',
-    pass ? 'The page sets a device-width viewport.' : 'No device-width viewport tag was found.',
-    'Add a viewport tag so the site fits a phone.',
-  )
+  return done('viewport', pass, pass ? 'The page is set to fit a phone screen.' : 'The page is not set to fit a phone screen.')
 }
 
 function titleSignal(html: string): Signal {
   const title = titleText(html)
-  return signal(
-    'title',
-    'Page title',
-    POINTS.title,
-    title ? 'pass' : 'fail',
-    title ? `Title: ${clip(title)}` : 'The page has no title.',
-    'Add a page title that names the business and the town.',
-  )
+  return done('title', Boolean(title), title ? `The title says: "${clip(title)}".` : 'The page does not have a title yet.')
 }
 
 function descriptionSignal(html: string): Signal {
-  const description = metaContent(html, 'description')
-  return signal(
+  const description = normalizeSpaces(metaContent(html, 'description'))
+  return done(
     'description',
-    'Meta description',
-    POINTS.description,
-    description.trim() ? 'pass' : 'fail',
-    description.trim() ? `Description: ${clip(description.trim())}` : 'The page has no meta description.',
-    'Add a meta description that says what you do and where.',
+    Boolean(description),
+    description ? `The summary says: "${clip(description)}".` : 'The page does not have a short summary yet.',
   )
 }
 
 function h1Signal(html: string): Signal {
   const match = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)
-  const text = match ? visibleText(match[1] ?? '').replace(/\s+/g, ' ').trim() : ''
-  return signal(
-    'h1',
-    'Main heading',
-    POINTS.h1,
-    text ? 'pass' : 'fail',
-    text ? `Heading: ${clip(text)}` : 'The page has no H1.',
-    'Add one clear heading that says what the business is.',
-  )
+  const text = match ? visibleText(match[1] ?? '') : ''
+  return done('h1', Boolean(text), text ? `The headline says: "${clip(text)}".` : 'The page does not have a clear headline yet.')
 }
 
 function schemaSignal(html: string): Signal {
   const found = jsonLdNodes(html).some(hasLocalBusiness)
-  return signal(
+  return done(
     'schema',
-    'LocalBusiness schema',
-    POINTS.schema,
-    found ? 'pass' : 'fail',
-    found ? 'A LocalBusiness (or a local subtype) is in the structured data.' : 'No LocalBusiness structured data was found.',
-    'Add LocalBusiness structured data with the name, address, and phone.',
+    found,
+    found
+      ? 'Your name, phone, and address are on the page in a form these tools can read.'
+      : 'These tools cannot read a clean set of your business details.',
   )
 }
 
@@ -181,85 +143,53 @@ function napSignal(html: string, businessName: string): Signal {
   const phone = phonePresent(`${text} ${schemaText}`)
   const address = addressPresent(text, nodes)
   const pass = name && phone && address
-  const missing = [name ? '' : 'name', phone ? '' : 'phone', address ? '' : 'address'].filter(Boolean)
-  return signal(
-    'nap',
-    'Name, address, and phone',
-    POINTS.nap,
-    pass ? 'pass' : 'fail',
-    pass ? 'The page shows a business name, a phone number, and an address.' : `Missing on the page: ${missing.join(', ')}.`,
-    'Put the business name, street address, and phone on the page.',
-  )
+  const missing = [name ? '' : 'the name', phone ? '' : 'the phone', address ? '' : 'the address'].filter(Boolean)
+  const detail = pass
+    ? 'The page shows a business name, a phone number, and an address.'
+    : `The page is missing ${plainList(missing)}.`
+  return done('nap', pass, detail)
 }
 
 function speedSignal(snapshot: Snapshot): Signal {
-  if (snapshot.responseMs === null || snapshot.htmlBytes === null) {
-    return unmeasured(
-      'speed',
-      'Page weight and response time',
-      POINTS.speed,
-      'Cut the page weight and the wait before the first bytes.',
-    )
-  }
+  if (snapshot.responseMs === null || snapshot.htmlBytes === null) return unmeasured('speed')
   const pass = snapshot.responseMs <= SPEED_MS && snapshot.htmlBytes <= SPEED_BYTES
-  return signal(
-    'speed',
-    'Page weight and response time',
-    POINTS.speed,
-    pass ? 'pass' : 'fail',
-    `Response ${snapshot.responseMs} ms. HTML ${formatBytes(snapshot.htmlBytes)}. Pass is under ${SPEED_MS} ms and under ${formatBytes(SPEED_BYTES)}.`,
-    'Cut the page weight and the wait before the first bytes.',
-  )
+  return done('speed', pass, pass ? 'The page opens quickly.' : 'The page is slow to open.')
 }
 
 function robotsSignal(snapshot: Snapshot): Signal {
-  if (snapshot.robotsStatus === null) {
-    return unmeasured('robots', 'robots.txt', POINTS.robots, 'Publish a robots.txt file.')
-  }
+  if (snapshot.robotsStatus === null) return unmeasured('robots')
   const body = snapshot.robotsBody?.trim() ?? ''
   const pass = snapshot.robotsStatus >= 200 && snapshot.robotsStatus < 300 && body.length > 0 && !body.startsWith('<')
-  return signal(
+  return done(
     'robots',
-    'robots.txt',
-    POINTS.robots,
-    pass ? 'pass' : 'fail',
-    `robots.txt responded ${snapshot.robotsStatus}.`,
-    'Publish a robots.txt file.',
+    pass,
+    pass ? 'Search engines are welcome to read the site.' : 'Search engines may not be able to read the site.',
   )
 }
 
 function llmsSignal(snapshot: Snapshot): Signal {
-  if (snapshot.llmsStatus === null || snapshot.llmsBytes === null || snapshot.llmsText === null) {
-    return unmeasured('llms', 'llms.txt', POINTS.llms, 'Publish an llms.txt file with a short description of the business.')
-  }
-  const pass =
-    snapshot.llmsStatus >= 200 && snapshot.llmsStatus < 300 && snapshot.llmsBytes > 0 && snapshot.llmsText
-  const detail = snapshot.llmsText
-    ? `llms.txt responded ${snapshot.llmsStatus} (${formatBytes(snapshot.llmsBytes)}).`
-    : `llms.txt responded ${snapshot.llmsStatus}, but the body is HTML rather than a text file.`
-  return signal(
+  if (snapshot.llmsStatus === null || snapshot.llmsBytes === null || snapshot.llmsText === null) return unmeasured('llms')
+  const pass = snapshot.llmsStatus >= 200 && snapshot.llmsStatus < 300 && snapshot.llmsBytes > 0 && snapshot.llmsText
+  return done(
     'llms',
-    'llms.txt',
-    POINTS.llms,
-    pass ? 'pass' : 'fail',
-    detail,
-    'Publish an llms.txt file with a short description of the business.',
+    pass,
+    pass ? 'A short summary for AI assistants is on the site.' : 'There is no short summary written for AI assistants.',
   )
 }
 
 function sitemapSignal(snapshot: Snapshot): Signal {
-  if (snapshot.sitemapStatus === null) {
-    return unmeasured('sitemap', 'Sitemap', POINTS.sitemap, 'Publish a sitemap.xml file.')
-  }
+  if (snapshot.sitemapStatus === null) return unmeasured('sitemap')
   const pass = snapshot.sitemapStatus >= 200 && snapshot.sitemapStatus < 300 && snapshot.sitemapXml === true
-  return signal(
+  return done(
     'sitemap',
-    'Sitemap',
-    POINTS.sitemap,
-    pass ? 'pass' : 'fail',
-    `sitemap.xml responded ${snapshot.sitemapStatus}.`,
-    'Publish a sitemap.xml file.',
+    pass,
+    pass ? 'Search engines have a list of the pages.' : 'Search engines do not have a list of all the pages.',
   )
+}
+
+function done(id: CheckId, pass: boolean, detail: string): Signal {
+  const copy = checkCopy(id)
+  return signal(id, copy.label, POINTS[id], pass ? 'pass' : 'fail', detail, copy.benefit)
 }
 
 function signal(
@@ -268,19 +198,20 @@ function signal(
   points: number,
   status: SignalStatus,
   detail: string,
-  fix: string,
+  benefit: string,
 ): Signal {
-  return { id, label, points, status, detail, fix }
+  return { id, label, points, status, detail, benefit, fix: benefit }
 }
 
-function unmeasured(id: string, label: string, points: number, fix: string): Signal {
-  return signal(id, label, points, 'unmeasured', 'Not measured. The check could not read this.', fix)
+function unmeasured(id: CheckId): Signal {
+  const copy = checkCopy(id)
+  return signal(id, copy.label, POINTS[id], 'unmeasured', 'We could not read this part of the site.', copy.benefit)
 }
 
 function titleText(html: string | null): string {
   if (!html) return ''
   const match = html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)
-  return visibleText(match?.[1] ?? '').replace(/\s+/g, ' ').trim()
+  return visibleText(match?.[1] ?? '')
 }
 
 function metaContent(html: string, name: string): string {
@@ -289,7 +220,7 @@ function metaContent(html: string, name: string): string {
     const named = tag.match(/\b(?:name|property)\s*=\s*["']([^"']+)["']/i)
     if (!named || named[1]?.toLowerCase() !== name) continue
     const content = tag.match(/\bcontent\s*=\s*["']([^"']*)["']/i)
-    if (content?.[1]) return decode(content[1])
+    if (content?.[1]) return normalizeSpaces(decode(content[1]))
   }
   return ''
 }
@@ -352,22 +283,34 @@ function hasStreet(node: unknown): boolean {
 }
 
 function visibleText(html: string): string {
-  return decode(
-    html
-      .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
-      .replace(/<style\b[\s\S]*?<\/style>/gi, ' ')
-      .replace(/<[^>]+>/g, ' '),
+  return normalizeSpaces(
+    decode(
+      html
+        .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
+        .replace(/<style\b[\s\S]*?<\/style>/gi, ' ')
+        .replace(/<[^>]+>/g, ' '),
+    ),
   )
 }
 
 function decode(value: string): string {
   return value
-    .replace(/&amp;/gi, '&')
-    .replace(/&lt;/gi, '<')
-    .replace(/&gt;/gi, '>')
+    .replace(/&nbsp;|&#160;|&#x0*a0;/gi, ' ')
+    .replace(/&#(\d+);/g, (_, digits: string) => character(Number(digits)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex: string) => character(parseInt(hex, 16)))
     .replace(/&quot;/gi, '"')
     .replace(/&#39;|&apos;/gi, "'")
-    .replace(/&nbsp;/gi, ' ')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&amp;/gi, '&')
+}
+
+function character(code: number): string {
+  if (!Number.isFinite(code) || code <= 0 || code > 0x10ffff) return ''
+  if (code === 0xa0 || code === 0x1680 || (code >= 0x2000 && code <= 0x200a) || code === 0x202f || code === 0x205f || code === 0x3000) {
+    return ' '
+  }
+  return String.fromCodePoint(code)
 }
 
 function norm(value: string): string {
@@ -375,13 +318,14 @@ function norm(value: string): string {
 }
 
 function clip(value: string): string {
-  return value.length > 140 ? `${value.slice(0, 137)}...` : value
+  const text = normalizeSpaces(value)
+  return text.length > 140 ? `${text.slice(0, 137)}...` : text
 }
 
-function formatBytes(bytes: number): string {
-  if (bytes < 1024) return `${bytes} B`
-  if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`
-  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
+function plainList(items: string[]): string {
+  if (items.length <= 1) return items[0] ?? ''
+  if (items.length === 2) return `${items[0]} and ${items[1]}`
+  return `${items.slice(0, -1).join(', ')}, and ${items[items.length - 1]}`
 }
 
 function hostOf(url: string): string {

@@ -6,13 +6,14 @@ import { SiteFooter } from '../SiteFooter'
 import { SiteHeader } from '../SiteHeader'
 import { condensed, sans } from '../fonts'
 import home from '../home.module.css'
+import { CHECKS, READINESS_NOTE } from '@/lib/ai-check/copy'
 import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL, SITE_URL } from '../site'
 import { CheckForm } from './CheckForm'
 import styles from './ai-search.module.css'
 
 const TITLE = 'AI search for local shops | DANZUS'
 const DESCRIPTION =
-  'ChatGPT, Google AI Overviews, and Perplexity now name a few local shops instead of a list of links. Run a free check of the signals on your site, or call (916) 404-6129.'
+  'When people ask ChatGPT or Google for a local shop, a few names get the call. See how ready your website is, or call (916) 404-6129.'
 
 const FAQS = [
   {
@@ -27,7 +28,7 @@ const FAQS = [
   {
     question: 'What does the free check measure?',
     answer:
-      'It reads your site and scores only what it could measure: HTTPS, the mobile viewport, title, meta description, H1, LocalBusiness schema, name address and phone, page weight and response time, robots.txt, llms.txt, and a sitemap. It does not invent a rank in ChatGPT or Google.',
+      'It reads the public website and scores only what it could see. You get a plain result, such as Strong, Good, or Needs work, plus the few changes that would help most. This is a readiness check. It is not a ranking in ChatGPT or Google.',
   },
   {
     question: 'Do I need a new website first?',
@@ -84,11 +85,11 @@ const jsonLd = {
 }
 
 const REASONS = [
-  'An accurate Google Business Profile',
+  'An accurate Google listing, with the right name, phone, and hours',
   'Reviews a customer can read',
   'Pages that say what you do and which towns you serve',
   'The same name, phone, and address everywhere',
-  'Structured data, so a tool can read those facts',
+  'Business details Google and AI can read, so they recommend you with the right phone and address',
   'A site that loads quickly on a phone',
 ]
 
@@ -139,14 +140,14 @@ export default function AiSearchPage() {
               </a>
             </nav>
             <a
-              className={home.call}
+              className={`${home.call} ${styles.navCall}`}
               href={CONTACT_PHONE_TEL}
               data-track="call_click"
               data-track-location="nav"
-              data-track-label="Call or text Dan"
+              data-track-label={`Call ${CONTACT_PHONE_DISPLAY}`}
               data-track-section="nav"
             >
-              Call or text Dan
+              Call {CONTACT_PHONE_DISPLAY}
             </a>
             <MobileNav home="/" />
           </div>
@@ -158,25 +159,25 @@ export default function AiSearchPage() {
           <p className={styles.kicker}>For any local shop</p>
           <h1>If AI does not name you, you do not get the call.</h1>
           <p className={styles.lede}>
-            Plumbing, HVAC, welding, salons, auto, and the shop next door. The tools people ask now answer with a few
-            names.
+            When people ask ChatGPT or Google for a plumber, a welder, or a salon nearby, the answer names a few shops.
+            Here's how ready your website is to be one of them.
           </p>
         </header>
 
         <section className={styles.block} aria-labelledby="what-title">
-          <h2 id="what-title">What AI search is</h2>
+          <h2 id="what-title">What people see now</h2>
           <p>
-            ChatGPT, Google AI Overviews, and Perplexity answer a question in a short reply. Ask who the best plumber
-            near you is, and you may get a few shop names. Not a long list of links. The same reply shows up for a
-            furnace, a weld, a haircut, or a brake job.
+            ChatGPT, Google, and Perplexity answer in a short reply. Ask for a plumber near you and you may get a few
+            shop names, not a long list of links. The same thing happens for a furnace, a weld, a haircut, or a brake
+            job.
           </p>
         </section>
 
         <section className={styles.block} aria-labelledby="why-title">
           <h2 id="why-title">Why it matters</h2>
           <p>
-            The customer calls one of the names in that reply. If your shop is not named, the call goes somewhere else.
-            An outdated site, or a thin Google profile, is easy for these tools to skip.
+            The customer calls one of the names in that reply. If your shop is not named, the call goes to someone else.
+            An outdated site, or a thin Google listing, is easy for these tools to skip.
           </p>
         </section>
 
@@ -198,12 +199,26 @@ export default function AiSearchPage() {
           </ul>
         </section>
 
+        <section className={styles.block} aria-labelledby="checks-title">
+          <h2 id="checks-title">What the free check looks at</h2>
+          <p>Each line is something we can see on the public website, and why it helps the business.</p>
+          <ul className={styles.checks}>
+            {CHECKS.map((item) => (
+              <li key={item.id}>
+                <strong>{item.label}</strong>
+                <span>{item.benefit}</span>
+              </li>
+            ))}
+          </ul>
+          <p>{READINESS_NOTE}</p>
+        </section>
+
         <section className={styles.block} aria-labelledby="work-title">
           <h2 id="work-title">What DANZUS does</h2>
-          <p>Two jobs, priced apart from the assistants.</p>
+          <p>Two ways to help, priced apart from the assistants.</p>
           <ul>
             <li>A website rebuild, with a clear way to call. Starting at $1,500.</li>
-            <li>Google and AI search setup, so the tools can describe you. Starting at $300 a month.</li>
+            <li>Google and AI search setup, so these tools can describe you. Starting at $300 a month.</li>
           </ul>
         </section>
 
@@ -220,21 +235,22 @@ export default function AiSearchPage() {
         </section>
 
         <section className={styles.cta} id="check" aria-labelledby="check-title">
-          <h2 id="check-title">Free AI search check</h2>
+          <h2 id="check-title">Free readiness check</h2>
           <p>
-            We fetch the site and score the signals we can actually read. You get the score here and a PDF by email.
-            Call or text {CONTACT_PHONE_DISPLAY} if you would rather talk it through.
+            See how ready your website is to be named when someone asks ChatGPT or Google for a shop like yours. You
+            get the result here and a short report by email.
           </p>
+          <p>Call {CONTACT_PHONE_DISPLAY} if you would rather talk it through.</p>
           <p>
             <a
               className={styles.primary}
               href={CONTACT_PHONE_TEL}
               data-track="call_click"
               data-track-location="section"
-              data-track-label="Call or text about AI search"
+              data-track-label={`Call ${CONTACT_PHONE_DISPLAY}`}
               data-track-section="ai-search"
             >
-              Call or text {CONTACT_PHONE_DISPLAY}
+              Call {CONTACT_PHONE_DISPLAY}
             </a>
           </p>
           <CheckForm />

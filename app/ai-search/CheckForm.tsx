@@ -3,13 +3,18 @@
 import { FormEvent, useState } from 'react'
 import styles from './ai-search.module.css'
 
+type Item = { label: string; benefit?: string; detail?: string; fix?: string }
+
 type Result = {
   ok: boolean
   error?: string
   score?: number | null
+  scoreLabel?: string
+  meaning?: string
+  opening?: string
   note?: string
-  passed?: { label: string; detail: string }[]
-  fixes?: { label: string; fix: string; detail: string }[]
+  passed?: Item[]
+  fixes?: Item[]
   unmeasured?: string[]
   email?: { sent: boolean; detail: string }
 }
@@ -91,39 +96,61 @@ export function CheckForm() {
       ) : null}
       {result?.ok ? (
         <div className={styles.result} role="status">
-          <p className={styles.score}>
-            {result.score === null || result.score === undefined ? 'Not scored' : result.score}
-            {result.score === null || result.score === undefined ? null : <span>/100</span>}
-          </p>
-          <p>{result.note}</p>
-          <p>{result.email?.detail}</p>
-          <h3>What passed</h3>
-          {result.passed?.length ? (
-            <ul>
-              {result.passed.map((item) => (
-                <li key={item.label}>
-                  <strong>{item.label}.</strong> {item.detail}
-                </li>
-              ))}
-            </ul>
+          {result.opening ? <p className={styles.opening}>{result.opening}</p> : null}
+          {result.score === null || result.score === undefined ? (
+            <p className={styles.scoreLabel}>Not scored</p>
           ) : (
-            <p>Nothing we measured passed.</p>
+            <div className={styles.scoreRow}>
+              <p className={styles.score}>
+                {result.score}
+                <span>/100</span>
+              </p>
+              {result.scoreLabel ? <p className={styles.scoreLabel}>{result.scoreLabel}</p> : null}
+            </div>
           )}
-          <h3>Top fixes</h3>
+          {result.meaning ? <p className={styles.meaning}>{result.meaning}</p> : null}
+          <p className={styles.note}>{result.note}</p>
+          <h3>What would help most</h3>
           {result.fixes?.length ? (
             <ol>
               {result.fixes.map((item) => (
                 <li key={item.label}>
-                  <strong>{item.label}.</strong> {item.fix}
+                  <strong>{item.label}</strong>
+                  <span className={styles.benefit}>{item.benefit || item.fix}</span>
+                  {quoteOf(item.detail) ? <span className={styles.quote}>{quoteOf(item.detail)}</span> : null}
                 </li>
               ))}
             </ol>
           ) : (
-            <p>No failed signals in what we measured.</p>
+            <p>
+              {result.passed?.length
+                ? 'Nothing stood out. The basics we could check are already in place.'
+                : 'We could not read enough of the site to suggest a change.'}
+            </p>
           )}
-          {result.unmeasured?.length ? <p>Not measured: {result.unmeasured.join(', ')}.</p> : null}
+          <h3>Already in place</h3>
+          {result.passed?.length ? (
+            <ul>
+              {result.passed.map((item) => (
+                <li key={item.label}>
+                  <strong>{item.label}</strong>
+                  <span className={styles.benefit}>{item.benefit}</span>
+                  {quoteOf(item.detail) ? <span className={styles.quote}>{quoteOf(item.detail)}</span> : null}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>Nothing we could check is in place yet.</p>
+          )}
+          {result.unmeasured?.length ? <p>We could not check: {result.unmeasured.join('. ')}.</p> : null}
+          {result.email?.detail ? <p>{result.email.detail}</p> : null}
         </div>
       ) : null}
     </form>
   )
+}
+
+function quoteOf(detail?: string): string {
+  const match = detail?.match(/"([^"]+)"/)
+  return match?.[1] ? `"${match[1]}"` : ''
 }

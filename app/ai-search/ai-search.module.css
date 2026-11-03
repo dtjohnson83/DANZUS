@@ -46,6 +46,13 @@
   line-height: 1.55;
 }
 
+.lede {
+  max-width: 38rem;
+  color: var(--paper);
+  font-size: 1.2rem;
+  line-height: 1.45;
+}
+
 .block,
 .faq,
 .cta {
@@ -74,7 +81,17 @@
 
 .result ol {
   list-style: decimal;
-  padding-left: 1.2rem;
+  padding-left: 1.25rem;
+}
+
+.result ol li {
+  padding-left: 8px;
+  border-left: 0;
+}
+
+.result ol li::marker {
+  color: var(--clay);
+  font-weight: 700;
 }
 
 .block li,
@@ -83,6 +100,37 @@
   border-left: 2px solid var(--clay);
   color: var(--paper);
   line-height: 1.45;
+}
+
+.checks {
+  gap: 18px;
+}
+
+.checks strong,
+.result li strong {
+  display: block;
+  color: var(--paper);
+  font-weight: 700;
+}
+
+.checks span,
+.benefit {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.result h3 {
+  margin: 32px 0 0;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+}
+
+.quote {
+  display: block;
+  margin-top: 6px;
+  color: var(--paper);
 }
 
 .faq article + article {
@@ -189,18 +237,70 @@
   color: var(--paper);
 }
 
+.opening,
+.meaning {
+  color: var(--paper);
+}
+
+.opening {
+  font-size: 1.2rem;
+  line-height: 1.45;
+}
+
+.scoreRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 16px;
+  margin-top: 18px;
+}
+
 .score {
-  margin: 8px 0 0;
+  margin: 0;
   font-family: var(--display);
-  font-size: 4rem;
-  line-height: 0.9;
+  font-size: 4.5rem;
+  line-height: 0.85;
   letter-spacing: -0.04em;
   color: var(--clay);
 }
 
 .score span {
-  font-size: 1.4rem;
+  margin-left: 6px;
+  font-size: 1.3rem;
+  letter-spacing: 0;
   color: var(--muted);
+}
+
+.scoreLabel {
+  margin: 12px 0 0;
+  font-family: var(--display);
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--paper);
+}
+
+.scoreRow .scoreLabel {
+  margin: 0;
+}
+
+.note {
+  max-width: 40rem;
+  font-size: 0.98rem;
+}
+
+.navCall {
+  font-size: 0.78rem;
+  padding: 0 10px;
+}
+
+@media (max-width: 420px) {
+  .navCall {
+    font-size: 0.7rem;
+    padding: 0 8px;
+    letter-spacing: -0.02em;
+  }
 }
 
 @media (min-width: 720px) {
