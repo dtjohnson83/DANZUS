@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { RESULTS } from '@/config/results'
 import { HERO_LOOP } from '@/app/hero-loop'
-import { TRADES } from '@/app/sample-sites/trades'
+import { SAMPLE_PHOTO_BASE, TRADES } from '@/app/sample-sites/trades'
 import { CONTACT_PHONE_TEL } from '@/app/site'
 
 describe('sample sites and home extras', () => {
@@ -15,6 +15,18 @@ describe('sample sites and home extras', () => {
       'Willow & Brass Studio',
     ])
     expect(CONTACT_PHONE_TEL).toBe('tel:+19164046129')
+    expect(TRADES.map((trade) => trade.photos.hero)).toEqual([
+      `${SAMPLE_PHOTO_BASE}/plumber/hero.webp`,
+      `${SAMPLE_PHOTO_BASE}/hvac/hero.webp`,
+      `${SAMPLE_PHOTO_BASE}/auto/hero.webp`,
+      `${SAMPLE_PHOTO_BASE}/salon/hero.webp`,
+    ])
+    expect(readFileSync('app/sample-sites/SampleSite.tsx', 'utf8')).toContain(
+      'Sample site by DANZUS. Not a real business.',
+    )
+    expect(readFileSync('next.config.js', 'utf8')).toContain("pathname: '/samples-branded/**'")
+    expect(readFileSync('app/page.tsx', 'utf8')).not.toContain('See it for your shop.')
+    expect(readFileSync('app/SampleMenu.tsx', 'utf8')).toContain('sample_open')
     const copy = JSON.stringify(TRADES)
     expect(copy).not.toMatch(/—|DimeVision|App Orchid|GoHighLevel/i)
   })
@@ -41,7 +53,9 @@ describe('sample sites and home extras', () => {
     expect(css).toContain('100svh')
     expect(nav).toContain('Open menu')
     expect(nav).toContain('aria-expanded')
-    expect(nav).toContain('#work')
+    expect(nav).toContain('SampleMenuGroup')
+    expect(nav).not.toContain('#work')
+    expect(readFileSync('app/SampleMenu.tsx', 'utf8')).toContain('Sample sites')
   })
 
   it('ships an empty results list and the approved hero loop', () => {

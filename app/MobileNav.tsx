@@ -1,14 +1,8 @@
 'use client'
 
 import { useEffect, useId, useRef, useState } from 'react'
+import { SampleMenuGroup } from './SampleMenu'
 import styles from './home.module.css'
-
-const LINKS = [
-  ['#services', 'Services'],
-  ['#pricing', 'Pricing'],
-  ['#work', 'Work'],
-  ['#about', 'About'],
-] as const
 
 export function MobileNav() {
   const [open, setOpen] = useState(false)
@@ -67,18 +61,16 @@ export function MobileNav() {
         aria-label="Primary"
         inert={!open}
       >
-        {LINKS.map(([href, label]) => (
-          <a
-            key={href}
-            href={href}
-            data-track="nav_click"
-            data-track-label={label}
-            data-track-location="mobile"
-            onClick={() => setOpen(false)}
-          >
-            {label}
-          </a>
-        ))}
+        <a href="#services" data-track="nav_click" data-track-label="Services" data-track-location="mobile" onClick={() => setOpen(false)}>
+          Services
+        </a>
+        <a href="#pricing" data-track="nav_click" data-track-label="Pricing" data-track-location="mobile" onClick={() => setOpen(false)}>
+          Pricing
+        </a>
+        <SampleMenuGroup onNavigate={() => setOpen(false)} />
+        <a href="#about" data-track="nav_click" data-track-label="About" data-track-location="mobile" onClick={() => setOpen(false)}>
+          About
+        </a>
       </nav>
     </>
   )

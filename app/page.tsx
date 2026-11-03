@@ -8,7 +8,7 @@ import { MobileNav } from './MobileNav'
 import { PhoneMockup } from './PhoneMockup'
 import { Reveal } from './Reveal'
 import { SiteHeader } from './SiteHeader'
-import { TRADES } from './sample-sites/trades'
+import { SampleMenu } from './SampleMenu'
 import { PACKAGE_DEMOS, type PackageName } from '@/lib/package-demos'
 import { condensed, sans } from './fonts'
 import { SiteFooter } from './SiteFooter'
@@ -253,9 +253,7 @@ export default function Home() {
               <a href="#pricing" data-track="nav_click" data-track-label="Pricing" data-track-location="desktop">
                 Pricing
               </a>
-              <a href="#work" data-track="nav_click" data-track-label="Work" data-track-location="desktop">
-                Work
-              </a>
+              <SampleMenu />
               <a href="#about" data-track="nav_click" data-track-label="About" data-track-location="desktop">
                 About
               </a>
@@ -319,43 +317,8 @@ export default function Home() {
             <p className={styles.label}>Booked job</p>
             <h2 id="booked-title">A time lands.</h2>
             <p className={styles.line}>The job is on the calendar before you roll.</p>
-            <Ghost href="#work" section="booked">
-              See the work
-            </Ghost>
-          </Reveal>
-        </section>
-
-        <section className={styles.scene} id="work" aria-labelledby="work-title">
-          <Reveal>
-            <p className={styles.label}>Sample sites</p>
-            <h2 id="work-title">See it for your shop.</h2>
-            <p className={styles.line}>Four samples. Not real shops. Calls ring DANZUS.</p>
-            <div className={styles.cards}>
-              {TRADES.map((trade) => (
-                <a
-                  className={styles.card}
-                  href={trade.path}
-                  key={trade.id}
-                  data-track="sample_open"
-                  data-track-slug={trade.id}
-                >
-                  <span className={styles.preview}>
-                    <Image
-                      src={`/samples/${trade.id}.webp`}
-                      alt=""
-                      width={800}
-                      height={524}
-                      sizes="(min-width: 720px) 480px, 100vw"
-                      loading="lazy"
-                    />
-                  </span>
-                  <strong>{trade.name}</strong>
-                  <span>{trade.trade}</span>
-                </a>
-              ))}
-            </div>
-            <Ghost href="#pricing" section="work">
-              See pricing
+            <Ghost href="#packages" section="booked">
+              See the packages
             </Ghost>
           </Reveal>
         </section>
