@@ -1,5 +1,8 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import { ClickTracker } from './ClickTracker'
 
 const SITE_URL = 'https://danzus.co'
 const SITE_NAME = 'DANZUS'
@@ -104,7 +107,12 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+        <SpeedInsights />
+        <ClickTracker />
+      </body>
     </html>
   )
 }

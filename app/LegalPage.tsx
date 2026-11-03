@@ -27,7 +27,14 @@ export function LegalPage({
               <img src="/danzus-mark.svg" alt="" width={28} height={28} />
               DANZUS
             </Link>
-            <a className={styles.call} href={CONTACT_PHONE_TEL}>
+            <a
+              className={styles.call}
+              href={CONTACT_PHONE_TEL}
+              data-track="call_click"
+              data-track-location="nav"
+              data-track-label="Call or text Dan"
+              data-track-section="nav"
+            >
               Call or text Dan
             </a>
           </div>
