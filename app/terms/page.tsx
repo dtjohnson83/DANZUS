@@ -29,8 +29,9 @@ export default function TermsPage() {
   return (
     <LegalPage kicker="DANZUS Holdings LLC" title="Terms">
       <p>
-        DANZUS Holdings LLC sets up AI assistants for small businesses. Prices on the site are starting ranges. The
-        price for a shop is fixed on a call before any setup begins.
+        DANZUS Holdings LLC sets up websites, missed-call text-back, and local search for small businesses. The
+        prices on this site are the current menu. Missed-call text-back is month to month after a free 30-day pilot,
+        with no setup fee. A website is paid 50% up front and 50% at launch, and you keep the site.
       </p>
       <section id="sms">
         <h2>DANZUS Text Messaging Program</h2>

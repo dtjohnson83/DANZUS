@@ -9,7 +9,7 @@ export const HOME_TITLE =
   'Websites and AI Assistants for Small Businesses in Sacramento, Folsom, Roseville, and El Dorado Hills | DANZUS'
 
 export const HOME_DESCRIPTION =
-  'DANZUS Holdings LLC in Folsom builds websites and sets up AI assistants and local search for small businesses in Sacramento, Folsom, Roseville, and El Dorado Hills. A website starts at $1,500. SEO and AI search starts at $300 a month.'
+  'DANZUS Holdings LLC in Folsom builds websites, missed-call text-back, and local search for small businesses in Sacramento, Folsom, Roseville, and El Dorado Hills. Missed-call text-back is $99 a month after a free 30-day pilot. A website is $1,500 plus $49 a month. Google and AI search is $199 a month. DANZUS Growth is $299 a month. With a 6-month commitment, the website is $750.'
 
 const DEMO_BASE = 'https://ic048emi0kpty2jd.public.blob.vercel-storage.com/demos'
 
@@ -19,17 +19,17 @@ export const FAQS = [
   {
     question: 'What does it cost?',
     answer:
-      'Prices on this page are starting ranges. A website starts at $1,500. SEO and AI search starts at $300 a month, and a Google Business Profile plus AI listing starter starts at $150 a month. Pilot is $150 a month, starting at $250 setup, for the first three Sacramento-area shops in exchange for an honest testimonial. Starter is $200 to $300 a month, starting at $500 setup, for one assistant package. Growth is $400 to $600 a month, starting at $1,000 to $1,500 setup, for Lead to Booked Job, Quote to Cash, and Job Closeout. Custom work starts at $1,500, or $100 to $150 an hour, when the assistant has to write into QuickBooks, a CRM, or another system you already run. The free call turns the range into a fixed quote before any setup begins.',
+      'Missed-call text-back is $99 a month after a free 30-day pilot. There is no setup fee, and it is month to month. That is the founding client price. A website is $1,500 one time, plus $49 a month for hosting and small edits. You pay 50% up front and 50% at launch, and you keep the site. Google and AI search is $199 a month. DANZUS Growth is $299 a month and includes missed-call text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750.',
   },
   {
     question: 'How long does setup take?',
     answer:
-      'The free call is where you walk through where the leads leak and pick the first job for the assistant. About 80% of a package is a ready-made template, and about 20% is written for your shop. DANZUS connects it to the calendar, QuickBooks, the CRM, or the texts you already use. You read the replies before it runs, and each month we read what it sent and fix what sounds off.',
+      'The free call is where you walk through where the leads leak and pick the first job. About 80% of a package is a ready-made template, and about 20% is written for your shop. DANZUS connects it to the calendar, QuickBooks, the CRM, or the texts you already use. You read the replies before it runs, and each month we read what it sent and fix what sounds off. Missed-call text-back has no setup fee.',
   },
   {
     question: 'Do I need new software?',
     answer:
-      'No. The assistant plugs into the calendar, QuickBooks, a CRM, and the texting you already use. Custom work is only for a package that has to write into one of those systems.',
+      'No. It connects to the calendar, QuickBooks, a CRM, and the texting you already use.',
   },
   {
     question: 'Is it secure?',
@@ -51,83 +51,80 @@ export const FAQS = [
 type ListedService = {
   name: string
   description: string
-  lowPrice: string
-  highPrice?: string
+  price?: string
   unitText?: string
-  offerNote: string
+  offerNote?: string
   serviceType?: string
   anchor?: string
 }
 
 export const PACKAGE_SERVICES: ListedService[] = [
   {
-    name: 'Lead to Booked Job',
-    description: 'A new inquiry becomes a time on the calendar. Capture the lead, reply, qualify, then book and remind.',
-    lowPrice: '200',
-    highPrice: '600',
+    name: 'Missed-call text-back',
+    description:
+      'When a call is missed, a text goes back in the shop voice. Free 30-day pilot, then $99 a month. No setup fee. Month to month. Founding client price.',
+    price: '99',
     unitText: 'MONTH',
-    offerNote: 'Monthly starting range. One step can start on Starter. The full package fits Growth. Setup is separate.',
-  },
-  {
-    name: 'Quote to Cash',
-    description: 'An estimate becomes money in the account. Draft the estimate, follow up, send the invoice, and chase the payment.',
-    lowPrice: '200',
-    highPrice: '600',
-    unitText: 'MONTH',
-    offerNote: 'Follow-up alone can start on Starter. The full package fits Growth. QuickBooks is Custom. Setup is separate.',
-  },
-  {
-    name: 'Job Closeout',
-    description: 'A finished job leaves a review and a referral. Completion photos, a review request, and a referral ask.',
-    lowPrice: '400',
-    highPrice: '600',
-    unitText: 'MONTH',
-    offerNote: 'Fits Growth. Setup for Growth starts at $1,000 to $1,500.',
-  },
-  {
-    name: 'Back Office',
-    description: 'The inbox, the bills, and the week land in one place. Inbox triage, receipts and bills into the books, and a weekly summary.',
-    lowPrice: '100',
-    highPrice: '150',
-    unitText: 'HOUR',
-    offerNote: 'Fits Custom. Inbox triage alone can start on Starter. Custom setup starts at $1,500.',
-  },
-  {
-    name: 'Customer Service',
-    description: 'The customer gets an answer, a status, or you. FAQ answers, job or order status, and a handoff to a person.',
-    lowPrice: '200',
-    highPrice: '300',
-    unitText: 'MONTH',
-    offerNote: 'FAQ answers fit Starter. Live job or order status is Custom.',
+    offerNote:
+      '$99 a month after a free 30-day pilot. No setup fee. Month to month. Founding client price.',
+    serviceType: 'Missed-call text-back',
+    anchor: '#pricing',
   },
   {
     name: 'Website',
     description:
-      'A custom website for one local business. Fast on a phone, with a way to call or send a lead.',
-    lowPrice: '1500',
-    offerNote: 'Starting at $1,500. A project, not a monthly assistant.',
+      'A custom website for one local business. Fast on a phone, with a way to call or send a lead. $1,500 one time, plus $49 a month for hosting and small edits. Paid 50% up front and 50% at launch. The client keeps the site.',
+    price: '1500',
+    offerNote:
+      '$1,500 one time, plus $49 a month for hosting and small edits. Paid 50% up front and 50% at launch. You keep the site.',
     serviceType: 'Website design for a local business',
-    anchor: '#site',
+    anchor: '#pricing',
   },
   {
-    name: 'SEO and AI search',
+    name: 'Google and AI search',
     description:
       'Google Business Profile, local SEO, schema, an llms.txt file, and pages so the business can be described in Google and in AI answers.',
-    lowPrice: '300',
+    price: '199',
     unitText: 'MONTH',
-    offerNote: 'Starting at $300 per month. A Google Business Profile and AI listing starter starts at $150 per month.',
+    offerNote: '$199 a month.',
     serviceType: 'Local SEO and AI search',
-    anchor: '#site',
+    anchor: '#pricing',
   },
   {
-    name: 'Google Business Profile and AI listing',
+    name: 'DANZUS Growth',
     description:
-      'A starter for the Google Business Profile and an AI listing, before the fuller SEO and AI search package.',
-    lowPrice: '150',
+      'Missed-call text-back, Google and AI search, and hosting. $299 a month. With a 6-month commitment, the website is $750.',
+    price: '299',
     unitText: 'MONTH',
-    offerNote: 'Starting at $150 per month.',
-    serviceType: 'Google Business Profile and AI listing',
-    anchor: '#site',
+    offerNote:
+      '$299 a month for missed-call text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750.',
+    serviceType: 'DANZUS Growth bundle',
+    anchor: '#pricing',
+  },
+  {
+    name: 'Lead to Booked Job',
+    description: 'A new inquiry becomes a time on the calendar. Capture the lead, reply, qualify, then book and remind.',
+    serviceType: 'AI assistant for a small business',
+  },
+  {
+    name: 'Quote to Cash',
+    description: 'An estimate becomes money in the account. Draft the estimate, follow up, send the invoice, and chase the payment.',
+    serviceType: 'AI assistant for a small business',
+  },
+  {
+    name: 'Job Closeout',
+    description: 'A finished job leaves a review and a referral. Completion photos, a review request, and a referral ask.',
+    serviceType: 'AI assistant for a small business',
+  },
+  {
+    name: 'Back Office',
+    description: 'The inbox, the bills, and the week land in one place. Inbox triage, receipts and bills into the books, and a weekly summary.',
+    serviceType: 'AI assistant for a small business',
+  },
+  {
+    name: 'Customer Service',
+    description: 'The customer gets an answer, a status, or you. FAQ answers, job or order status, and a handoff to a person.',
+    serviceType: 'AI assistant for a small business',
   },
 ]
 
@@ -217,14 +214,17 @@ export function siteJsonLd() {
         provider: { '@id': businessId },
         areaServed: areaServed(),
         url: `${SITE_URL}/${service.anchor ?? '#packages'}`,
-        offers: {
-          '@type': 'AggregateOffer',
-          priceCurrency: 'USD',
-          lowPrice: service.lowPrice,
-          ...(service.highPrice ? { highPrice: service.highPrice } : {}),
-          ...(service.unitText ? { unitText: service.unitText } : {}),
-          description: service.offerNote,
-        },
+        ...(service.price
+          ? {
+              offers: {
+                '@type': 'Offer',
+                priceCurrency: 'USD',
+                price: service.price,
+                ...(service.unitText ? { unitText: service.unitText } : {}),
+                description: service.offerNote,
+              },
+            }
+          : {}),
       })),
       {
         '@type': 'FAQPage',

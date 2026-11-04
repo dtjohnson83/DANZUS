@@ -1,11 +1,12 @@
 # DANZUS Holdings LLC
 
 DANZUS Holdings LLC is in Folsom, California. Dan Johnson builds websites and
-sets up local search and AI assistants for small businesses in Sacramento,
-Folsom, Roseville, El Dorado Hills, and nearby. A website starts at $1,500.
-SEO and AI search starts at $300 a month. A Google Business Profile and AI
-listing starter starts at $150 a month. Assistant packages are a flat monthly
-price. This is not a chatbot you have to run yourself.
+sets up local search and missed-call text-back for small businesses in
+Sacramento, Folsom, Roseville, El Dorado Hills, and nearby. Missed-call
+text-back is $99 a month after a free 30-day pilot, with no setup fee, month
+to month. That is the founding client price. A website is $1,500 one time,
+plus $49 a month for hosting and small edits. Google and AI search is $199 a
+month. DANZUS Growth is $299 a month.
 
 Contact: call or text (916) 404-6129, or email dan@danzus.co.
 LinkedIn: https://linkedin.com/in/danjohnsondata
@@ -25,54 +26,57 @@ About 80% of a package is a ready-made template. About 20% is written for the
 shop. It connects to the calendar, QuickBooks, a CRM, or the texts the shop
 already uses. The owner reads the replies. A person signs off on anything risky
 before it reaches a customer. Each month DANZUS reads what went out and fixes
-what sounds off.
+what sounds off. Missed-call text-back has no setup fee.
 
 ## Website
 
 A custom site for one local business. It is fast on a phone and built so the
 next step is a call or a lead: the services, the towns covered, tap to call,
-and a way to send a lead. Starting at $1,500. A project, not a monthly assistant.
+and a way to send a lead. $1,500 one time, plus $49 a month for hosting and
+small edits. Paid 50% up front and 50% at launch. The client keeps the site.
 
-## SEO and AI search
+## Google and AI search
 
 Google Business Profile, local SEO for the towns the shop serves, schema and
 structured data, an llms.txt file, and pages a person or an AI can read, so the
 business can show up in Google and in answers from tools such as ChatGPT and
-Perplexity. Starting at $300 a month.
+Perplexity. $199 a month.
 
-A Google Business Profile and AI listing starter starts at $150 a month, for a
-shop that is not ready for the fuller search package.
+## DANZUS Growth
+
+Missed-call text-back, Google and AI search, and hosting, together. $299 a
+month. With a 6-month commitment, the website is $750 instead of $1,500. Hosting
+and small edits stay on the monthly plan.
 
 ## Packages
+
+These describe the work. They are not a separate price list. The prices are
+the menu above.
 
 ### Lead to Booked Job
 
 A new inquiry becomes a time on the calendar: capture the lead, instant reply,
-qualify, book, and remind. One step can start on Pilot or Starter. The full
-package fits Growth.
+qualify, book, and remind.
 
 ### Quote to Cash
 
 An estimate becomes money in the account: draft the estimate, follow up, send
-the invoice, and chase the payment. Follow-up alone is Starter. QuickBooks is
-Custom.
+the invoice, and chase the payment.
 
 ### Job Closeout
 
 A finished job leaves a review and a referral: completion photos, a review
-request, and a referral ask. Fits Growth.
+request, and a referral ask.
 
 ### Back Office
 
 The inbox, the bills, and the week land in one place: inbox triage, receipts
-and bills into the books, and a weekly summary for the owner. Fits Custom.
-Inbox triage alone can start on Starter.
+and bills into the books, and a weekly summary for the owner.
 
 ### Customer Service
 
 The customer gets an answer, a status, or a person: FAQ answers, job or order
-status, and a handoff. FAQ answers fit Starter. Live job or order status is
-Custom.
+status, and a handoff.
 
 Narrated demos, about 75 seconds, with burned-in captions:
 
@@ -82,23 +86,17 @@ Narrated demos, about 75 seconds, with burned-in captions:
 - https://ic048emi0kpty2jd.public.blob.vercel-storage.com/demos/04-back-office.mp4
 - https://ic048emi0kpty2jd.public.blob.vercel-storage.com/demos/05-customer-service.mp4
 
-## Starting prices
+## Prices
 
-Every number is a starting range. Setup is separate. The free call turns the
-range into a fixed quote before setup begins.
-
-- Pilot: $150 a month. Setup starting at $250. First three Sacramento-area shops. One package, in exchange for an honest testimonial.
-- Starter: $200 to $300 a month. Setup starting at $500. One package.
-- Growth: $400 to $600 a month. Setup starting at $1,000 to $1,500. Lead to Booked Job, Quote to Cash, and Job Closeout together.
-- Custom: $100 to $150 an hour. Setup starting at $1,500. Back Office, live status, and writing into software the shop already runs.
-- Website: starting at $1,500.
-- SEO and AI search: starting at $300 a month.
-- Google Business Profile and AI listing: starting at $150 a month.
+- Missed-call text-back: $99 a month after a free 30-day pilot. No setup fee. Month to month. Founding client price.
+- Website: $1,500 one time, plus $49 a month for hosting and small edits. Paid 50% up front and 50% at launch. The client keeps the site.
+- Google and AI search: $199 a month.
+- DANZUS Growth: $299 a month for missed-call text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750.
 
 ## Questions
 
-- What does it cost? See the starting ranges above. The free call fixes the quote.
-- How long does setup take? The free call picks the first job. Most of the package is a template, then it is connected to tools the shop already uses.
+- What does it cost? Missed-call text-back is $99 a month after a free 30-day pilot, with no setup fee, month to month. That is the founding client price. A website is $1,500 one time, plus $49 a month for hosting and small edits, paid 50% up front and 50% at launch. The client keeps the site. Google and AI search is $199 a month. DANZUS Growth is $299 a month for text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750.
+- How long does setup take? The free call picks the first job. Most of the package is a template, then it is connected to tools the shop already uses. Missed-call text-back has no setup fee.
 - Do I need new software? No.
 - Is it secure? A person signs off on anything risky before it goes out. Mobile phone numbers and SMS opt-in data and consent are not shared with any third parties or affiliates. https://danzus.co/privacy
 - What if the AI says something wrong? Risky messages wait for a person. Each month DANZUS reads what was sent and fixes what sounds off. An upset customer gets the owner.

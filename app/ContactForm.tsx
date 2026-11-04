@@ -95,10 +95,10 @@ export function ContactForm() {
           <option value="" disabled>
             Choose one
           </option>
-          <option>A new website</option>
-          <option>SEO and AI search</option>
-          <option>Google Business Profile and AI listing</option>
           <option>Missed-call text-back</option>
+          <option>A new website</option>
+          <option>Google and AI search</option>
+          <option>DANZUS Growth</option>
           <option>Website or Facebook lead response</option>
           <option>Quote follow-up</option>
           <option>Booking and reminders</option>
