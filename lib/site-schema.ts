@@ -24,12 +24,12 @@ export const FAQS = [
   {
     question: 'How long does setup take?',
     answer:
-      'The free call is where you walk through where the leads leak and pick the first job. About 80% of a package is a ready-made template, and about 20% is written for your shop. DANZUS connects it to the calendar, QuickBooks, the CRM, or the texts you already use. You read the replies before it runs, and each month we read what it sent and fix what sounds off. Missed-call text-back has no setup fee.',
+      'The free call is where you walk through where the leads leak and pick the first job. About 80% of a package is a ready-made template, and about 20% is written for your shop. DANZUS connects it to the calendar, QuickBooks, your customer list, or the texts you already use. You read the replies before it runs, and each month we read what it sent and fix what sounds off. Missed-call text-back has no setup fee.',
   },
   {
     question: 'Do I need new software?',
     answer:
-      'No. It connects to the calendar, QuickBooks, a CRM, and the texting you already use.',
+      'No. It connects to the calendar, QuickBooks, your customer list, and the texting you already use.',
   },
   {
     question: 'Is it secure?',
@@ -83,7 +83,7 @@ export const PACKAGE_SERVICES: ListedService[] = [
   {
     name: 'Google and AI search',
     description:
-      'Google Business Profile, local SEO, schema, an llms.txt file, and pages so the business can be described in Google and in AI answers.',
+      'Your Google listing, the towns you serve, and pages Google and ChatGPT can read.',
     price: '199',
     unitText: 'MONTH',
     offerNote: '$199 a month.',
@@ -103,11 +103,11 @@ export const PACKAGE_SERVICES: ListedService[] = [
   },
   {
     name: 'Lead to Booked Job',
-    description: 'A new inquiry becomes a time on the calendar. Capture the lead, reply, qualify, then book and remind.',
+    description: 'A new inquiry becomes a time on the calendar. Capture the lead, reply, ask the right questions, then book and remind.',
     serviceType: 'AI assistant for a small business',
   },
   {
-    name: 'Quote to Cash',
+    name: 'Estimate to payment',
     description: 'An estimate becomes money in the account. Draft the estimate, follow up, send the invoice, and chase the payment.',
     serviceType: 'AI assistant for a small business',
   },
@@ -118,7 +118,7 @@ export const PACKAGE_SERVICES: ListedService[] = [
   },
   {
     name: 'Back Office',
-    description: 'The inbox, the bills, and the week land in one place. Inbox triage, receipts and bills into the books, and a weekly summary.',
+    description: 'The inbox, the bills, and the week land in one place. Sort your email, enter bills into your bookkeeping, and a weekly summary.',
     serviceType: 'AI assistant for a small business',
   },
   {
@@ -130,7 +130,7 @@ export const PACKAGE_SERVICES: ListedService[] = [
 
 export const DEMO_VIDEOS = [
   ['01-lead-to-booked-job', 'Lead to Booked Job'],
-  ['02-quote-to-cash', 'Quote to Cash'],
+  ['02-quote-to-cash', 'Estimate to payment'],
   ['03-job-closeout', 'Job Closeout'],
   ['04-back-office', 'Back Office'],
   ['05-customer-service', 'Customer Service'],

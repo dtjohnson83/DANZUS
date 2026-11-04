@@ -69,10 +69,10 @@ const PACKAGES = [
     name: 'Lead to Booked Job',
     outcome: 'A new inquiry becomes a time booked.',
     tier: 'A text, then a time on the calendar.',
-    steps: ['Capture the lead', 'Instant reply', 'Qualify', 'Book and remind'],
+    steps: ['Capture the lead', 'Instant reply', 'Ask the right questions', 'Book and remind'],
   },
   {
-    name: 'Quote to Cash',
+    name: 'Estimate to payment',
     outcome: 'An estimate becomes money in the account.',
     tier: 'Follow-up after the estimate.',
     steps: ['Draft the estimate', 'Follow up', 'Send the invoice', 'Chase the payment'],
@@ -87,7 +87,7 @@ const PACKAGES = [
     name: 'Back Office',
     outcome: 'Inbox, bills, and the week, together.',
     tier: 'Inbox, bills, and the week.',
-    steps: ['Inbox triage', 'Bills into the books', 'A weekly summary'],
+    steps: ['Sort your email', 'Enter bills into your bookkeeping', 'A weekly summary'],
   },
   {
     name: 'Customer Service',
@@ -137,7 +137,7 @@ const TIERS = [
     name: 'Google + AI search',
     who: 'Google and chat tools.',
     price: '$199/mo',
-    setup: 'Listing, towns, and pages.',
+    setup: 'Your Google listing, your towns, and clear pages.',
     body: 'So Google and AI answers can describe your shop.',
   },
   {
@@ -346,8 +346,8 @@ export default function Home() {
         <section className={styles.scene} id="pricing" aria-labelledby="pricing-title">
           <Reveal>
             <p className={styles.label}>Pricing</p>
-            <h2 id="pricing-title">Prices.</h2>
-            <p className={styles.line}>These are the prices.</p>
+            <h2 id="pricing-title">Simple monthly prices.</h2>
+            <p className={styles.line}>Cancel any time.</p>
             <div className={styles.rates}>
               {TIERS.map((tier) => (
                 <article className={styles.rate} key={tier.name}>
@@ -413,7 +413,7 @@ export default function Home() {
                 <div className={styles.bio}>
                   <p>He lives in Folsom and sets this up for local shops.</p>
                   <p>Sacramento, Roseville, and El Dorado Hills are in range.</p>
-                  <p>Lead AI Solutions Engineer. Enterprise agents. Ex-RAAF.</p>
+                  <p>Builds AI tools for large companies. Former Royal Australian Air Force.</p>
                   <p>The company is DANZUS Holdings LLC.</p>
                   <a
                     className={styles.linkedin}

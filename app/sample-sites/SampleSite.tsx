@@ -9,7 +9,7 @@ import styles from './sample.module.css'
 export function demoMetadata(trade: TradeDemo): Metadata {
   return {
     title: { absolute: `${trade.name} | Sample site by DANZUS` },
-    description: `Sample site for ${trade.name}. Not a real business. Calls go to DANZUS.`,
+    description: `Sample site for ${trade.name}, not a real business.`,
     robots: { index: false, follow: true },
     alternates: { canonical: trade.path },
   }

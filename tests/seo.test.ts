@@ -83,7 +83,9 @@ describe('search metadata', () => {
     const aiSearch = readFileSync('app/ai-search/page.tsx', 'utf8')
     const terms = readFileSync('app/terms/page.tsx', 'utf8')
     const schema = readFileSync('lib/site-schema.ts', 'utf8')
-    for (const text of [HOME_TITLE, HOME_DESCRIPTION, llms, full, home, layout, aiSearch, terms, schema]) {
+    const agentReadiness = readFileSync('app/agent-readiness/page.tsx', 'utf8')
+    const agentLlms = readFileSync('public/agent-readiness/llms.txt', 'utf8')
+    for (const text of [HOME_TITLE, HOME_DESCRIPTION, llms, full, home, layout, aiSearch, terms, schema, agentReadiness, agentLlms]) {
       expect(text.toLowerCase()).not.toContain('dimevision')
       expect(text.toLowerCase()).not.toContain('app orchid')
       expect(text.toLowerCase()).not.toContain('gohighlevel')

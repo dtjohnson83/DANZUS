@@ -19,11 +19,11 @@ Website: https://danzus.co
 - Quote follow-up.
 - Booking and reminders.
 - Google review requests after a finished job.
-- Inbox triage, invoice nudges, and a weekly summary.
+- Sort your email, invoice nudges, and a weekly summary.
 - Answers to hours, service area, and which jobs the shop takes.
 
 About 80% of a package is a ready-made template. About 20% is written for the
-shop. It connects to the calendar, QuickBooks, a CRM, or the texts the shop
+shop. It connects to the calendar, QuickBooks, your customer list, or the texts the shop
 already uses. The owner reads the replies. A person signs off on anything risky
 before it reaches a customer. Each month DANZUS reads what went out and fixes
 what sounds off. Missed-call text-back has no setup fee.
@@ -37,10 +37,8 @@ small edits. Paid 50% up front and 50% at launch. The client keeps the site.
 
 ## Google and AI search
 
-Google Business Profile, local SEO for the towns the shop serves, schema and
-structured data, an llms.txt file, and pages a person or an AI can read, so the
-business can show up in Google and in answers from tools such as ChatGPT and
-Perplexity. $199 a month.
+Your Google listing, the towns you serve, and pages Google and ChatGPT can read.
+$199 a month.
 
 ## DANZUS Growth
 
@@ -56,9 +54,9 @@ the menu above.
 ### Lead to Booked Job
 
 A new inquiry becomes a time on the calendar: capture the lead, instant reply,
-qualify, book, and remind.
+ask the right questions, book, and remind.
 
-### Quote to Cash
+### Estimate to payment
 
 An estimate becomes money in the account: draft the estimate, follow up, send
 the invoice, and chase the payment.
@@ -70,8 +68,8 @@ request, and a referral ask.
 
 ### Back Office
 
-The inbox, the bills, and the week land in one place: inbox triage, receipts
-and bills into the books, and a weekly summary for the owner.
+The inbox, the bills, and the week land in one place: sort your email,
+enter bills into your bookkeeping, and a weekly summary for the owner.
 
 ### Customer Service
 

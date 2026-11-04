@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { CONTACT_EMAIL } from '@/app/site'
 import { AgentReadinessPageShell, Card, DisclaimerCard, Section } from './AgentReadinessShell'
 
 export const metadata: Metadata = {
@@ -45,12 +46,6 @@ const SERVICE_JSONLD = {
   url: 'https://danzus.co/agent-readiness',
   description:
     'A practical review of whether AI search tools, answer engines, copilots, and buyer agents can correctly find, classify, compare, and recommend a business based on public website content.',
-  offers: {
-    '@type': 'Offer',
-    price: '149',
-    priceCurrency: 'USD',
-    availability: 'https://schema.org/InStock',
-  },
 }
 
 const VIDEO_JSONLD = {
@@ -88,7 +83,7 @@ export default function AgentReadinessHome() {
               The Agent Readiness Snapshot reviews how AI search tools, answer engines, copilots, and buyer agents may find, classify, compare, and recommend your company based on public website content.
             </p>
             <div className="ar-actions">
-              <a className="ar-btn ar-btn-primary" href="mailto:dan@dimevision.app?subject=Agent%20Readiness%20Snapshot">
+              <a className="ar-btn ar-btn-primary" href={`mailto:${CONTACT_EMAIL}?subject=Agent%20Readiness%20Snapshot`}>
                 Request or unlock a report
               </a>
               <Link className="ar-btn ar-btn-secondary" href="/agent-readiness/sample-report">
@@ -169,9 +164,11 @@ export default function AgentReadinessHome() {
       <Section>
         <div className="wrap ar-grid-2">
           <Card>
-            <h3>Introductory unlock price</h3>
-            <div className="ar-price">$149</div>
-            <p>For a pre-generated Agent Readiness Snapshot based on public website content.</p>
+            <h3>Request a snapshot</h3>
+            <p>
+              A pre-generated Agent Readiness Snapshot based on public website content. Email {CONTACT_EMAIL} to ask
+              for one. Shop prices are on the <Link href="/#pricing">DANZUS menu</Link>.
+            </p>
           </Card>
           <div>
             <h2>What happens after unlock?</h2>

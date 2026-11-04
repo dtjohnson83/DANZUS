@@ -5,7 +5,7 @@ export const DEMO_MOBILE_MEDIA = '(max-width: 719px)'
 
 export const PACKAGE_DEMOS = {
   'Lead to Booked Job': '01-lead-to-booked-job',
-  'Quote to Cash': '02-quote-to-cash',
+  'Estimate to payment': '02-quote-to-cash',
   'Job Closeout': '03-job-closeout',
   'Back Office': '04-back-office',
   'Customer Service': '05-customer-service',

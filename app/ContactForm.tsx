@@ -103,7 +103,7 @@ export function ContactForm() {
           <option>Quote follow-up</option>
           <option>Booking and reminders</option>
           <option>Google review requests</option>
-          <option>Invoices, payment reminders, or inbox triage</option>
+          <option>Invoices, payment reminders, or sorting your email</option>
           <option>FAQ chat</option>
           <option>Not sure yet</option>
         </select>
