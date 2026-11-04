@@ -33,7 +33,7 @@ export default function MethodologyPage() {
           <p>The standard Snapshot reviews public website content only: homepage, product/service pages, pricing, about/contact, FAQ/docs/blog content when relevant, metadata, sitemap, robots, schema, and <code>llms.txt</code> if present.</p>
 
           <h2>What is not reviewed</h2>
-          <p>Unless separately agreed, the Snapshot does not review private analytics, your customer list, logged-in pages, source code repositories, paid ad accounts, internal documents, legal/compliance controls, or security architecture.</p>
+          <p>Unless separately agreed, the Snapshot does not review private analytics, customer records, logged-in pages, source code repositories, paid ad accounts, internal documents, legal/compliance controls, or security architecture.</p>
 
           <h2>Evaluation lens</h2>
           <p>The site is reviewed as if an AI buyer agent were trying to answer what the company sells, who it serves, when it should be recommended, what proof exists, how a buyer takes the next step, and what risks or requirements matter.</p>

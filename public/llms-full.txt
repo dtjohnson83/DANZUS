@@ -22,8 +22,8 @@ Website: https://danzus.co
 - Sort your email, invoice nudges, and a weekly summary.
 - Answers to hours, service area, and which jobs the shop takes.
 
-About 80% of a package is a ready-made template. About 20% is written for the
-shop. It connects to the calendar, QuickBooks, your customer list, or the texts the shop
+Most of it is ready to go, and the rest is written for your shop. It connects
+to the calendar, QuickBooks, your customer list, or the texts the shop
 already uses. The owner reads the replies. A person signs off on anything risky
 before it reaches a customer. Each month DANZUS reads what went out and fixes
 what sounds off. Missed-call text-back has no setup fee.
@@ -94,7 +94,7 @@ Narrated demos, about 75 seconds, with burned-in captions:
 ## Questions
 
 - What does it cost? Missed-call text-back is $99 a month after a free 30-day pilot, with no setup fee, month to month. That is the founding client price. A website is $1,500 one time, plus $49 a month for hosting and small edits, paid 50% up front and 50% at launch. The client keeps the site. Google and AI search is $199 a month. DANZUS Growth is $299 a month for text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750.
-- How long does setup take? The free call picks the first job. Most of the package is a template, then it is connected to tools the shop already uses. Missed-call text-back has no setup fee.
+- How long does setup take? The free call picks the first job. Most of it is ready to go, and the rest is written for your shop. Then it is connected to tools the shop already uses. Missed-call text-back has no setup fee.
 - Do I need new software? No.
 - Is it secure? A person signs off on anything risky before it goes out. Mobile phone numbers and SMS opt-in data and consent are not shared with any third parties or affiliates. https://danzus.co/privacy
 - What if the AI says something wrong? Risky messages wait for a person. Each month DANZUS reads what was sent and fixes what sounds off. An upset customer gets the owner.

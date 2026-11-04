@@ -171,7 +171,7 @@ export default function AgentReadinessHome() {
             </p>
           </Card>
           <div>
-            <h2>What happens after unlock?</h2>
+            <h2>What happens after you request one?</h2>
             <ul>
               <li>You receive the full report and starter <code>llms.txt</code> draft by email.</li>
               <li>If the report does not contain useful, company-specific findings, reply within 7 days for a refund.</li>

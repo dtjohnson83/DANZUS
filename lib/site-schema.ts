@@ -24,7 +24,7 @@ export const FAQS = [
   {
     question: 'How long does setup take?',
     answer:
-      'The free call is where you walk through where the leads leak and pick the first job. About 80% of a package is a ready-made template, and about 20% is written for your shop. DANZUS connects it to the calendar, QuickBooks, your customer list, or the texts you already use. You read the replies before it runs, and each month we read what it sent and fix what sounds off. Missed-call text-back has no setup fee.',
+      'The free call is where you walk through where the leads leak and pick the first job. Most of it is ready to go, and the rest is written for your shop. DANZUS connects it to the calendar, QuickBooks, your customer list, or the texts you already use. You read the replies before it runs, and each month we read what it sent and fix what sounds off. Missed-call text-back has no setup fee.',
   },
   {
     question: 'Do I need new software?',

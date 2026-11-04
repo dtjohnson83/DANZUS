@@ -108,7 +108,7 @@ const SITE_OFFERINGS = [
     name: 'Google + AI search',
     outcome: 'Google and chat tools can describe you.',
     tier: '$199/mo.',
-    steps: ['Your Google listing', 'The towns you serve', 'What you do, stated plainly', 'Readable by chat tools'],
+    steps: ['Your Google listing', 'The towns you serve', 'What you do, stated plainly', 'Easy for ChatGPT to read'],
   },
   {
     name: 'DANZUS Growth',
@@ -346,7 +346,7 @@ export default function Home() {
         <section className={styles.scene} id="pricing" aria-labelledby="pricing-title">
           <Reveal>
             <p className={styles.label}>Pricing</p>
-            <h2 id="pricing-title">Simple monthly prices.</h2>
+            <h2 id="pricing-title">Simple prices.</h2>
             <p className={styles.line}>Cancel any time.</p>
             <div className={styles.rates}>
               {TIERS.map((tier) => (
