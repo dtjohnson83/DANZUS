@@ -44,9 +44,44 @@ export default function TermsPage() {
           from DANZUS Holdings LLC. Messages cover missed-call replies, answers to your inquiry, appointment scheduling
           and reminders, and customer care. Message frequency varies. Message and data rates may apply. Reply STOP to
           opt out at any time; you will get one confirmation and no further messages. Reply HELP for help, or contact{' '}
-          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> or {CONTACT_PHONE_DISPLAY}. Consent is not a condition
-          of purchase. Carriers are not liable for delayed or undelivered messages. See our Privacy Policy at{' '}
+          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> or {CONTACT_PHONE_DISPLAY}. Carriers are not liable
+          for delayed or undelivered messages. See our Privacy Policy at{' '}
           <a href="https://danzus.co/privacy">https://danzus.co/privacy</a>.
+        </p>
+        <p>Consent is not a condition of purchase.</p>
+        <p>You don&apos;t have to agree to texts to buy anything.</p>
+      </section>
+      <section id="billing">
+        <h2>Billing & cancellation</h2>
+        <p>Missed-call text-back: Renews monthly at $99 until you cancel. Cancel any time online, by email, or by phone. The first 30 days are a free pilot, and there is no setup fee.</p>
+        <p>Website hosting and small edits: Renews monthly at $49 until you cancel. Cancel any time online, by email, or by phone. The $1,500 website build is paid 50% up front and 50% at launch. You pay that once.</p>
+        <p>Google and AI search: Renews monthly at $199 until you cancel. Cancel any time online, by email, or by phone.</p>
+        <p>
+          DANZUS Growth: Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone. If you stay on
+          DANZUS Growth for 6 months, the website costs $750 instead of $1,500. You pay it once. If you cancel before month 6, the website is $1,500 and we bill the other $750. After month 6 it
+          continues month to month at $299 until cancelled.
+        </p>
+        <p>
+          Cancel online at any time at <a href="https://danzus.co/cancel">https://danzus.co/cancel</a>. You can also
+          email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> or call {CONTACT_PHONE_DISPLAY}. Say which plan
+          to stop. We confirm by email. The plan then stops at the end of the month already paid, and another month
+          does not start. If you cancel missed-call text-back during the free 30-day pilot, the $99 monthly charge
+          does not start. We will tell you before a price changes.
+        </p>
+      </section>
+      <section id="copyright">
+        <h2>Copyright and DMCA</h2>
+        <p>If you think we used your photo, writing, or other work without permission, email us. Include:</p>
+        <ul>
+          <li>Your name and a way to reach you</li>
+          <li>The work you claim is infringed</li>
+          <li>The page address of the material</li>
+          <li>A statement that you have a good faith belief the use is not authorized</li>
+          <li>A statement that the notice is accurate and that you are the owner or are allowed to act for the owner</li>
+          <li>Your physical or electronic signature</li>
+        </ul>
+        <p>
+          Send copyright notices to <a href={`mailto:${CONTACT_EMAIL}`}>dan@danzus.co</a>.
         </p>
       </section>
     </LegalPage>

@@ -102,18 +102,22 @@ const SITE_OFFERINGS = [
     name: 'Website',
     outcome: 'A fast site with a way to call. You keep it.',
     tier: '$1,500 plus $49/mo hosting and small edits.',
+    renewal: 'Renews monthly at $49 until you cancel. Cancel any time online, by email, or by phone.',
     steps: ['Services and towns', 'Works on a phone', 'Tap to call', 'Pages that load quickly'],
   },
   {
     name: 'Google + AI search',
     outcome: 'Google and chat tools can describe you.',
     tier: '$199/mo.',
+    renewal: 'Renews monthly at $199 until you cancel. Cancel any time online, by email, or by phone.',
     steps: ['Your Google listing', 'The towns you serve', 'What you do, stated plainly', 'Easy for ChatGPT to read'],
   },
   {
     name: 'DANZUS Growth',
     outcome: 'Text-back, Google and AI search, and hosting.',
     tier: '$299/mo. Website is $750 with a 6-month commitment.',
+    renewal:
+      'Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone. After month 6 it continues month to month at $299 until cancelled. If you cancel before month 6, the website is $1,500 and we bill the other $750.',
     steps: ['Missed-call text-back', 'Google and AI search', 'Hosting and small edits'],
   },
 ]
@@ -124,6 +128,7 @@ const TIERS = [
     who: 'Founding client price. Month to month.',
     price: '$99/mo',
     setup: 'Free 30-day pilot. No setup fee.',
+    renewal: 'Renews monthly at $99 until you cancel. Cancel any time online, by email, or by phone.',
     body: 'A text goes back when you miss a call.',
   },
   {
@@ -131,6 +136,7 @@ const TIERS = [
     who: 'You keep the site.',
     price: '$1,500',
     setup: 'Plus $49/mo hosting and small edits.',
+    renewal: 'Renews monthly at $49 until you cancel. Cancel any time online, by email, or by phone.',
     body: 'Paid 50% up front and 50% at launch.',
   },
   {
@@ -138,6 +144,7 @@ const TIERS = [
     who: 'Google and chat tools.',
     price: '$199/mo',
     setup: 'Your Google listing, your towns, and clear pages.',
+    renewal: 'Renews monthly at $199 until you cancel. Cancel any time online, by email, or by phone.',
     body: 'So Google and AI answers can describe your shop.',
   },
   {
@@ -145,6 +152,8 @@ const TIERS = [
     who: 'Text-back, search, and hosting.',
     price: '$299/mo',
     setup: 'Website is $750 with a 6-month commitment.',
+    renewal:
+      'Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone. After month 6 it continues month to month at $299 until cancelled. If you cancel before month 6, the website is $1,500 and we bill the other $750.',
     body: 'Missed-call text-back, Google and AI search, and hosting.',
   },
 ]
@@ -335,6 +344,7 @@ export default function Home() {
                     <h3>{item.name}</h3>
                     <p>{item.outcome}</p>
                     <p className={styles.fit}>{item.tier}</p>
+                    <p className={styles.rateRenew}>{item.renewal}</p>
                     <Flow steps={item.steps} />
                   </div>
                 </article>
@@ -347,7 +357,7 @@ export default function Home() {
           <Reveal>
             <p className={styles.label}>Pricing</p>
             <h2 id="pricing-title">Simple prices.</h2>
-            <p className={styles.line}>Cancel any time.</p>
+            <p className={styles.line}>Monthly plans renew until you cancel.</p>
             <div className={styles.rates}>
               {TIERS.map((tier) => (
                 <article className={styles.rate} key={tier.name}>
@@ -360,9 +370,14 @@ export default function Home() {
                     <p className={styles.ratePrice}>{tier.price}</p>
                     <p className={styles.rateSetup}>{tier.setup}</p>
                   </div>
+                  <p className={styles.rateRenew}>{tier.renewal}</p>
                 </article>
               ))}
             </div>
+            <p className={styles.priceNote}>
+              Monthly plans renew each month until you cancel. Cancel any time on the{' '}
+              <Link href="/cancel">cancel page</Link>, by email, or by phone. The $1,500 website is paid once.
+            </p>
           </Reveal>
         </section>
 
@@ -445,6 +460,10 @@ export default function Home() {
                   <span aria-hidden="true">→</span>
                 </a>
                 <p className={styles.line}>Or send a note. A number on the form is optional.</p>
+                <p className={styles.priceNote}>
+                  Monthly plans renew each month until you cancel: $99, $49, $199, or $299, as listed above. Cancel
+                  online at <Link href="/cancel">danzus.co/cancel</Link>.
+                </p>
                 <a className={styles.contactMail} href={mailto}>
                   {CONTACT_EMAIL}
                 </a>

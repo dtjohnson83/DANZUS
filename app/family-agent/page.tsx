@@ -61,7 +61,7 @@ const FAQS = [
   {
     question: 'How is family information protected?',
     answer:
-      'Each household runs in a separate profile with its own credentials, source allowlists, roles, and audit checks. Selected AI, messaging, and voice providers may process information required for a request. Those providers and boundaries are disclosed during setup.',
+      'Each household runs in a separate profile with its own credentials, source allowlists, roles, and audit checks. Selected AI, messaging, and voice providers may process information required for a request. Those providers and boundaries are disclosed during setup. The pilot is arranged with a parent. It is not a service for children under 13, and DANZUS does not knowingly collect personal information from anyone under 13.',
   },
   {
     question: 'Who can change a calendar?',
@@ -347,6 +347,7 @@ export default function FamilyAgentPage() {
                 <li>No calendar deletion by default</li>
                 <li>No open-ended inbox access</li>
                 <li>No business accounts mixed into family context</li>
+                <li>Not a product for children under 13. A parent sets up the household.</li>
                 <li>No consequential action based only on caller ID</li>
               </ul>
             </div>

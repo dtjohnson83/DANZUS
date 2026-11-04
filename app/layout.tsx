@@ -2,13 +2,14 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { hanken, plexMono, saira } from './brand-fonts'
 import { ClickTracker } from './ClickTracker'
 
 const SITE_URL = 'https://danzus.co'
 const SITE_NAME = 'DANZUS'
 const DEFAULT_TITLE = 'Websites, Search, and AI Assistants for Sacramento and Folsom | DANZUS'
 const DEFAULT_DESCRIPTION =
-  'DANZUS in Folsom builds websites and missed-call text-back for Sacramento-area contractors and local services. Text-back is $99 a month after a free 30-day pilot. A website is $1,500 plus $49 a month. Google and AI search is $199 a month. DANZUS Growth is $299 a month, and the website is $750 with a 6-month commitment.'
+  'DANZUS in Folsom builds websites and missed-call text-back for Sacramento-area contractors and local services. Text-back is $99 a month after a free 30-day pilot. A website is $1,500 plus $49 a month. Google and AI search is $199 a month. DANZUS Growth is $299 a month, and the website is $750 with a 6-month commitment. If you cancel before month 6, the website is $1,500 and we bill the other $750.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -92,21 +93,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
-          rel="stylesheet"
-          media="print"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: "document.querySelector('link[media=print]').media='all'",
-          }}
-        />
-      </head>
+    <html lang="en" className={`${saira.variable} ${hanken.variable} ${plexMono.variable}`}>
       <body>
         {children}
         <Analytics />

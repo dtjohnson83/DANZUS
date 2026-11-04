@@ -7,7 +7,7 @@
   --danzus-carbon: #1B1F26;
   --danzus-carbon-2: #22272F;
   --danzus-rail: #6B7178;
-  --danzus-font-display: 'Saira', system-ui, sans-serif;
-  --danzus-font-body: 'Hanken Grotesk', system-ui, sans-serif;
-  --danzus-font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --danzus-font-display: var(--font-saira), system-ui, sans-serif;
+  --danzus-font-body: var(--font-hanken), system-ui, sans-serif;
+  --danzus-font-mono: var(--font-plex-mono), ui-monospace, monospace;
 }

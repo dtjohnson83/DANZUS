@@ -38,7 +38,7 @@ const FAQS = [
   {
     question: 'What does this cost?',
     answer:
-      'Google and AI search is $199 a month. A website is $1,500, plus $49 a month for hosting and small edits. You pay half up front and half at launch, and you keep the site. DANZUS Growth is $299 a month for missed-call text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750. Missed-call text-back alone is $99 a month after a free 30-day pilot, with no setup fee, month to month. That is the founding client price.',
+      'Google and AI search is $199 a month. A website is $1,500, plus $49 a month for hosting and small edits. You pay half up front and half at launch, and you keep the site. DANZUS Growth is $299 a month for missed-call text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750. If you cancel before month 6, the website is $1,500 and we bill the other $750. Missed-call text-back alone is $99 a month after a free 30-day pilot, with no setup fee, month to month. That is the founding client price. Those monthly charges renew each month at the same price until you cancel. Cancel online at https://danzus.co/cancel, email dan@danzus.co, or call (916) 404-6129.',
   },
 ] as const
 
@@ -229,7 +229,7 @@ export default function AiSearchPage() {
             <li>Google and AI search, so these tools can describe you. $199 a month.</li>
             <li>
               DANZUS Growth is $299 a month. It includes missed-call text-back, Google and AI search, and hosting. With
-              a 6-month commitment, the website is $750.
+              a 6-month commitment, the website is $750. If you cancel before month 6, the website is $1,500 and we bill the other $750.
             </li>
           </ul>
         </section>

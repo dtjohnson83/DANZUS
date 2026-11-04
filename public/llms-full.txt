@@ -43,7 +43,7 @@ $199 a month.
 ## DANZUS Growth
 
 Missed-call text-back, Google and AI search, and hosting, together. $299 a
-month. With a 6-month commitment, the website is $750 instead of $1,500. Hosting
+month. With a 6-month commitment, the website is $750 instead of $1,500. If you cancel before month 6, the website is $1,500 and we bill the other $750. Hosting
 and small edits stay on the monthly plan.
 
 ## Packages
@@ -89,11 +89,13 @@ Narrated demos, about 75 seconds, with burned-in captions:
 - Missed-call text-back: $99 a month after a free 30-day pilot. No setup fee. Month to month. Founding client price.
 - Website: $1,500 one time, plus $49 a month for hosting and small edits. Paid 50% up front and 50% at launch. The client keeps the site.
 - Google and AI search: $199 a month.
-- DANZUS Growth: $299 a month for missed-call text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750.
+- DANZUS Growth: $299 a month for missed-call text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750. If you cancel before month 6, the website is $1,500 and we bill the other $750.
+
+Those monthly charges renew each month at the same price until the customer cancels. Cancel online at https://danzus.co/cancel, email dan@danzus.co, or call (916) 404-6129. The $1,500 website build does not renew. If you stay on DANZUS Growth for 6 months, the website costs $750 instead of $1,500. You pay it once. If you cancel before month 6, the website is $1,500 and we bill the other $750.
 
 ## Questions
 
-- What does it cost? Missed-call text-back is $99 a month after a free 30-day pilot, with no setup fee, month to month. That is the founding client price. A website is $1,500 one time, plus $49 a month for hosting and small edits, paid 50% up front and 50% at launch. The client keeps the site. Google and AI search is $199 a month. DANZUS Growth is $299 a month for text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750.
+- What does it cost? Missed-call text-back is $99 a month after a free 30-day pilot, with no setup fee, month to month. That is the founding client price. A website is $1,500 one time, plus $49 a month for hosting and small edits, paid 50% up front and 50% at launch. The client keeps the site. Google and AI search is $199 a month. DANZUS Growth is $299 a month for text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750. If you cancel before month 6, the website is $1,500 and we bill the other $750.
 - How long does setup take? The free call picks the first job. Most of it is ready to go, and the rest is written for your shop. Then it is connected to tools the shop already uses. Missed-call text-back has no setup fee.
 - Do I need new software? No.
 - Is it secure? A person signs off on anything risky before it goes out. Mobile phone numbers and SMS opt-in data and consent are not shared with any third parties or affiliates. https://danzus.co/privacy
@@ -118,4 +120,5 @@ https://danzus.co/privacy Terms: https://danzus.co/terms
 - https://danzus.co/ai-search
 - https://danzus.co/privacy
 - https://danzus.co/terms
+- https://danzus.co/cancel
 - https://danzus.co/llms.txt

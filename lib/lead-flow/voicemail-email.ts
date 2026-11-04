@@ -1,5 +1,6 @@
 import { Resend } from 'resend'
 
+/** Service notice to the business owner about a voicemail. Not a marketing email. */
 const FROM = 'DANZUS <dan@danzus.co>'
 const REPLY_TO = 'danzus@mail.grokbot.com'
 

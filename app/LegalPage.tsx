@@ -4,6 +4,7 @@ import { display } from './legal-font'
 import legal from './legal.module.css'
 import styles from './home.module.css'
 import { SiteFooter } from './SiteFooter'
+import { SiteHeader } from './SiteHeader'
 import { CONTACT_PHONE_TEL } from './site'
 
 export function LegalPage({
@@ -16,11 +17,11 @@ export function LegalPage({
   children: ReactNode
 }) {
   return (
-    <div className={`${styles.page} ${display.variable}`}>
+    <div className={`${styles.page} danzus-page ${display.variable}`}>
       <a className={styles.skip} href="#content">
         Skip to content
       </a>
-      <header className={styles.header}>
+      <SiteHeader solid>
         <div className={styles.shell}>
           <div className={styles.headerInner}>
             <Link className={styles.brand} href="/" aria-label="DANZUS home">
@@ -39,7 +40,7 @@ export function LegalPage({
             </a>
           </div>
         </div>
-      </header>
+      </SiteHeader>
       <main id="content" className={legal.main}>
         <div className={styles.shell}>
           <p className={styles.kicker}>{kicker}</p>
