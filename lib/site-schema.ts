@@ -19,7 +19,7 @@ export const FAQS = [
   {
     question: 'What does it cost?',
     answer:
-      'Missed-call text-back is $99 a month after a free 30-day pilot. There is no setup fee, and it is month to month. That is the founding client price. A website is $1,500 one time, plus $49 a month for hosting and small edits. You pay 50% up front and 50% at launch, and you keep the site. Google and AI search is $199 a month. DANZUS Growth is $299 a month and includes missed-call text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750.',
+      'Missed-call text-back is $99 a month after a free 30-day pilot. There is no setup fee, and it is month to month. That is the founding client price. A website is $1,500 one time, plus $49 a month for hosting and small edits. You pay 50% up front and 50% at launch, and you keep the site. Google and AI search is $199 a month. DANZUS Growth is $299 a month and includes missed-call text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750. Those monthly charges renew each month at the same price until you cancel. Cancel online at https://danzus.co/cancel, email dan@danzus.co, or call (916) 404-6129.',
   },
   {
     question: 'How long does setup take?',
@@ -66,7 +66,7 @@ export const PACKAGE_SERVICES: ListedService[] = [
     price: '99',
     unitText: 'MONTH',
     offerNote:
-      '$99 a month after a free 30-day pilot. No setup fee. Month to month. Founding client price.',
+      '$99 a month after a free 30-day pilot. No setup fee. Month to month. It renews each month until you cancel. Founding client price.',
     serviceType: 'Missed-call text-back',
     anchor: '#pricing',
   },
@@ -76,7 +76,7 @@ export const PACKAGE_SERVICES: ListedService[] = [
       'A custom website for one local business. Fast on a phone, with a way to call or send a lead. $1,500 one time, plus $49 a month for hosting and small edits. Paid 50% up front and 50% at launch. The client keeps the site.',
     price: '1500',
     offerNote:
-      '$1,500 one time, plus $49 a month for hosting and small edits. Paid 50% up front and 50% at launch. You keep the site.',
+      '$1,500 one time, plus $49 a month for hosting and small edits. The $49 charge renews each month until you cancel. Paid 50% up front and 50% at launch. You keep the site.',
     serviceType: 'Website design for a local business',
     anchor: '#pricing',
   },
@@ -86,7 +86,7 @@ export const PACKAGE_SERVICES: ListedService[] = [
       'Your Google listing, the towns you serve, and pages Google and ChatGPT can read.',
     price: '199',
     unitText: 'MONTH',
-    offerNote: '$199 a month.',
+    offerNote: '$199 a month. It renews each month until you cancel.',
     serviceType: 'Local SEO and AI search',
     anchor: '#pricing',
   },
@@ -97,7 +97,7 @@ export const PACKAGE_SERVICES: ListedService[] = [
     price: '299',
     unitText: 'MONTH',
     offerNote:
-      '$299 a month for missed-call text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750.',
+      '$299 a month for missed-call text-back, Google and AI search, and hosting. The $299 charge renews each month until you cancel. With a 6-month commitment, the website is $750.',
     serviceType: 'DANZUS Growth bundle',
     anchor: '#pricing',
   },

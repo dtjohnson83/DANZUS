@@ -1,7 +1,14 @@
 import { createHash } from 'node:crypto'
 import { Resend } from 'resend'
+import { commercialEmailFooter } from '@/lib/business-address'
 import type { CheckReport } from '@/lib/ai-check/types'
 
+/**
+ * Two messages:
+ * 1. The report the person asked for. The last line invites a call, so it gets
+ *    the commercial footer (postal address when configured, plus unsubscribe).
+ * 2. An internal lead note to dan@danzus.co. That one is not a customer email.
+ */
 const FROM = 'DANZUS <dan@danzus.co>'
 const REPLY_TO = 'danzus@mail.grokbot.com'
 const LEAD_TO = 'dan@danzus.co'
@@ -44,6 +51,7 @@ export async function sendCheckEmails(input: {
     input.report.passed.map((item) => `- ${item.label}: ${item.benefit}`).join('\n') || '- Nothing we could check is in place yet.',
     '',
     'Call (916) 404-6129, or book at https://danzus.co/#about.',
+    commercialEmailFooter(),
   ].join('\n')
 
   const reportSend = await resend.emails.send(

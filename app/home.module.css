@@ -1524,6 +1524,13 @@
   color: var(--muted);
 }
 
+.priceNote a {
+  color: inherit;
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .about {
   display: grid;
   gap: 28px;
@@ -1761,7 +1768,7 @@
 .footer {
   padding: 28px 0 48px;
   border-top: 1px solid var(--rule);
-  font-family: 'Hanken Grotesk', system-ui, sans-serif;
+  font-family: var(--font-hanken), system-ui, sans-serif;
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: normal;

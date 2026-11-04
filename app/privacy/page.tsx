@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { LegalPage } from '../LegalPage'
+import { businessPostalAddress } from '@/lib/business-address'
 import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY } from '../site'
 
 const TITLE = 'Privacy Notice | DANZUS Holdings LLC'
@@ -26,6 +28,7 @@ export const metadata: Metadata = {
 }
 
 export default function PrivacyPage() {
+  const postal = businessPostalAddress()
   return (
     <LegalPage kicker="DANZUS Holdings LLC" title="Privacy">
       <p>
@@ -34,7 +37,9 @@ export default function PrivacyPage() {
       <p>
         If you call or text {CONTACT_PHONE_DISPLAY}, we keep that phone number, the fact that you opted in by
         calling or texting, and the messages we need in order to reply. If you use the contact form, we also keep
-        your name, email, and what you wrote.
+        your name, email, and what you wrote. If you run the free AI search check, we keep the business name,
+        website, city and trade, email, and whether you asked for a follow-up email, and we send the report to that
+        email.
       </p>
       <section id="sms">
         <h2>Text messaging (SMS)</h2>
@@ -49,6 +54,34 @@ export default function PrivacyPage() {
         We use this information to answer you, follow up, and book a time. We keep the record only as long as we need
         it for the conversation and our own books.
       </p>
+      <section id="children">
+        <h2>Children</h2>
+        <p>
+          This service is not for children under 13. We do not knowingly collect personal information from anyone
+          under 13. The site is for small business owners and other adults. A separate page describes a household
+          assistant that a parent can set up. That assistant is not a product for children, and children do not get
+          their own account. If you believe we received information from a child under 13, email{' '}
+          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> and we will delete it.
+        </p>
+      </section>
+      <section id="analytics">
+        <h2>Site measurement</h2>
+        <p>
+          We use Vercel Web Analytics to count page views, and Vercel Speed Insights to measure how fast pages load.
+          Labeled clicks, such as Call, Text, and Pricing, are sent as events to Vercel Web Analytics with the label
+          and the place on the page. These tools do not record a playback of your visit, your screen, or what you
+          type.
+        </p>
+      </section>
+      <section id="email">
+        <h2>Email</h2>
+        <p>
+          Commercial email comes from {CONTACT_EMAIL}. It includes our postal address
+          {postal ? ` (${postal})` : ''} and a way to stop further email at{' '}
+          <Link href="/unsubscribe">danzus.co/unsubscribe</Link>. A report you asked for, or a voicemail notice to a
+          business owner, is a service message.
+        </p>
+      </section>
       <p>
         Reply STOP to opt out of texts. Reply HELP for help. Privacy questions go to{' '}
         <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.

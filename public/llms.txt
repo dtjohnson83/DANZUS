@@ -37,6 +37,8 @@ The assistant uses the calendar, QuickBooks, your customer list, and the texting
 - Google and AI search: $199 a month.
 - DANZUS Growth: $299 a month for missed-call text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750.
 
+Those monthly charges renew each month at the same price until the customer cancels. Cancel online at https://danzus.co/cancel, email dan@danzus.co, or call (916) 404-6129. The $1,500 website build does not renew. The $750 website price is a 6-month commitment, not a monthly charge.
+
 ## Contact
 
 - Phone: (916) 404-6129
@@ -44,12 +46,14 @@ The assistant uses the calendar, QuickBooks, your customer list, and the texting
 - LinkedIn: https://linkedin.com/in/danjohnsondata
 - Privacy: https://danzus.co/privacy
 - Terms, including SMS: https://danzus.co/terms
+- Cancel a monthly plan: https://danzus.co/cancel
 
 ## Pages
 
 - [Homepage](https://danzus.co/): websites, local search, missed-call text-back, prices, questions, and contact.
 - [AI search](https://danzus.co/ai-search): plain-English explainer and a free site check. The score uses only signals the check measured.
 - [Privacy](https://danzus.co/privacy): mobile phone numbers and SMS opt-in data and consent are not shared with any third parties or affiliates.
-- [Terms](https://danzus.co/terms): SMS terms for people who call or text (916) 404-6129.
+- [Terms](https://danzus.co/terms): SMS terms, monthly renewal terms, and a copyright notice.
+- [Cancel](https://danzus.co/cancel): how to cancel a monthly plan online.
 
 A longer version is at https://danzus.co/llms-full.txt.

@@ -46,6 +46,9 @@ export function SiteFooter() {
           <li>
             <Link href="/terms">Terms</Link>
           </li>
+          <li>
+            <Link href="/cancel">Cancel</Link>
+          </li>
         </ul>
         <p className={styles.smsNote}>
           Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help.

@@ -49,6 +49,38 @@ export default function TermsPage() {
           <a href="https://danzus.co/privacy">https://danzus.co/privacy</a>.
         </p>
       </section>
+      <section id="renewal">
+        <h2>Monthly plans</h2>
+        <p>
+          Missed-call text-back is $99 a month after a free 30-day pilot. Website hosting and small edits are $49 a
+          month. Google and AI search is $199 a month. DANZUS Growth is $299 a month. Each of those monthly charges
+          renews every month at that price until you cancel. We will tell you before a price changes. The $1,500
+          website build is paid 50% up front and 50% at launch, and it does not renew. With a 6-month commitment on
+          DANZUS Growth, the website is $750. That $750 is a commitment, not a monthly charge.
+        </p>
+        <p>
+          Cancel online at any time at <a href="https://danzus.co/cancel">https://danzus.co/cancel</a>. You can also
+          email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> or call {CONTACT_PHONE_DISPLAY}. Say which plan
+          to stop. We confirm by email. The plan then stops at the end of the month already paid, and another month
+          does not start. If you cancel missed-call text-back during the free 30-day pilot, the $99 monthly charge
+          does not start.
+        </p>
+      </section>
+      <section id="copyright">
+        <h2>Copyright and DMCA</h2>
+        <p>
+          If you believe material on danzus.co infringes a copyright you own, email a notice to{' '}
+          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Include your name and a way to reach you, the work
+          you claim is infringed, the page address of the material, a statement that you have a good faith belief the
+          use is not authorized, a statement that the notice is accurate and that you are the owner or are allowed to
+          act for the owner, and your physical or electronic signature.
+        </p>
+        <p>
+          Designated agent name: [DESIGNATED_AGENT_NAME]. US Copyright Office DMCA agent registration number:
+          [DMCA_REGISTRATION_NUMBER]. Daniel must register the designated agent with the US Copyright Office before
+          this notice is complete. Until that registration is on file, send copyright notices to {CONTACT_EMAIL}.
+        </p>
+      </section>
     </LegalPage>
   )
 }

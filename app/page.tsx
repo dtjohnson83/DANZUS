@@ -347,7 +347,7 @@ export default function Home() {
           <Reveal>
             <p className={styles.label}>Pricing</p>
             <h2 id="pricing-title">Simple prices.</h2>
-            <p className={styles.line}>Cancel any time.</p>
+            <p className={styles.line}>Monthly plans renew until you cancel.</p>
             <div className={styles.rates}>
               {TIERS.map((tier) => (
                 <article className={styles.rate} key={tier.name}>
@@ -363,6 +363,15 @@ export default function Home() {
                 </article>
               ))}
             </div>
+            <p className={styles.priceNote}>
+              Missed-call text-back is $99 a month after the free 30-day pilot. Hosting and small edits are $49 a
+              month. Google and AI search is $199 a month. DANZUS Growth is $299 a month. Each monthly plan renews
+              every month at that price until you cancel. Cancel online any time on the{' '}
+              <Link href="/cancel">cancel page</Link>, or email {CONTACT_EMAIL}, or call {CONTACT_PHONE_DISPLAY}. We
+              confirm by email, and the plan stops at the end of the month already paid. The $1,500 website build is
+              paid once, half up front and half at launch, and does not renew. The $750 website price on DANZUS Growth
+              is a 6-month commitment, not a monthly charge.
+            </p>
           </Reveal>
         </section>
 
@@ -445,6 +454,10 @@ export default function Home() {
                   <span aria-hidden="true">→</span>
                 </a>
                 <p className={styles.line}>Or send a note. A number on the form is optional.</p>
+                <p className={styles.priceNote}>
+                  Monthly plans renew each month until you cancel: $99, $49, $199, or $299, as listed above. Cancel
+                  online at <Link href="/cancel">danzus.co/cancel</Link>.
+                </p>
                 <a className={styles.contactMail} href={mailto}>
                   {CONTACT_EMAIL}
                 </a>
