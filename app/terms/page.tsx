@@ -71,17 +71,28 @@ export default function TermsPage() {
       </section>
       <section id="copyright">
         <h2>Copyright and DMCA</h2>
-        <p>If you think we used your photo, writing, or other work without permission, email us. Include:</p>
+        <p>
+          DANZUS Holdings LLC&apos;s designated agent is Daniel Johnson, 2108 N St #18348, Sacramento, CA 95816, phone{' '}
+          <a href={CONTACT_PHONE_TEL}>{CONTACT_PHONE_DISPLAY}</a>, email{' '}
+          <a href={`mailto:${CONTACT_EMAIL}`}>dan@danzus.co</a>. The U.S. Copyright Office DMCA designated agent
+          registration number is DMCA-1085182. The Copyright Office directory is at{' '}
+          <a href="https://dmca.copyright.gov/osp/">https://dmca.copyright.gov/osp/</a>.
+        </p>
+        <p>
+          If you think we used your photo, writing, or other work without permission, send the designated agent a
+          takedown notice. Include:
+        </p>
         <ul>
-          <li>Your name and a way to reach you</li>
-          <li>The work you claim is infringed</li>
-          <li>The page address of the material</li>
-          <li>A statement that you have a good faith belief the use is not authorized</li>
-          <li>A statement that the notice is accurate and that you are the owner or are allowed to act for the owner</li>
+          <li>Your name, mailing address, phone number, and email if you have one</li>
+          <li>The work you claim is infringed, or a representative list if many works are on one site</li>
+          <li>The page address of the material, or enough detail for us to find it</li>
+          <li>A statement that you have a good faith belief the use is not authorized by the owner, the owner&apos;s agent, or the law</li>
+          <li>A statement under penalty of perjury that the notice is accurate and that you are the owner or are allowed to act for the owner</li>
           <li>Your physical or electronic signature</li>
         </ul>
         <p>
-          Send copyright notices to <a href={`mailto:${CONTACT_EMAIL}`}>dan@danzus.co</a>.
+          Send copyright notices by email to <a href={`mailto:${CONTACT_EMAIL}`}>dan@danzus.co</a>, or by mail or phone
+          to the designated agent above.
         </p>
       </section>
     </LegalPage>

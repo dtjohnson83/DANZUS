@@ -46,9 +46,15 @@ describe('compliance copy', () => {
     expect(terms).toContain('Renews monthly at $49')
     expect(terms).toContain('Renews monthly at $199')
     expect(terms).toContain('Renews monthly at $299')
-    expect(terms).toContain('If you think we used your photo, writing, or other work without permission, email us. Include:')
+    expect(terms).toContain(
+      'If you think we used your photo, writing, or other work without permission, send the designated agent a takedown notice. Include:',
+    )
+    expect(terms).toContain('designated agent is Daniel Johnson, 2108 N St #18348, Sacramento, CA 95816')
+    expect(terms).toContain('DMCA-1085182')
+    expect(terms).toContain('https://dmca.copyright.gov/osp/')
+    expect(terms).toContain('under penalty of perjury')
     expect(terms).toContain('<ul>')
-    expect(terms).toContain('Send copyright notices to')
+    expect(terms).toContain('Send copyright notices by email to')
     expect(terms).toContain('dan@danzus.co')
     expect(terms).not.toContain('DESIGNATED_AGENT')
     expect(terms).not.toContain('Daniel must register')
