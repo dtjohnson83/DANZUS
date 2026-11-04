@@ -92,6 +92,34 @@ export function sayAndHangup(greeting: string): string {
   return `<Say>${xmlEscape(greeting)}</Say><Hangup/>`
 }
 
+/** Swap the path on the public webhook URL Twilio just called. */
+export function webhookUrlForPath(requestUrl: string, path: string): string {
+  const url = new URL(requestUrl)
+  url.pathname = path.startsWith('/') ? path : `/${path}`
+  url.search = ''
+  url.hash = ''
+  return url.toString()
+}
+
+/**
+ * Greeting, beep, then a short recording.
+ * `action` runs when the caller finishes and should return the next TwiML.
+ * `recordingStatusCallback` runs when the file is ready. Both are the same route.
+ */
+export function sayAndRecord(input: {
+  greeting: string
+  actionUrl: string
+  maxLengthSeconds: number
+  playBeep: boolean
+  transcribe: boolean
+  transcribeCallbackUrl: string
+}): string {
+  const transcribe = input.transcribe
+    ? ` transcribe="true" transcribeCallback="${xmlEscape(input.transcribeCallbackUrl)}"`
+    : ''
+  return `<Say>${xmlEscape(input.greeting)}</Say><Record action="${xmlEscape(input.actionUrl)}" method="POST" maxLength="${input.maxLengthSeconds}" playBeep="${input.playBeep ? 'true' : 'false'}" timeout="5" finishOnKey="#" recordingStatusCallback="${xmlEscape(input.actionUrl)}" recordingStatusCallbackMethod="POST" recordingStatusCallbackEvent="completed"${transcribe}/>`
+}
+
 export function hangupOnly(): string {
   return '<Hangup/>'
 }

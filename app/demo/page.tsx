@@ -5,6 +5,7 @@ import { DEMO_COOKIE, sessionMatches } from '@/lib/lead-flow/admin-session'
 import { blobLeadStore, leadStoreErrorMessage } from '@/lib/lead-flow/blob-store'
 import { formatPhone } from '@/lib/lead-flow/phone'
 import { clients } from '@/lib/lead-flow/registry'
+import { safeHttpUrl } from '@/lib/lead-flow/voicemail-email'
 import type { Lead, LeadStatus } from '@/lib/lead-flow/types'
 import styles from './demo.module.css'
 
@@ -81,9 +82,10 @@ export default async function DemoPage({
             <p className={styles.kicker}>Lead to booked job</p>
             <h1 className={styles.title}>{demo.businessName}</h1>
             <p className={styles.meta}>
-              Calls to {formatPhone(demo.twilioNumber)} ring {formatPhone(demo.forwardTo)} for {demo.ringTimeoutSeconds}s,
-              then text back if nobody picks up. Escalations go to {formatPhone(demo.ownerPhone)}.
-              Times offered are a stub from the hours in the client config.
+              Calls to {formatPhone(demo.twilioNumber)} ring {formatPhone(demo.forwardTo)} for {demo.ringTimeoutSeconds}s.
+              If nobody answers, the caller can leave a voicemail and gets a text right away. Recordings are emailed
+              to {demo.ownerEmail}. Escalations go to {formatPhone(demo.ownerPhone)}. Times offered are a stub from the
+              hours in the client config.
             </p>
           </div>
           <form action={logout}>
@@ -119,6 +121,21 @@ export default async function DemoPage({
                   {lead.bookedSlot ? <span>Booked: {lead.bookedSlot}</span> : null}
                   {lead.optedOut ? <span>Opted out</span> : null}
                 </div>
+                {lead.voicemails.length > 0 ? (
+                  <div className={styles.voicemails}>
+                    {lead.voicemails.map((item) => {
+                      const href = safeHttpUrl(item.recordingUrl)
+                      return (
+                        <p className={styles.voicemail} key={item.recordingSid || item.callSid}>
+                          <span className={styles.who}>Voicemail</span>
+                          {item.durationSeconds ? `${item.durationSeconds}s. ` : null}
+                          {href ? <a href={href}>Listen</a> : null}
+                          {item.transcript ? ` ${item.transcript}` : ' No transcript yet.'}
+                        </p>
+                      )
+                    })}
+                  </div>
+                ) : null}
                 <div className={styles.thread}>
                   {lead.messages.map((message) => (
                     <p

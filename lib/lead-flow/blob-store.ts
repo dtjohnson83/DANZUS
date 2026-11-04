@@ -1,4 +1,5 @@
 import { get, list, put } from '@vercel/blob'
+import { normalizeLead } from '@/lib/lead-flow/lead'
 import type { Lead, LeadStore } from '@/lib/lead-flow/types'
 
 /**
@@ -27,7 +28,7 @@ async function readLead(path: string): Promise<Lead | null> {
   const text = await new Response(result.stream).text()
   const parsed: unknown = JSON.parse(text)
   if (!isLead(parsed)) throw new Error(`Lead blob ${path} is not a lead record`)
-  return parsed
+  return normalizeLead(parsed)
 }
 
 export const blobLeadStore: LeadStore = {

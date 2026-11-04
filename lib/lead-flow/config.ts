@@ -17,20 +17,28 @@ const clientConfigSchema = z.object({
     close: z.string().regex(/^\d{2}:\d{2}$/),
   }),
   ownerPhone: z.string().regex(/^\+[1-9]\d{9,14}$/),
+  ownerEmail: z.string().trim().email(),
   forwardTo: z.string().regex(/^\+[1-9]\d{9,14}$/),
   ringTimeoutSeconds: z.number().int().min(5).max(600),
   twilioNumber: z.string().regex(/^\+[1-9]\d{9,14}$/),
-  allowedPriceRanges: z
+  priceMenu: z
     .array(
       z.object({
         service: z.string().min(1),
-        min: z.number().positive(),
-        max: z.number().positive(),
+        amounts: z.array(z.number().positive()).min(1),
+        detail: z.string().min(1),
       }),
     )
     .min(1),
   greeting: z.string().min(1),
   missedCallSms: z.string().min(1),
+  voicemail: z.object({
+    enabled: z.boolean(),
+    maxLengthSeconds: z.number().int().min(1).max(3600),
+    playBeep: z.boolean(),
+    transcribe: z.boolean(),
+    textOwner: z.boolean(),
+  }),
 })
 
 export function parseClientConfig(input: ClientConfig): ClientConfig {
@@ -42,11 +50,6 @@ export function parseClientConfig(input: ClientConfig): ClientConfig {
   }
   if (config.forwardTo === config.twilioNumber) {
     throw new Error(`${config.id}: forwardTo must be the owner cell, not the Twilio number`)
-  }
-  for (const range of config.allowedPriceRanges) {
-    if (range.max < range.min) {
-      throw new Error(`${config.id}: ${range.service} max is below min`)
-    }
   }
   return config
 }

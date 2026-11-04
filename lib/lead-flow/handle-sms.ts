@@ -177,7 +177,7 @@ export function decideTurn(
     reply = withFollowUp(reply, config)
   }
 
-  reply = sanitizePrices(reply, config.allowedPriceRanges)
+  reply = sanitizePrices(reply, config.priceMenu)
   if (action === 'book' && slot && !reply.includes(slot)) {
     reply = `You're booked with ${config.businessName} for ${slot}. We'll text if anything changes. Reply here if you need to move it.`
   }
