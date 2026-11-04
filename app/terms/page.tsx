@@ -49,14 +49,15 @@ export default function TermsPage() {
           <a href="https://danzus.co/privacy">https://danzus.co/privacy</a>.
         </p>
         <p>Consent is not a condition of purchase.</p>
+        <p>You don&apos;t have to agree to texts to buy anything.</p>
       </section>
       <section id="billing">
         <h2>Billing & cancellation</h2>
-        <p>Missed-call text-back: Renews monthly at $99 until you cancel. Cancel any time by email or phone. The first 30 days are a free pilot, and there is no setup fee.</p>
-        <p>Website hosting and small edits: Renews monthly at $49 until you cancel. Cancel any time by email or phone. The $1,500 website build is paid 50% up front and 50% at launch. You pay that once.</p>
-        <p>Google and AI search: Renews monthly at $199 until you cancel. Cancel any time by email or phone.</p>
+        <p>Missed-call text-back: Renews monthly at $99 until you cancel. Cancel any time online, by email, or by phone. The first 30 days are a free pilot, and there is no setup fee.</p>
+        <p>Website hosting and small edits: Renews monthly at $49 until you cancel. Cancel any time online, by email, or by phone. The $1,500 website build is paid 50% up front and 50% at launch. You pay that once.</p>
+        <p>Google and AI search: Renews monthly at $199 until you cancel. Cancel any time online, by email, or by phone.</p>
         <p>
-          DANZUS Growth: Renews monthly at $299 until you cancel. Cancel any time by email or phone. If you stay on
+          DANZUS Growth: Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone. If you stay on
           DANZUS Growth for 6 months, the website costs $750 instead of $1,500. You pay it once. After month 6 it
           continues month to month at $299 until cancelled.
         </p>

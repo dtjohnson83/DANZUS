@@ -81,6 +81,7 @@
 }
 
 @media (max-width: 767px) {
+  .header[data-solid='true'],
   .header.legalHeader,
   .header.legalHeader[data-solid='true'] {
     background: #0b1410;

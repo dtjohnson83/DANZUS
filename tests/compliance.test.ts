@@ -57,9 +57,9 @@ describe('compliance copy', () => {
   it('puts the same renewal facts on the pricing section and the cancel page', () => {
     const home = read(files.home)
     const cancel = read(files.cancel)
-    expect(home).toContain('Renews monthly at $99 until you cancel. Cancel any time by email or phone.')
-    expect(home).toContain('Renews monthly at $49 until you cancel. Cancel any time by email or phone.')
-    expect(home).toContain('Renews monthly at $199 until you cancel. Cancel any time by email or phone.')
+    expect(home).toContain('Renews monthly at $99 until you cancel. Cancel any time online, by email, or by phone.')
+    expect(home).toContain('Renews monthly at $49 until you cancel. Cancel any time online, by email, or by phone.')
+    expect(home).toContain('Renews monthly at $199 until you cancel. Cancel any time online, by email, or by phone.')
     expect(home).toContain('After month 6 it continues month to month at $299 until cancelled.')
     expect(home).toContain('Monthly plans renew each month until you cancel.')
     expect(home).toContain('The $1,500 website is paid once.')

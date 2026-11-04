@@ -102,14 +102,14 @@ const SITE_OFFERINGS = [
     name: 'Website',
     outcome: 'A fast site with a way to call. You keep it.',
     tier: '$1,500 plus $49/mo hosting and small edits.',
-    renewal: 'Renews monthly at $49 until you cancel. Cancel any time by email or phone.',
+    renewal: 'Renews monthly at $49 until you cancel. Cancel any time online, by email, or by phone.',
     steps: ['Services and towns', 'Works on a phone', 'Tap to call', 'Pages that load quickly'],
   },
   {
     name: 'Google + AI search',
     outcome: 'Google and chat tools can describe you.',
     tier: '$199/mo.',
-    renewal: 'Renews monthly at $199 until you cancel. Cancel any time by email or phone.',
+    renewal: 'Renews monthly at $199 until you cancel. Cancel any time online, by email, or by phone.',
     steps: ['Your Google listing', 'The towns you serve', 'What you do, stated plainly', 'Easy for ChatGPT to read'],
   },
   {
@@ -117,7 +117,7 @@ const SITE_OFFERINGS = [
     outcome: 'Text-back, Google and AI search, and hosting.',
     tier: '$299/mo. Website is $750 with a 6-month commitment.',
     renewal:
-      'Renews monthly at $299 until you cancel. Cancel any time by email or phone. After month 6 it continues month to month at $299 until cancelled.',
+      'Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone. After month 6 it continues month to month at $299 until cancelled.',
     steps: ['Missed-call text-back', 'Google and AI search', 'Hosting and small edits'],
   },
 ]
@@ -128,7 +128,7 @@ const TIERS = [
     who: 'Founding client price. Month to month.',
     price: '$99/mo',
     setup: 'Free 30-day pilot. No setup fee.',
-    renewal: 'Renews monthly at $99 until you cancel. Cancel any time by email or phone.',
+    renewal: 'Renews monthly at $99 until you cancel. Cancel any time online, by email, or by phone.',
     body: 'A text goes back when you miss a call.',
   },
   {
@@ -136,7 +136,7 @@ const TIERS = [
     who: 'You keep the site.',
     price: '$1,500',
     setup: 'Plus $49/mo hosting and small edits.',
-    renewal: 'Renews monthly at $49 until you cancel. Cancel any time by email or phone.',
+    renewal: 'Renews monthly at $49 until you cancel. Cancel any time online, by email, or by phone.',
     body: 'Paid 50% up front and 50% at launch.',
   },
   {
@@ -144,7 +144,7 @@ const TIERS = [
     who: 'Google and chat tools.',
     price: '$199/mo',
     setup: 'Your Google listing, your towns, and clear pages.',
-    renewal: 'Renews monthly at $199 until you cancel. Cancel any time by email or phone.',
+    renewal: 'Renews monthly at $199 until you cancel. Cancel any time online, by email, or by phone.',
     body: 'So Google and AI answers can describe your shop.',
   },
   {
@@ -153,7 +153,7 @@ const TIERS = [
     price: '$299/mo',
     setup: 'Website is $750 with a 6-month commitment.',
     renewal:
-      'Renews monthly at $299 until you cancel. Cancel any time by email or phone. After month 6 it continues month to month at $299 until cancelled.',
+      'Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone. After month 6 it continues month to month at $299 until cancelled.',
     body: 'Missed-call text-back, Google and AI search, and hosting.',
   },
 ]

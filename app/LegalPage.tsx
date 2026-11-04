@@ -17,7 +17,7 @@ export function LegalPage({
   children: ReactNode
 }) {
   return (
-    <div className={`${styles.page} ${display.variable}`}>
+    <div className={`${styles.page} danzus-page ${display.variable}`}>
       <a className={styles.skip} href="#content">
         Skip to content
       </a>

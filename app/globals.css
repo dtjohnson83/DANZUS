@@ -29,6 +29,13 @@ body {
   overflow-x: clip;
 }
 
+html:has(.danzus-home),
+html:has(.danzus-page),
+body:has(.danzus-home),
+body:has(.danzus-page) {
+  background-color: #0b1410;
+}
+
 body:has(.danzus-home) {
   font-family: system-ui, sans-serif;
 }
@@ -56,7 +63,9 @@ body::after {
 body:has([data-sample-site])::before,
 body:has([data-sample-site])::after,
 body:has(.danzus-home)::before,
-body:has(.danzus-home)::after {
+body:has(.danzus-home)::after,
+body:has(.danzus-page)::before,
+body:has(.danzus-page)::after {
   display: none;
 }
 
