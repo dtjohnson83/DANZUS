@@ -13,3 +13,7 @@ export const clients: ClientConfig[] = [parseClientConfig(demoClient)]
 export function clientForInboundNumber(to: string): ClientConfig | undefined {
   return clients.find((client) => phonesEqual(client.twilioNumber, to))
 }
+
+export function clientById(id: string): ClientConfig | undefined {
+  return clients.find((client) => client.id === id)
+}

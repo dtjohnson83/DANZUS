@@ -23,11 +23,9 @@ export function leadFlowModel(): LanguageModel {
   return DEFAULT_LEAD_FLOW_MODEL
 }
 
-function instructions(input: QualifyInput): string {
+export function qualifyInstructions(input: QualifyInput): string {
   const config = input.config
-  const ranges = config.allowedPriceRanges
-    .map((range) => `${range.service}: $${range.min}–$${range.max}`)
-    .join('; ')
+  const menu = config.priceMenu.map((item) => `${item.service}: ${item.detail}`).join('\n')
   const slots = input.slots.map((slot, index) => `${index + 1}. ${slot}`).join('\n')
   const lead = input.lead
   return [
@@ -37,7 +35,8 @@ function instructions(input: QualifyInput): string {
     'Qualify the lead for job type, area, timing, and a rough budget. Sound like a person at the shop, and ask one thing at a time.',
     `Questions you can draw from: ${config.qualifyingQuestions.join(' | ')}`,
     `Known so far: name=${lead.name || 'unknown'}; job=${lead.jobType || 'unknown'}; area=${lead.area || 'unknown'}; timing=${lead.timing || 'unknown'}; budget note=${lead.budgetNote || 'unknown'}; status=${lead.status}; booked slot=${lead.bookedSlot || 'none'}.`,
-    `Never quote a firm price and never say a job will cost one number. If they ask cost, share only a ballpark from these ranges and say the owner confirms after seeing the job: ${ranges}.`,
+    'If they ask what it costs, quote only the matching line from this approved menu. Do not invent a price, a discount, or a setup fee. Do not describe these prices as ranges or ballparks. Dan confirms which option on a call.',
+    menu,
     'When you know the job type, the area, and the timing, set action to offer_slots and offer only these openings:',
     slots || '(no openings calculated)',
     'If they clearly accept one of those openings, set action to book, copy that opening into selectedSlot exactly, and confirm the booking in the reply.',
@@ -68,7 +67,7 @@ export async function qualifyWithModel(input: QualifyInput): Promise<QualifyResu
       name: 'lead_turn',
       description: 'Next SMS and lead updates for a local-business booking conversation',
     }),
-    instructions: instructions(input),
+    instructions: qualifyInstructions(input),
     messages: transcript(input.lead, input.inbound),
   })
   return output

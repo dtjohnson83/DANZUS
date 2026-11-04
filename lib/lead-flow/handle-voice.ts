@@ -7,7 +7,9 @@ import {
   isValidTwilioRequest,
   readTwilioForm,
   sayAndHangup,
+  sayAndRecord,
   twimlResponse,
+  webhookUrlForPath,
 } from '@/lib/lead-flow/twilio'
 import type { ClientConfig, LeadStore, SendSms } from '@/lib/lead-flow/types'
 
@@ -22,7 +24,8 @@ export type VoiceDeps = {
 /**
  * Inbound call: ring the owner's cell first.
  * The Dial action posts back here with DialCallStatus. The missed-call
- * greeting and text-back run only for no-answer, busy, or failed.
+ * greeting, voicemail, and text-back run only for no-answer, busy, or failed.
+ * The text goes out as soon as the call is missed. It does not wait for a voicemail.
  * An answered call (completed) gets a hangup and nothing else.
  * Numbers that are not in the client registry get a silent hangup and no dial.
  */
@@ -63,7 +66,7 @@ export async function handleVoiceRequest(request: Request, deps: VoiceDeps): Pro
     )
   }
 
-  const greeting = twimlResponse(sayAndHangup(config.greeting))
+  const greeting = missedCallTwiml(config, url)
   if (!from) return greeting
 
   const callSid = params.get('CallSid') || `call-${deps.now().toISOString()}`
@@ -109,4 +112,18 @@ export async function handleVoiceRequest(request: Request, deps: VoiceDeps): Pro
   }
 
   return greeting
+}
+
+function missedCallTwiml(config: ClientConfig, requestUrl: string): Response {
+  if (!config.voicemail.enabled) return twimlResponse(sayAndHangup(config.greeting))
+  return twimlResponse(
+    sayAndRecord({
+      greeting: config.greeting,
+      actionUrl: webhookUrlForPath(requestUrl, '/api/twilio/voice/recording'),
+      maxLengthSeconds: config.voicemail.maxLengthSeconds,
+      playBeep: config.voicemail.playBeep,
+      transcribe: config.voicemail.transcribe,
+      transcribeCallbackUrl: webhookUrlForPath(requestUrl, '/api/twilio/voice/transcription'),
+    }),
+  )
 }

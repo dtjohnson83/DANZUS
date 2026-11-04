@@ -150,6 +150,23 @@
   margin-bottom: 14px;
 }
 
+.voicemails {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.voicemail {
+  color: var(--ink-2);
+  font-size: 14px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.voicemail a {
+  color: var(--gold-2);
+}
+
 .thread {
   display: grid;
   gap: 8px;

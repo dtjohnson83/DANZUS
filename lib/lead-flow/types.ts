@@ -24,14 +24,34 @@ export type Lead = {
   ownerNotified: boolean
   optedOut: boolean
   messages: LeadMessage[]
+  /** Recordings left after a missed call. Empty on leads that never got that far. */
+  voicemails: Voicemail[]
   createdAt: string
   updatedAt: string
 }
 
-export type PriceRange = {
+export type Voicemail = {
+  callSid: string
+  recordingSid: string
+  recordingUrl: string
+  durationSeconds: number
+  transcript: string
+  /** ISO time the recording started, or when it was stored. */
+  recordedAt: string
+  /** Set when the owner email for this recording was accepted. */
+  ownerEmailedAt: string
+  /** Set when an email that included the transcript was accepted. */
+  transcriptEmailedAt: string
+  ownerTexted: boolean
+}
+
+/** One approved offer the texting assistant may quote. */
+export type PriceMenuItem = {
   service: string
-  min: number
-  max: number
+  /** Dollar amounts that may appear when this offer is quoted. */
+  amounts: number[]
+  /** Approved wording. The assistant should use this, not a different price. */
+  detail: string
 }
 
 export type Weekday = 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat'
@@ -58,18 +78,35 @@ export type ClientConfig = {
   }
   /** Person who gets an SMS when a lead is upset or unsure. */
   ownerPhone: string
+  /** Inbox for voicemail notices. */
+  ownerEmail: string
   /** Cell that rings first on an inbound call. Not a Twilio number this app sends from. */
   forwardTo: string
   /** How long to ring `forwardTo` before treating the call as missed. Twilio allows 5–600. */
   ringTimeoutSeconds: number
   /** Inbound Twilio number for this client. Also the From number on outbound SMS. */
   twilioNumber: string
-  /** Ballpark ranges the assistant may mention. Never a single firm price. */
-  allowedPriceRanges: PriceRange[]
-  /** Played on the missed call, then the call hangs up. */
+  /** Approved prices the assistant may quote. */
+  priceMenu: PriceMenuItem[]
+  /**
+   * Played when the forward is missed.
+   * With voicemail enabled, a recording follows this greeting.
+   */
   greeting: string
-  /** Text sent to the caller right after the greeting. */
+  /** Text sent to the caller as soon as the call is missed, before any voicemail finishes. */
   missedCallSms: string
+  voicemail: VoicemailSettings
+}
+
+export type VoicemailSettings = {
+  /** When true, a missed call records after `greeting`. When false, the greeting plays and the call hangs up. */
+  enabled: boolean
+  /** Twilio `<Record maxLength>`. About 120 seconds for a short message. */
+  maxLengthSeconds: number
+  playBeep: boolean
+  transcribe: boolean
+  /** Text `ownerPhone` a short note with the recording link. */
+  textOwner: boolean
 }
 
 export type QualifyAction = 'continue' | 'offer_slots' | 'book' | 'escalate'

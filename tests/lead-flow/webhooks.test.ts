@@ -1,11 +1,17 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import {
+  handleRecordingRequest,
+  handleTranscriptionRequest,
+  type RecordingDeps,
+} from '@/lib/lead-flow/handle-recording'
 import { handleSmsRequest } from '@/lib/lead-flow/handle-sms'
 import { handleVoiceRequest } from '@/lib/lead-flow/handle-voice'
 import { createMemoryStore } from '@/lib/lead-flow/memory-store'
-import { clientForInboundNumber, clients } from '@/lib/lead-flow/registry'
+import { clientById, clientForInboundNumber, clients } from '@/lib/lead-flow/registry'
 import { exampleSlots } from '@/lib/lead-flow/slots'
 import { sendTwilioSms, twilioSignature, xmlEscape } from '@/lib/lead-flow/twilio'
 import type { Qualify, QualifyResult, SendSms } from '@/lib/lead-flow/types'
+import type { SendVoicemailEmail } from '@/lib/lead-flow/voicemail-email'
 
 const TOKEN = 'test-auth-token'
 const DEMO = '+19164046129'
@@ -55,7 +61,11 @@ describe('client registry', () => {
     expect(clients[0]?.ownerPhone).toBe(OWNER)
     expect(clients[0]?.forwardTo).toBe(OWNER)
     expect(clients[0]?.ringTimeoutSeconds).toBe(20)
-    expect(clients[0]?.greeting).toBe("Sorry we missed you, we'll text you right now")
+    expect(clients[0]?.ownerEmail).toBe('dan@danzus.co')
+    expect(clients[0]?.greeting).toBe(
+      "Sorry we missed you. Leave a message after the tone and we'll also text you right now.",
+    )
+    expect(clients[0]?.voicemail).toMatchObject({ enabled: true, maxLengthSeconds: 120, playBeep: true, transcribe: true })
     expect(clientForInboundNumber('+15550001111')).toBeUndefined()
   })
 })
@@ -158,7 +168,14 @@ describe('voice webhook', () => {
         },
       )
       const xml = await response.text()
-      expect(xml).toContain(`<Say>${xmlEscape(clients[0].greeting)}</Say><Hangup/>`)
+      expect(xml).toContain(`<Say>${xmlEscape(clients[0].greeting)}</Say>`)
+      expect(xml).toContain('action="https://danzus.co/api/twilio/voice/recording"')
+      expect(xml).toContain('recordingStatusCallback="https://danzus.co/api/twilio/voice/recording"')
+      expect(xml).toContain('maxLength="120"')
+      expect(xml).toContain('playBeep="true"')
+      expect(xml).toContain('transcribe="true"')
+      expect(xml).toContain('transcribeCallback="https://danzus.co/api/twilio/voice/transcription"')
+      expect(xml).not.toContain('<Hangup/>')
       expect(xml).not.toContain('<Dial')
       expect(sendSms).toHaveBeenCalledTimes(1)
       expect(sendSms).toHaveBeenCalledWith({
@@ -235,7 +252,9 @@ describe('voice webhook', () => {
         now: () => NOW,
       },
     )
-    expect(await response.text()).toContain('Sorry we missed you')
+    const xml = await response.text()
+    expect(xml).toContain('Sorry we missed you')
+    expect(xml).toContain('<Record')
     expect(sendSms).not.toHaveBeenCalled()
   })
 
@@ -258,6 +277,29 @@ describe('voice webhook', () => {
     await handleVoiceRequest(request(), deps)
     expect(sendSms).toHaveBeenCalledTimes(2)
     expect((await store.get(clients[0].id, CALLER))?.messages[0]?.delivery).toBe('sent')
+  })
+
+  it('hangs up after the greeting when voicemail is turned off for the client', async () => {
+    const sendSms = vi.fn<SendSms>()
+    const quiet = {
+      ...clients[0],
+      greeting: 'Sorry we missed you, we will text you right now',
+      voicemail: { ...clients[0].voicemail, enabled: false },
+    }
+    const response = await handleVoiceRequest(
+      signedRequest('/api/twilio/voice', { To: DEMO, From: CALLER, CallSid: 'CA-quiet', DialCallStatus: 'no-answer' }),
+      {
+        authToken: TOKEN,
+        store: createMemoryStore(),
+        clientForNumber: () => quiet,
+        sendSms,
+        now: () => NOW,
+      },
+    )
+    const xml = await response.text()
+    expect(xml).toContain(`<Say>${xmlEscape(quiet.greeting)}</Say><Hangup/>`)
+    expect(xml).not.toContain('<Record')
+    expect(sendSms).toHaveBeenCalledTimes(1)
   })
 })
 
@@ -449,28 +491,37 @@ describe('SMS webhook', () => {
     expect((await store.get(clients[0].id, CALLER))?.ownerNotified).toBe(true)
   })
 
-  it('strips a firm price and keeps a configured range', async () => {
+  it('replaces an off-menu price and keeps an approved menu quote', async () => {
     const firm = vi.fn<Qualify>(async () => blankTurn({ reply: "That'll be $75 flat." }))
     const firmResponse = await handleSmsRequest(
       signedRequest('/api/twilio/sms', { To: DEMO, From: CALLER, Body: 'How much?', MessageSid: 'SM10' }),
       deps(firm),
     )
     const firmXml = await firmResponse.text()
-    expect(firmXml).not.toContain('$75')
-    expect(firmXml).toContain('firm price')
-    expect(firmXml).toContain('$200')
+    expect(firmXml).not.toMatch(/\$75(?!\d)/)
+    expect(firmXml).not.toContain('$200')
+    expect(firmXml).toContain('$99')
+    expect(firmXml).toContain('$1,500')
+    expect(firmXml).toContain('$49')
+    expect(firmXml).toContain('$199')
+    expect(firmXml).toContain('$299')
+    expect(firmXml).toContain('$750')
+    expect(firmXml).toContain('30-day pilot')
+    expect(firmXml).not.toMatch(/GoHighLevel|App Orchid|DimeVision/i)
 
-    const range = vi.fn<Qualify>(async () =>
-      blankTurn({ reply: 'One workflow usually runs $200 to $300 a month, and Dan confirms after a look.' }),
+    const menu = vi.fn<Qualify>(async () =>
+      blankTurn({
+        reply:
+          'Missed-call text-back is $99 a month after a free 30-day pilot. A website is $1,500 plus $49 a month. Google and AI search is $199 a month. The bundle is $299 a month, and the website is $750 with a 6-month commitment.',
+      }),
     )
-    const rangeResponse = await handleSmsRequest(
-      signedRequest('/api/twilio/sms', { To: DEMO, From: '+19165550200', Body: 'How much for a workflow?', MessageSid: 'SM11' }),
-      deps(range),
+    const menuResponse = await handleSmsRequest(
+      signedRequest('/api/twilio/sms', { To: DEMO, From: '+19165550200', Body: 'How much for text-back?', MessageSid: 'SM11' }),
+      deps(menu),
     )
-    const rangeXml = await rangeResponse.text()
-    expect(rangeXml).toContain('$200')
-    expect(rangeXml).toContain('$300')
-    expect(rangeXml).not.toContain("can't give a firm price")
+    const menuXml = await menuResponse.text()
+    expect(menuXml).toContain('Missed-call text-back is $99')
+    expect(menuXml).toContain('$750 with a 6-month commitment')
   })
 
   it('does not call the model again when Twilio retries a handled message', async () => {
@@ -509,6 +560,244 @@ describe('SMS webhook', () => {
     )
     expect(await response.text()).toContain('what city')
     expect(sendSms).not.toHaveBeenCalled()
+  })
+})
+
+describe('voicemail webhooks', () => {
+  const RECORDING_URL = 'https://api.twilio.com/2010-04-01/Accounts/ACxxx/Recordings/RE1'
+
+  function harness(store = createMemoryStore(), sendOwnerEmail?: SendVoicemailEmail, sendSms = vi.fn<SendSms>()): RecordingDeps {
+    return {
+      authToken: TOKEN,
+      store,
+      clientForNumber: clientForInboundNumber,
+      clientById,
+      sendSms,
+      sendOwnerEmail:
+        sendOwnerEmail ??
+        vi.fn<SendVoicemailEmail>(async () => ({ sent: true, skipped: false, duplicate: false })),
+      now: () => NOW,
+    }
+  }
+
+  it('rejects an invalid recording signature', async () => {
+    const sendOwnerEmail = vi.fn<SendVoicemailEmail>()
+    const response = await handleRecordingRequest(
+      signedRequest('/api/twilio/voice/recording', { CallSid: 'CA-vm', RecordingUrl: RECORDING_URL, To: DEMO, From: CALLER }),
+      { ...harness(createMemoryStore(), sendOwnerEmail), authToken: 'nope' },
+    )
+    expect(response.status).toBe(403)
+    expect(sendOwnerEmail).not.toHaveBeenCalled()
+  })
+
+  it('stores the recording, emails the owner, and does not text the caller', async () => {
+    const store = createMemoryStore()
+    const callerSms = vi.fn<SendSms>()
+    await handleVoiceRequest(
+      signedRequest('/api/twilio/voice', { To: DEMO, From: CALLER, CallSid: 'CA-vm', DialCallStatus: 'no-answer' }),
+      {
+        authToken: TOKEN,
+        store,
+        clientForNumber: clientForInboundNumber,
+        sendSms: callerSms,
+        now: () => NOW,
+      },
+    )
+    expect(callerSms).toHaveBeenCalledTimes(1)
+
+    const sendSms = vi.fn<SendSms>()
+    const sendOwnerEmail = vi.fn<SendVoicemailEmail>(async () => ({ sent: true, skipped: false, duplicate: false }))
+    const response = await handleRecordingRequest(
+      signedRequest('/api/twilio/voice/recording', {
+        To: DEMO,
+        From: CALLER,
+        CallSid: 'CA-vm',
+        RecordingSid: 'RE1',
+        RecordingUrl: RECORDING_URL,
+        RecordingDuration: '18',
+      }),
+      harness(store, sendOwnerEmail, sendSms),
+    )
+    expect(await response.text()).toContain('Thanks. We got your message.')
+    expect(sendSms).not.toHaveBeenCalled()
+    expect(sendOwnerEmail).toHaveBeenCalledTimes(1)
+    expect(sendOwnerEmail).toHaveBeenCalledWith(
+      expect.objectContaining({
+        to: 'dan@danzus.co',
+        caller: '+1 (916) 555-0199',
+        durationSeconds: 18,
+        recordingUrl: RECORDING_URL,
+        transcript: '',
+        kind: 'recording',
+      }),
+    )
+    const lead = await store.get(clients[0].id, CALLER)
+    expect(lead?.voicemails[0]).toMatchObject({
+      callSid: 'CA-vm',
+      recordingSid: 'RE1',
+      recordingUrl: RECORDING_URL,
+      durationSeconds: 18,
+      ownerTexted: false,
+    })
+    expect(lead?.voicemails[0]?.ownerEmailedAt).not.toBe('')
+    expect(lead?.messages[0]?.body).toBe(clients[0].missedCallSms)
+  })
+
+  it('emails once when the recording status callback repeats', async () => {
+    const store = createMemoryStore()
+    await handleVoiceRequest(
+      signedRequest('/api/twilio/voice', { To: DEMO, From: CALLER, CallSid: 'CA-status', DialCallStatus: 'busy' }),
+      {
+        authToken: TOKEN,
+        store,
+        clientForNumber: clientForInboundNumber,
+        sendSms: vi.fn<SendSms>(),
+        now: () => NOW,
+      },
+    )
+    const sendOwnerEmail = vi.fn<SendVoicemailEmail>(async () => ({ sent: true, skipped: false, duplicate: false }))
+    const deps = harness(store, sendOwnerEmail)
+    const request = () =>
+      signedRequest('/api/twilio/voice/recording', {
+        CallSid: 'CA-status',
+        RecordingSid: 'RE2',
+        RecordingUrl: RECORDING_URL,
+        RecordingDuration: '9',
+        RecordingStatus: 'completed',
+      })
+    const first = await handleRecordingRequest(request(), deps)
+    const second = await handleRecordingRequest(request(), deps)
+    expect(first.status).toBe(200)
+    expect(second.status).toBe(200)
+    expect(sendOwnerEmail).toHaveBeenCalledTimes(1)
+    expect((await store.get(clients[0].id, CALLER))?.voicemails).toHaveLength(1)
+  })
+
+  it('texts the owner only when that client flag is on', async () => {
+    const store = createMemoryStore()
+    const texting = { ...clients[0], voicemail: { ...clients[0].voicemail, textOwner: true } }
+    const sendSms = vi.fn<SendSms>()
+    const response = await handleRecordingRequest(
+      signedRequest('/api/twilio/voice/recording', {
+        To: DEMO,
+        From: CALLER,
+        CallSid: 'CA-text',
+        RecordingSid: 'RE3',
+        RecordingUrl: RECORDING_URL,
+        RecordingDuration: '4',
+      }),
+      {
+        ...harness(store, undefined, sendSms),
+        clientForNumber: () => texting,
+      },
+    )
+    expect(response.status).toBe(200)
+    expect(sendSms).toHaveBeenCalledTimes(1)
+    expect(sendSms).toHaveBeenCalledWith(
+      expect.objectContaining({ to: OWNER, from: DEMO, body: expect.stringContaining(RECORDING_URL) }),
+    )
+    expect(sendSms.mock.calls[0]?.[0].body).not.toContain(TOKEN)
+    expect((await store.get(clients[0].id, CALLER))?.voicemails[0]?.ownerTexted).toBe(true)
+  })
+
+  it('keeps the recording when email is not configured', async () => {
+    const store = createMemoryStore()
+    const sendOwnerEmail = vi.fn<SendVoicemailEmail>(async () => ({ sent: false, skipped: true, duplicate: false }))
+    const response = await handleRecordingRequest(
+      signedRequest('/api/twilio/voice/recording', {
+        To: DEMO,
+        From: CALLER,
+        CallSid: 'CA-skip',
+        RecordingSid: 'RE4',
+        RecordingUrl: RECORDING_URL,
+        RecordingDuration: '6',
+        RecordingStatus: 'completed',
+      }),
+      harness(store, sendOwnerEmail),
+    )
+    expect(response.status).toBe(200)
+    const saved = (await store.get(clients[0].id, CALLER))?.voicemails[0]
+    expect(saved?.recordingUrl).toBe(RECORDING_URL)
+    expect(saved?.ownerEmailedAt).toBe('')
+  })
+
+  it('asks Twilio to retry a failed owner email on the status callback', async () => {
+    const store = createMemoryStore()
+    const sendOwnerEmail = vi.fn<SendVoicemailEmail>()
+    sendOwnerEmail.mockResolvedValueOnce({ sent: false, skipped: false, duplicate: false })
+    sendOwnerEmail.mockResolvedValueOnce({ sent: true, skipped: false, duplicate: false })
+    const deps = harness(store, sendOwnerEmail)
+    const request = () =>
+      signedRequest('/api/twilio/voice/recording', {
+        To: DEMO,
+        From: CALLER,
+        CallSid: 'CA-retry',
+        RecordingSid: 'RE5',
+        RecordingUrl: RECORDING_URL,
+        RecordingDuration: '11',
+        RecordingStatus: 'completed',
+      })
+    const first = await handleRecordingRequest(request(), deps)
+    expect(first.status).toBe(500)
+    expect((await store.get(clients[0].id, CALLER))?.voicemails[0]?.ownerEmailedAt).toBe('')
+    const second = await handleRecordingRequest(request(), deps)
+    expect(second.status).toBe(200)
+    expect((await store.get(clients[0].id, CALLER))?.voicemails[0]?.ownerEmailedAt).not.toBe('')
+  })
+
+  it('rejects an invalid transcription signature', async () => {
+    const sendOwnerEmail = vi.fn<SendVoicemailEmail>()
+    const response = await handleTranscriptionRequest(
+      signedRequest('/api/twilio/voice/transcription', {
+        CallSid: 'CA-tr',
+        TranscriptionStatus: 'completed',
+        TranscriptionText: 'Need a website',
+        To: DEMO,
+        From: CALLER,
+      }),
+      { ...harness(createMemoryStore(), sendOwnerEmail), authToken: 'nope' },
+    )
+    expect(response.status).toBe(403)
+    expect(sendOwnerEmail).not.toHaveBeenCalled()
+  })
+
+  it('stores the transcript and emails it after the recording notice', async () => {
+    const store = createMemoryStore()
+    const sendOwnerEmail = vi.fn<SendVoicemailEmail>(async () => ({ sent: true, skipped: false, duplicate: false }))
+    const deps = harness(store, sendOwnerEmail)
+    await handleRecordingRequest(
+      signedRequest('/api/twilio/voice/recording', {
+        To: DEMO,
+        From: CALLER,
+        CallSid: 'CA-tr',
+        RecordingSid: 'RE6',
+        RecordingUrl: RECORDING_URL,
+        RecordingDuration: '15',
+      }),
+      deps,
+    )
+    const response = await handleTranscriptionRequest(
+      signedRequest('/api/twilio/voice/transcription', {
+        To: DEMO,
+        From: CALLER,
+        CallSid: 'CA-tr',
+        RecordingSid: 'RE6',
+        RecordingUrl: RECORDING_URL,
+        TranscriptionStatus: 'completed',
+        TranscriptionText: 'We missed a call yesterday.',
+      }),
+      deps,
+    )
+    expect(response.status).toBe(200)
+    expect(sendOwnerEmail).toHaveBeenCalledTimes(2)
+    expect(sendOwnerEmail.mock.calls[1]?.[0]).toMatchObject({
+      kind: 'transcript',
+      transcript: 'We missed a call yesterday.',
+      recordingUrl: RECORDING_URL,
+    })
+    const saved = (await store.get(clients[0].id, CALLER))?.voicemails[0]
+    expect(saved?.transcript).toBe('We missed a call yesterday.')
+    expect(saved?.transcriptEmailedAt).not.toBe('')
   })
 })
 
