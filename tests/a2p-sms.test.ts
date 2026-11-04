@@ -32,7 +32,7 @@ describe('A2P SMS copy', () => {
     expect(terms).toContain('check the SMS consent box')
     expect(terms).toContain('Consent is not a condition of purchase.')
     expect(terms).toContain('https://danzus.co/privacy')
-    const sms = terms.slice(terms.indexOf('DANZUS Text Messaging Program'), terms.indexOf('Monthly plans'))
+    const sms = terms.slice(terms.indexOf('DANZUS Text Messaging Program'), terms.indexOf('Billing & cancellation'))
     expect(sms).not.toContain('<ul>')
     expect(terms).not.toMatch(/—/)
   })

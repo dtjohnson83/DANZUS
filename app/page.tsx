@@ -102,18 +102,22 @@ const SITE_OFFERINGS = [
     name: 'Website',
     outcome: 'A fast site with a way to call. You keep it.',
     tier: '$1,500 plus $49/mo hosting and small edits.',
+    renewal: 'Renews monthly at $49 until you cancel. Cancel any time by email or phone.',
     steps: ['Services and towns', 'Works on a phone', 'Tap to call', 'Pages that load quickly'],
   },
   {
     name: 'Google + AI search',
     outcome: 'Google and chat tools can describe you.',
     tier: '$199/mo.',
+    renewal: 'Renews monthly at $199 until you cancel. Cancel any time by email or phone.',
     steps: ['Your Google listing', 'The towns you serve', 'What you do, stated plainly', 'Easy for ChatGPT to read'],
   },
   {
     name: 'DANZUS Growth',
     outcome: 'Text-back, Google and AI search, and hosting.',
     tier: '$299/mo. Website is $750 with a 6-month commitment.',
+    renewal:
+      'Renews monthly at $299 until you cancel. Cancel any time by email or phone. After month 6 it continues month to month at $299 until cancelled.',
     steps: ['Missed-call text-back', 'Google and AI search', 'Hosting and small edits'],
   },
 ]
@@ -124,6 +128,7 @@ const TIERS = [
     who: 'Founding client price. Month to month.',
     price: '$99/mo',
     setup: 'Free 30-day pilot. No setup fee.',
+    renewal: 'Renews monthly at $99 until you cancel. Cancel any time by email or phone.',
     body: 'A text goes back when you miss a call.',
   },
   {
@@ -131,6 +136,7 @@ const TIERS = [
     who: 'You keep the site.',
     price: '$1,500',
     setup: 'Plus $49/mo hosting and small edits.',
+    renewal: 'Renews monthly at $49 until you cancel. Cancel any time by email or phone.',
     body: 'Paid 50% up front and 50% at launch.',
   },
   {
@@ -138,6 +144,7 @@ const TIERS = [
     who: 'Google and chat tools.',
     price: '$199/mo',
     setup: 'Your Google listing, your towns, and clear pages.',
+    renewal: 'Renews monthly at $199 until you cancel. Cancel any time by email or phone.',
     body: 'So Google and AI answers can describe your shop.',
   },
   {
@@ -145,6 +152,8 @@ const TIERS = [
     who: 'Text-back, search, and hosting.',
     price: '$299/mo',
     setup: 'Website is $750 with a 6-month commitment.',
+    renewal:
+      'Renews monthly at $299 until you cancel. Cancel any time by email or phone. After month 6 it continues month to month at $299 until cancelled.',
     body: 'Missed-call text-back, Google and AI search, and hosting.',
   },
 ]
@@ -335,6 +344,7 @@ export default function Home() {
                     <h3>{item.name}</h3>
                     <p>{item.outcome}</p>
                     <p className={styles.fit}>{item.tier}</p>
+                    <p className={styles.rateRenew}>{item.renewal}</p>
                     <Flow steps={item.steps} />
                   </div>
                 </article>
@@ -360,6 +370,7 @@ export default function Home() {
                     <p className={styles.ratePrice}>{tier.price}</p>
                     <p className={styles.rateSetup}>{tier.setup}</p>
                   </div>
+                  <p className={styles.rateRenew}>{tier.renewal}</p>
                 </article>
               ))}
             </div>

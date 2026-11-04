@@ -1510,6 +1510,14 @@
   font-size: 0.95rem;
 }
 
+.rateRenew {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font-size: 0.95rem;
+  max-width: 40rem;
+  margin-top: 4px;
+}
+
 .faq article {
   padding: 22px 0;
   border-top: 1px solid var(--rule);
