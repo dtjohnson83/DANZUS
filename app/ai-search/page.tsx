@@ -13,7 +13,7 @@ import styles from './ai-search.module.css'
 
 const TITLE = 'AI search for local shops | DANZUS'
 const DESCRIPTION =
-  'When people ask ChatGPT or Google for a local shop, a few names get the call. See how ready your website is, or call (916) 404-6129.'
+  'When people ask ChatGPT or Google for a local shop, a few names get the call. Google and AI search is $199 a month. See how ready your website is, or call (916) 404-6129.'
 
 const FAQS = [
   {
@@ -34,6 +34,11 @@ const FAQS = [
     question: 'Do I need a new website first?',
     answer:
       'Not always. Sometimes the Google profile, the towns you serve, and a few clear pages are the first fix. A rebuild is for a site that is slow or hard to use on a phone.',
+  },
+  {
+    question: 'What does this cost?',
+    answer:
+      'Google and AI search is $199 a month. A website is $1,500, plus $49 a month for hosting and small edits. You pay half up front and half at launch, and you keep the site. DANZUS Growth is $299 a month for missed-call text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750. Missed-call text-back alone is $99 a month after a free 30-day pilot, with no setup fee, month to month. That is the founding client price.',
   },
 ] as const
 
@@ -215,10 +220,17 @@ export default function AiSearchPage() {
 
         <section className={styles.block} aria-labelledby="work-title">
           <h2 id="work-title">What DANZUS does</h2>
-          <p>Two ways to help, priced apart from the assistants.</p>
+          <p>The same menu as the rest of the site.</p>
           <ul>
-            <li>A website rebuild, with a clear way to call. Starting at $1,500.</li>
-            <li>Google and AI search setup, so these tools can describe you. Starting at $300 a month.</li>
+            <li>
+              A website, with a clear way to call. $1,500, plus $49 a month for hosting and small edits. Half is due
+              up front and half at launch. You keep the site.
+            </li>
+            <li>Google and AI search, so these tools can describe you. $199 a month.</li>
+            <li>
+              DANZUS Growth is $299 a month. It includes missed-call text-back, Google and AI search, and hosting. With
+              a 6-month commitment, the website is $750.
+            </li>
           </ul>
         </section>
 

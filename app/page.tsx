@@ -68,31 +68,31 @@ const PACKAGES = [
   {
     name: 'Lead to Booked Job',
     outcome: 'A new inquiry becomes a time booked.',
-    tier: 'Growth. One step can start smaller.',
-    steps: ['Capture the lead', 'Instant reply', 'Qualify', 'Book and remind'],
+    tier: 'A text, then a time on the calendar.',
+    steps: ['Capture the lead', 'Instant reply', 'Ask the right questions', 'Book and remind'],
   },
   {
-    name: 'Quote to Cash',
+    name: 'Estimate to payment',
     outcome: 'An estimate becomes money in the account.',
-    tier: 'Growth. Follow-up alone is Starter.',
+    tier: 'Follow-up after the estimate.',
     steps: ['Draft the estimate', 'Follow up', 'Send the invoice', 'Chase the payment'],
   },
   {
     name: 'Job Closeout',
     outcome: 'A finished job leaves a review.',
-    tier: 'Fits Growth.',
+    tier: 'A review after the job is done.',
     steps: ['Completion photos', 'Review request', 'Referral ask'],
   },
   {
     name: 'Back Office',
     outcome: 'Inbox, bills, and the week, together.',
-    tier: 'Custom. Inbox triage can start smaller.',
-    steps: ['Inbox triage', 'Bills into the books', 'A weekly summary'],
+    tier: 'Inbox, bills, and the week.',
+    steps: ['Sort your email', 'Enter bills into your bookkeeping', 'A weekly summary'],
   },
   {
     name: 'Customer Service',
     outcome: 'An answer, a status, or you.',
-    tier: 'FAQ answers fit Starter.',
+    tier: 'An answer, a status, or you.',
     steps: ['FAQ answers', 'Job or order status', 'Hand off to a person'],
   },
 ]
@@ -100,77 +100,53 @@ const PACKAGES = [
 const SITE_OFFERINGS = [
   {
     name: 'Website',
-    outcome: 'A fast site with a way to call.',
-    tier: 'Starting at $1,500.',
+    outcome: 'A fast site with a way to call. You keep it.',
+    tier: '$1,500 plus $49/mo hosting and small edits.',
     steps: ['Services and towns', 'Works on a phone', 'Tap to call', 'Pages that load quickly'],
   },
   {
-    name: 'SEO and AI search',
+    name: 'Google + AI search',
     outcome: 'Google and chat tools can describe you.',
-    tier: 'From $300/mo. Listing starts at $150/mo.',
-    steps: ['Your Google listing', 'The towns you serve', 'What you do, stated plainly', 'Readable by chat tools'],
+    tier: '$199/mo.',
+    steps: ['Your Google listing', 'The towns you serve', 'What you do, stated plainly', 'Easy for ChatGPT to read'],
+  },
+  {
+    name: 'DANZUS Growth',
+    outcome: 'Text-back, Google and AI search, and hosting.',
+    tier: '$299/mo. Website is $750 with a 6-month commitment.',
+    steps: ['Missed-call text-back', 'Google and AI search', 'Hosting and small edits'],
   },
 ]
 
 const TIERS = [
   {
-    name: 'Pilot',
-    who: 'First 3 clients',
-    price: '$150/mo',
-    setup: 'Starting at $250 setup',
-    body: 'One package, for a testimonial, first three shops.',
-  },
-  {
-    name: 'Starter',
-    who: 'One package',
-    price: '$200 to $300/mo',
-    setup: 'Starting at $500 setup',
-    body: 'Text-back, quote follow-up, or the FAQ answers.',
-  },
-  {
-    name: 'Growth',
-    who: 'The front of the shop',
-    price: '$400 to $600/mo',
-    setup: 'Starting at $1,000 to $1,500 setup',
-    body: 'Book the lead, follow the quote, close the job.',
-  },
-  {
-    name: 'Custom',
-    who: 'Your other software',
-    price: '$100 to $150/hr',
-    setup: 'Starting at $1,500',
-    body: 'Back office, live status, and tools you already run.',
+    name: 'Missed-call text-back',
+    who: 'Founding client price. Month to month.',
+    price: '$99/mo',
+    setup: 'Free 30-day pilot. No setup fee.',
+    body: 'A text goes back when you miss a call.',
   },
   {
     name: 'Website',
-    who: 'One local business',
-    price: 'Starting at $1,500',
-    setup: 'A project, not a monthly assistant',
-    body: 'A custom site with a clear way to call.',
+    who: 'You keep the site.',
+    price: '$1,500',
+    setup: 'Plus $49/mo hosting and small edits.',
+    body: 'Paid 50% up front and 50% at launch.',
   },
   {
-    name: 'SEO and AI search',
-    who: 'Google and ChatGPT',
-    price: 'Starting at $300/mo',
-    setup: 'Listing, towns, and pages',
-    body: 'Your listing, your towns, and pages tools can read.',
+    name: 'Google + AI search',
+    who: 'Google and chat tools.',
+    price: '$199/mo',
+    setup: 'Your Google listing, your towns, and clear pages.',
+    body: 'So Google and AI answers can describe your shop.',
   },
   {
-    name: 'Google Business Profile',
-    who: 'Start with your Google listing',
-    price: 'Starting at $150/mo',
-    setup: 'Before the full search work',
-    body: 'Your Google listing, before the full search work.',
+    name: 'DANZUS Growth',
+    who: 'Text-back, search, and hosting.',
+    price: '$299/mo',
+    setup: 'Website is $750 with a 6-month commitment.',
+    body: 'Missed-call text-back, Google and AI search, and hosting.',
   },
-]
-
-const SHORT_ANSWERS = [
-  'Starting ranges. The free call sets a fixed quote.',
-  'A ready template first, then words for your shop.',
-  'No. It uses the tools you already run.',
-  'You read replies. Risky ones wait for a person.',
-  'A person signs off before a reply goes out.',
-  'Dan is in Folsom. Call or text that number.',
 ]
 
 const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Free call request')}`
@@ -330,7 +306,10 @@ export default function Home() {
           <Reveal>
             <p className={styles.label}>Packages</p>
             <h2 id="packages-title">One shop. A few jobs.</h2>
-            <p className={styles.line}>Most of it is ready. The rest is written for you.</p>
+            <p className={styles.line}>
+              Missed-call text-back is $99 a month after a free 30-day pilot. No setup fee. Month to month. That is
+              the founding client price.
+            </p>
             <div className={styles.packages}>
               {PACKAGES.map((item) => (
                 <article className={styles.package} key={item.name}>
@@ -347,7 +326,7 @@ export default function Home() {
             <div className={styles.offerHead} id="site">
               <p className={styles.label}>Site and search</p>
               <h3>Found before they call.</h3>
-              <p className={styles.line}>A site, and search, priced apart from the assistant.</p>
+              <p className={styles.line}>A site and search, on the same menu.</p>
             </div>
             <div className={styles.packages}>
               {SITE_OFFERINGS.map((item) => (
@@ -367,8 +346,8 @@ export default function Home() {
         <section className={styles.scene} id="pricing" aria-labelledby="pricing-title">
           <Reveal>
             <p className={styles.label}>Pricing</p>
-            <h2 id="pricing-title">Starting prices.</h2>
-            <p className={styles.line}>Ranges first. The free call sets the quote.</p>
+            <h2 id="pricing-title">Simple prices.</h2>
+            <p className={styles.line}>Cancel any time.</p>
             <div className={styles.rates}>
               {TIERS.map((tier) => (
                 <article className={styles.rate} key={tier.name}>
@@ -392,10 +371,10 @@ export default function Home() {
             <p className={styles.label}>Questions</p>
             <h2 id="faq-title">Before the call.</h2>
             <div className={styles.faq}>
-              {FAQS.map((item, index) => (
+              {FAQS.map((item) => (
                 <article key={item.question}>
                   <h3>{item.question}</h3>
-                  <p>{SHORT_ANSWERS[index]}</p>
+                  <p>{item.answer}</p>
                 </article>
               ))}
             </div>
@@ -434,7 +413,7 @@ export default function Home() {
                 <div className={styles.bio}>
                   <p>He lives in Folsom and sets this up for local shops.</p>
                   <p>Sacramento, Roseville, and El Dorado Hills are in range.</p>
-                  <p>Lead AI Solutions Engineer. Enterprise agents. Ex-RAAF.</p>
+                  <p>Builds AI tools for large companies. Former Royal Australian Air Force.</p>
                   <p>The company is DANZUS Holdings LLC.</p>
                   <a
                     className={styles.linkedin}

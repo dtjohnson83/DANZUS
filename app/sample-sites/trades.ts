@@ -202,7 +202,7 @@ export const TRADES: TradeDemo[] = [
     alts: {
       hero: 'Illustration of a technician connecting gauges to an outdoor unit',
       work: 'Illustration of a technician changing a furnace filter',
-      detail: 'Illustration close-up of heating and air equipment',
+      detail: 'Illustration of hands holding a brass gauge set with blue and red dials and colored hoses',
       happy: 'Illustration of a technician with homeowners beside a thermostat',
     },
     splitTitle: 'Cool air, then the quiet part.',
@@ -286,7 +286,7 @@ export const TRADES: TradeDemo[] = [
     alts: {
       hero: 'Illustration of a mechanic working under an open hood',
       work: 'Illustration of a mechanic inspecting the underside of a car',
-      detail: 'Illustration close-up of auto repair work',
+      detail: 'Illustration of hands checking a dipstick over an open engine',
       happy: 'Illustration of a mechanic handing keys back at the shop door',
     },
     splitTitle: 'In the bay.',
@@ -370,7 +370,7 @@ export const TRADES: TradeDemo[] = [
     alts: {
       hero: 'Illustration of a stylist cutting long hair beside a window',
       work: 'Illustration of a stylist blow-drying long hair',
-      detail: 'Illustration close-up from the studio',
+      detail: 'Illustration of hands holding a section of long brown hair and gold scissors',
       happy: 'Illustration of a guest seeing a finished cut in the mirror',
     },
     splitTitle: 'The chair, then the finish.',

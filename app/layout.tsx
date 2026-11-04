@@ -8,7 +8,7 @@ const SITE_URL = 'https://danzus.co'
 const SITE_NAME = 'DANZUS'
 const DEFAULT_TITLE = 'Websites, Search, and AI Assistants for Sacramento and Folsom | DANZUS'
 const DEFAULT_DESCRIPTION =
-  'DANZUS in Folsom builds websites and sets up AI assistants and local search for Sacramento-area contractors and local services. A website starts at $1,500. SEO and AI search starts at $300 a month.'
+  'DANZUS in Folsom builds websites and missed-call text-back for Sacramento-area contractors and local services. Text-back is $99 a month after a free 30-day pilot. A website is $1,500 plus $49 a month. Google and AI search is $199 a month. DANZUS Growth is $299 a month, and the website is $750 with a 6-month commitment.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
