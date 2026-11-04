@@ -34,7 +34,7 @@ describe('compliance copy', () => {
     expect(privacy).toContain('do not record a playback of your visit')
   })
 
-  it('states monthly renewal, the cancel path, and a DMCA placeholder', () => {
+  it('states monthly renewal, the cancel path, and where to send a copyright notice', () => {
     const terms = read(files.terms)
     expect(terms).toContain('renews every month at that price until you cancel')
     expect(terms).toContain('https://danzus.co/cancel')
@@ -42,18 +42,20 @@ describe('compliance copy', () => {
     expect(terms).toContain('$49 a month')
     expect(terms).toContain('$199 a month')
     expect(terms).toContain('$299 a month')
-    expect(terms).toContain('[DESIGNATED_AGENT_NAME]')
-    expect(terms).toContain('[DMCA_REGISTRATION_NUMBER]')
-    expect(terms).toContain('mailto:${CONTACT_EMAIL}')
-    expect(read('app/site.ts')).toContain('dan@danzus.co')
-    expect(terms).not.toContain('<ul>')
+    expect(terms).toContain('If you think we used your photo, writing, or other work without permission, email us. Include:')
+    expect(terms).toContain('<ul>')
+    expect(terms).toContain('Send copyright notices to')
+    expect(terms).toContain('dan@danzus.co')
+    expect(terms).not.toContain('DESIGNATED_AGENT')
+    expect(terms).not.toContain('Daniel must register')
     expect(terms).not.toMatch(/—/)
   })
 
   it('puts the same renewal facts on the pricing section and the cancel page', () => {
     const home = read(files.home)
     const cancel = read(files.cancel)
-    expect(home).toContain('Each monthly plan renews')
+    expect(home).toContain('Monthly plans renew each month until you cancel.')
+    expect(home).toContain('The $1,500 website is paid once.')
     expect(home).toContain('href="/cancel"')
     expect(home).not.toMatch(/—/)
     expect(cancel).toContain('This page is')
@@ -91,6 +93,10 @@ describe('compliance copy', () => {
     else process.env.BUSINESS_POSTAL_ADDRESS = previous
 
     expect(read(files.email)).toContain('commercialEmailFooter()')
+    expect(read(files.email)).toContain("replyTo: REPORT_REPLY_TO")
+    expect(read(files.email)).toContain('List-Unsubscribe')
+    expect(read(files.privacy)).toContain('It includes a way to stop further email')
+    expect(read(files.privacy)).not.toContain('postal address')
     expect(read('.env.example')).toContain('BUSINESS_POSTAL_ADDRESS=')
   })
 })

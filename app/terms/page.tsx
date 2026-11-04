@@ -55,8 +55,8 @@ export default function TermsPage() {
           Missed-call text-back is $99 a month after a free 30-day pilot. Website hosting and small edits are $49 a
           month. Google and AI search is $199 a month. DANZUS Growth is $299 a month. Each of those monthly charges
           renews every month at that price until you cancel. We will tell you before a price changes. The $1,500
-          website build is paid 50% up front and 50% at launch, and it does not renew. With a 6-month commitment on
-          DANZUS Growth, the website is $750. That $750 is a commitment, not a monthly charge.
+          website build is paid 50% up front and 50% at launch, and it does not renew. If you stay on DANZUS Growth
+          for 6 months, the website costs $750 instead of $1,500. You pay it once.
         </p>
         <p>
           Cancel online at any time at <a href="https://danzus.co/cancel">https://danzus.co/cancel</a>. You can also
@@ -68,17 +68,17 @@ export default function TermsPage() {
       </section>
       <section id="copyright">
         <h2>Copyright and DMCA</h2>
+        <p>If you think we used your photo, writing, or other work without permission, email us. Include:</p>
+        <ul>
+          <li>Your name and a way to reach you</li>
+          <li>The work you claim is infringed</li>
+          <li>The page address of the material</li>
+          <li>A statement that you have a good faith belief the use is not authorized</li>
+          <li>A statement that the notice is accurate and that you are the owner or are allowed to act for the owner</li>
+          <li>Your physical or electronic signature</li>
+        </ul>
         <p>
-          If you believe material on danzus.co infringes a copyright you own, email a notice to{' '}
-          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Include your name and a way to reach you, the work
-          you claim is infringed, the page address of the material, a statement that you have a good faith belief the
-          use is not authorized, a statement that the notice is accurate and that you are the owner or are allowed to
-          act for the owner, and your physical or electronic signature.
-        </p>
-        <p>
-          Designated agent name: [DESIGNATED_AGENT_NAME]. US Copyright Office DMCA agent registration number:
-          [DMCA_REGISTRATION_NUMBER]. Daniel must register the designated agent with the US Copyright Office before
-          this notice is complete. Until that registration is on file, send copyright notices to {CONTACT_EMAIL}.
+          Send copyright notices to <a href={`mailto:${CONTACT_EMAIL}`}>dan@danzus.co</a>.
         </p>
       </section>
     </LegalPage>

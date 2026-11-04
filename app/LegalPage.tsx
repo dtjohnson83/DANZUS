@@ -21,7 +21,7 @@ export function LegalPage({
       <a className={styles.skip} href="#content">
         Skip to content
       </a>
-      <SiteHeader>
+      <SiteHeader solid>
         <div className={styles.shell}>
           <div className={styles.headerInner}>
             <Link className={styles.brand} href="/" aria-label="DANZUS home">

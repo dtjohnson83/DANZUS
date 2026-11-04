@@ -10,8 +10,10 @@ import type { CheckReport } from '@/lib/ai-check/types'
  * 2. An internal lead note to dan@danzus.co. That one is not a customer email.
  */
 const FROM = 'DANZUS <dan@danzus.co>'
-const REPLY_TO = 'danzus@mail.grokbot.com'
+const REPORT_REPLY_TO = 'dan@danzus.co'
+const LEAD_REPLY_TO = 'danzus@mail.grokbot.com'
 const LEAD_TO = 'dan@danzus.co'
+const LIST_UNSUBSCRIBE = '<https://danzus.co/unsubscribe>, <mailto:dan@danzus.co?subject=Unsubscribe>'
 
 export async function sendCheckEmails(input: {
   report: CheckReport
@@ -58,7 +60,8 @@ export async function sendCheckEmails(input: {
     {
       from: FROM,
       to: input.to,
-      replyTo: REPLY_TO,
+      replyTo: REPORT_REPLY_TO,
+      headers: { 'List-Unsubscribe': LIST_UNSUBSCRIBE },
       subject: `AI search check for ${oneLine(input.report.businessName)}`,
       text: reportText,
       html: `<pre style="font-family:Georgia,serif;white-space:pre-wrap">${escapeHtml(reportText)}</pre>`,
@@ -86,7 +89,7 @@ export async function sendCheckEmails(input: {
     {
       from: FROM,
       to: LEAD_TO,
-      replyTo: REPLY_TO,
+      replyTo: LEAD_REPLY_TO,
       subject: `AI search lead: ${oneLine(input.report.businessName)}`,
       text: leadText,
       html: `<pre style="font-family:Georgia,serif;white-space:pre-wrap">${escapeHtml(leadText)}</pre>`,

@@ -30,16 +30,9 @@ export const metadata: Metadata = {
 export default function UnsubscribePage() {
   return (
     <LegalPage kicker="DANZUS Holdings LLC" title="Stop email">
+      <p>Email us and we&apos;ll take you off the list. We may still send things you asked for, like your report.</p>
       <p>
-        To stop commercial email from DANZUS Holdings LLC, email{' '}
-        <a href={MAILTO}>{CONTACT_EMAIL}</a> with the subject Unsubscribe. Include the address you want removed.
-      </p>
-      <p>
-        There is no separate mailing-list login. That inbox is the opt-out. A report you asked for, or a voicemail
-        notice sent to a business owner, is a service message about something you already requested.
-      </p>
-      <p>
-        <a href={MAILTO}>Email an unsubscribe request</a>
+        <a href={MAILTO}>Email {CONTACT_EMAIL}</a>
       </p>
     </LegalPage>
   )

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { LegalPage } from '../LegalPage'
+import legal from '../legal.module.css'
 import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL } from '../site'
 import { CancelForm } from './CancelForm'
 
@@ -41,8 +42,8 @@ export default function CancelPage() {
           <li>Website hosting and small edits are $49 a month. The $1,500 website build is paid once and does not renew.</li>
           <li>Google and AI search is $199 a month.</li>
           <li>
-            DANZUS Growth is $299 a month. The $750 website price on that plan is a 6-month commitment, not a monthly
-            charge.
+            DANZUS Growth is $299 a month. If you stay on DANZUS Growth for 6 months, the website costs $750 instead of
+            $1,500. You pay it once.
           </li>
         </ul>
       </section>
@@ -58,7 +59,9 @@ export default function CancelPage() {
           start. If you cancel missed-call text-back during the free 30-day pilot, the $99 monthly charge does not
           start.
         </p>
-        <CancelForm />
+        <div className={legal.formBlock}>
+          <CancelForm />
+        </div>
       </section>
       <p>
         The same terms are on the <Link href="/terms">terms page</Link>. Questions go to {CONTACT_EMAIL}.

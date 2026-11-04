@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { LegalPage } from '../LegalPage'
-import { businessPostalAddress } from '@/lib/business-address'
 import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY } from '../site'
 
 const TITLE = 'Privacy Notice | DANZUS Holdings LLC'
@@ -28,7 +27,6 @@ export const metadata: Metadata = {
 }
 
 export default function PrivacyPage() {
-  const postal = businessPostalAddress()
   return (
     <LegalPage kicker="DANZUS Holdings LLC" title="Privacy">
       <p>
@@ -68,18 +66,15 @@ export default function PrivacyPage() {
         <h2>Site measurement</h2>
         <p>
           We use Vercel Web Analytics to count page views, and Vercel Speed Insights to measure how fast pages load.
-          Labeled clicks, such as Call, Text, and Pricing, are sent as events to Vercel Web Analytics with the label
-          and the place on the page. These tools do not record a playback of your visit, your screen, or what you
-          type.
+          We also count clicks on buttons like Call, Text, and Pricing, and where on the page they were. These tools
+          do not record a playback of your visit, your screen, or what you type.
         </p>
       </section>
       <section id="email">
         <h2>Email</h2>
         <p>
-          Commercial email comes from {CONTACT_EMAIL}. It includes our postal address
-          {postal ? ` (${postal})` : ''} and a way to stop further email at{' '}
-          <Link href="/unsubscribe">danzus.co/unsubscribe</Link>. A report you asked for, or a voicemail notice to a
-          business owner, is a service message.
+          Commercial email comes from {CONTACT_EMAIL}. It includes a way to stop further email at{' '}
+          <Link href="/unsubscribe">danzus.co/unsubscribe</Link>.
         </p>
       </section>
       <p>

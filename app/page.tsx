@@ -364,13 +364,8 @@ export default function Home() {
               ))}
             </div>
             <p className={styles.priceNote}>
-              Missed-call text-back is $99 a month after the free 30-day pilot. Hosting and small edits are $49 a
-              month. Google and AI search is $199 a month. DANZUS Growth is $299 a month. Each monthly plan renews
-              every month at that price until you cancel. Cancel online any time on the{' '}
-              <Link href="/cancel">cancel page</Link>, or email {CONTACT_EMAIL}, or call {CONTACT_PHONE_DISPLAY}. We
-              confirm by email, and the plan stops at the end of the month already paid. The $1,500 website build is
-              paid once, half up front and half at launch, and does not renew. The $750 website price on DANZUS Growth
-              is a 6-month commitment, not a monthly charge.
+              Monthly plans renew each month until you cancel. Cancel any time on the{' '}
+              <Link href="/cancel">cancel page</Link>, by email, or by phone. The $1,500 website is paid once.
             </p>
           </Reveal>
         </section>
