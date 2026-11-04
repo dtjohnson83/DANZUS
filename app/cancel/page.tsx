@@ -43,7 +43,7 @@ export default function CancelPage() {
           <li>Google and AI search is $199 a month.</li>
           <li>
             DANZUS Growth is $299 a month. If you stay on DANZUS Growth for 6 months, the website costs $750 instead of
-            $1,500. You pay it once.
+            $1,500. You pay it once. If you cancel before month 6, the website is $1,500 and we bill the other $750.
           </li>
         </ul>
       </section>

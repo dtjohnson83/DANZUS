@@ -58,7 +58,7 @@ export default function TermsPage() {
         <p>Google and AI search: Renews monthly at $199 until you cancel. Cancel any time online, by email, or by phone.</p>
         <p>
           DANZUS Growth: Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone. If you stay on
-          DANZUS Growth for 6 months, the website costs $750 instead of $1,500. You pay it once. After month 6 it
+          DANZUS Growth for 6 months, the website costs $750 instead of $1,500. You pay it once. If you cancel before month 6, the website is $1,500 and we bill the other $750. After month 6 it
           continues month to month at $299 until cancelled.
         </p>
         <p>

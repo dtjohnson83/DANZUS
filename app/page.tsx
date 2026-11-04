@@ -117,7 +117,7 @@ const SITE_OFFERINGS = [
     outcome: 'Text-back, Google and AI search, and hosting.',
     tier: '$299/mo. Website is $750 with a 6-month commitment.',
     renewal:
-      'Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone. After month 6 it continues month to month at $299 until cancelled.',
+      'Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone. After month 6 it continues month to month at $299 until cancelled. If you cancel before month 6, the website is $1,500 and we bill the other $750.',
     steps: ['Missed-call text-back', 'Google and AI search', 'Hosting and small edits'],
   },
 ]
@@ -153,7 +153,7 @@ const TIERS = [
     price: '$299/mo',
     setup: 'Website is $750 with a 6-month commitment.',
     renewal:
-      'Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone. After month 6 it continues month to month at $299 until cancelled.',
+      'Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone. After month 6 it continues month to month at $299 until cancelled. If you cancel before month 6, the website is $1,500 and we bill the other $750.',
     body: 'Missed-call text-back, Google and AI search, and hosting.',
   },
 ]

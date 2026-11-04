@@ -9,7 +9,7 @@ export const HOME_TITLE =
   'Websites and AI Assistants for Small Businesses in Sacramento, Folsom, Roseville, and El Dorado Hills | DANZUS'
 
 export const HOME_DESCRIPTION =
-  'DANZUS Holdings LLC in Folsom builds websites, missed-call text-back, and local search for small businesses in Sacramento, Folsom, Roseville, and El Dorado Hills. Missed-call text-back is $99 a month after a free 30-day pilot. A website is $1,500 plus $49 a month. Google and AI search is $199 a month. DANZUS Growth is $299 a month. With a 6-month commitment, the website is $750.'
+  'DANZUS Holdings LLC in Folsom builds websites, missed-call text-back, and local search for small businesses in Sacramento, Folsom, Roseville, and El Dorado Hills. Missed-call text-back is $99 a month after a free 30-day pilot. A website is $1,500 plus $49 a month. Google and AI search is $199 a month. DANZUS Growth is $299 a month. With a 6-month commitment, the website is $750. If you cancel before month 6, the website is $1,500 and we bill the other $750.'
 
 const DEMO_BASE = 'https://ic048emi0kpty2jd.public.blob.vercel-storage.com/demos'
 
@@ -19,7 +19,7 @@ export const FAQS = [
   {
     question: 'What does it cost?',
     answer:
-      'Missed-call text-back is $99 a month after a free 30-day pilot. There is no setup fee, and it is month to month. That is the founding client price. A website is $1,500 one time, plus $49 a month for hosting and small edits. You pay 50% up front and 50% at launch, and you keep the site. Google and AI search is $199 a month. DANZUS Growth is $299 a month and includes missed-call text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750. Those monthly charges renew each month at the same price until you cancel. Cancel online at https://danzus.co/cancel, email dan@danzus.co, or call (916) 404-6129.',
+      'Missed-call text-back is $99 a month after a free 30-day pilot. There is no setup fee, and it is month to month. That is the founding client price. A website is $1,500 one time, plus $49 a month for hosting and small edits. You pay 50% up front and 50% at launch, and you keep the site. Google and AI search is $199 a month. DANZUS Growth is $299 a month and includes missed-call text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750. If you cancel before month 6, the website is $1,500 and we bill the other $750. Those monthly charges renew each month at the same price until you cancel. Cancel online at https://danzus.co/cancel, email dan@danzus.co, or call (916) 404-6129.',
   },
   {
     question: 'How long does setup take?',
@@ -93,11 +93,11 @@ export const PACKAGE_SERVICES: ListedService[] = [
   {
     name: 'DANZUS Growth',
     description:
-      'Missed-call text-back, Google and AI search, and hosting. $299 a month. With a 6-month commitment, the website is $750.',
+      'Missed-call text-back, Google and AI search, and hosting. $299 a month. With a 6-month commitment, the website is $750. If you cancel before month 6, the website is $1,500 and we bill the other $750.',
     price: '299',
     unitText: 'MONTH',
     offerNote:
-      '$299 a month for missed-call text-back, Google and AI search, and hosting. The $299 charge renews each month until you cancel. With a 6-month commitment, the website is $750.',
+      '$299 a month for missed-call text-back, Google and AI search, and hosting. The $299 charge renews each month until you cancel. With a 6-month commitment, the website is $750. If you cancel before month 6, the website is $1,500 and we bill the other $750.',
     serviceType: 'DANZUS Growth bundle',
     anchor: '#pricing',
   },
