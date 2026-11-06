@@ -28,6 +28,18 @@ export function MobileNav({ home = '' }: { home?: string }) {
   }, [open])
 
   useEffect(() => {
+    const covered = document.querySelectorAll('main, footer')
+    if (!open) return
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    covered.forEach((node) => node.setAttribute('inert', ''))
+    return () => {
+      document.body.style.overflow = previousOverflow
+      covered.forEach((node) => node.removeAttribute('inert'))
+    }
+  }, [open])
+
+  useEffect(() => {
     const wide = window.matchMedia('(min-width: 1180px)')
     const close = () => {
       if (wide.matches) setOpen(false)

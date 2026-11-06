@@ -224,24 +224,25 @@
   }
 
   .page .menuPanel {
-    position: absolute;
-    inset: auto 0 auto 0;
-    top: 100%;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: var(--header-h, var(--nav-h));
+    bottom: 0;
     display: grid;
+    align-content: start;
     gap: 2px;
     margin: 0;
-    padding: 8px 20px 20px;
+    padding: 8px 20px 32px;
     background: #0b1410;
     border: 0;
-    border-bottom: 1px solid var(--rule);
-    box-shadow: 0 22px 40px rgba(0, 0, 0, 0.35);
+    box-shadow: none;
     visibility: hidden;
     opacity: 0;
-    transform: translateY(-8px);
     pointer-events: none;
     z-index: 30;
-    max-height: calc(100svh - var(--nav-h));
     overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .page .menuPanel a {
@@ -329,51 +330,6 @@
     min-height: 40px;
     padding: 0 12px;
     font-size: 0.84rem;
-  }
-
-  .page .menuPanel {
-    position: absolute;
-    inset: auto 0 auto 0;
-    top: 100%;
-    display: grid;
-    gap: 2px;
-    margin: 0;
-    padding: 8px 20px 20px;
-    background: #0b1410;
-    border: 0;
-    border-bottom: 1px solid var(--rule);
-    box-shadow: 0 22px 40px rgba(0, 0, 0, 0.35);
-    visibility: hidden;
-    opacity: 0;
-    transform: translateY(-8px);
-    pointer-events: none;
-    z-index: 30;
-  }
-
-  .page .menuPanel a {
-    display: flex;
-    align-items: center;
-    min-height: 48px;
-    font-size: 1.05rem;
-    letter-spacing: -0.02em;
-  }
-
-  .page .menuPanel .sampleGroup a {
-    display: grid;
-    grid-template-columns: 56px 1fr;
-    gap: 12px;
-    min-height: 56px;
-    text-transform: none;
-    letter-spacing: 0;
-  }
-
-  .page .menuPanelOpen,
-  .page .menuPanel.menuPanelOpen {
-    visibility: visible;
-    opacity: 1;
-    transform: none;
-    pointer-events: auto;
-    background: #0b1410;
   }
 
   .place,
