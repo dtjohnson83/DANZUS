@@ -16,7 +16,9 @@ export type CheckoutLink = {
 export const CHECKOUT = {
   textBack: {
     href: 'https://buy.stripe.com/28EaEWfuUfvmefRfZe8Ra02',
-    label: 'Start missed-call text-back',
+    label: 'Start the free 30-day pilot',
+    detail:
+      'Add a card now. You are not charged today. After 30 days it is $99 a month until you cancel.',
   },
   website: {
     href: 'https://buy.stripe.com/00w00i2I81Ewc7J3cs8Ra03',

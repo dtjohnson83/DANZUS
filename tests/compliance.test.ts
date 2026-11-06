@@ -95,8 +95,8 @@ describe('compliance copy', () => {
     }))
 
     const pairs = [
-      ['textback-services', 'https://buy.stripe.com/28EaEWfuUfvmefRfZe8Ra02', 'Start missed-call text-back'],
-      ['textback-pricing', 'https://buy.stripe.com/28EaEWfuUfvmefRfZe8Ra02', 'Start missed-call text-back'],
+      ['textback-services', 'https://buy.stripe.com/28EaEWfuUfvmefRfZe8Ra02', 'Start the free 30-day pilot'],
+      ['textback-pricing', 'https://buy.stripe.com/28EaEWfuUfvmefRfZe8Ra02', 'Start the free 30-day pilot'],
       ['website-services', 'https://buy.stripe.com/00w00i2I81Ewc7J3cs8Ra03', 'Pay the website deposit'],
       ['website-pricing', 'https://buy.stripe.com/00w00i2I81Ewc7J3cs8Ra03', 'Pay the website deposit'],
       ['search-services', 'https://buy.stripe.com/3cIcN46Yo1Ew6Np3cs8Ra04', 'Start Google + AI search'],
@@ -122,6 +122,22 @@ describe('compliance copy', () => {
       const html = rendered.find((item) => item.group.groupId === groupId)?.html ?? ''
       const anchor = html.match(new RegExp(`<a[^>]*href="${href}"[^>]*>[\\s\\S]*?</a>`))?.[0] ?? ''
       expect(anchor).toContain(label)
+    }
+
+    const pilotDisclosure =
+      'Add a card now. You are not charged today. After 30 days it is $99 a month until you cancel.'
+    for (const groupId of ['textback-services', 'textback-pricing']) {
+      const html = rendered.find((item) => item.group.groupId === groupId)?.html ?? ''
+      expect(html).toContain('https://buy.stripe.com/28EaEWfuUfvmefRfZe8Ra02')
+      expect(html).toContain('Start the free 30-day pilot')
+      expect(html.indexOf(pilotDisclosure)).toBeGreaterThan(-1)
+      expect(html.indexOf(pilotDisclosure)).toBeLessThan(html.indexOf('https://buy.stripe.com/28EaEWfuUfvmefRfZe8Ra02'))
+      expect(html).toContain('You are not charged today.')
+    }
+    for (const groupId of ['website-services', 'search-services', 'growth-services']) {
+      const html = rendered.find((item) => item.group.groupId === groupId)?.html ?? ''
+      expect(html).not.toContain('You are not charged today.')
+      expect(html).not.toContain('Start the free 30-day pilot')
     }
 
     const websiteDisclosure =
