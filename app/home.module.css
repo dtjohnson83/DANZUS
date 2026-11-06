@@ -95,8 +95,29 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: 8px 16px;
   min-height: 68px;
+}
+
+.headerReach {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2px 14px;
+  margin-left: auto;
+  min-width: 0;
+}
+
+.headerReach a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #f3ecdf;
+  font-size: 0.84rem;
+  font-weight: 650;
+  text-decoration: none;
 }
 
 .brand {
@@ -205,9 +226,21 @@
     display: inline-flex;
   }
 
+  .page {
+    --nav-h: 148px;
+  }
+
   .headerInner {
     min-height: 64px;
     gap: 10px;
+  }
+
+  .headerReach {
+    flex: 1 1 100%;
+    order: 3;
+    justify-content: flex-start;
+    margin-left: 0;
+    padding-bottom: 8px;
   }
 
   .call {
@@ -1533,12 +1566,13 @@
 }
 
 .payChoice,
-.payOr {
+.payOr,
+.payDetail {
   margin: 0;
-  max-width: 28rem;
+  max-width: 40rem;
   color: var(--muted);
   font-size: 0.95rem;
-  line-height: 1.35;
+  line-height: 1.45;
 }
 
 .pay .ghost,
@@ -2390,7 +2424,7 @@
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
-    padding: 72px 0 0;
+    padding: 148px 0 0;
     background: #0b1410;
   }
 

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Fragment } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ContactForm } from './ContactForm'
@@ -15,10 +14,10 @@ import { condensed, sans } from './fonts'
 import { SiteFooter } from './SiteFooter'
 import { SmsDisclosure } from './SmsDisclosure'
 import styles from './home.module.css'
+import { CheckoutGroup, HeaderReach, HeroReach, payGroup } from './pay-choices'
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE_DISPLAY,
-  CONTACT_PHONE_SMS,
   CONTACT_PHONE_TEL,
   LINKEDIN_URL,
   PORTRAIT_SRC,
@@ -99,45 +98,13 @@ const PACKAGES = [
   },
 ]
 
-type CheckoutLink = {
-  href: string
-  label: string
-  tone?: 'ghost'
-}
-
-/** Live Stripe payment links. Each checkout already asks for terms-of-service consent. */
-const CHECKOUT = {
-  textBack: {
-    href: 'https://buy.stripe.com/28EaEWfuUfvmefRfZe8Ra02',
-    label: 'Start missed-call text-back',
-  },
-  website: {
-    href: 'https://buy.stripe.com/00w00i2I81Ewc7J3cs8Ra03',
-    label: 'Pay the website deposit',
-  },
-  search: {
-    href: 'https://buy.stripe.com/3cIcN46Yo1Ew6Np3cs8Ra04',
-    label: 'Start Google + AI search',
-  },
-  growth: {
-    href: 'https://buy.stripe.com/9B64gy6Yogzq7RtbIY8Ra05',
-    label: 'Start Growth month to month',
-  },
-  growthWebsite: {
-    href: 'https://buy.stripe.com/3cIcN4gyY5UMfjV9AQ8Ra06',
-    label: 'Start the 6-month plan and pay the website deposit',
-    tone: 'ghost',
-  },
-} as const satisfies Record<string, CheckoutLink>
-
 const SITE_OFFERINGS: Array<{
   name: string
   outcome: string
   tier: string
   renewal: string
   steps: string[]
-  checkout: CheckoutLink[]
-  chooseOne?: boolean
+  groupId: string
 }> = [
   {
     name: 'Website',
@@ -145,7 +112,7 @@ const SITE_OFFERINGS: Array<{
     tier: '$1,500 plus $49/mo hosting and small edits.',
     renewal: 'Renews monthly at $49 until you cancel. Cancel any time online, by email, or by phone.',
     steps: ['Services and towns', 'Works on a phone', 'Tap to call', 'Pages that load quickly'],
-    checkout: [CHECKOUT.website],
+    groupId: 'website-services',
   },
   {
     name: 'Google + AI search',
@@ -153,17 +120,15 @@ const SITE_OFFERINGS: Array<{
     tier: '$199/mo.',
     renewal: 'Renews monthly at $199 until you cancel. Cancel any time online, by email, or by phone.',
     steps: ['Your Google listing', 'The towns you serve', 'What you do, stated plainly', 'Easy for ChatGPT to read'],
-    checkout: [CHECKOUT.search],
+    groupId: 'search-services',
   },
   {
     name: 'DANZUS Growth',
     outcome: 'Text-back, Google and AI search, and hosting.',
-    tier: '$299/mo. Website is $750 with a 6-month commitment.',
-    renewal:
-      'Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone. After month 6 it continues month to month at $299 until cancelled. If you cancel before month 6, the website is $1,500 and we bill the other $750.',
+    tier: '$299/mo.',
+    renewal: 'Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone.',
     steps: ['Missed-call text-back', 'Google and AI search', 'Hosting and small edits'],
-    checkout: [CHECKOUT.growth, CHECKOUT.growthWebsite],
-    chooseOne: true,
+    groupId: 'growth-services',
   },
 ]
 
@@ -174,8 +139,7 @@ const TIERS: Array<{
   setup: string
   renewal: string
   body: string
-  checkout: CheckoutLink[]
-  chooseOne?: boolean
+  groupId: string
 }> = [
   {
     name: 'Missed-call text-back',
@@ -184,7 +148,7 @@ const TIERS: Array<{
     setup: 'Free 30-day pilot. No setup fee.',
     renewal: 'Renews monthly at $99 until you cancel. Cancel any time online, by email, or by phone.',
     body: 'A text goes back when you miss a call.',
-    checkout: [CHECKOUT.textBack],
+    groupId: 'textback-pricing',
   },
   {
     name: 'Website',
@@ -193,7 +157,7 @@ const TIERS: Array<{
     setup: 'Plus $49/mo hosting and small edits.',
     renewal: 'Renews monthly at $49 until you cancel. Cancel any time online, by email, or by phone.',
     body: 'Paid 50% up front and 50% at launch.',
-    checkout: [CHECKOUT.website],
+    groupId: 'website-pricing',
   },
   {
     name: 'Google + AI search',
@@ -202,18 +166,16 @@ const TIERS: Array<{
     setup: 'Your Google listing, your towns, and clear pages.',
     renewal: 'Renews monthly at $199 until you cancel. Cancel any time online, by email, or by phone.',
     body: 'So Google and AI answers can describe your shop.',
-    checkout: [CHECKOUT.search],
+    groupId: 'search-pricing',
   },
   {
     name: 'DANZUS Growth',
     who: 'Text-back, search, and hosting.',
     price: '$299/mo',
-    setup: 'Website is $750 with a 6-month commitment.',
-    renewal:
-      'Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone. After month 6 it continues month to month at $299 until cancelled. If you cancel before month 6, the website is $1,500 and we bill the other $750.',
+    setup: '',
+    renewal: 'Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone.',
     body: 'Missed-call text-back, Google and AI search, and hosting.',
-    checkout: [CHECKOUT.growth, CHECKOUT.growthWebsite],
-    chooseOne: true,
+    groupId: 'growth-pricing',
   },
 ]
 
@@ -253,76 +215,6 @@ function Flow({ steps }: { steps: string[] }) {
         <li key={step}>{step}</li>
       ))}
     </ol>
-  )
-}
-
-function CheckoutLinks({
-  links,
-  section,
-  choice = false,
-}: {
-  links: readonly CheckoutLink[]
-  section: string
-  choice?: boolean
-}) {
-  return (
-    <div className={styles.pay}>
-      {choice ? <p className={styles.payChoice}>Choose one way to start.</p> : null}
-      {links.map((link, index) => (
-        <Fragment key={link.href}>
-          {choice && index > 0 ? <p className={styles.payOr}>or</p> : null}
-          <a
-            className={link.tone === 'ghost' ? styles.ghost : styles.solid}
-            href={link.href}
-            data-track="cta_click"
-            data-track-label={link.label}
-            data-track-section={section}
-          >
-            {link.label}
-            <span aria-hidden="true">→</span>
-          </a>
-        </Fragment>
-      ))}
-    </div>
-  )
-}
-
-function ContactChoices({ section }: { section: string }) {
-  return (
-    <div className={styles.pay}>
-      <a
-        className={styles.ghost}
-        href={CONTACT_PHONE_TEL}
-        data-track="call_click"
-        data-track-location={section}
-        data-track-label={`Call ${CONTACT_PHONE_DISPLAY}`}
-        data-track-section={section}
-      >
-        Call {CONTACT_PHONE_DISPLAY}
-        <span aria-hidden="true">→</span>
-      </a>
-      <a
-        className={styles.ghost}
-        href={CONTACT_PHONE_SMS}
-        data-track="text_click"
-        data-track-location={section}
-        data-track-label={`Text ${CONTACT_PHONE_DISPLAY}`}
-        data-track-section={section}
-      >
-        Text {CONTACT_PHONE_DISPLAY}
-        <span aria-hidden="true">→</span>
-      </a>
-      <a
-        className={styles.ghost}
-        href={mailto}
-        data-track="cta_click"
-        data-track-label={CONTACT_EMAIL}
-        data-track-section={section}
-      >
-        {CONTACT_EMAIL}
-        <span aria-hidden="true">→</span>
-      </a>
-    </div>
   )
 }
 
@@ -375,17 +267,8 @@ export default function Home() {
                 About
               </a>
             </nav>
-            <a
-              className={styles.call}
-              href={CONTACT_PHONE_TEL}
-              data-track="call_click"
-              data-track-location="nav"
-              data-track-label="Call or text Dan"
-              data-track-section="nav"
-            >
-              Call or text Dan
-            </a>
             <MobileNav />
+            <HeaderReach />
           </div>
         </div>
       </SiteHeader>
@@ -398,9 +281,7 @@ export default function Home() {
             <p className={styles.label}>For your shop</p>
             <h1>Never miss another lead.</h1>
             <p className={styles.line}>You were under a sink. The lead texted the next guy.</p>
-            <Ghost href={CONTACT_PHONE_TEL} section="hero" location="hero">
-              Call or text Dan
-            </Ghost>
+            <HeroReach />
           </div>
         </section>
 
@@ -448,7 +329,7 @@ export default function Home() {
               Missed-call text-back is $99 a month after a free 30-day pilot. No setup fee. Month to month. That is
               the founding client price.
             </p>
-            <CheckoutLinks links={[CHECKOUT.textBack]} section="packages" />
+            <CheckoutGroup {...payGroup('textback-services')} />
             <div className={styles.packages}>
               {PACKAGES.map((item) => (
                 <article className={styles.package} key={item.name}>
@@ -476,12 +357,11 @@ export default function Home() {
                     <p className={styles.fit}>{item.tier}</p>
                     <p className={styles.rateRenew}>{item.renewal}</p>
                     <Flow steps={item.steps} />
-                    <CheckoutLinks links={item.checkout} section="packages" choice={item.chooseOne} />
+                    <CheckoutGroup {...payGroup(item.groupId)} />
                   </div>
                 </article>
               ))}
             </div>
-            <ContactChoices section="packages" />
           </Reveal>
         </section>
 
@@ -500,14 +380,13 @@ export default function Home() {
                   <p>{tier.body}</p>
                   <div>
                     <p className={styles.ratePrice}>{tier.price}</p>
-                    <p className={styles.rateSetup}>{tier.setup}</p>
+                    {tier.setup ? <p className={styles.rateSetup}>{tier.setup}</p> : null}
                   </div>
                   <p className={styles.rateRenew}>{tier.renewal}</p>
-                  <CheckoutLinks links={tier.checkout} section="pricing" choice={tier.chooseOne} />
+                  <CheckoutGroup {...payGroup(tier.groupId)} />
                 </article>
               ))}
             </div>
-            <ContactChoices section="pricing" />
             <p className={styles.priceNote}>
               Monthly plans renew each month until you cancel. Cancel any time on the{' '}
               <Link href="/cancel">cancel page</Link>, by email, or by phone. The $1,500 website is paid once.
