@@ -67,8 +67,8 @@ describe('compliance copy', () => {
       ['https://buy.stripe.com/28EaEWfuUfvmefRfZe8Ra02', 'Start missed-call text-back'],
       ['https://buy.stripe.com/00w00i2I81Ewc7J3cs8Ra03', 'Pay the website deposit'],
       ['https://buy.stripe.com/3cIcN46Yo1Ew6Np3cs8Ra04', 'Start Google + AI search'],
-      ['https://buy.stripe.com/9B64gy6Yogzq7RtbIY8Ra05', 'Start DANZUS Growth'],
-      ['https://buy.stripe.com/3cIcN4gyY5UMfjV9AQ8Ra06', 'Pay the 6-month website deposit'],
+      ['https://buy.stripe.com/9B64gy6Yogzq7RtbIY8Ra05', 'Start Growth month to month'],
+      ['https://buy.stripe.com/3cIcN4gyY5UMfjV9AQ8Ra06', 'Start the 6-month plan and pay the website deposit'],
     ] as const
     for (const [href, label] of links) {
       expect(home).toContain(href)
@@ -79,6 +79,11 @@ describe('compliance copy', () => {
     expect(home).toContain('checkout: [CHECKOUT.website]')
     expect(home).toContain('checkout: [CHECKOUT.search]')
     expect(home).toContain('checkout: [CHECKOUT.growth, CHECKOUT.growthWebsite]')
+    expect(home).toContain('Choose one way to start.')
+    expect(home).toContain('choice={item.chooseOne}')
+    expect(home).toContain('choice={tier.chooseOne}')
+    expect(home).not.toContain('Pay the 6-month website deposit')
+    expect(home).not.toContain('Start DANZUS Growth')
     expect(home).toContain('Call {CONTACT_PHONE_DISPLAY}')
     expect(home).toContain('Text {CONTACT_PHONE_DISPLAY}')
     expect(home).toContain('{CONTACT_EMAIL}')

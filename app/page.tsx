@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Fragment } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ContactForm } from './ContactForm'
@@ -120,11 +121,11 @@ const CHECKOUT = {
   },
   growth: {
     href: 'https://buy.stripe.com/9B64gy6Yogzq7RtbIY8Ra05',
-    label: 'Start DANZUS Growth',
+    label: 'Start Growth month to month',
   },
   growthWebsite: {
     href: 'https://buy.stripe.com/3cIcN4gyY5UMfjV9AQ8Ra06',
-    label: 'Pay the 6-month website deposit',
+    label: 'Start the 6-month plan and pay the website deposit',
     tone: 'ghost',
   },
 } as const satisfies Record<string, CheckoutLink>
@@ -136,6 +137,7 @@ const SITE_OFFERINGS: Array<{
   renewal: string
   steps: string[]
   checkout: CheckoutLink[]
+  chooseOne?: boolean
 }> = [
   {
     name: 'Website',
@@ -161,6 +163,7 @@ const SITE_OFFERINGS: Array<{
       'Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone. After month 6 it continues month to month at $299 until cancelled. If you cancel before month 6, the website is $1,500 and we bill the other $750.',
     steps: ['Missed-call text-back', 'Google and AI search', 'Hosting and small edits'],
     checkout: [CHECKOUT.growth, CHECKOUT.growthWebsite],
+    chooseOne: true,
   },
 ]
 
@@ -172,6 +175,7 @@ const TIERS: Array<{
   renewal: string
   body: string
   checkout: CheckoutLink[]
+  chooseOne?: boolean
 }> = [
   {
     name: 'Missed-call text-back',
@@ -209,6 +213,7 @@ const TIERS: Array<{
       'Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone. After month 6 it continues month to month at $299 until cancelled. If you cancel before month 6, the website is $1,500 and we bill the other $750.',
     body: 'Missed-call text-back, Google and AI search, and hosting.',
     checkout: [CHECKOUT.growth, CHECKOUT.growthWebsite],
+    chooseOne: true,
   },
 ]
 
@@ -251,21 +256,32 @@ function Flow({ steps }: { steps: string[] }) {
   )
 }
 
-function CheckoutLinks({ links, section }: { links: readonly CheckoutLink[]; section: string }) {
+function CheckoutLinks({
+  links,
+  section,
+  choice = false,
+}: {
+  links: readonly CheckoutLink[]
+  section: string
+  choice?: boolean
+}) {
   return (
     <div className={styles.pay}>
-      {links.map((link) => (
-        <a
-          key={link.href}
-          className={link.tone === 'ghost' ? styles.ghost : styles.solid}
-          href={link.href}
-          data-track="cta_click"
-          data-track-label={link.label}
-          data-track-section={section}
-        >
-          {link.label}
-          <span aria-hidden="true">→</span>
-        </a>
+      {choice ? <p className={styles.payChoice}>Choose one way to start.</p> : null}
+      {links.map((link, index) => (
+        <Fragment key={link.href}>
+          {choice && index > 0 ? <p className={styles.payOr}>or</p> : null}
+          <a
+            className={link.tone === 'ghost' ? styles.ghost : styles.solid}
+            href={link.href}
+            data-track="cta_click"
+            data-track-label={link.label}
+            data-track-section={section}
+          >
+            {link.label}
+            <span aria-hidden="true">→</span>
+          </a>
+        </Fragment>
       ))}
     </div>
   )
@@ -460,7 +476,7 @@ export default function Home() {
                     <p className={styles.fit}>{item.tier}</p>
                     <p className={styles.rateRenew}>{item.renewal}</p>
                     <Flow steps={item.steps} />
-                    <CheckoutLinks links={item.checkout} section="packages" />
+                    <CheckoutLinks links={item.checkout} section="packages" choice={item.chooseOne} />
                   </div>
                 </article>
               ))}
@@ -487,7 +503,7 @@ export default function Home() {
                     <p className={styles.rateSetup}>{tier.setup}</p>
                   </div>
                   <p className={styles.rateRenew}>{tier.renewal}</p>
-                  <CheckoutLinks links={tier.checkout} section="pricing" />
+                  <CheckoutLinks links={tier.checkout} section="pricing" choice={tier.chooseOne} />
                 </article>
               ))}
             </div>

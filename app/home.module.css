@@ -1532,6 +1532,15 @@
   grid-column: 1 / -1;
 }
 
+.payChoice,
+.payOr {
+  margin: 0;
+  max-width: 28rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
 .pay .ghost,
 .pay .solid {
   margin-top: 0;
