@@ -28,7 +28,7 @@ export function MobileNav({ home = '' }: { home?: string }) {
   }, [open])
 
   useEffect(() => {
-    const wide = window.matchMedia('(min-width: 768px)')
+    const wide = window.matchMedia('(min-width: 1180px)')
     const close = () => {
       if (wide.matches) setOpen(false)
     }

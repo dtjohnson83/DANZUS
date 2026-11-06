@@ -44,16 +44,15 @@ describe('search metadata', () => {
     expect(business?.legalName).toBe('DANZUS Holdings LLC')
     expect(business?.telephone).toBe('+1-916-404-6129')
     expect(business?.email).toBe('dan@danzus.co')
-    expect(business?.address).toMatchObject({
+    expect(business?.address).toEqual({
       '@type': 'PostalAddress',
-      streetAddress: '2108 N St #18348',
-      addressLocality: 'Sacramento',
+      addressLocality: 'Folsom',
       addressRegion: 'CA',
-      postalCode: '95816',
       addressCountry: 'US',
     })
-    expect(business?.disambiguatingDescription).toContain('not a shop to visit')
-    expect(business?.disambiguatingDescription).toContain('Folsom')
+    expect(business?.address?.streetAddress).toBeUndefined()
+    expect(JSON.stringify(business)).not.toContain('2108')
+    expect(JSON.stringify(business)).not.toContain('95816')
     expect(business?.sameAs).toContain('https://linkedin.com/in/danjohnsondata')
     expect(business?.areaServed?.map((place: { name: string }) => place.name)).toEqual([
       ...SERVICE_AREA,
@@ -76,8 +75,13 @@ describe('search metadata', () => {
     const lead = graph.find((node) => node['@type'] === 'Service' && node.name === 'Lead to Booked Job')
     expect(lead?.offers).toBeUndefined()
     const published = JSON.stringify(graph)
+    const homePage = graph.find((node) => node['@type'] === 'WebPage')
+    expect(graph.filter((node) => node['@type'] === 'WebPage')).toHaveLength(1)
+    expect(homePage?.url).toBe('https://danzus.co/')
+    expect(homePage?.name).toBe(HOME_TITLE)
     expect(published).not.toContain('aggregateRating')
     expect(published).not.toContain('reviewCount')
+    expect(published).not.toContain('2108 N St')
     expect(published).not.toMatch(/\$149|\$150 a month|\$300 a month|\$200 to \$300|\$400 to \$600/)
     expect(FAQS[0]?.answer).toContain('$99')
     expect(FAQS[0]?.answer).toContain('$1,500')
@@ -147,6 +151,10 @@ describe('search metadata', () => {
     expect(sitemap).toContain('https://danzus.co/')
     expect(sitemap).toContain('https://danzus.co/small-business-ai-help')
     expect(sitemap).toContain('<lastmod>2026-11-06</lastmod>')
+    expect(sitemap).toContain('<loc>https://danzus.co/privacy</loc>\n    <lastmod>2026-11-04</lastmod>')
+    expect(sitemap).toContain('<loc>https://danzus.co/terms</loc>\n    <lastmod>2026-11-04</lastmod>')
+    expect(sitemap).toContain('<loc>https://danzus.co/cancel</loc>\n    <lastmod>2026-11-04</lastmod>')
+    expect(sitemap).toContain('<loc>https://danzus.co/unsubscribe</loc>\n    <lastmod>2026-11-04</lastmod>')
     expect(sitemap).toContain('https://danzus.co/ai-search')
     expect(sitemap).toContain('https://danzus.co/privacy')
     expect(sitemap).toContain('https://danzus.co/terms')
@@ -200,8 +208,19 @@ describe('search metadata', () => {
     expect(helpGraph.find((node) => node['@type'] === 'FAQPage')?.mainEntity).toHaveLength(AI_HELP_FAQS.length)
     expect(JSON.stringify(helpGraph)).not.toContain('aggregateRating')
     const helpBusiness = helpGraph.find((node) => Array.isArray(node['@type']))
-    expect(helpBusiness?.address?.streetAddress).toBe('2108 N St #18348')
+    expect(helpBusiness?.address).toEqual({
+      '@type': 'PostalAddress',
+      addressLocality: 'Folsom',
+      addressRegion: 'CA',
+      addressCountry: 'US',
+    })
     expect(helpBusiness?.telephone).toBe('+1-916-404-6129')
     expect(helpBusiness?.email).toBe('dan@danzus.co')
+    const helpServices = helpGraph.filter((node) => node['@type'] === 'Service').map((node) => node.name)
+    expect(helpServices).toEqual(['Missed-call text-back', 'Website', 'Google and AI search', 'DANZUS Growth'])
+    expect(helpServices).not.toContain('Lead to Booked Job')
+    const helpPage = helpGraph.find((node) => node['@type'] === 'WebPage')
+    expect(helpPage?.url).toBe('https://danzus.co/small-business-ai-help')
+    expect(JSON.stringify(helpGraph)).not.toContain('2108')
   })
 })

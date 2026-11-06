@@ -2,10 +2,6 @@ import {
   CONTACT_EMAIL,
   CONTACT_PHONE_SCHEMA,
   LINKEDIN_URL,
-  MAILING_LOCALITY,
-  MAILING_POSTAL_CODE,
-  MAILING_REGION,
-  MAILING_STREET,
   SITE_URL,
 } from '@/app/site'
 
@@ -201,15 +197,11 @@ function businessNode() {
     email: CONTACT_EMAIL,
     telephone: CONTACT_PHONE_SCHEMA,
     description: HOME_DESCRIPTION,
-    disambiguatingDescription:
-      'The Sacramento street address is a mailing address for DANZUS Holdings LLC. It is not a shop to visit. Dan Johnson lives and works from Folsom.',
     priceRange: '$$',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: MAILING_STREET,
-      addressLocality: MAILING_LOCALITY,
-      addressRegion: MAILING_REGION,
-      postalCode: MAILING_POSTAL_CODE,
+      addressLocality: 'Folsom',
+      addressRegion: 'CA',
       addressCountry: 'US',
     },
     contactPoint: {
@@ -248,6 +240,14 @@ function personNode() {
     },
     sameAs: [LINKEDIN_URL],
   }
+}
+
+function namedServices(names: readonly string[]) {
+  return names.map((name) => {
+    const service = PACKAGE_SERVICES.find((item) => item.name === name)
+    if (!service) throw new Error(`Missing service: ${name}`)
+    return serviceNode(service)
+  })
 }
 
 function serviceNode(service: ListedService) {
@@ -304,10 +304,10 @@ export function siteJsonLd() {
       },
       {
         '@type': 'WebPage',
-        '@id': `${SITE_URL}${AI_HELP_PATH}#webpage`,
-        url: `${SITE_URL}${AI_HELP_PATH}`,
-        name: AI_HELP_TITLE,
-        description: AI_HELP_DESCRIPTION,
+        '@id': `${SITE_URL}/#webpage`,
+        url: `${SITE_URL}/`,
+        name: HOME_TITLE,
+        description: HOME_DESCRIPTION,
         isPartOf: { '@id': `${SITE_URL}/#website` },
         about: { '@id': businessId },
         inLanguage: 'en-US',
@@ -348,7 +348,7 @@ export function aiHelpPageJsonLd() {
         inLanguage: 'en-US',
       },
       faqNode(`${pageUrl}#faq`, pageUrl, AI_HELP_FAQS),
-      ...PACKAGE_SERVICES.map((service) => serviceNode(service)),
+      ...namedServices(['Missed-call text-back', 'Website', 'Google and AI search', 'DANZUS Growth']),
     ],
   }
 }
