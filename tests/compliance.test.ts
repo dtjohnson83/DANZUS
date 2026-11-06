@@ -61,6 +61,32 @@ describe('compliance copy', () => {
     expect(terms).not.toMatch(/—/)
   })
 
+  it('puts the five live Stripe checkouts on the pricing and services cards', () => {
+    const home = read(files.home)
+    const links = [
+      ['https://buy.stripe.com/28EaEWfuUfvmefRfZe8Ra02', 'Start missed-call text-back'],
+      ['https://buy.stripe.com/00w00i2I81Ewc7J3cs8Ra03', 'Pay the website deposit'],
+      ['https://buy.stripe.com/3cIcN46Yo1Ew6Np3cs8Ra04', 'Start Google + AI search'],
+      ['https://buy.stripe.com/9B64gy6Yogzq7RtbIY8Ra05', 'Start DANZUS Growth'],
+      ['https://buy.stripe.com/3cIcN4gyY5UMfjV9AQ8Ra06', 'Pay the 6-month website deposit'],
+    ] as const
+    for (const [href, label] of links) {
+      expect(home).toContain(href)
+      expect(home).toContain(label)
+    }
+    expect(home.match(/buy\.stripe\.com/g)).toHaveLength(5)
+    expect(home).toContain('checkout: [CHECKOUT.textBack]')
+    expect(home).toContain('checkout: [CHECKOUT.website]')
+    expect(home).toContain('checkout: [CHECKOUT.search]')
+    expect(home).toContain('checkout: [CHECKOUT.growth, CHECKOUT.growthWebsite]')
+    expect(home).toContain('Call {CONTACT_PHONE_DISPLAY}')
+    expect(home).toContain('Text {CONTACT_PHONE_DISPLAY}')
+    expect(home).toContain('{CONTACT_EMAIL}')
+    expect(home).toContain('href={CONTACT_PHONE_TEL}')
+    expect(home).toContain('href={CONTACT_PHONE_SMS}')
+    expect(home).toContain('Call or text Dan')
+  })
+
   it('puts the same renewal facts on the pricing section and the cancel page', () => {
     const home = read(files.home)
     const cancel = read(files.cancel)
