@@ -8,7 +8,7 @@ import { MobileNav } from './MobileNav'
 import { PhoneMockup } from './PhoneMockup'
 import { Reveal } from './Reveal'
 import { SiteHeader } from './SiteHeader'
-import { SampleMenu } from './SampleMenu'
+import { PrimaryNav } from './PrimaryNav'
 import { PACKAGE_DEMOS, type PackageName } from '@/lib/package-demos'
 import { condensed, sans } from './fonts'
 import { SiteFooter } from './SiteFooter'
@@ -33,6 +33,8 @@ export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
   keywords: [
+    'AI help for small businesses',
+    'small business AI help',
     'AI assistant for small business Sacramento',
     'small business automation Folsom',
     'AI assistant Roseville',
@@ -252,21 +254,7 @@ export default function Home() {
               <img src="/danzus-mark.svg" alt="" width={28} height={28} />
               DANZUS
             </Link>
-            <nav className={styles.deskLinks} aria-label="Primary">
-              <a href="#services" data-track="nav_click" data-track-label="Services" data-track-location="desktop">
-                Services
-              </a>
-              <a href="#pricing" data-track="nav_click" data-track-label="Pricing" data-track-location="desktop">
-                Pricing
-              </a>
-              <a href="/ai-search" data-track="nav_click" data-track-label="AI search" data-track-location="desktop">
-                AI search
-              </a>
-              <SampleMenu />
-              <a href="#about" data-track="nav_click" data-track-label="About" data-track-location="desktop">
-                About
-              </a>
-            </nav>
+            <PrimaryNav />
             <MobileNav />
             <HeaderReach />
           </div>
@@ -347,6 +335,10 @@ export default function Home() {
               <p className={styles.label}>Site and search</p>
               <h3>Found before they call.</h3>
               <p className={styles.line}>A site and search, on the same menu.</p>
+              <p className={styles.priceNote}>
+                DANZUS provides <Link href="/small-business-ai-help">AI help for small businesses</Link> in Sacramento,
+                Folsom, Roseville, and El Dorado Hills.
+              </p>
             </div>
             <div className={styles.packages}>
               {SITE_OFFERINGS.map((item) => (

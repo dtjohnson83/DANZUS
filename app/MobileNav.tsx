@@ -67,6 +67,9 @@ export function MobileNav({ home = '' }: { home?: string }) {
         <a href={`${home}#pricing`} data-track="nav_click" data-track-label="Pricing" data-track-location="mobile" onClick={() => setOpen(false)}>
           Pricing
         </a>
+        <a href="/small-business-ai-help" data-track="nav_click" data-track-label="AI help" data-track-location="mobile" onClick={() => setOpen(false)}>
+          AI help
+        </a>
         <a href="/ai-search" data-track="nav_click" data-track-label="AI search" data-track-location="mobile" onClick={() => setOpen(false)}>
           AI search
         </a>

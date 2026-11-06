@@ -1,14 +1,18 @@
 # DANZUS Holdings LLC
 
-DANZUS Holdings LLC is in Folsom, California. Dan Johnson builds websites and
-sets up local search and missed-call text-back for small businesses in
-Sacramento, Folsom, Roseville, El Dorado Hills, and nearby. Missed-call
+DANZUS provides AI help for small businesses in Sacramento, Folsom, Roseville,
+El Dorado Hills, and nearby. That help is missed-call text-back, a website
+built so the next step is a call or a lead, and Google and AI search so Google
+and ChatGPT can describe the shop. DANZUS Holdings LLC is in Folsom,
+California. Dan Johnson lives and works from Folsom. Mail goes to 2108 N St #18348, Sacramento, CA 95816. That is a mailing address, not a shop to visit.
+Missed-call
 text-back is $99 a month after a free 30-day pilot, with no setup fee, month
 to month. That is the founding client price. A website is $1,500 one time,
 plus $49 a month for hosting and small edits. Google and AI search is $199 a
 month. DANZUS Growth is $299 a month.
 
 Contact: call or text (916) 404-6129, or email dan@danzus.co.
+Mail: DANZUS Holdings LLC, 2108 N St #18348, Sacramento, CA 95816. Not a shop to visit.
 LinkedIn: https://linkedin.com/in/danjohnsondata
 Website: https://danzus.co
 
@@ -117,6 +121,7 @@ https://danzus.co/privacy Terms: https://danzus.co/terms
 ## Pages
 
 - https://danzus.co/
+- https://danzus.co/small-business-ai-help
 - https://danzus.co/ai-search
 - https://danzus.co/privacy
 - https://danzus.co/terms

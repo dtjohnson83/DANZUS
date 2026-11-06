@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { MobileNav } from '../MobileNav'
-import { SampleMenu } from '../SampleMenu'
+import { PrimaryNav } from '../PrimaryNav'
 import { SiteFooter } from '../SiteFooter'
 import { SiteHeader } from '../SiteHeader'
 import { condensed, sans } from '../fonts'
@@ -11,9 +11,9 @@ import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL, SITE_URL } from '../site'
 import { CheckForm } from './CheckForm'
 import styles from './ai-search.module.css'
 
-const TITLE = 'AI search for local shops | DANZUS'
+const TITLE = 'AI search for small businesses in Sacramento and Folsom | DANZUS'
 const DESCRIPTION =
-  'When people ask ChatGPT or Google for a local shop, a few names get the call. Google and AI search is $199 a month. See how ready your website is, or call (916) 404-6129.'
+  'DANZUS provides AI help for small businesses in Sacramento, Folsom, Roseville, and El Dorado Hills. When people ask ChatGPT or Google for a local shop, a few names get the call. Google and AI search is $199 a month. See how ready your website is, or call (916) 404-6129.'
 
 const FAQS = [
   {
@@ -36,6 +36,11 @@ const FAQS = [
       'Not always. Sometimes the Google profile, the towns you serve, and a few clear pages are the first fix. A rebuild is for a site that is slow or hard to use on a phone.',
   },
   {
+    question: 'Do you help small businesses with AI?',
+    answer:
+      'Yes. DANZUS provides AI help for small businesses in Sacramento, Folsom, Roseville, and El Dorado Hills. The help is missed-call text-back, a website, and Google and AI search. Start at https://danzus.co/small-business-ai-help, or call (916) 404-6129.',
+  },
+  {
     question: 'What does this cost?',
     answer:
       'Google and AI search is $199 a month. A website is $1,500, plus $49 a month for hosting and small edits. You pay half up front and half at launch, and you keep the site. DANZUS Growth is $299 a month for missed-call text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750. If you cancel before month 6, the website is $1,500 and we bill the other $750. Missed-call text-back alone is $99 a month after a free 30-day pilot, with no setup fee, month to month. That is the founding client price. Those monthly charges renew each month at the same price until you cancel. Cancel online at https://danzus.co/cancel, email dan@danzus.co, or call (916) 404-6129.',
@@ -45,6 +50,14 @@ const FAQS = [
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
+  keywords: [
+    'AI help for small businesses',
+    'small business AI help',
+    'AI search Sacramento',
+    'AI search Folsom',
+    'AI search Roseville',
+    'AI search El Dorado Hills',
+  ],
   alternates: { canonical: '/ai-search' },
   openGraph: {
     type: 'article',
@@ -123,27 +136,7 @@ export default function AiSearchPage() {
               <img src="/danzus-mark.svg" alt="" width={28} height={28} />
               DANZUS
             </Link>
-            <nav className={home.deskLinks} aria-label="Primary">
-              <a href="/#services" data-track="nav_click" data-track-label="Services" data-track-location="desktop">
-                Services
-              </a>
-              <a href="/#pricing" data-track="nav_click" data-track-label="Pricing" data-track-location="desktop">
-                Pricing
-              </a>
-              <a
-                href="/ai-search"
-                aria-current="page"
-                data-track="nav_click"
-                data-track-label="AI search"
-                data-track-location="desktop"
-              >
-                AI search
-              </a>
-              <SampleMenu />
-              <a href="/#about" data-track="nav_click" data-track-label="About" data-track-location="desktop">
-                About
-              </a>
-            </nav>
+            <PrimaryNav home="/" current="ai-search" />
             <a
               className={`${home.call} ${styles.navCall}`}
               href={CONTACT_PHONE_TEL}
@@ -221,6 +214,11 @@ export default function AiSearchPage() {
         <section className={styles.block} aria-labelledby="work-title">
           <h2 id="work-title">What DANZUS does</h2>
           <p>The same menu as the rest of the site.</p>
+          <p>
+            DANZUS provides <Link href="/small-business-ai-help">AI help for small businesses</Link> in Sacramento,
+            Folsom, Roseville, and El Dorado Hills. That page covers missed-call text-back, a website, and this search
+            work.
+          </p>
           <ul>
             <li>
               A website, with a clear way to call. $1,500, plus $49 a month for hosting and small edits. Half is due

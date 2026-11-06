@@ -94,6 +94,14 @@
   font-weight: 700;
 }
 
+.block a,
+.faq a {
+  color: inherit;
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .block li,
 .result li {
   padding-left: 16px;
