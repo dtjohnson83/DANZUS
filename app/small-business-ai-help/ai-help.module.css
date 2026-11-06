@@ -5,7 +5,7 @@
 .main {
   width: min(720px, calc(100% - 40px));
   margin: 0 auto;
-  padding: 112px 0 72px;
+  padding: 156px 0 72px;
 }
 
 .hero {
@@ -117,7 +117,7 @@
   }
 }
 
-@media (min-width: 720px) {
+@media (min-width: 768px) {
   .main {
     width: min(760px, calc(100% - 80px));
     padding-top: 128px;
