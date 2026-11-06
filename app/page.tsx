@@ -14,6 +14,7 @@ import { condensed, sans } from './fonts'
 import { SiteFooter } from './SiteFooter'
 import { SmsDisclosure } from './SmsDisclosure'
 import styles from './home.module.css'
+import { CheckoutGroup, HeaderReach, HeroReach, payGroup } from './pay-choices'
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE_DISPLAY,
@@ -97,13 +98,21 @@ const PACKAGES = [
   },
 ]
 
-const SITE_OFFERINGS = [
+const SITE_OFFERINGS: Array<{
+  name: string
+  outcome: string
+  tier: string
+  renewal: string
+  steps: string[]
+  groupId: string
+}> = [
   {
     name: 'Website',
     outcome: 'A fast site with a way to call. You keep it.',
     tier: '$1,500 plus $49/mo hosting and small edits.',
     renewal: 'Renews monthly at $49 until you cancel. Cancel any time online, by email, or by phone.',
     steps: ['Services and towns', 'Works on a phone', 'Tap to call', 'Pages that load quickly'],
+    groupId: 'website-services',
   },
   {
     name: 'Google + AI search',
@@ -111,18 +120,27 @@ const SITE_OFFERINGS = [
     tier: '$199/mo.',
     renewal: 'Renews monthly at $199 until you cancel. Cancel any time online, by email, or by phone.',
     steps: ['Your Google listing', 'The towns you serve', 'What you do, stated plainly', 'Easy for ChatGPT to read'],
+    groupId: 'search-services',
   },
   {
     name: 'DANZUS Growth',
     outcome: 'Text-back, Google and AI search, and hosting.',
-    tier: '$299/mo. Website is $750 with a 6-month commitment.',
-    renewal:
-      'Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone. After month 6 it continues month to month at $299 until cancelled. If you cancel before month 6, the website is $1,500 and we bill the other $750.',
+    tier: '$299/mo.',
+    renewal: 'Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone.',
     steps: ['Missed-call text-back', 'Google and AI search', 'Hosting and small edits'],
+    groupId: 'growth-services',
   },
 ]
 
-const TIERS = [
+const TIERS: Array<{
+  name: string
+  who: string
+  price: string
+  setup: string
+  renewal: string
+  body: string
+  groupId: string
+}> = [
   {
     name: 'Missed-call text-back',
     who: 'Founding client price. Month to month.',
@@ -130,6 +148,7 @@ const TIERS = [
     setup: 'Free 30-day pilot. No setup fee.',
     renewal: 'Renews monthly at $99 until you cancel. Cancel any time online, by email, or by phone.',
     body: 'A text goes back when you miss a call.',
+    groupId: 'textback-pricing',
   },
   {
     name: 'Website',
@@ -138,6 +157,7 @@ const TIERS = [
     setup: 'Plus $49/mo hosting and small edits.',
     renewal: 'Renews monthly at $49 until you cancel. Cancel any time online, by email, or by phone.',
     body: 'Paid 50% up front and 50% at launch.',
+    groupId: 'website-pricing',
   },
   {
     name: 'Google + AI search',
@@ -146,15 +166,16 @@ const TIERS = [
     setup: 'Your Google listing, your towns, and clear pages.',
     renewal: 'Renews monthly at $199 until you cancel. Cancel any time online, by email, or by phone.',
     body: 'So Google and AI answers can describe your shop.',
+    groupId: 'search-pricing',
   },
   {
     name: 'DANZUS Growth',
     who: 'Text-back, search, and hosting.',
     price: '$299/mo',
-    setup: 'Website is $750 with a 6-month commitment.',
-    renewal:
-      'Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone. After month 6 it continues month to month at $299 until cancelled. If you cancel before month 6, the website is $1,500 and we bill the other $750.',
+    setup: '',
+    renewal: 'Renews monthly at $299 until you cancel. Cancel any time online, by email, or by phone.',
     body: 'Missed-call text-back, Google and AI search, and hosting.',
+    groupId: 'growth-pricing',
   },
 ]
 
@@ -246,17 +267,8 @@ export default function Home() {
                 About
               </a>
             </nav>
-            <a
-              className={styles.call}
-              href={CONTACT_PHONE_TEL}
-              data-track="call_click"
-              data-track-location="nav"
-              data-track-label="Call or text Dan"
-              data-track-section="nav"
-            >
-              Call or text Dan
-            </a>
             <MobileNav />
+            <HeaderReach />
           </div>
         </div>
       </SiteHeader>
@@ -269,9 +281,7 @@ export default function Home() {
             <p className={styles.label}>For your shop</p>
             <h1>Never miss another lead.</h1>
             <p className={styles.line}>You were under a sink. The lead texted the next guy.</p>
-            <Ghost href={CONTACT_PHONE_TEL} section="hero" location="hero">
-              Call or text Dan
-            </Ghost>
+            <HeroReach />
           </div>
         </section>
 
@@ -319,6 +329,7 @@ export default function Home() {
               Missed-call text-back is $99 a month after a free 30-day pilot. No setup fee. Month to month. That is
               the founding client price.
             </p>
+            <CheckoutGroup {...payGroup('textback-services')} />
             <div className={styles.packages}>
               {PACKAGES.map((item) => (
                 <article className={styles.package} key={item.name}>
@@ -346,6 +357,7 @@ export default function Home() {
                     <p className={styles.fit}>{item.tier}</p>
                     <p className={styles.rateRenew}>{item.renewal}</p>
                     <Flow steps={item.steps} />
+                    <CheckoutGroup {...payGroup(item.groupId)} />
                   </div>
                 </article>
               ))}
@@ -368,9 +380,10 @@ export default function Home() {
                   <p>{tier.body}</p>
                   <div>
                     <p className={styles.ratePrice}>{tier.price}</p>
-                    <p className={styles.rateSetup}>{tier.setup}</p>
+                    {tier.setup ? <p className={styles.rateSetup}>{tier.setup}</p> : null}
                   </div>
                   <p className={styles.rateRenew}>{tier.renewal}</p>
+                  <CheckoutGroup {...payGroup(tier.groupId)} />
                 </article>
               ))}
             </div>
