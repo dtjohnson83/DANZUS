@@ -7,9 +7,9 @@ import { ClickTracker } from './ClickTracker'
 
 const SITE_URL = 'https://danzus.co'
 const SITE_NAME = 'DANZUS'
-const DEFAULT_TITLE = 'Websites, Search, and AI Assistants for Sacramento and Folsom | DANZUS'
+const DEFAULT_TITLE = 'AI help for small businesses in Sacramento and Folsom | DANZUS'
 const DEFAULT_DESCRIPTION =
-  'DANZUS in Folsom builds websites and missed-call text-back for Sacramento-area contractors and local services. Text-back is $99 a month after a free 30-day pilot. A website is $1,500 plus $49 a month. Google and AI search is $199 a month. DANZUS Growth is $299 a month, and the website is $750 with a 6-month commitment. If you cancel before month 6, the website is $1,500 and we bill the other $750.'
+  'DANZUS provides AI help for small businesses in Sacramento, Folsom, Roseville, and El Dorado Hills. Text-back is $99 a month after a free 30-day pilot. A website is $1,500 plus $49 a month. Google and AI search is $199 a month. DANZUS Growth is $299 a month, and the website is $750 with a 6-month commitment. If you cancel before month 6, the website is $1,500 and we bill the other $750.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -21,6 +21,8 @@ export const metadata: Metadata = {
   keywords: [
     'DANZUS',
     'DANZUS Holdings LLC',
+    'AI help for small businesses',
+    'small business AI help',
     'AI assistant for small business Sacramento',
     'small business automation Folsom',
     'AI assistant Roseville',

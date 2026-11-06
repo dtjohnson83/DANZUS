@@ -6,10 +6,17 @@ import {
 } from '@/app/site'
 
 export const HOME_TITLE =
-  'Websites and AI Assistants for Small Businesses in Sacramento, Folsom, Roseville, and El Dorado Hills | DANZUS'
+  'AI help for small businesses in Sacramento, Folsom, Roseville, and El Dorado Hills | DANZUS'
 
 export const HOME_DESCRIPTION =
-  'DANZUS Holdings LLC in Folsom builds websites, missed-call text-back, and local search for small businesses in Sacramento, Folsom, Roseville, and El Dorado Hills. Missed-call text-back is $99 a month after a free 30-day pilot. A website is $1,500 plus $49 a month. Google and AI search is $199 a month. DANZUS Growth is $299 a month. With a 6-month commitment, the website is $750. If you cancel before month 6, the website is $1,500 and we bill the other $750.'
+  'DANZUS provides AI help for small businesses in Sacramento, Folsom, Roseville, and El Dorado Hills. Dan Johnson in Folsom sets up missed-call text-back, websites, and Google and AI search. Missed-call text-back is $99 a month after a free 30-day pilot. A website is $1,500 plus $49 a month. Google and AI search is $199 a month. DANZUS Growth is $299 a month. With a 6-month commitment, the website is $750. If you cancel before month 6, the website is $1,500 and we bill the other $750.'
+
+export const AI_HELP_PATH = '/small-business-ai-help'
+
+export const AI_HELP_TITLE = 'AI help for small businesses in Sacramento and Folsom | DANZUS'
+
+export const AI_HELP_DESCRIPTION =
+  'DANZUS provides small business AI help in Sacramento, Folsom, Roseville, and El Dorado Hills. Missed-call text-back is $99 a month after a free 30-day pilot. A website is $1,500 plus $49 a month. Google and AI search is $199 a month. DANZUS Growth is $299 a month. With a 6-month commitment, the website is $750. If you cancel before month 6, the website is $1,500 and we bill the other $750. Call or text (916) 404-6129.'
 
 const DEMO_BASE = 'https://ic048emi0kpty2jd.public.blob.vercel-storage.com/demos'
 
@@ -45,6 +52,34 @@ export const FAQS = [
     question: 'Do you work in person?',
     answer:
       'Dan Johnson is in Folsom. Call or text (916) 404-6129, or email dan@danzus.co, including for the free call. DANZUS sets these assistants up for shops in Sacramento, Folsom, Roseville, El Dorado Hills, and nearby.',
+  },
+  {
+    question: 'Do you help small businesses with AI?',
+    answer:
+      'Yes. DANZUS provides AI help for small businesses in Sacramento, Folsom, Roseville, and El Dorado Hills. That help is missed-call text-back, a website built so the next step is a call or a lead, and Google and AI search so Google and ChatGPT can describe the shop. The page is https://danzus.co/small-business-ai-help. Call or text (916) 404-6129, or email dan@danzus.co.',
+  },
+] as const
+
+export const AI_HELP_FAQS = [
+  {
+    question: 'Do you help small businesses with AI?',
+    answer:
+      'Yes. DANZUS provides AI help for small businesses in Sacramento, Folsom, Roseville, and El Dorado Hills.',
+  },
+  {
+    question: 'What is that help?',
+    answer:
+      'Missed-call text-back sends a text when a call is missed. A website is built so the next step is a call or a lead. Google and AI search helps Google and ChatGPT describe the shop. Missed-call text-back is $99 a month after a free 30-day pilot, with no setup fee, month to month. That is the founding client price. A website is $1,500 one time, plus $49 a month for hosting and small edits. You pay 50% up front and 50% at launch, and you keep the site. Google and AI search is $199 a month. DANZUS Growth is $299 a month for text-back, Google and AI search, and hosting. With a 6-month commitment, the website is $750. If you cancel before month 6, the website is $1,500 and we bill the other $750.',
+  },
+  {
+    question: 'Which towns do you cover?',
+    answer:
+      'Sacramento, Folsom, Roseville, El Dorado Hills, and nearby. Dan Johnson lives and works from Folsom.',
+  },
+  {
+    question: 'How do I start?',
+    answer:
+      'Call or text (916) 404-6129, or email dan@danzus.co. You can also start from the buttons on this page. Cancel a monthly plan at https://danzus.co/cancel.',
   },
 ] as const
 
@@ -147,55 +182,117 @@ function areaServed() {
   ]
 }
 
+const businessId = `${SITE_URL}/#business`
+const personId = `${SITE_URL}/#dan-johnson`
+
+function businessNode() {
+  return {
+    '@type': ['Organization', 'LocalBusiness', 'ProfessionalService'],
+    '@id': businessId,
+    name: 'DANZUS',
+    legalName: 'DANZUS Holdings LLC',
+    url: SITE_URL,
+    image: `${SITE_URL}/dan-johnson.jpg`,
+    logo: `${SITE_URL}/danzus-mark-512.png`,
+    email: CONTACT_EMAIL,
+    telephone: CONTACT_PHONE_SCHEMA,
+    description: HOME_DESCRIPTION,
+    priceRange: '$$',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Folsom',
+      addressRegion: 'CA',
+      addressCountry: 'US',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: CONTACT_PHONE_SCHEMA,
+      email: CONTACT_EMAIL,
+      contactType: 'customer service',
+      areaServed: 'US',
+      availableLanguage: 'English',
+    },
+    areaServed: areaServed(),
+    founder: { '@id': personId },
+    sameAs: [LINKEDIN_URL],
+  }
+}
+
+function personNode() {
+  return {
+    '@type': 'Person',
+    '@id': personId,
+    name: 'Dan Johnson',
+    url: LINKEDIN_URL,
+    jobTitle: 'Lead AI Solutions Engineer',
+    email: CONTACT_EMAIL,
+    telephone: CONTACT_PHONE_SCHEMA,
+    worksFor: { '@id': businessId },
+    homeLocation: {
+      '@type': 'Place',
+      name: 'Folsom, California',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Folsom',
+        addressRegion: 'CA',
+        addressCountry: 'US',
+      },
+    },
+    sameAs: [LINKEDIN_URL],
+  }
+}
+
+function namedServices(names: readonly string[]) {
+  return names.map((name) => {
+    const service = PACKAGE_SERVICES.find((item) => item.name === name)
+    if (!service) throw new Error(`Missing service: ${name}`)
+    return serviceNode(service)
+  })
+}
+
+function serviceNode(service: ListedService) {
+  return {
+    '@type': 'Service',
+    '@id': `${SITE_URL}/#service-${service.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+    name: service.name,
+    description: service.description,
+    serviceType: service.serviceType ?? 'AI assistant for a small business',
+    provider: { '@id': businessId },
+    areaServed: areaServed(),
+    url: `${SITE_URL}/${service.anchor ?? '#packages'}`,
+    ...(service.price
+      ? {
+          offers: {
+            '@type': 'Offer',
+            priceCurrency: 'USD',
+            price: service.price,
+            ...(service.unitText ? { unitText: service.unitText } : {}),
+            description: service.offerNote,
+          },
+        }
+      : {}),
+  }
+}
+
+function faqNode(id: string, url: string, items: readonly { question: string; answer: string }[]) {
+  return {
+    '@type': 'FAQPage',
+    '@id': id,
+    url,
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  }
+}
+
 export function siteJsonLd() {
-  const businessId = `${SITE_URL}/#business`
-  const personId = `${SITE_URL}/#dan-johnson`
   return {
     '@context': 'https://schema.org',
     '@graph': [
-      {
-        '@type': ['Organization', 'LocalBusiness', 'ProfessionalService'],
-        '@id': businessId,
-        name: 'DANZUS',
-        legalName: 'DANZUS Holdings LLC',
-        url: SITE_URL,
-        image: `${SITE_URL}/dan-johnson.jpg`,
-        logo: `${SITE_URL}/danzus-mark-512.png`,
-        email: CONTACT_EMAIL,
-        telephone: CONTACT_PHONE_SCHEMA,
-        description: HOME_DESCRIPTION,
-        priceRange: '$$',
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: 'Folsom',
-          addressRegion: 'CA',
-          addressCountry: 'US',
-        },
-        areaServed: areaServed(),
-        founder: { '@id': personId },
-        sameAs: [LINKEDIN_URL],
-      },
-      {
-        '@type': 'Person',
-        '@id': personId,
-        name: 'Dan Johnson',
-        url: LINKEDIN_URL,
-        jobTitle: 'Lead AI Solutions Engineer',
-        email: CONTACT_EMAIL,
-        telephone: CONTACT_PHONE_SCHEMA,
-        worksFor: { '@id': businessId },
-        homeLocation: {
-          '@type': 'Place',
-          name: 'Folsom, California',
-          address: {
-            '@type': 'PostalAddress',
-            addressLocality: 'Folsom',
-            addressRegion: 'CA',
-            addressCountry: 'US',
-          },
-        },
-        sameAs: [LINKEDIN_URL],
-      },
+      businessNode(),
+      personNode(),
       {
         '@type': 'WebSite',
         '@id': `${SITE_URL}/#website`,
@@ -205,37 +302,18 @@ export function siteJsonLd() {
         publisher: { '@id': businessId },
         inLanguage: 'en-US',
       },
-      ...PACKAGE_SERVICES.map((service) => ({
-        '@type': 'Service',
-        '@id': `${SITE_URL}/#service-${service.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
-        name: service.name,
-        description: service.description,
-        serviceType: service.serviceType ?? 'AI assistant for a small business',
-        provider: { '@id': businessId },
-        areaServed: areaServed(),
-        url: `${SITE_URL}/${service.anchor ?? '#packages'}`,
-        ...(service.price
-          ? {
-              offers: {
-                '@type': 'Offer',
-                priceCurrency: 'USD',
-                price: service.price,
-                ...(service.unitText ? { unitText: service.unitText } : {}),
-                description: service.offerNote,
-              },
-            }
-          : {}),
-      })),
       {
-        '@type': 'FAQPage',
-        '@id': `${SITE_URL}/#faq`,
-        url: `${SITE_URL}/#faq`,
-        mainEntity: FAQS.map((item) => ({
-          '@type': 'Question',
-          name: item.question,
-          acceptedAnswer: { '@type': 'Answer', text: item.answer },
-        })),
+        '@type': 'WebPage',
+        '@id': `${SITE_URL}/#webpage`,
+        url: `${SITE_URL}/`,
+        name: HOME_TITLE,
+        description: HOME_DESCRIPTION,
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        about: { '@id': businessId },
+        inLanguage: 'en-US',
       },
+      ...PACKAGE_SERVICES.map((service) => serviceNode(service)),
+      faqNode(`${SITE_URL}/#faq`, `${SITE_URL}/#faq`, FAQS),
       ...DEMO_VIDEOS.map(([slug, name]) => ({
         '@type': 'VideoObject',
         '@id': `${SITE_URL}/#video-${slug}`,
@@ -248,6 +326,29 @@ export function siteJsonLd() {
         uploadDate: '2026-11-02',
         publisher: { '@id': businessId },
       })),
+    ],
+  }
+}
+
+export function aiHelpPageJsonLd() {
+  const pageUrl = `${SITE_URL}${AI_HELP_PATH}`
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      businessNode(),
+      personNode(),
+      {
+        '@type': 'WebPage',
+        '@id': `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: AI_HELP_TITLE,
+        description: AI_HELP_DESCRIPTION,
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        about: { '@id': businessId },
+        inLanguage: 'en-US',
+      },
+      faqNode(`${pageUrl}#faq`, pageUrl, AI_HELP_FAQS),
+      ...namedServices(['Missed-call text-back', 'Website', 'Google and AI search', 'DANZUS Growth']),
     ],
   }
 }

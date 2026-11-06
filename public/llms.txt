@@ -1,8 +1,12 @@
 # DANZUS
 
-> DANZUS Holdings LLC, in Folsom, California, builds websites and sets up local
-> search and missed-call text-back for small businesses in Sacramento, Folsom,
-> Roseville, El Dorado Hills, and nearby. Missed-call text-back is $99 a month
+> DANZUS provides AI help for small businesses in Sacramento, Folsom,
+> Roseville, El Dorado Hills, and nearby. That help is missed-call text-back,
+> a website built so the next step is a call or a lead, and Google and AI
+> search so Google and ChatGPT can describe the shop. DANZUS Holdings LLC is
+> in Folsom, California. Dan Johnson lives and works from Folsom. Mail goes to
+> 2108 N St #18348, Sacramento, CA 95816. That is a mailing address, not a shop to visit.
+> Missed-call text-back is $99 a month
 > after a free 30-day pilot, with no setup fee, month to month. That is the
 > founding client price. A website is $1,500 one time, plus $49 a month for
 > hosting and small edits. Paid 50% up front and 50% at launch. The client keeps
@@ -43,6 +47,7 @@ Those monthly charges renew each month at the same price until the customer canc
 
 - Phone: (916) 404-6129
 - Email: dan@danzus.co
+- Mailing address: DANZUS Holdings LLC, 2108 N St #18348, Sacramento, CA 95816. Not a shop to visit. Dan works from Folsom.
 - LinkedIn: https://linkedin.com/in/danjohnsondata
 - Privacy: https://danzus.co/privacy
 - Terms, including SMS: https://danzus.co/terms
@@ -51,6 +56,7 @@ Those monthly charges renew each month at the same price until the customer canc
 ## Pages
 
 - [Homepage](https://danzus.co/): websites, local search, missed-call text-back, prices, questions, and contact.
+- [AI help for small businesses](https://danzus.co/small-business-ai-help): what DANZUS does for a local shop, the towns covered, the prices, and how to start.
 - [AI search](https://danzus.co/ai-search): plain-English explainer and a free site check. The score uses only signals the check measured.
 - [Privacy](https://danzus.co/privacy): mobile phone numbers and SMS opt-in data and consent are not shared with any third parties or affiliates.
 - [Terms](https://danzus.co/terms): SMS terms, monthly renewal terms, and a copyright notice.

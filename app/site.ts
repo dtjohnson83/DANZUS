@@ -18,6 +18,16 @@ export const CONTACT_PHONE_SCHEMA = '+1-916-404-6129'
 
 export const LINKEDIN_URL = 'https://linkedin.com/in/danjohnsondata'
 
+/**
+ * Mail-forwarding address for DANZUS Holdings LLC.
+ * Dan lives and works from Folsom. This is not a shop to visit.
+ */
+export const MAILING_STREET = '2108 N St #18348'
+export const MAILING_LOCALITY = 'Sacramento'
+export const MAILING_REGION = 'CA'
+export const MAILING_POSTAL_CODE = '95816'
+export const MAILING_ADDRESS_LINE = `${MAILING_STREET}, ${MAILING_LOCALITY}, ${MAILING_REGION} ${MAILING_POSTAL_CODE}`
+
 export const PORTRAIT_SRC = '/dan-johnson.jpg'
 
 export const SITE_URL = 'https://danzus.co'

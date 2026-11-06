@@ -1,0 +1,125 @@
+.page {
+  min-height: 0;
+}
+
+.main {
+  width: min(720px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 156px 0 72px;
+}
+
+.hero {
+  padding-bottom: 8px;
+}
+
+.kicker {
+  margin: 0 0 12px;
+  color: var(--clay);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero h1,
+.block h2,
+.faq h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  color: var(--paper);
+}
+
+.hero h1 {
+  max-width: 16em;
+  font-size: clamp(2.15rem, 7vw, 3.35rem);
+}
+
+.lede,
+.block p,
+.faq p {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.lede {
+  max-width: 38rem;
+  color: var(--paper);
+  font-size: 1.2rem;
+  line-height: 1.45;
+}
+
+.contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 22px 0 0;
+}
+
+.contacts a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--paper);
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.block,
+.faq {
+  margin-top: 48px;
+  padding-top: 48px;
+  border-top: 1px solid var(--rule);
+}
+
+.block h2,
+.faq h2 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  max-width: 18ch;
+}
+
+.block a,
+.faq a {
+  color: inherit;
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.faq article + article {
+  margin-top: 24px;
+}
+
+.faq h3 {
+  margin: 22px 0 0;
+  font-family: var(--display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--paper);
+}
+
+.navCall {
+  font-size: 0.78rem;
+  padding: 0 10px;
+}
+
+@media (max-width: 420px) {
+  .navCall {
+    font-size: 0.7rem;
+    padding: 0 8px;
+    letter-spacing: -0.02em;
+  }
+}
+
+@media (min-width: 768px) {
+  .main {
+    width: min(760px, calc(100% - 80px));
+    padding-top: 128px;
+  }
+}

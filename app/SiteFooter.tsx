@@ -36,6 +36,16 @@ export function SiteFooter() {
             </a>
           </li>
           <li>
+            <Link
+              href="/small-business-ai-help"
+              data-track="nav_click"
+              data-track-label="AI help"
+              data-track-location="footer"
+            >
+              AI help for small businesses
+            </Link>
+          </li>
+          <li>
             <Link href="/ai-search" data-track="nav_click" data-track-label="AI search" data-track-location="footer">
               AI search
             </Link>

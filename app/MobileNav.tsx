@@ -28,7 +28,19 @@ export function MobileNav({ home = '' }: { home?: string }) {
   }, [open])
 
   useEffect(() => {
-    const wide = window.matchMedia('(min-width: 768px)')
+    const covered = document.querySelectorAll('main, footer')
+    if (!open) return
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    covered.forEach((node) => node.setAttribute('inert', ''))
+    return () => {
+      document.body.style.overflow = previousOverflow
+      covered.forEach((node) => node.removeAttribute('inert'))
+    }
+  }, [open])
+
+  useEffect(() => {
+    const wide = window.matchMedia('(min-width: 1180px)')
     const close = () => {
       if (wide.matches) setOpen(false)
     }
@@ -66,6 +78,9 @@ export function MobileNav({ home = '' }: { home?: string }) {
         </a>
         <a href={`${home}#pricing`} data-track="nav_click" data-track-label="Pricing" data-track-location="mobile" onClick={() => setOpen(false)}>
           Pricing
+        </a>
+        <a href="/small-business-ai-help" data-track="nav_click" data-track-label="AI help" data-track-location="mobile" onClick={() => setOpen(false)}>
+          AI help
         </a>
         <a href="/ai-search" data-track="nav_click" data-track-label="AI search" data-track-location="mobile" onClick={() => setOpen(false)}>
           AI search

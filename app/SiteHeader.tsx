@@ -11,10 +11,16 @@ export function SiteHeader({ children, solid = false }: { children: ReactNode; s
     if (!el) return
     const update = () => {
       el.dataset.solid = window.scrollY > 10 ? 'true' : 'false'
+      el.style.setProperty('--header-h', `${el.offsetHeight}px`)
     }
     update()
+    const observer = new ResizeObserver(update)
+    observer.observe(el)
     window.addEventListener('scroll', update, { passive: true })
-    return () => window.removeEventListener('scroll', update)
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('scroll', update)
+    }
   }, [])
 
   return (
