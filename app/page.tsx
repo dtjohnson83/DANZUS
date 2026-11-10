@@ -121,7 +121,7 @@ const SITE_OFFERINGS: Array<{
     outcome: 'Google and chat tools can describe you.',
     tier: '$199/mo.',
     renewal: 'Renews monthly at $199 until you cancel. Cancel any time online, by email, or by phone.',
-    steps: ['Your Google listing', 'The towns you serve', 'What you do, stated plainly', 'Easy for ChatGPT to read'],
+    steps: ['Your Google listing', 'The towns you serve', 'What you do, stated plainly', 'Easy for ChatGPT to read', 'ChatGPT business profile claimed and kept up to date (where ChatGPT supports your business type)'],
     groupId: 'search-services',
   },
   {
@@ -165,7 +165,7 @@ const TIERS: Array<{
     name: 'Google + AI search',
     who: 'Google and chat tools.',
     price: '$199/mo',
-    setup: 'Your Google listing, your towns, and clear pages.',
+    setup: 'Your Google listing, your towns, clear pages, and a claimed ChatGPT profile where supported.',
     renewal: 'Renews monthly at $199 until you cancel. Cancel any time online, by email, or by phone.',
     body: 'So Google and AI answers can describe your shop.',
     groupId: 'search-pricing',

@@ -118,7 +118,7 @@ export const PACKAGE_SERVICES: ListedService[] = [
   {
     name: 'Google and AI search',
     description:
-      'Your Google listing, the towns you serve, and pages Google and ChatGPT can read.',
+      'Your Google listing, the towns you serve, pages Google and ChatGPT can read, and a ChatGPT business profile claimed and kept up to date where ChatGPT supports your type of business.',
     price: '199',
     unitText: 'MONTH',
     offerNote: '$199 a month. It renews each month until you cancel.',

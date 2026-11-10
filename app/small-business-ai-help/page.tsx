@@ -70,7 +70,7 @@ const OFFERS = [
   {
     id: 'search',
     title: 'Google and AI search',
-    body: 'Google and AI search, so Google and ChatGPT can describe the shop. Your listing, the towns you serve, and pages those tools can read.',
+    body: 'Google and AI search, so Google and ChatGPT can describe the shop. Your listing, the towns you serve, pages those tools can read, and a ChatGPT business profile claimed and kept up to date where ChatGPT supports your type of business.',
     price: '$199 a month.',
     groupId: 'search-pricing',
   },

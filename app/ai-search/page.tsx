@@ -33,7 +33,7 @@ const FAQS = [
   {
     question: 'Do I need a new website first?',
     answer:
-      'Not always. Sometimes the Google profile, the towns you serve, and a few clear pages are the first fix. A rebuild is for a site that is slow or hard to use on a phone.',
+      'Not always. Sometimes the Google profile, a claimed ChatGPT business profile where ChatGPT supports your type of business, the towns you serve, and a few clear pages are the first fix. A rebuild is for a site that is slow or hard to use on a phone.',
   },
   {
     question: 'Do you help small businesses with AI?',
