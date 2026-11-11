@@ -169,6 +169,11 @@ export default function AiSearchPage() {
             shop names, not a long list of links. The same thing happens for a furnace, a weld, a haircut, or a brake
             job.
           </p>
+          <p>
+            Some businesses can also claim a ChatGPT profile. See the step-by-step guide on{' '}
+            <Link href="/get-listed-in-chatgpt">how to get listed in ChatGPT</Link>, including what is open today and
+            what is still coming soon.
+          </p>
         </section>
 
         <section className={styles.block} aria-labelledby="why-title">

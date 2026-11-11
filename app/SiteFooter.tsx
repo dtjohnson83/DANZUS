@@ -51,6 +51,16 @@ export function SiteFooter() {
             </Link>
           </li>
           <li>
+            <Link
+              href="/get-listed-in-chatgpt"
+              data-track="nav_click"
+              data-track-label="Listed in ChatGPT"
+              data-track-location="footer"
+            >
+              Get listed in ChatGPT
+            </Link>
+          </li>
+          <li>
             <Link href="/privacy">Privacy</Link>
           </li>
           <li>
